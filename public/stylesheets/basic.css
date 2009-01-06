@@ -1,0 +1,45 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-family: "Arial";
+	background: #F4F4F4 url(/images/page_bg.png) repeat-y 50%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+fieldset {
+	border: 0px;
+}
+
+iframe {
+	width: 0px;
+	height: 0px;
+	border: 0px;
+}
+
+img {
+	border: 0px;
+}
+
+li {
+	list-style: none;
+}
+
+.clear {
+	height: 0px;
+	clear: both;
+	overflow: auto;
+}

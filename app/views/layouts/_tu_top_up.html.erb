@@ -1,0 +1,43 @@
+<div id="<%= id %>" class="tu_top_up<%= " tu_transparent" if id == "temp_up" %>"<%= ' style="display: none"' if id == "top_up" %>>
+  <div class="tu_wrapper">
+    <a class="tu_close_link" onclick="TopUp.close()" style="display: none"></a>
+    <div class="tu_title"></div>
+    <table class="tu_frame">
+      <tr class="tu_top">
+        <td class="tu_left tu_corner"></td>
+        <td class="tu_middle tu_rib"></td>
+        <td class="tu_right tu_corner"></td>
+      </tr>
+      <tr class="tu_middle">
+        <td class="tu_left tu_rib"></td>
+        <td class="tu_middle">
+            <% if id == "temp_up" %>
+            <div id="tu_content">
+            <% end %>
+              <!-- Content -->
+            <% if id == "temp_up" %>
+            </div>
+            <% end %>
+        </td>
+        <td class="tu_right tu_rib"></td>
+      </tr>
+      <tr class="tu_bottom">
+        <td class="tu_left tu_corner"></td>
+        <td class="tu_middle tu_rib"></td>
+        <td class="tu_right tu_corner"></td>
+      </tr>
+    </table>
+    <div class="tu_bottom_bar">
+      <div class="tu_controls_wrapper">
+        <div class="tu_controls">
+          <a class="tu_previous_link" onclick="TopUp.previous()" style="display: none">
+            <span class="tu_previous_caption">Previous</span>
+          </a>
+          <a class="tu_next_link" onclick="TopUp.next()" style="display: none">
+            <span class="tu_next_caption">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

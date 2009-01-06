@@ -1,0 +1,10 @@
+<div id="images">
+  <%= link_to image_tag("photo1.jpg"), "/images/photo1.jpg" %>
+  <%= link_to image_tag("photo2.jpg"), "/images/photo2.jpg" %>
+  <%= link_to image_tag("photo3.jpg"), "/images/photo3.jpg", :toptions => "layout = dashboard, shaded = 1" %>
+</div>
+<%= link_to "Add issue", "/issue", :class => "top_up" %><br>
+<%= link_to "Add issue", "/issue", :class => "top_up", :toptions => "resizable = 1" %><br>
+<%= link_to "Add order", "/order", :toptions => "group = images, shaded = 1, layout = quicklook" %><br>
+<%= link_to "Google search", "http://www.google.nl", :toptions => "group = images, modal = 0, layout = quicklook, type = iframe, width = 600, height = 400, title = Google search" %>
+<h1>Another header</h1>

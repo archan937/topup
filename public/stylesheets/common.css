@@ -1,0 +1,36 @@
+#page_wrapper {
+	width: 880px;
+	height: 900px !important;
+/*	min-height: 100%;*/
+	margin: auto;
+	position: relative;
+	font-size: 12px;
+}
+
+#page_wrapper #page_header {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+#page_wrapper #page_header h1 {
+	line-height: 80px;
+}
+
+#page_wrapper #page_content {
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-bottom: 30px;
+	position: relative;
+}
+
+#page_wrapper #page_content #primary #images img {
+	width: 250px;
+}
+
+#page_wrapper #page_footer {
+	bottom: 0px;
+	height: 30px;
+	padding-left: 16px;
+	padding-right: 16px;
+	position: absolute;
+}

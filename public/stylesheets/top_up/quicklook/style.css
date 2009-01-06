@@ -1,0 +1,71 @@
+
+.tu_quicklook .tu_content_wrapper {
+	bottom: 56px; }
+
+.tu_quicklook .tu_title,
+.tu_quicklook .tu_bottom_bar {
+	cursor: move; }
+
+.tu_quicklook .tu_title {
+	top: 6px;
+	left: -4px; }
+
+.tu_quicklook .tu_previous_caption,
+.tu_quicklook .tu_next_caption {
+	display: none; }
+
+.tu_quicklook .tu_previous_link,
+.tu_quicklook .tu_next_link {
+	width: 31px;
+	height: 33px;
+	margin: 0px 1px;
+	display: inline-block;
+	background-image: url(/images/top_up/quicklook/sprite.png); }
+
+.tu_quicklook .tu_previous_link 	    { background-position: 89px -195px; }
+.tu_quicklook .tu_next_link 		      { background-position: 52px -195px; }
+.tu_quicklook .tu_previous_link:hover { background-position: 89px -225px; }
+.tu_quicklook .tu_next_link:hover 	  { background-position: 52px -225px; }
+
+.tu_quicklook .tu_close_link {
+	width: 13px;
+	height: 13px;
+	top: 7px;
+	left: 9px;
+	background-image: url(/images/top_up/quicklook/sprite.png);
+	background-position: -24px -181px; }
+
+.tu_quicklook #tu_content {
+	margin: 0px -7px; }
+
+#top_up .tu_quicklook .ui-resizable-se {
+	width: 10px !important;
+	height: 10px !important;
+	bottom: 11px !important;
+	right: 8px !important;
+	background-image: url(/images/top_up/quicklook/sprite.png) !important;
+	background-position: -75px -181px !important; }
+
+.tu_quicklook .tu_corner,
+.tu_quicklook .tu_rib {
+	background-image: url(/images/top_up/quicklook/sprite.png); }
+
+.tu_quicklook .tu_top,
+.tu_quicklook .tu_bottom { cursor: move; }
+
+.tu_quicklook .tu_top	   { height: 24px; }
+.tu_quicklook .tu_bottom { height: 56px; }
+.tu_quicklook .tu_left	 { width:  12px; }
+.tu_quicklook .tu_right	 { width:  12px; }
+
+.tu_quicklook .tu_middle .tu_middle	{
+	background: url(/images/top_up/quicklook/middle.png); }
+
+.tu_quicklook .tu_top .tu_left  		{ background-position:  0px	   0px; }
+.tu_quicklook .tu_top .tu_middle	  { background-position:  0px  -30px; }
+.tu_quicklook .tu_top .tu_right	  	{ background-position: 12px    0px; }
+.tu_quicklook .tu_middle .tu_left	  { background-position:  0px	-181px; }
+.tu_quicklook .tu_middle .tu_right	{ background-position: 12px -181px; }
+.tu_quicklook .tu_bottom .tu_left	  { background-position:  0px	-122px; }
+.tu_quicklook .tu_bottom .tu_middle	{ background-position:  0px	 -61px; }
+.tu_quicklook .tu_bottom .tu_right	{ background-position: 12px -122px; }

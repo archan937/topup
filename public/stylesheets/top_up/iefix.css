@@ -1,0 +1,15 @@
+
+.tu_shaded {
+	filter: alpha(opacity = 65); }
+
+.tu_transparent {
+	filter: alpha(opacity = 0); }
+	
+.tu_top_up,
+.tu_controls_wrapper,
+.tu_controls {
+	display: inline; }
+
+#tu_content {
+	position: relative;
+	zoom: 1; }
