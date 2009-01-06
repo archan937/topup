@@ -5,6 +5,7 @@
 	left: 0px; }
 
 #temp_up {
+  top: -9999px;
   z-index: -1; }
 
 #tu_overlay {

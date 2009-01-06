@@ -1,0 +1,4 @@
+tmp/*
+log/*
+log/*.log
+ruby_sess*

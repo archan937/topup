@@ -1,4 +1,4 @@
-<div id="<%= id %>" class="tu_top_up<%= " tu_transparent" if id == "temp_up" %>"<%= ' style="display: none"' if id == "top_up" %>>
+<div id="<%= id %>" class="tu_top_up<%= " tu_transparent" if id == "temp_upd" %>"<%= ' style="display: none"' if id == "top_up" %>>
   <div class="tu_wrapper">
     <a class="tu_close_link" onclick="TopUp.close()" style="display: none"></a>
     <div class="tu_title"></div>
@@ -11,13 +11,9 @@
       <tr class="tu_middle">
         <td class="tu_left tu_rib"></td>
         <td class="tu_middle">
-            <% if id == "temp_up" %>
-            <div id="tu_content">
-            <% end %>
+            <div class="tu_content">
               <!-- Content -->
-            <% if id == "temp_up" %>
             </div>
-            <% end %>
         </td>
         <td class="tu_right tu_rib"></td>
       </tr>

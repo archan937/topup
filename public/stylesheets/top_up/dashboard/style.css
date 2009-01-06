@@ -46,7 +46,7 @@
 	background-image: url(/images/top_up/dashboard/sprite.png);
 	background-position: -20px 0px; }
 
-.tu_dashboard #tu_content {
+.tu_dashboard .tu_content {
 	margin: -11px -12px -11px -13px; }
 
 #top_up .tu_dashboard .ui-resizable-se {

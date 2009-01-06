@@ -35,7 +35,7 @@
 	background-image: url(/images/top_up/quicklook/sprite.png);
 	background-position: -24px -181px; }
 
-.tu_quicklook #tu_content {
+.tu_quicklook .tu_content {
 	margin: 0px -7px; }
 
 #top_up .tu_quicklook .ui-resizable-se {
