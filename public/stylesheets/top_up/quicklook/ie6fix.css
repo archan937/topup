@@ -29,6 +29,7 @@
 .tu_quicklook .tu_top .tu_middle    { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_middle.png"   , sizingMethod="scale"); }
 .tu_quicklook .tu_top .tu_right     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_right.png"    , sizingMethod="crop" ); }
 .tu_quicklook .tu_middle .tu_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_left.png"  , sizingMethod="scale"); }
+.tu_quicklook .tu_middle .tu_middle { filter: alpha(opacity = 70); background: black; }
 .tu_quicklook .tu_middle .tu_right  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_right.png" , sizingMethod="scale"); }
 .tu_quicklook .tu_bottom .tu_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_left.png"  , sizingMethod="crop" ); }
 .tu_quicklook .tu_bottom .tu_middle { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_middle.png", sizingMethod="scale"); }

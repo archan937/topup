@@ -19,7 +19,7 @@
 .tu_dashboard .tu_controls {
 	padding-left: 4px;
 	padding-right: 10px;
-	background: url(/images/top_up/dashboard/controls.png) top right; }
+	background: url(/images/top_up/dashboard/controls.png) top right no-repeat; }
 
 .tu_dashboard .tu_previous_caption,
 .tu_dashboard .tu_next_caption {

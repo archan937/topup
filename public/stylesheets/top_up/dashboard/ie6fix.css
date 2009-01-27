@@ -14,6 +14,8 @@
 .tu_dashboard .tu_left,
 .tu_dashboard .tu_right  { width:  19px; }
 
+.tu_dashboard .tu_controls_wrapper,
+.tu_dashboard .tu_controls,
 .tu_dashboard .tu_previous_link,
 .tu_dashboard .tu_next_link,
 .tu_dashboard .tu_close_link,

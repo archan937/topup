@@ -260,6 +260,21 @@ TopUp = function() {
 		return false;
 	};
 	
+	var deriveTopUpOptions = function(top_up, opts) {
+	  var toptions = jQuery.extend({}, {top_up: "#" + top_up.element.id(), preset: top_up.selector});
+		  
+	  if (top_up.element.is("[toptions]")) {
+			jQuery.each(top_up.element.attr("toptions").split(","), function(i, option) {
+				var key_value = option.split("=");
+				toptions[jQuery.trim(key_value[0])] = jQuery.trim(key_value[1]);
+			});
+		}
+  		
+  	if (opts)
+  	  toptions = jQuery.extend(toptions, opts);
+    
+    return toptions;
+	};
 	var deriveOptions = function(reference, opts, store) {
 		var result = jQuery.extend({}, default_preset);
 		
@@ -279,6 +294,7 @@ TopUp = function() {
 		
 		return result;
 	};
+	
 	var deriveGroup = function() {
 		if (options.group) {
 		
@@ -287,22 +303,27 @@ TopUp = function() {
 		
 			group = {name: options.group, items: jQuery([])};
 			jQuery.each(jQuery(selector), function(i, e) {
-				if (deriveOptions(e).group == group.name)
+	      if (!jQuery(e).is("[tu_group]"))
+  			  jQuery(e).attr("tu_group", deriveOptions(null, deriveTopUpOptions(jQuery(e).bubbleDetect(selector))).group);
+
+				if (jQuery(e).attr("tu_group") == group.name)
 					group.items = group.items.add(e);
 			});
+
+			index = group.items.index(options.top_up_element);
 			
 		} else
 			group = null;
 	};
 	var navigateInGroup = function(step) {
-		var item_index = index + step;
-		
-		if (item_index < 0)
-			item_index = group.items.length - 1;
-		if (item_index > group.items.length - 1)
-			item_index = 0;
-		
-		TopUp.displayTopUp(group.items[item_index]);
+		index = index + step;
+
+		if (index < 0)
+			index = group.items.length - 1;
+		if (index > group.items.length - 1)
+			index = 0;
+
+		TopUp.displayTopUp(group.items[index]);
 	};
   
 	var prepare = function() {
@@ -327,11 +348,9 @@ TopUp = function() {
 			jQuery("#tu_overlay").hide();
 	
 		if (group && group.items.length > 1) {
-			index = group.items.index(options.top_up_element);
 			jQuery("#top_up .tu_previous_link").show();
 			jQuery("#top_up .tu_next_link").show();
 		} else {
-			index = null;
 			jQuery("#top_up .tu_previous_link").hide();
 			jQuery("#top_up .tu_next_link").hide();
 		}
@@ -592,17 +611,7 @@ TopUp = function() {
 		},
 		displayTopUp: function(element, opts) {
 		  var top_up = jQuery(element).bubbleDetect(selector);
-		  var toptions = jQuery.extend({}, {trigger: "#" + element.id(), top_up: "#" + top_up.element.id(), preset: top_up.selector});
-		  
-		  if (top_up.element.is("[toptions]")) {
-  			jQuery.each(top_up.element.attr("toptions").split(","), function(i, option) {
-  				var key_value = option.split("=");
-  				toptions[jQuery.trim(key_value[0])] = jQuery.trim(key_value[1]);
-  			});
-  		}
-  		if (opts)
-  		  toptions = jQuery.extend(toptions, opts);
-		  
+		  var toptions = deriveTopUpOptions(top_up, jQuery.extend(opts || {}, {trigger: "#" + jQuery(element).id()}));
   		TopUp.display(top_up.element.attr("href"), toptions);
 	  },
 		display: function(reference, opts) {
