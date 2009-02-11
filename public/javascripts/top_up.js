@@ -309,8 +309,11 @@ TopUp = function() {
 				if (jQuery(e).attr("tu_group") == group.name)
 					group.items = group.items.add(e);
 			});
-
-			index = group.items.index(options.top_up_element);
+			
+			var ids = jQuery.map(group.items, function(e, i){
+      						return "#" + jQuery(e).id();
+    						});
+			index = options.top_up ? jQuery.inArray(options.top_up, ids) : -1;
 			
 		} else
 			group = null;
