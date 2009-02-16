@@ -39,10 +39,18 @@ namespace :top_up do
       end
     }
     
-    FileUtils.rm_r("assets/export") if File.exists?("assets/export")
-    FileUtils.mkdir_p("assets/export")
+    releases_dir = "#{RAILS_ROOT}/assets/releases"
+    release_dir  = "#{releases_dir}/#{args[:version]}"
     
-    File.open("assets/export/top_up.js", "w").puts(javascript)
-    FileUtils.cp_r("public/images/top_up", "assets/export")
+    # Create directories
+    FileUtils.rm_r(release_dir) if File.exists?(release_dir)
+    FileUtils.mkdir_p(release_dir)
+    
+    # Create symbolic link to latest version
+    FileUtils.ln_sf(args[:version], "#{releases_dir}/latest")
+    
+    # Copy release
+    File.open("#{release_dir}/top_up.js", "w").puts(javascript)
+    FileUtils.cp_r("public/images/top_up", release_dir)
   end
 end
