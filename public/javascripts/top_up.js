@@ -462,7 +462,7 @@ TopUp = function() {
 	};
 
   var setContent = function() {
-    options.content.show().appendTo("#temp_up .tu_content");
+    options.content.appendTo("#temp_up .tu_content");
   };
 	var moveContent = function(to) {
 	  var from = to == "top_up" ? "temp_up" : "top_up";
@@ -649,16 +649,7 @@ TopUp = function() {
 }();
 TopUp.init();
 
-function toDo() {
 /* TODO */
-/* - Correct IEPngFix: handle multiple layouts, correct blank.gif location and bypass access denied when external (write own fix?) */
 /* - Simulate position fixed in IE */
 /* - Fix the flickering when calling replaceTopUp (especially with iframe) */
 /* - Implement dragging and resizing the top up correctly in IE (write own draggable and resizable?) */
-
-/* SOLVED */
-/* - Implement elementready/load/ready correctly (write own implementation?) */
-/* - Correct quicklook layout (try to display a webpage and see for yourself) */
-/* - Solve the autoscrolling to the top of the page when animating */
-/* - Correct height of the Top up when it's greater than the window's height */
-}
