@@ -1,8 +1,8 @@
 namespace :top_up do
-  desc "Export Top up for external usage"
-  task :export, :version do |task, args|
+  desc "Release Top up for external usage"
+  task :release, :version do |task, args|
     if args[:version].blank?
-      raise "usage: rake top_up:export[version]" 
+      raise "usage: rake top_up:release[version]" 
     end
     
     require "action_controller"
