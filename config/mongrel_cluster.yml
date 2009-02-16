@@ -1,0 +1,9 @@
+---
+user: topup
+cwd: /home/topup/source/current
+port: 10350
+environment: production
+group: topup
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 1
