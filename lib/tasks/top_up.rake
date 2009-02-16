@@ -41,13 +41,15 @@ namespace :top_up do
     
     releases_dir = "#{RAILS_ROOT}/assets/releases"
     release_dir  = "#{releases_dir}/#{args[:version]}"
+    symlink      = "#{releases_dir}/latest"
     
     # Create directories
     FileUtils.rm_r(release_dir) if File.exists?(release_dir)
     FileUtils.mkdir_p(release_dir)
     
     # Create symbolic link to latest version
-    FileUtils.ln_sf(args[:version], "#{releases_dir}/latest")
+    File.delete(symlink)
+    File.symlink(args[:version], symlink)
     
     # Copy release
     File.open("#{release_dir}/top_up.js", "w").puts(javascript)
