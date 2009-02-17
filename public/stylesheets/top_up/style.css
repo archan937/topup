@@ -48,6 +48,10 @@
 #tu_center_wrapper {
 	border-collapse: collapse; }
 
+.tu_frame tr, .tu_frame td {
+  margin: 0px;
+  padding: 0px; }
+
 .tu_frame .tu_left,
 .tu_frame .tu_middle,
 .tu_frame .tu_right, {
