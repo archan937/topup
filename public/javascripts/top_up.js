@@ -531,7 +531,7 @@ TopUp = function() {
       position.left = jQuery(window).scrollLeft() + jQuery(window).width() - dimensions.width - 24;
 
     if (jQuery.keys(position).length > 0)
-      jQuery("#top_up").animate(position, 350);
+      jQuery("#top_up").animate(position, 400);
   }
 	
 	var afterShow = function() {
