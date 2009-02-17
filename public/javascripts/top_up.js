@@ -346,7 +346,7 @@ TopUp = function() {
 			jQuery("#tu_overlay").addClass("tu_shaded") :
 			jQuery("#tu_overlay").removeClass("tu_shaded");
 	
-		(parseInt(options.modal) == 1) || (parseInt(options.shaded) == 1) ?
+		(parseInt(options.modal) == 1) || (parseInt(options.shaded) == 1) || (parseInt(options.overlayClose) == 1) ?
 			jQuery("#tu_overlay").show() :
 			jQuery("#tu_overlay").hide();
 	
@@ -640,6 +640,10 @@ TopUp = function() {
 		},
 		next: function() {
 			navigateInGroup(1);
+		},
+		overlayClose: function() {
+		  if (parseInt(options.overlayClose) == 1)
+		    TopUp.close();
 		},
 		close: function(callback) {
       if (jQuery("#top_up").is(":visible"))
