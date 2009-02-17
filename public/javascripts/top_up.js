@@ -449,14 +449,12 @@ TopUp = function() {
       
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
-      checkPosition(function() {
-  	    var animation = {width: jQuery("#temp_up .tu_content").outerWidth(),
-  	                     height: jQuery("#temp_up .tu_content").outerHeight()};
-  	    jQuery("#top_up .tu_content").animate(animation, 500, function() {
-  	      moveContent("top_up");
-          jQuery("#top_up").removeCenterWrap();
-  	      afterDisplay();
-        });
+	    var animation = {width: jQuery("#temp_up .tu_content").outerWidth(),
+	                     height: jQuery("#temp_up .tu_content").outerHeight()};
+	    jQuery("#top_up .tu_content").animate(animation, 500, function() {
+	      moveContent("top_up");
+        jQuery("#top_up").removeCenterWrap();
+	      afterDisplay();
       });
     });
 	};
@@ -517,10 +515,23 @@ TopUp = function() {
 	  
 	  setDimensions(dimensions);
 	};
-  var checkPosition = function(callback) {
-	  jQuery("#temp_up").outerHeight() == jQuery(window).height() - 4 ?
-      jQuery("#tu_center_wrapper").animate({top: parseInt((jQuery(window).height() - jQuery("#temp_up").outerHeight()) / 2) + jQuery(window).scrollTop()}, 400, callback) :
-      callback.apply();
+  var checkPosition = function() {
+    var offset     = jQuery("#top_up").offset();
+    var dimensions = {width: jQuery("#top_up").outerWidth(), height: jQuery("#top_up").outerHeight()};
+    var position   = {};
+    
+    if (offset.top - jQuery(window).scrollTop() < 2)
+      position.top = jQuery(window).scrollTop() + 2;
+    else if (offset.top + dimensions.height - jQuery(window).scrollTop() > jQuery(window).height() - 2)
+      position.top = jQuery(window).scrollTop() + jQuery(window).height() - dimensions.height - 2;
+      
+    if (offset.left - jQuery(window).scrollLeft() < 2)
+      position.left = jQuery(window).scrollLeft() + 2;
+    else if (offset.left + dimensions.width - jQuery(window).scrollLeft() > jQuery(window).width() - 2)
+      position.left = jQuery(window).scrollLeft() + jQuery(window).width() - dimensions.width - 24;
+
+    if (jQuery.keys(position).length > 0)
+      jQuery("#top_up").animate(position, 350);
   }
 	
 	var afterShow = function() {
@@ -544,6 +555,8 @@ TopUp = function() {
 		  var opts = {handles: "se", minWidth: 200, minHeight: 75, alsoResize: "#" + options.resize.id(), aspectRatio: options.type == "image"};
 	    jQuery("#top_up .tu_frame").resizable(opts);
 		}
+		
+		checkPosition();
 		
 		displaying = false;
 	};
