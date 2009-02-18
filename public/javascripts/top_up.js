@@ -451,7 +451,7 @@ TopUp = function() {
 	    
 	    var animation = {width: jQuery("#temp_up .tu_content").outerWidth(),
 	                     height: jQuery("#temp_up .tu_content").outerHeight()};
-	    jQuery("#top_up .tu_content").animate(animation, 500, function() {
+	    jQuery("#top_up .tu_content").animate(animation, 400, function() {
 	      moveContent("top_up");
         jQuery("#top_up").removeCenterWrap();
 	      afterDisplay();
@@ -531,7 +531,7 @@ TopUp = function() {
       position.left = jQuery(window).scrollLeft() + jQuery(window).width() - dimensions.width - 24;
 
     if (jQuery.keys(position).length > 0)
-      jQuery("#top_up").animate(position, 400);
+      jQuery("#top_up").animate(position, 300);
   }
 	
 	var afterShow = function() {
