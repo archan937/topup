@@ -28,6 +28,10 @@
 	display: inline-block;
 	position: absolute;
 	z-index: 1000; }
+	
+.tu_top_up a,
+.tu_top_up a:hover {
+  border: 0px; }
 
 .tu_fixed {
 	position: fixed !important; }

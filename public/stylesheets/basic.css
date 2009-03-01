@@ -1,3 +1,4 @@
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -8,38 +9,55 @@ html, body {
 }
 
 body {
-	font-family: "Arial";
-	background: #F4F4F4 url(/images/page_bg.png) repeat-y 50%;
+  color: white;
+	font-family: "Lucida Grande", "Arial";
+	font-size: 11px;
+	line-height: 150%;
+	background: #003343 url(/images/backgrounds/page.jpg) repeat-x top;
 }
 
 a {
+  color: white;
 	text-decoration: none;
+  border-bottom: 1px dotted white;
 }
 
 a:hover {
-	text-decoration: underline;
+  border-bottom: 1px solid white;
 }
 
-fieldset {
-	border: 0px;
+h1,
+h2 {
+  text-indent: -9999px;
+  background-repeat: no-repeat;
 }
 
-iframe {
-	width: 0px;
-	height: 0px;
-	border: 0px;
+h3 {
+  margin-top: 5px;
+  font-size: 12px;
 }
 
 img {
-	border: 0px;
+  border: 0px;
+}
+
+ul {
+  margin-top: 15px;
+}
+
+ol {
+  margin-top: 10px;
+  padding-bottom: 12px;
 }
 
 li {
-	list-style: none;
+  margin-left: 30px;
+}
+
+small {
+  font-size: 9px;
 }
 
 .clear {
-	height: 0px;
-	clear: both;
-	overflow: auto;
+  clear: both;
 }

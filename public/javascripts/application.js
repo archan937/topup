@@ -4,11 +4,14 @@
 TopUp.addPresets({
 	"#images a": {
 		fixed: 0,
-		modal: 0,
 		group: "images",
 		layout: "quicklook",
-		title: "Edit object"
-	}
+		modal: 0,
+		title: "Example"
+	},
+	".shaded": {
+		shaded: 1
+  }
 });
 
 TopUp.ready(function() {

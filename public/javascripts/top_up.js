@@ -227,6 +227,9 @@ TopUp = function() {
 				toptions[jQuery.trim(key_value[0])] = jQuery.trim(key_value[1]);
 			});
 		}
+		
+		if (toptions.noGroup && parseInt(toptions.noGroup) == 1)
+		  toptions.group = null;
   		
   	if (opts)
   	  toptions = jQuery.extend(toptions, opts);
@@ -421,7 +424,7 @@ TopUp = function() {
   	  options.content.animate({width: opts.to.width - contentDiff.width, height: opts.to.height - contentDiff.height}, opts.duration);
       frame          .animate({width: opts.to.width - frameDiff.width,   height: opts.to.height - frameDiff.height},   opts.duration, null, function() {
         direction == "to" ?
-          topUp.fadeOut(150, callback) :
+          topUp.fadeOut(250, callback) :
           callback.apply();
       });
     }

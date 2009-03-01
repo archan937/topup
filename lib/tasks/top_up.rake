@@ -38,21 +38,31 @@ namespace :top_up do
         "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
       end
     }
-    
-    releases_dir = "#{RAILS_ROOT}/assets/releases"
-    release_dir  = "#{releases_dir}/#{args[:version]}"
-    symlink      = "#{releases_dir}/latest"
+
+    releases_dir    = "#{RAILS_ROOT}/assets/releases"
+    release_dir     = "#{releases_dir}/#{args[:version]}"
+    release_symlink = "#{releases_dir}/latest"
     
     # Create directories
     FileUtils.rm_r(release_dir) if File.exists?(release_dir)
     FileUtils.mkdir_p(release_dir)
     
     # Create symbolic link to latest version
-    File.delete(symlink)
-    File.symlink(args[:version], symlink)
+    File.delete(release_symlink) if File.exists?(release_symlink)
+    File.symlink(args[:version], release_symlink)
     
     # Copy release
     File.open("#{release_dir}/top_up.js", "w").puts(javascript)
     FileUtils.cp_r("public/images/top_up", release_dir)
+    
+    # Packed release
+    packed_dir      = "#{releases_dir}/packed"
+    packed_symlink  = "#{packed_dir}/latest"
+    
+    FileUtils.mkdir_p(packed_dir)
+    system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
+    
+    File.delete(packed_symlink) if File.exists?(packed_symlink)
+    File.symlink("#{args[:version]}.tar.gz", packed_symlink)
   end
 end

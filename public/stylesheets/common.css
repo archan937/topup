@@ -1,36 +1,140 @@
+
 #page_wrapper {
-	width: 880px;
-	height: 900px !important;
-/*	min-height: 100%;*/
+	width: 875px;
 	margin: auto;
-	position: relative;
-	font-size: 12px;
 }
 
 #page_wrapper #page_header {
-	padding-left: 16px;
-	padding-right: 16px;
+  height: 113px;
+  position: relative;
+  background: url(/images/backgrounds/logo.jpg) no-repeat 0px 21px;
+  border-bottom: 1px dashed #529796;
+}
+
+#page_wrapper #page_header h1,
+#page_wrapper #page_header h2 {
+  position: absolute;
 }
 
 #page_wrapper #page_header h1 {
-	line-height: 80px;
+  top: 29px;
+  left: 84px;
+  width: 174px;
+  height: 75px;
+  background-image: url(/images/backgrounds/page_header.jpg);
+}
+
+#page_wrapper #page_header h2 {
+  top: 70px;
+  left: 258px;
+  width: 275px;
+  height: 12px;
+  background-image: url(/images/backgrounds/page_subtitle.jpg);
 }
 
 #page_wrapper #page_content {
-	margin-left: 16px;
-	margin-right: 16px;
-	padding-bottom: 30px;
-	position: relative;
+  padding: 12px;
+  padding-bottom: 45px;
 }
 
-#page_wrapper #page_content #primary #images img {
-	width: 250px;
+#page_wrapper #page_content h1,
+#page_wrapper #page_content h2 {
+  margin-top: 28px;
 }
 
-#page_wrapper #page_footer {
-	bottom: 0px;
-	height: 30px;
-	padding-left: 16px;
-	padding-right: 16px;
-	position: absolute;
+#page_wrapper #page_content h1 {
+  height: 28px;
 }
+
+#page_wrapper #page_content h2 {
+  height: 22px;
+}
+
+#page_wrapper #page_content p {
+  margin-top: 6px;
+}
+
+#page_wrapper #page_content .box {
+  margin-top: 4px;
+  padding: 8px;
+  background: #002933;
+  border: 1px dashed #529796;
+}
+
+#page_wrapper #page_content #primary {
+  width: 570px;
+  float: left;
+}
+
+#page_wrapper #page_content #primary #examples {
+  padding: 15px;
+}
+
+#page_wrapper #page_content #primary #examples li {
+  width: 150px;
+  height: 135px;
+  margin: 0px;
+  padding: 0px 14px 14px 14px;
+  float: left;
+  list-style: none;
+}
+
+#page_wrapper #page_content #primary #examples li a {
+  height: 94px;
+  padding-bottom: 4px;
+  display: block;
+  font-size: 21px;
+  border: 0px;
+}
+
+#page_wrapper #page_content #primary #examples li small {
+  padding-left: 2px;
+  display: block;
+  font-style: italic;
+  line-height: 12px;
+}
+
+#page_wrapper #page_content #primary .code {
+  padding-top: 5px;
+  padding-bottom: 4px;
+  display: block;
+  font-family: "Courier New", "Courier";
+  font-size: 10px;
+}
+
+#page_wrapper #page_content #secondary {
+  width: 240px;
+  float: right;
+}
+
+#page_wrapper #page_content #secondary .box {
+  padding: 10px 13px;
+}
+
+#page_wrapper #page_content #secondary .box a.download_top_up {
+  width: 211px;
+  height: 45px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  border: 0px;
+}
+
+#page_wrapper #page_content #secondary ul {
+  margin-top: 4px;
+}
+
+#page_wrapper #page_content #secondary ul li {
+  margin-left: 20px;
+}
+
+h1.what_is_top_up         { background-image: url(/images/text/h1-what_is_top_up.jpg);         }
+h1.some_examples          { background-image: url(/images/text/h1-some_examples.jpg);          }
+h1.how_to_use             { background-image: url(/images/text/h1-how_to_use.jpg);             }
+h1.support_or_feedback    { background-image: url(/images/text/h1-support_or_feedback.jpg);    }
+h2.get_the_latest_version { background-image: url(/images/text/h2-get_the_latest_version.jpg); }
+h2.about_me               { background-image: url(/images/text/h2-about_me.jpg);               }
+h2.links                  { background-image: url(/images/text/h2-links.jpg);                  }
+a.download_top_up         { background-image: url(/images/text/a-download_top_up.jpg);         }

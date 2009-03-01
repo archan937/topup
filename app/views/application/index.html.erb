@@ -1,11 +1,127 @@
-<div id="images">
-  <%= link_to image_tag("photo1.jpg"), "/images/photo1.jpg" %>
-  <%= link_to image_tag("photo2.jpg"), "/images/photo2.jpg", :toptions => "overlayClose = 1" %>
-  <%= link_to image_tag("photo3.jpg"), "/images/photo3.jpg", :toptions => "layout = dashboard, shaded = 1, overlayClose = 1" %>
-  <%= link_to image_tag("photo4.jpg"), "/images/photo4.jpg" %>
+<h1 class="what_is_top_up">What is TopUp?</h1>
+<p>
+  TopUp is an easy to use Javascript library for unobstrusively displaying images and webpages in a Web 2.0 approach of popups.
+  The library is <%= link_to "JQuery", "http://jquery.com" %> driven in order to maintain cross-browser compatibility.
+  TopUp offers the following advantages:
+</p>
+<ul>
+  <li>An easy setup process</li>
+  <li>Cross-browser compatibility</li>
+  <li>The ability of displaying images and webpages</li>
+  <li>Fancy animations</li>
+  <li>The possibility to create groups</li>
+  <li>Auto-correction of size and position when required</li>
+  <li>And many more...</li>
+</ul>
+
+<h1 class="some_examples">Some examples</h1>
+<div id="examples" class="box">
+  <ul id="images">
+    <li>
+      <%= link_to image_tag("thumbnails/1.jpg"), "/images/photos/1.jpg" %>
+      <small>
+        group: images, layout: quicklook
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/2.jpg"), "/images/photos/2.jpg", :toptions => "overlayClose = 1" %>
+      <small>
+        group: images, overlayClose: 1, layout: quicklook
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/3.jpg"), "/images/photos/3.jpg", :toptions => "overlayClose = 1, layout = dashboard" %>
+      <small>
+        group: images, overlayClose: 1, layout: dashboard
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/4.jpg"), "/images/photos/4.jpg", :toptions => "layout = dashboard, noGroup = 1" %>
+      <small>
+        noGroup: 1, layout: dashboard
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/5.jpg"), "/images/photos/5.jpg", :class => "shaded", :toptions => "layout = quicklook" %>
+      <small>
+        layout: quicklook, shaded: 1
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/6.jpg"), "/images/photos/6.jpg", :class => "shaded" %>
+      <small>
+        layout: dashboard, shaded: 1
+      </small>
+    </li>
+  </ul>
+  <ul>
+    <li>  
+      <%= link_to image_tag("thumbnails/google.jpg"), "http://www.google.nl", :toptions => "title = Google search, type = iframe, width = 600, height = 400, modal = 0, layout = quicklook" %>
+      <small>
+        width: 600, height: 400, type: iframe, modal: 0, layout: quicklook, title: Google search
+      </small>
+    </li>
+    <li>
+      <%= link_to "Internal page", "/issue", :class => "top_up" %>
+      <small>
+        not implemented yet
+      </small>
+    </li>
+    <li>
+      <%= link_to "Ajax Request", "/ajax_request", :class => "top_up" %>
+      <small>
+        not implemented yet
+      </small>
+    </li>
+  </ul>
+  <div class="clear"></div>
+  
+  <% if false %>
+    <%= link_to "Add issue", "/issue", :class => "top_up", :toptions => "resizable = 1" %><br>
+    <%= link_to "Add order", "/order", :toptions => "group = images, shaded = 1, layout = quicklook" %><br>
+    <%= link_to "Google search", "http://www.google.nl", :toptions => "group = images, modal = 0, layout = quicklook, type = iframe, width = 600, height = 400, title = Google search" %>
+  <% end %>
 </div>
-<%= link_to "Add issue", "/issue", :class => "top_up" %><br>
-<%= link_to "Add issue", "/issue", :class => "top_up", :toptions => "resizable = 1" %><br>
-<%= link_to "Add order", "/order", :toptions => "group = images, shaded = 1, layout = quicklook" %><br>
-<%= link_to "Google search", "http://www.google.nl", :toptions => "group = images, modal = 0, layout = quicklook, type = iframe, width = 600, height = 400, title = Google search" %>
-<h1>Another header</h1>
+
+<h1 class="how_to_use">How to use</h1>
+<h3>
+  When refering to topup.holder.nl (the easiest setup)
+</h3>
+<ol>
+  <li>
+    Include TopUp with the following:
+    <span class="code">
+      &lt;script type="text/javascript" src="http://topup.holder.nl/releases/latest/top_up.js"></script>
+    </span>
+    (for a specific version use /releases/1.3.2/top_up.js for example)
+  </li>
+  <li>
+    Enjoy!
+  </li>
+</ol>
+<h3>
+  When hosting the source and images yourself
+</h3>
+<ol>
+  <li>
+    Download the <%= link_to "latest TopUp version", "http://topup.holder.nl/releases/packed/latest.tar.gz" %>
+  </li>
+  <li>
+    Include TopUp with the following:
+    <span class="code">
+      &lt;script type="text/javascript" src="path/to/your/top_up.js"></script>
+    </span>
+  </li>
+  <li>
+    Enjoy!
+  </li>
+</ol>
+<p>
+  For further documentation go to the <%= link_to "documentation page", "/documentation" %>
+</p>
+
+<h1 class="support_or_feedback">Support or feedback</h1>
+<p>
+  Do you have questions or suggestions concering TopUp?
+  Please <%= mail_to "paul.engel@holder.nl", "me" %> and I will answer you as soon as possible.
+</p>
