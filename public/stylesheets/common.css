@@ -18,11 +18,11 @@
 }
 
 #page_wrapper #page_header h1 {
-  top: 29px;
+  top: 30px;
   left: 84px;
   width: 174px;
-  height: 75px;
-  background-image: url(/images/backgrounds/page_header.jpg);
+  height: 74px;
+  background-image: url(/images/backgrounds/page_header_beta.jpg);
 }
 
 #page_wrapper #page_header h2 {
@@ -112,6 +112,11 @@
   padding: 10px 13px;
 }
 
+#page_wrapper #page_content #secondary .box .info {
+	margin-bottom: 7px;
+	display: block;
+}
+
 #page_wrapper #page_content #secondary .box a.download_top_up {
   width: 211px;
   height: 45px;
@@ -137,6 +142,7 @@ h1.how_to_use             { background-image: url(/images/text/h1-how_to_use.jpg
 h1.support_or_feedback    { background-image: url(/images/text/h1-support_or_feedback.jpg);    }
 h1.under_construction     { background-image: url(/images/text/h1-under_construction.jpg);     }
 h2.get_the_latest_version { background-image: url(/images/text/h2-get_the_latest_version.jpg); }
+h2.source_at_github			  { background-image: url(/images/text/h2-source_at_github.jpg);			 }
 h2.about_me               { background-image: url(/images/text/h2-about_me.jpg);               }
 h2.links                  { background-image: url(/images/text/h2-links.jpg);                  }
 a.download_top_up         { background-image: url(/images/text/a-download_top_up.jpg);         }
