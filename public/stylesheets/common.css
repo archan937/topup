@@ -58,7 +58,7 @@
 #page_wrapper #page_content .box {
   margin-top: 4px;
   padding: 8px;
-  background: #002933;
+  background-color: #002933 !important;
   border: 1px dashed #529796;
 }
 
@@ -96,11 +96,14 @@
 }
 
 #page_wrapper #page_content #primary .code {
+  font-family: "Courier New", "Courier";
+  font-size: 10px;
+}
+
+#page_wrapper #page_content #primary div.code {
   padding-top: 5px;
   padding-bottom: 4px;
   display: block;
-  font-family: "Courier New", "Courier";
-  font-size: 10px;
 }
 
 #page_wrapper #page_content #secondary {
@@ -110,6 +113,24 @@
 
 #page_wrapper #page_content #secondary .box {
   padding: 10px 13px;
+}
+
+#page_wrapper #page_content #secondary .twitter {
+  margin-top: 15px !important;
+  padding-left: 100px;
+  background: url(/images/backgrounds/twitter.jpg) no-repeat 12px 50%;
+}
+
+#page_wrapper #page_content #secondary div.github {
+  height: 28px;
+  margin-bottom: 5px;
+  padding-left: 87px;
+  line-height: 26px;
+  background: url(/images/backgrounds/github.jpg) no-repeat 12px 50%;
+}
+
+#page_wrapper #page_content #secondary small.github {
+  line-height: 15px;
 }
 
 #page_wrapper #page_content #secondary .box .info {

@@ -5,12 +5,13 @@
   TopUp offers the following advantages:
 </p>
 <ul>
-  <li>An easy setup process</li>
+  <li>The ability of displaying, images, iframes, webpages and pure HTML</li>
+  <li>A very easy setup process</li>
   <li>Cross-browser compatibility</li>
-  <li>The ability of displaying images and webpages</li>
-  <li>Fancy animations</li>
-  <li>The possibility to create groups</li>
+  <li>Fancy layouts, animations and transitions</li>
   <li>Auto-correction of size and position when required</li>
+  <li>The possibility to create groups</li>
+  <li>Support for AJAX requests</li>
   <li>And many more...</li>
 </ul>
 
@@ -24,9 +25,9 @@
       </small>
     </li>
     <li>
-      <%= link_to image_tag("thumbnails/2.jpg"), "/images/photos/2.jpg", :toptions => "overlayClose = 1" %>
+      <%= link_to image_tag("thumbnails/2.jpg"), "/images/photos/2.jpg", :toptions => "overlayClose = 1, effect = default" %>
       <small>
-        group: images, overlayClose: 1, layout: quicklook
+        group: images, overlayClose: 1, layout: quicklook, effect: default
       </small>
     </li>
     <li>
@@ -42,9 +43,9 @@
       </small>
     </li>
     <li>
-      <%= link_to image_tag("thumbnails/5.jpg"), "/images/photos/5.jpg", :class => "shaded", :toptions => "layout = quicklook" %>
+      <%= link_to image_tag("thumbnails/5.jpg"), "/images/photos/5.jpg", :class => "shaded", :toptions => "layout = quicklook, effect = clip" %>
       <small>
-        layout: quicklook, shaded: 1
+        layout: quicklook, shaded: 1, effect: clip
       </small>
     </li>
     <li>
@@ -90,10 +91,13 @@
 <ol>
   <li>
     Include TopUp with the following:
-    <span class="code">
+    <div class="code">
       &lt;script type="text/javascript" src="http://gettopup.com/releases/latest/top_up.js"></script>
-    </span>
+    </div>
     (for a specific version use /releases/1.3.2/top_up.js for example)
+  </li>
+  <li>
+    Add either the class <span class="code">top_up</span>, the attribute <span class="code">toptions</span> to your links or TopUp preset(s)
   </li>
   <li>
     Enjoy!
@@ -108,9 +112,12 @@
   </li>
   <li>
     Include TopUp with the following:
-    <span class="code">
+    <div class="code">
       &lt;script type="text/javascript" src="path/to/your/top_up.js"></script>
-    </span>
+    </div>
+  </li>
+  <li>
+    Add either the class <span class="code">top_up</span>, the attribute <span class="code">toptions</span> to your links or TopUp preset(s)
   </li>
   <li>
     Enjoy!
