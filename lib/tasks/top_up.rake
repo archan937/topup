@@ -57,7 +57,7 @@ namespace :top_up do
     
     # Packed release
     packed_dir      = "#{releases_dir}/packed"
-    packed_symlink  = "#{packed_dir}/latest"
+    packed_symlink  = "#{packed_dir}/latest.tar.gz"
     
     FileUtils.mkdir_p(packed_dir)
     system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
