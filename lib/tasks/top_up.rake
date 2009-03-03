@@ -32,7 +32,20 @@ namespace :top_up do
       variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
       
       if index.nil?
-        line.match("// *") ? line.gsub("{version}", args[:version]).gsub("{year}", timestamp.year.to_s).gsub("{date}", timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")) : line
+        line.match("// *") ?
+          line.gsub(/\{(version|year|date|jQuery)\}/) do |matched|
+            case matched
+            when "{version}"
+              args[:version]
+            when "{year}"
+              timestamp.year.to_s
+            when "{date}"
+              timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
+            when "{jQuery}"
+              File.open("public/javascripts/jquery.js").readlines
+            end
+          end : 
+          line
       else
         variable = variables.delete_at(index)
         "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
@@ -64,5 +77,11 @@ namespace :top_up do
     
     File.delete(packed_symlink) if File.exists?(packed_symlink)
     File.symlink("#{args[:version]}.tar.gz", packed_symlink)
+    
+    # Set current release in secondary partial
+    secondary = File.open("app/views/layouts/_secondary.html.erb").readlines.collect{ |line| 
+      line.gsub(/\<small\>Current Release\: [\d\.]+<\/small\>/, "<small>Current Release: #{args[:version]}</small>")
+    }
+    File.open("app/views/layouts/_secondary.html.erb", "w").puts(secondary)
   end
 end

@@ -12,6 +12,7 @@
   		<!--[if IE 6]>
   		  <%= stylesheet_link_tag "top_up/ie6fix", "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix" %>
   		<![endif]-->
+  		<%= javascript_include_tag "jquery" %>
 		<% end %>
 		
     <%= javascript_include_tag "#{"/releases/latest/" if RAILS_ENV == "production"}top_up", :defaults %>
