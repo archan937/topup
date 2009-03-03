@@ -50,8 +50,9 @@ try { jQuery } catch(e) {
 // *
 // * TopUp {version} - The #1 Javascript Pop Up (Uncompressed)
 // *
-// * Copyright (c) {year} Paul Engel (Internetbureau Holder B.V.)
-// * All rights reserved
+// * (c) {year} Paul Engel (Internetbureau Holder B.V.)
+// * Except otherwise noted, TopUp is licensed under
+// * http://creativecommons.org/licenses/by-sa/3.0
 // *
 // * $Date: {date} $
 // *

@@ -50,10 +50,11 @@ try { jQuery } catch(e) {
 // *
 // * TopUp 1.3.2.1 - The #1 Javascript Pop Up (Uncompressed)
 // *
-// * Copyright (c) 2009 Paul Engel (Internetbureau Holder B.V.)
-// * All rights reserved
+// * (c) 2009 Paul Engel (Internetbureau Holder B.V.)
+// * Except otherwise noted, TopUp is licensed under
+// * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-03-02 22:56:45 +0100 (Mon, 02 March 2009) $
+// * $Date: 2009-03-03 08:11:56 +0100 (Tue, 03 March 2009) $
 // *
 
 TopUp = function() {
