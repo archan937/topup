@@ -2,6 +2,7 @@
 #page_wrapper {
 	width: 875px;
 	margin: auto;
+	position: relative;
 }
 
 #page_wrapper #page_header {
@@ -33,9 +34,25 @@
   background-image: url(/images/backgrounds/page_subtitle.jpg);
 }
 
+#page_wrapper #page_menu {
+  width: 100%;
+  margin-top: 1px;
+  text-align: center;
+  position: absolute;
+}
+
+#page_wrapper #page_menu li {
+  margin: 0px 4px;
+  display: inline;
+  list-style: none;
+}
+
+#page_wrapper #page_menu li a {
+  border: 0px;
+}
+
 #page_wrapper #page_content {
-  padding: 12px;
-  padding-bottom: 45px;
+  padding: 16px 12px 50px 12px;
 }
 
 #page_wrapper #page_content h1,
@@ -93,6 +110,10 @@
   display: block;
   font-style: italic;
   line-height: 12px;
+}
+
+#page_wrapper #page_content #primary .box {
+  margin: 4px 0px;
 }
 
 #page_wrapper #page_content #primary .code {
@@ -167,10 +188,14 @@ h1.why_another_lightbox_like_library { background-image: url(/images/text/h1-why
 h1.some_examples                     { background-image: url(/images/text/h1-some_examples.jpg);                     }
 h1.how_to_use                        { background-image: url(/images/text/h1-how_to_use.jpg);                        }
 h1.support_or_feedback               { background-image: url(/images/text/h1-support_or_feedback.jpg);               }
-h1.under_construction                { background-image: url(/images/text/h1-under_construction.jpg);                }
+h1.installation                      { background-image: url(/images/text/h1-installation.jpg);                      }
+h1.setting_up_link_elements          { background-image: url(/images/text/h1-setting_up_link_elements.jpg);          }
+h1.available_toptions                { background-image: url(/images/text/h1-available_toptions.jpg);                }
+
 h2.get_the_latest_version            { background-image: url(/images/text/h2-get_the_latest_version.jpg);            }
 h2.about_me                          { background-image: url(/images/text/h2-about_me.jpg);                          }
 h2.source_at_github			             { background-image: url(/images/text/h2-source_at_github.jpg);			             }
 h2.license                           { background-image: url(/images/text/h2-license.jpg);                           }
 h2.links                             { background-image: url(/images/text/h2-links.jpg);                             }
+
 a.download_top_up                    { background-image: url(/images/text/a-download_top_up.jpg);                    }

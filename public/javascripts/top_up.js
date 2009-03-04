@@ -1,3 +1,4 @@
+try { TopUp } catch(e) {
 
 function deriveHost() {
 	var id = "tu_dummy_script";
@@ -685,3 +686,5 @@ TopUp = function() {
 	}
 }();
 TopUp.init();
+
+}

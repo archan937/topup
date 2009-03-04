@@ -54,6 +54,10 @@ li {
   margin-left: 30px;
 }
 
+ol li {
+  margin-bottom: 3px;
+}
+
 small {
   font-size: 9px;
 }

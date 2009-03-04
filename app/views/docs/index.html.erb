@@ -1,0 +1,103 @@
+<h1 class="installation">Installation</h1>
+<p>
+  Setting up TopUp for your website requires the least amount of effort. You have the choice of either hosting the javascript and images on your own webserver or you can just
+  include the javascript with one line of code and that's it! This has been made possible because TopUp injects the stylesheet code in the webpage. Choosing for the last option gives you the 
+  possibility of always being up-to-date with the latest features and bugfixes WITHOUT altering your code!
+</p>
+<br>
+<h3>
+  When including from gettopup.com (the easiest setup)
+</h3>
+<ol>
+  <li>
+    Put the following in the <span class="code">head</span> element:
+    <div class="box code">
+      &lt;script type="text/javascript" src="http://gettopup.com/releases/latest/top_up.js">&lt;/script>
+    </div>
+    ( you can also include a specific release by replacing <span class="code">latest</span> with the version e.g. <span class="code">1.3.2</span> )
+  </li>
+</ol>
+<h3>
+  When hosting the javascript and images yourself
+</h3>
+<ol>
+  <li>
+    Download and unpack the <%= link_to "latest TopUp version", "http://gettopup.com/releases/packed/latest.tar.gz" %>
+  </li>
+  <li>
+    Put the following in the <span class="code">head</span> element:
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/your/top_up.js">&lt;/script>
+    </div>
+  </li>
+  <li>
+    At default, TopUp assumes that the images reside at the same host of the javascript file within the path <span class="code">/images/top_up/</span>.
+    You can change the path (and even the host) by changing the variables <span class="code">TopUp.host</span> and <span class="code">TopUp.images_path</span> as the following:
+    <div class="box code">
+      &lt;script type="text/javascript"><br>
+      &nbsp; TopUp.host = "http://www.anotherwebsite.com/";<br>
+      &nbsp; TopUp.images_path = "assets/top_up/";<br>
+      &lt;/script>
+    </div>
+  </li>
+</ol>
+<small>
+  <strong>Note:&nbsp; You can still use Prototype without having conflicts, just make sure you include TopUp first.</strong>
+</small>
+
+<h1 class="setting_up_link_elements">Setting up link elements</h1>
+<p>
+  You can accomplish this in 3 ways:
+</p>
+<ol>
+  <li>
+    By adding the class <span class="code">top_up</span> to the link:
+    <div class="box code">
+      &lt;a href="/images/photos/1.jpg" class="top_up"><br>
+      &nbsp; &lt;img src="/images/thumbnails/1.jpg"/><br>
+      &lt;/a>
+    </div>
+    <small>
+      <strong>Note:&nbsp; TopUp will appear in the default preset</strong>
+    </small>
+  </li>
+  <li>
+    By specifying TopUp options in the <span class="code">toptions</span> attribute of the link:
+    <div class="box code">
+      &lt;a href="/images/photos/1.jpg" toptions="shaded = 1, overlayClose = 1"><br>
+      &nbsp; &lt;img src="/images/thumbnails/1.jpg"/><br>
+      &lt;/a>
+    </div>
+    <small>
+      <strong>Note:&nbsp; Adding the class </strong><span class="code">top_up</span><strong> is not required anymore</strong>
+    </small>
+  </li>
+  <li>
+    By specifying TopUp preset(s). Presets make it possible to assign certain toptions for a specific group of elements.
+    Such a group is identified using the well-known CSS selector. Using TopUp presets keeps your HTML code clean and keeps it simple.
+    The following shows an example of specifying <span class="code">toptions</span> for (1) links within the element with the id <span class="code">images</span> and
+    (2) for elements with the class <span class="code">shaded</span>:
+    <div class="box code">
+      &lt;script type="text/javascript"><br>
+      &nbsp; TopUp.addPresets({<br>
+      &nbsp; &nbsp; "#images a": {<br>
+      &nbsp; &nbsp; &nbsp; group: "images",<br>
+      &nbsp; &nbsp; &nbsp; layout: "quicklook",<br>
+      &nbsp; &nbsp; &nbsp; modal: 0<br>
+      &nbsp; &nbsp; },<br>
+      &nbsp; &nbsp; ".shaded": {<br>
+      &nbsp; &nbsp; &nbsp; shaded: 1<br>
+      &nbsp; &nbsp; }<br>
+      &nbsp; });<br>
+      &lt;/script>
+    </div>
+    <small>
+      <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
+    </small>
+  </li>
+</ol>
+
+<h1 class="available_toptions">Available toptions</h1>
+<p>
+  Not specified yet
+</p>
