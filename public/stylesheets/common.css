@@ -185,6 +185,10 @@
   padding: 15px;
 }
 
+#page_wrapper #page_content #primary #demo a {
+  border: 0px;
+}
+
 #page_wrapper #page_content #secondary {
   width: 240px;
   float: right;

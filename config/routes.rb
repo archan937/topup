@@ -34,11 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "application"
   map.documentation "/documentation", :controller => "application", :action => "documentation"
   map.demo "/demo", :controller => "application", :action => "demo"
-  
-  # map.connect "order", :controller => "application", :action => "order"
-  # map.connect "issue", :controller => "application", :action => "issue"
-  # map.connect "ajax",  :controller => "application", :action => "ajax"
-  
+  map.demonstrate "/demonstrate", :controller => "application", :action => "demonstrate"
   
   # See how all your routes lay out with "rake routes"
 

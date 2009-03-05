@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  layout "common", :except => [:order, :issue]
+  layout "common"
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -14,22 +14,9 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
 
-  def ajax
-    respond_to do |format|
-      format.html {
-        # render :update do |page|
-        #   page.alert("Format is HTML")
-        # end
-        
-        # render :text => "Format is HTML"
-        
-        render :action => "issue"
-      }
-      format.js {
-        render :update do |page|
-          page.alert("Format is JS")
-        end
-      }
+  def demonstrate
+    render :update do |page|
+      page.call "TopUp.#{params[:function]}", params[:reference], {:width => 600, :height => 400, :top_up => "link"}
     end
   end
   

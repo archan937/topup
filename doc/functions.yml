@@ -28,7 +28,7 @@
   description: | Displays the next entry within the group current. If there is no current group, nothing will happen.
 
 - call:        TopUp.overlayClose()
-  description: | Closed the TopUp when visible and the current toptions include <span class="code">overlayClose</span> is 1.
+  description: | Closes the TopUp when visible and the current toptions include <span class="code">overlayClose</span> is 1.
 
 - call:        TopUp.close(callback)
   description: Closes the TopUp when visible.

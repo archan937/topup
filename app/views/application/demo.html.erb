@@ -4,5 +4,9 @@
 </p>
 
 <div id="demo" class="box">
-  Not implemented yet
+  <% form_remote_tag :url => demonstrate_path do %>
+    <%= select_tag "function", options_for_select({"TopUp.display" => "display", "TopUp.close" => "close"}) %> <%= text_field_tag "reference" %> <%= submit_tag "Demonstrate" %>
+  <% end %>
+  <br>
+  <%= link_to image_tag("thumbnails/1.jpg"), "/images/photos/1.jpg", :id => "link" %>
 </div>
