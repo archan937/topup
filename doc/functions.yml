@@ -1,0 +1,34 @@
+---
+
+- call:        TopUp.defaultPreset(set)
+  description: You can change the default preset (set of toptions) by passing a toptions hash
+
+- call:        TopUp.addPresets(sets)
+  description: You can add extra presets (set of toptions) by passing a (nested) hash in which you specify toptions to elements which match to the specified CSS selector.
+
+- call:        TopUp.ready(func)
+  description: You can pass functions to the TopUp module which will be called when the page is finished loading.
+
+- call:        TopUp.rebind()
+  description: This instructs the TopUp module to rebind all the TopUp elements on the current page (usually links).
+
+- call:        | TopUp.displayTopUp(element, opts)
+  description: This is the wrapper function for TopUp.display() which is called when you click on a TopUp element.
+
+- call:        | TopUp.display(reference, opts)
+  description: This is the core function which show the TopUp.
+
+# - call:        TopUp.update(func)
+#   description: | You can manipulate the display content by passing a function (e.g. function(container){ $(container).appendChild($('')) }) in which you can alter it. The call will be ignored when the TopUp is not visible.
+
+- call:        TopUp.previous()
+  description: | Displays the previous entry within the group current. If there is no current group, nothing will happen.
+
+- call:        TopUp.next()
+  description: | Displays the next entry within the group current. If there is no current group, nothing will happen.
+
+- call:        TopUp.overlayClose()
+  description: | Closed the TopUp when visible and the current toptions include <span class="code">overlayClose</span> is 1.
+
+- call:        TopUp.close(callback)
+  description: Closes the TopUp when visible.

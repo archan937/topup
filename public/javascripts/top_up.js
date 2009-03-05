@@ -265,6 +265,9 @@ TopUp = function() {
 			group = null;
 	};
 	var navigateInGroup = function(step) {
+	  if (group == null)
+	    return;
+	  
 		index = index + step;
 
 		if (index < 0)
@@ -441,7 +444,7 @@ TopUp = function() {
       wrapper.remove();
       
 	    if (callback)
-			  callback.apply([], ["tu_content"]);
+			  callback.apply([], [jQuery("#top_up .tu_content").id()]);
       else {
         clearContent();
 	      setContent();
@@ -663,6 +666,9 @@ TopUp = function() {
 			loadContent();
 		},
 		update: function(func) {
+      if (jQuery("#top_up").is(":hidden"))
+        return;
+      
 		  options.type = "html";
       options.resize = jQuery("#temp_up .tu_content");
 		  jQuery(".tu_content").addClass("tu_scrollable");

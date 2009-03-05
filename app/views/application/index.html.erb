@@ -76,6 +76,7 @@
         width: 600, height: 400, type: iframe, modal: 0, layout: quicklook, title: Google search
       </small>
     </li>
+    <% if false %>
     <li>
       <%= link_to "Internal page", "/issue", :class => "top_up" %>
       <small>
@@ -88,6 +89,7 @@
         not implemented yet
       </small>
     </li>
+    <% end %>
   </ul>
   <div class="clear"></div>
   
@@ -138,7 +140,7 @@
   </li>
 </ol>
 <p>
-  For further documentation go to the <%= link_to "documentation page", docs_path %>.
+  For further documentation go to the <%= link_to "documentation page", documentation_path %>.
 </p>
 
 <h1 class="support_or_feedback">Support or feedback</h1>

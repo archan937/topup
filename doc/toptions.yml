@@ -1,0 +1,66 @@
+---
+
+- name:        type
+  default:     | 'image' or 'ajax'
+  description: | By specifying the type, you can instruct TopUp how to load and display the reference content. At default the type is auto-determined based on the extension of the reference.
+  options:     | 'image', 'ajax', 'selector', 'html', 'dom', 'iframe', 'script'
+
+- name:        title
+  default:     | ''
+  description: Title of the TopUp window.
+  options:     String
+
+- name:        layout
+  default:     | 'dashboard'
+  description: Layout in which the TopUp will appear.
+  options:     | 'dashboard', 'quicklook'
+
+- name:        width
+  default:     auto
+  description: Width of the content in pixels.
+  options:     Integer
+
+- name:        height
+  default:     auto
+  description: Height of the content in pixels.
+  options:     Integer
+
+- name:        effect
+  default:     | 'transform'
+  description: Effect of how the TopUp will show and hide.
+  options:     | 'transform', 'clip', 'default'
+
+- name:        modal
+  default:     0
+  description: | If set to 1, the TopUp window will be modal which means that you cannot click outside the TopUp window.
+  options:     0 or 1
+
+- name:        shaded
+  default:     0
+  description: | If set to 1, a shaded overlay will be displayed behind the TopUp window. This also makes the TopUp modal.
+  options:     0 or 1
+
+- name:        overlayClose
+  default:     0
+  description: | If set to 1, the TopUp will close when.
+  options:     0 or 1
+
+- name:        resizable
+  default:     1
+  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window.
+  options:     0 or 1
+
+- name:        group
+  default:     0
+  description: This makes it possible to group certain TopUp links. You can navigate through the group by clicking on the navigation arrows or by using the arrow keys.
+  options:     String
+
+- name:        noGroup
+  default:     0
+  description: | This overrides the displayed TopUp of being part of a group. Usefull when a link matches a preset with a group, but when you don't want to display the group.
+  options:     0 or 1
+
+# - name:        fixed
+#   default:     0
+#   description: Bla
+#   options:     

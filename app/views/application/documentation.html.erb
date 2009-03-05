@@ -39,11 +39,14 @@
       &nbsp; TopUp.images_path = "assets/top_up/";<br>
       &lt;/script>
     </div>
+    <small>
+      <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
+    </small>
   </li>
 </ol>
-<small>
-  <strong>Note:&nbsp; You can still use Prototype without having conflicts, just make sure you include TopUp first.</strong>
-</small>
+<p>
+  Remember: You can still use <strong><%= link_to "Prototype", "http://prototypejs.org" %></strong> without having conflicts, just make sure you include TopUp first.
+</p>
 
 <h1 class="setting_up_link_elements">Setting up link elements</h1>
 <p>
@@ -99,5 +102,79 @@
 
 <h1 class="available_toptions">Available toptions</h1>
 <p>
-  Not specified yet
+  As mentioned earlier, you can pass options to TopUp by using either the attribute <span class="code">toptions</span> or by specifying a TopUp preset.
+  This is an overview of the possible toptions you can pass. Most of them are self describing.
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% TOPTIONS.each do |toption| %>
+    <tr valign="top">
+      <td class="name">
+        <%= toption["name"] %>
+      </td>
+      <td class="default">
+        <%= toption["default"] %>
+      </td>
+      <td class="description">
+        <%= toption["description"] %>
+        <div class="box">
+          <small>
+            <i>Options:</i>&nbsp; <%= toption["options"] %>
+          </small>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1 class="just_call_your_friend_top_up">Just call your friend TopUp!</h1>
+<p>
+  Eventually, all the TopUp actions are initiated by function calls to the TopUp <%= link_to "Javascript module", "http://yuiblog.com/blog/2007/06/12/module-pattern/" %>.
+  Adding the <span class="code">top_up</span> class, the <span class="code">toptions</span> attribute or specifying TopUp presets only tells TopUp to bind the click event of the elements to
+  a wrapper function in the TopUp module that there upon calls the core function to display TopUp. Aside from <span class="code">TopUp.display()</span>, the TopUp module also has several other 
+  functions to communicate.
+</p>
+
+<% if false %>
+  <br>
+  <% FUNCTIONS.each do |function| %>
+  <div class="box">
+    <h3 class="call"><%= function["call"] %></h3>
+    <p>
+      <%= function["description"] %>
+    </p>
+  </div>
+  <% end %>
+<% end %>
+
+<% if true %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% FUNCTIONS.each do |function| %>
+    <tr valign="top">
+      <td class="call">
+        <%= function["call"] %>
+      </td>
+      <td class="description">
+        <%= function["description"] %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

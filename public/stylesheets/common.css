@@ -52,7 +52,7 @@
 }
 
 #page_wrapper #page_content {
-  padding: 16px 12px 50px 12px;
+  padding: 16px 12px 75px 12px;
 }
 
 #page_wrapper #page_content h1,
@@ -127,6 +127,64 @@
   display: block;
 }
 
+#page_wrapper #page_content #primary table {
+  width: 100%;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  line-height: 15px;
+  border-collapse: collapse;
+}
+
+#page_wrapper #page_content #primary table th,
+#page_wrapper #page_content #primary table td {
+  padding-left: 4px;
+}
+
+#page_wrapper #page_content #primary table th {
+  padding-bottom: 5px;
+  text-align: left;
+  border-bottom: 1px dashed #529796;
+}
+
+#page_wrapper #page_content #primary table td {
+  padding-top: 12px;
+}
+
+#page_wrapper #page_content #primary table td p {
+  padding-bottom: 5px;
+}
+
+#page_wrapper #page_content #primary table td .box {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding: 0px 3px;
+  border-style: solid;
+}
+
+#page_wrapper #page_content #primary table .name,
+#page_wrapper #page_content #primary table .default,
+#page_wrapper #page_content #primary table .call {
+  font-family: "Courier New", "Courier";
+}
+
+#page_wrapper #page_content #primary table .name {
+  width: 105px;
+  font-weight: bold;
+}
+
+#page_wrapper #page_content #primary table .default {
+  width: 135px;
+}
+
+#page_wrapper #page_content #primary table .call {
+  width: 230px;
+}
+
+#page_wrapper #page_content #primary #demo {
+  margin-top: 24px;
+  padding: 15px;
+}
+
 #page_wrapper #page_content #secondary {
   width: 240px;
   float: right;
@@ -190,7 +248,9 @@ h1.how_to_use                        { background-image: url(/images/text/h1-how
 h1.support_or_feedback               { background-image: url(/images/text/h1-support_or_feedback.jpg);               }
 h1.installation                      { background-image: url(/images/text/h1-installation.jpg);                      }
 h1.setting_up_link_elements          { background-image: url(/images/text/h1-setting_up_link_elements.jpg);          }
+h1.just_call_your_friend_top_up      { background-image: url(/images/text/h1-just_call_your_friend_top_up.jpg);      }
 h1.available_toptions                { background-image: url(/images/text/h1-available_toptions.jpg);                }
+h1.try_it_live                       { background-image: url(/images/text/h1-try_it_live.jpg);                       }
 
 h2.get_the_latest_version            { background-image: url(/images/text/h2-get_the_latest_version.jpg);            }
 h2.about_me                          { background-image: url(/images/text/h2-about_me.jpg);                          }
