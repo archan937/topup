@@ -319,10 +319,10 @@ TopUp = function() {
 			case "iframe":
 				options.content = jQuery('<iframe src="' + options.reference + '" frameborder="0" border="0"></iframe>'); break;
 			case "ajax":
-			  jQuery.ajax({url: options.reference, cache: false, async: false, dataType: "html", success: onContentReady}); break;
+			  jQuery.ajax({url: options.reference, type: (options.method || "GET"), cache: false, async: false, data: options.parameters, dataType: "html", success: onContentReady}); break;
 			case "script":
 			  options.content = null;
-			  jQuery.ajax({url: options.reference, cache: false, async: false, dataType: "script", success: onContentReady});
+			  jQuery.ajax({url: options.reference, type: (options.method || "GET"), cache: false, async: false, data: options.parameters, dataType: "script", success: onContentReady});
 			  break;
 		}
 		
