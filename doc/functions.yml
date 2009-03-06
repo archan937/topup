@@ -1,7 +1,7 @@
 ---
 
 - call:        TopUp.defaultPreset(set)
-  description: You can change the default preset (set of toptions) by passing a toptions hash
+  description: You can change the default preset (set of toptions) by passing a toptions hash.
 
 - call:        TopUp.addPresets(sets)
   description: You can add extra presets (set of toptions) by passing a (nested) hash in which you specify toptions to elements which match to the specified CSS selector.
@@ -16,7 +16,7 @@
   description: This is the wrapper function for TopUp.display() which is called when you click on a TopUp element.
 
 - call:        | TopUp.display(reference, opts)
-  description: This is the core function which show the TopUp.
+  description: This is the core function which shows the TopUp.
 
 # - call:        TopUp.update(func)
 #   description: | You can manipulate the display content by passing a function (e.g. function(container){ $(container).appendChild($('')) }) in which you can alter it. The call will be ignored when the TopUp is not visible.
