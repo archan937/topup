@@ -15,5 +15,6 @@ TopUp.addPresets({
 });
 
 TopUp.ready(function() {
-  // alert("I'm ready!");
+  PlaceHolderian.blurColor = "black";
+  PlaceHolderian.init();
 });

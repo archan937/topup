@@ -203,11 +203,11 @@ TopUp = function() {
     }
 	};
 	
-	var deriveTopUpOptions = function(top_up, opts) {
-	  var toptions = jQuery.extend({}, {top_up: "#" + top_up.element.id(), preset: top_up.selector});
+	var deriveTopUpOptions = function(topUp, opts) {
+	  var toptions = jQuery.extend({}, {topUp: "#" + topUp.element.id(), preset: topUp.selector});
 		  
-	  if (top_up.element.is("[toptions]")) {
-			jQuery.each(top_up.element.attr("toptions").split(","), function(i, option) {
+	  if (topUp.element.is("[toptions]")) {
+			jQuery.each(topUp.element.attr("toptions").split(","), function(i, option) {
 				var key_value = option.split("=");
 				toptions[jQuery.trim(key_value[0])] = jQuery.trim(key_value[1]);
 			});
@@ -259,7 +259,7 @@ TopUp = function() {
 			var ids = jQuery.map(group.items, function(e, i){
       						return "#" + jQuery(e).id();
     						});
-			index = options.top_up ? jQuery.inArray(options.top_up, ids) : -1;
+			index = options.topUp ? jQuery.inArray(options.topUp, ids) : -1;
 			
 		} else
 			group = null;
@@ -318,12 +318,15 @@ TopUp = function() {
 				options.content = jQuery(options.reference); break;
 			case "iframe":
 				options.content = jQuery('<iframe src="' + options.reference + '" frameborder="0" border="0"></iframe>'); break;
-			case "ajax":
-			  jQuery.ajax({url: options.reference, type: (options.method || "GET"), cache: false, async: false, data: options.parameters, dataType: "html", success: onContentReady}); break;
-			case "script":
+			case "ajax": case "script":
 			  options.content = null;
-			  jQuery.ajax({url: options.reference, type: (options.method || "GET"), cache: false, async: false, data: options.parameters, dataType: "script", success: onContentReady});
-			  break;
+			  jQuery.ajax({url: options.reference, 
+			               type: (parseInt(options.post) == 1) ? "POST" : "GET", 
+			               cache: false, 
+			               async: false, 
+			               data: options.parameters, 
+			               dataType: (parseInt(options.type) == "ajax") ? "html" : "script", 
+			               success: onContentReady});
 		}
 		
 		if (options.type == "selector") {
@@ -341,7 +344,7 @@ TopUp = function() {
 	  var origin = jQuery("#top_up");
 	  
 	  if (jQuery("#top_up").is(":hidden")) {
-	    var origin = jQuery(options.top_up);
+	    var origin = jQuery(options.topUp);
   	  if (!origin.length)
   	    origin = jQuery(document);
   	  else if (origin.children().length > 0)
@@ -381,22 +384,22 @@ TopUp = function() {
 		
 		switch(options.effect) {
 			case "transform":
-			  var origin = jQuery(options.top_up);
+			  var origin = jQuery(options.topUp);
 			  if (origin.children().length > 0)
 			    origin = jQuery(origin.children()[0]);
-			  var dimensions = options.top_up ? 
+			  var dimensions = options.topUp ? 
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: 0, left: 0, width: 10, height: 10};
 
         transform("from", dimensions, afterShow); break;
-			case "clip":
-			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterShow); break;
-      default:
+      case "fade":
   			if (jQuery.ie7) {
   			  jQuery("#top_up").show();
   			  afterShow();
   			} else
-  			  jQuery("#top_up").fadeIn(300, afterShow);
+  			  jQuery("#top_up").fadeIn(300, afterShow); break;
+			case "clip":
+			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterShow);
 		}
 	};
   var transform = function(direction, dimensions, callback) {
@@ -511,8 +514,8 @@ TopUp = function() {
 	  if (jQuery("#temp_up").outerHeight() <= jQuery(window).height() - 4)
 	    return;
 	  
-	  var extra_height = jQuery("#temp_up").outerHeight() - jQuery("#temp_up .tu_content").height(),
-	      dimensions = {height: jQuery(window).height() - 4 - extra_height};
+	  var extraHeight = jQuery("#temp_up").outerHeight() - jQuery("#temp_up .tu_content").height(),
+	      dimensions = {height: jQuery(window).height() - 4 - extraHeight};
 	  
 	  if (options.type == "image")
 		  dimensions.width = parseInt(options.content.width() * (dimensions.height / options.content.height()));
@@ -598,21 +601,21 @@ TopUp = function() {
 	  
     switch(options.effect) {
       case "transform":
-			  var origin = jQuery(options.top_up);
+			  var origin = jQuery(options.topUp);
 			  if (origin.children().length > 0)
 			    origin = jQuery(origin.children()[0]);
-			  var dimensions = options.top_up ? 
+			  var dimensions = options.topUp ? 
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: 0, left: 0, width: 10, height: 10};
 			  transform("to", dimensions, afterHide); break;
-      case "clip":
-        jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide); break;
-      default:
+      case "fade":
         if (jQuery.ie7) {
           jQuery("#top_up").hide();
 				  afterHide.apply();
         } else
-          jQuery("#top_up").fadeOut(300, afterHide);
+          jQuery("#top_up").fadeOut(300, afterHide); break;
+      case "clip":
+        jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide);
     }
 		
 		jQuery("#tu_overlay").hide();
@@ -650,20 +653,25 @@ TopUp = function() {
 			bind();
 		},
 		displayTopUp: function(element, opts) {
-		  var top_up = jQuery(element).bubbleDetect(selector);
-		  var toptions = deriveTopUpOptions(top_up, jQuery.extend(opts || {}, {trigger: "#" + jQuery(element).id()}));
-  		TopUp.display(top_up.element.attr("href"), toptions);
+		  var topUp = jQuery(element).bubbleDetect(selector);
+		  var toptions = deriveTopUpOptions(topUp, jQuery.extend(opts || {}, {trigger: "#" + jQuery(element).id()}));
+  		TopUp.display(topUp.element.attr("href"), toptions);
 	  },
 		display: function(reference, opts) {
 			if (displaying)
 				return false;
-			displaying = true;
+
+			try {
+  			displaying = true;
 			
-			deriveOptions(reference, opts, true);
-      deriveGroup();
+  			deriveOptions(reference, opts, true);
+        deriveGroup();
       
-			prepare();
-			loadContent();
+  			prepare();
+  			loadContent();
+			} catch(e) {
+			  displaying = false;
+			}
 		},
 		update: function(func) {
       if (jQuery("#top_up").is(":hidden"))

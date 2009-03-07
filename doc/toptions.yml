@@ -1,9 +1,25 @@
 ---
 
+- name:        topUp
+  default:     auto
+  description: | This is the element which will be referred to as the TopUp element / trigger. Usually a link with either the class <span class="code">top_up</span>, the attribute 
+                 <span class="code">toptions</span> or TopUp preset which matches the link. This will automatically be derived by the TopUp module when clicked.
+  options:     CSS selector string
+
 - name:        type
   default:     | 'image' or 'ajax'
   description: | By specifying the type, you can instruct TopUp how to load and display the reference content. At default the type is auto-determined based on the extension of the reference.
-  options:     | 'image', 'ajax', 'selector', 'html', 'dom', 'iframe', 'script'
+  options:     | 'image', 'iframe', 'ajax', 'script', 'selector', 'html', 'dom'
+
+- name:        post
+  default:     0
+  description: | When set to 1, TopUp will use the POST method for Ajax request. This requires the type to be either 'ajax' or 'script'.
+  options:     0 or 1
+
+- name:        parameters
+  default:     | ''
+  description: This will be send as extra parameters for the Ajax request. This requires the type to be either 'ajax' or 'script'.
+  options:     String
 
 - name:        title
   default:     | ''
@@ -46,8 +62,8 @@
   options:     0 or 1
 
 - name:        resizable
-  default:     1
-  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window.
+  default:     auto
+  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window. When the type is 'image', this is always set to 1.
   options:     0 or 1
 
 - name:        group

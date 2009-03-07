@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  layout "common"
+  layout "common", :except => :demonstrate
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -15,8 +15,13 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def demonstrate
+    # respond_to do |format|
+    #   format.html {
+    # 
+    #   }
+    # end
     render :update do |page|
-      page.call "TopUp.#{params[:function]}", params[:reference], {:width => 600, :height => 400, :top_up => "link"}
+      page.call "TopUp.display", params[:reference], params[:toptions].reject{|key, value| key == "type" and value == "auto"}
     end
   end
   

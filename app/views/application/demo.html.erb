@@ -3,10 +3,95 @@
   Do you wanna experience the flexibility of TopUp live at the website? Well, here is your lucky day! You can try out the possibilities of TopUp by specifying the toptions below. Enjoy.
 </p>
 
+<h1 class="adjust_the_toptions_and_click">Adjust the toptions and click!</h1>
+<p>
+  For documentation about <span class="code">toptions</span> go to the <%= link_to "documentation page", "#{documentation_path}#available_toptions" %>.
+</p>
 <div id="demo" class="box">
-  <% form_remote_tag :url => demonstrate_path do %>
-    <%= select_tag "function", options_for_select({"TopUp.display" => "display", "TopUp.close" => "close"}) %> <%= text_field_tag "reference" %> <%= submit_tag "Demonstrate" %>
+  <% form_remote_tag :url => demonstrate_path, :html => {:id => "toptions"} do %>
+    
+    <div>
+      <%= image_tag "thumbnails/5.jpg", :id => "link" %>
+      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); PlaceHolderian.init()" %>
+    </div>
+    
+    <fieldset class="margined">
+      <legend>
+        <span class='specify_the_reference'>Specify the reference</span>
+      </legend>
+      <ol>
+        <li>
+          <label for="reference">Reference:</label>
+          <%= text_field_tag "reference", nil, :placeholder => "/images/photos/5.jpg" %>
+        </li>
+      </ol>
+    </fieldset>
+    
+    <% field_set_tag "<span class='specify_the_toptions'>Specify the toptions</span>" do %>
+      <ol>
+        <li>
+          <label for="reference">TopUp:</label>
+          <%= text_field_tag "toptions[topUp]", nil, :placeholder => "#link" %>
+        </li>
+        <% if true %>
+        <li>
+          <label for="toptions[type]">Type:</label>
+          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image iframe html dom)) %>
+        </li>
+        <% else %>
+        <li>
+          <label for="toptions[type]">Type:</label>
+          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image iframe ajax script selector html dom)) %>
+        </li>
+        <li>
+          <label for="toptions[post]">Use POST:</label>
+          <%= check_box_tag "toptions[post]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[parameters]">Parameters:</label>
+          <%= text_field_tag "toptions[parameters]" %>
+        </li>
+        <% end %>
+        <li>
+          <label for="toptions[title]">Title:</label>
+          <%= text_field_tag "toptions[title]", nil, :placeholder => "TopUp demo" %>
+        </li>
+        <li>
+          <label for="toptions[layout]">Layout:</label>
+          <%= select_tag "toptions[layout]", options_for_select(%w(dashboard quicklook)) %>
+        </li>
+        <li>
+          <label for="toptions[width]">Width:</label>
+          <%= text_field_tag "toptions[width]", nil, :size => 4 %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[height]">Height:</label>
+          <%= text_field_tag "toptions[height]", nil, :size => 4 %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[effect]">Effect:</label>
+          <%= select_tag "toptions[effect]", options_for_select(%w(transform fade clip)) %>
+        </li>
+        <li>
+          <label for="toptions[modal]">Modal:</label>
+          <%= check_box_tag "toptions[modal]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[shaded]">Shaded:</label>
+          <%= check_box_tag "toptions[shaded]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[overlayClose]">Overlay close:</label>
+          <%= check_box_tag "toptions[overlayClose]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[resizable]">Resizable:</label>
+          <%= check_box_tag "toptions[ resizable]", 1 %>
+        </li>
+      </ol>
+    <% end %>
+    
   <% end %>
-  <br>
-  <%= link_to image_tag("thumbnails/1.jpg"), "/images/photos/1.jpg", :id => "link" %>
+  
+  <div class="clear"></div>
 </div>
