@@ -44,7 +44,7 @@
 - name:        effect
   default:     | 'transform'
   description: Effect of how the TopUp will show and hide.
-  options:     | 'transform', 'clip', 'default'
+  options:     | 'transform', 'fade', 'clip'
 
 - name:        modal
   default:     0

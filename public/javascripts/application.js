@@ -11,10 +11,12 @@ TopUp.addPresets({
 	},
 	".shaded": {
 		shaded: 1
+  },
+	"demo": {
+		resizable: 0
   }
 });
 
 TopUp.ready(function() {
-  PlaceHolderian.blurColor = "black";
   PlaceHolderian.init();
 });

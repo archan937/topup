@@ -12,7 +12,7 @@
     
     <div>
       <%= image_tag "thumbnails/5.jpg", :id => "link" %>
-      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); PlaceHolderian.init()" %>
+      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); PlaceHolderian.rebind()" %>
     </div>
     
     <fieldset class="margined">
@@ -30,7 +30,7 @@
     <% field_set_tag "<span class='specify_the_toptions'>Specify the toptions</span>" do %>
       <ol>
         <li>
-          <label for="reference">TopUp:</label>
+          <label for="toptions[topUp]">TopUp:</label>
           <%= text_field_tag "toptions[topUp]", nil, :placeholder => "#link" %>
         </li>
         <% if true %>
@@ -62,11 +62,11 @@
         </li>
         <li>
           <label for="toptions[width]">Width:</label>
-          <%= text_field_tag "toptions[width]", nil, :size => 4 %> (in pixels)
+          <%= text_field_tag "toptions[width]", nil, :size => 4, :placeholder => "&auto" %> (in pixels)
         </li>
         <li>
           <label for="toptions[height]">Height:</label>
-          <%= text_field_tag "toptions[height]", nil, :size => 4 %> (in pixels)
+          <%= text_field_tag "toptions[height]", nil, :size => 4, :placeholder => "&auto" %> (in pixels)
         </li>
         <li>
           <label for="toptions[effect]">Effect:</label>
@@ -86,7 +86,7 @@
         </li>
         <li>
           <label for="toptions[resizable]">Resizable:</label>
-          <%= check_box_tag "toptions[ resizable]", 1 %>
+          <%= check_box_tag "toptions[resizable]", 1 %>
         </li>
       </ol>
     <% end %>
