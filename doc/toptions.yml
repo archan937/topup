@@ -13,7 +13,7 @@
 
 - name:        post
   default:     0
-  description: | When set to 1, TopUp will use the POST method for Ajax request. This requires the type to be either 'ajax' or 'script'.
+  description: | If set to 1, TopUp will use the POST method for Ajax request. This requires the type to be either 'ajax' or 'script'.
   options:     0 or 1
 
 - name:        parameters
@@ -62,8 +62,8 @@
   options:     0 or 1
 
 - name:        resizable
-  default:     auto
-  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window. When the type is 'image', this is always set to 1.
+  default:     1
+  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window.
   options:     0 or 1
 
 - name:        group
@@ -78,5 +78,5 @@
 
 # - name:        fixed
 #   default:     0
-#   description: Bla
+#   description: 
 #   options:     

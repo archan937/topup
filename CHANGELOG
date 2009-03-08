@@ -5,7 +5,7 @@
 * Renamed effect 'default' to 'fade'
 * Refactored 'top_up' and 'extra_height' variable
 * Merged content loading of 'ajax' and 'script' type
-* Setting 'displaying' variable to false when an error raised while trying to display
+* Setting 'displaying' variable to false when an error occured while trying to display
 
 == Version 1.3.3.2 (March 6, 2009)
 

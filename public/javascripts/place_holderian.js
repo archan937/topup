@@ -25,8 +25,8 @@ PlaceHolderian = function() {
 		    var placeholder = element.getAttribute("placeholder");
 		    
     		if (placeholder != null) {
-    		  if (placeholder.match(/^&/))
-    		    element.setAttribute("ph_name", element.getAttribute("name"));
+          // if (placeholder.match(/^&/))
+          //   element.setAttribute("ph_name", element.getAttribute("name"));
     		  
     			setValueOnBlur(element, placeholder);
 				
@@ -77,7 +77,7 @@ PlaceHolderian = function() {
   	
 	  if (placeholder.match(/^&/))
       // TODO: The name attribute doesn't change doing this, but leave it for now.
-	    element.setAttribute("name", element.getAttribute("ph_name"));
+      // element.setAttribute("name", element.getAttribute("ph_name"));
 	  
   	if (element.createTextRange) {
   		var oRange = element.createTextRange();
@@ -94,7 +94,7 @@ PlaceHolderian = function() {
   	  if (placeholder.match(/^&/)) {
   		  addHintClass(element);
         // TODO: The name attribute doesn't change doing this, but leave it for now.
-  	    element.setAttribute("name", "ph_dummy[]");
+        // element.setAttribute("name", "ph_dummy[]");
   		}
   		element.value = placeholder.replace(/^&/, "");
   	}

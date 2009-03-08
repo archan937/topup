@@ -31,9 +31,6 @@ TopUp = function() {
 	var default_preset = {
 		layout: "dashboard",
 		effect: "transform",
-		modal: 0,
-		fixed: 0,
-		shaded: 0,
 		resizable: 1
 	}, presets = {};
 	
