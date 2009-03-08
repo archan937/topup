@@ -5,10 +5,12 @@ try { SeatHolder } catch(e) {
 // *
 // * (c) 2009 Michael Manning (actingthemaggot.com) 
 // *
-jQuery.getAttributes = function(F,C){var F=((typeof F==="string")?jQuery(F)[0]:F[0]),D=0,F=F.attributes,B=F.length,E=["abort","blur","change","click","dblclick","error","focus","keydown","keypress","keyup","load","mousedown","mousemove","mouseout","mouseover","mouseup","reset","resize","select","submit","unload"],A={};for(D;D<B;D++){if(C||!C&&jQuery.inArray(F[D].nodeName.replace(/^on/,""),E)==-1){A[F[D].nodeName]=F[D].nodeValue}}return A};
+
+if (jQuery.getAttributes === undefined)
+  jQuery.getAttributes = function(F,C){var F=((typeof F==="string")?jQuery(F)[0]:F[0]),D=0,F=F.attributes,B=F.length,E=["abort","blur","change","click","dblclick","error","focus","keydown","keypress","keyup","load","mousedown","mousemove","mouseout","mouseover","mouseup","reset","resize","select","submit","unload"],A={};for(D;D<B;D++){if(C||!C&&jQuery.inArray(F[D].nodeName.replace(/^on/,""),E)==-1){A[F[D].nodeName]=F[D].nodeValue}}return A};
 
 // *
-// * SeatHolder 0.3 (Uncompressed)
+// * SeatHolder 0.3.1 (Uncompressed)
 // * The modest Javascript placeholder (used in http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -17,7 +19,7 @@ jQuery.getAttributes = function(F,C){var F=((typeof F==="string")?jQuery(F)[0]:F
 // * Except otherwise noted, SeatHolder is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-03-08 15:54:03 +0100 (Sun, 08 March 2009) $
+// * $Date: 2009-03-08 21:19:11 +0100 (Sun, 08 March 2009) $
 // *
 
 SeatHolder = function() {
@@ -97,14 +99,16 @@ SeatHolder = function() {
     
     if (element.val() == seatholder.replace(/^&/, ""))
   		element.val("");
+  	
+  	var input = element.get(0);
     	
-    if (element.createTextRange) {
-      var oRange = element.createTextRange();
+    if (input.createTextRange) {
+      var oRange = input.createTextRange();
       oRange.moveStart("character", 0);
       oRange.moveEnd("character", element.val().length);
       oRange.select();
-    } else if (element.setSelectionRange)
-      element.setSelectionRange(0, element.val().length);
+    } else if (input.setSelectionRange)
+      input.setSelectionRange(0, element.val().length);
   };
   var onBlur = function(event, element) {
     if (element == null)
