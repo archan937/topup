@@ -16,7 +16,3 @@ TopUp.addPresets({
 		resizable: 0
   }
 });
-
-TopUp.ready(function() {
-  PlaceHolderian.init();
-});

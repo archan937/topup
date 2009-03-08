@@ -12,7 +12,7 @@
     
     <div>
       <%= image_tag "thumbnails/5.jpg", :id => "link" %>
-      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); PlaceHolderian.rebind()" %>
+      <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); SeatHolder.rebind()" %>
     </div>
     
     <fieldset class="margined">
@@ -22,7 +22,7 @@
       <ol>
         <li>
           <label for="reference">Reference:</label>
-          <%= text_field_tag "reference", nil, :placeholder => "/images/photos/5.jpg" %>
+          <%= text_field_tag "reference", nil, :seatholder => "/images/photos/5.jpg" %>
         </li>
       </ol>
     </fieldset>
@@ -31,7 +31,7 @@
       <ol>
         <li>
           <label for="toptions[topUp]">TopUp:</label>
-          <%= text_field_tag "toptions[topUp]", nil, :placeholder => "#link" %>
+          <%= text_field_tag "toptions[topUp]", nil, :seatholder => "#link" %>
         </li>
         <% if true %>
         <li>
@@ -54,7 +54,7 @@
         <% end %>
         <li>
           <label for="toptions[title]">Title:</label>
-          <%= text_field_tag "toptions[title]", nil, :placeholder => "TopUp demo" %>
+          <%= text_field_tag "toptions[title]", nil, :seatholder => "TopUp demo" %>
         </li>
         <li>
           <label for="toptions[layout]">Layout:</label>
@@ -62,11 +62,11 @@
         </li>
         <li>
           <label for="toptions[width]">Width:</label>
-          <%= text_field_tag "toptions[width]", nil, :size => 4, :placeholder => "&auto" %> (in pixels)
+          <%= text_field_tag "toptions[width]", nil, :size => 4, :seatholder => "&auto" %> (in pixels)
         </li>
         <li>
           <label for="toptions[height]">Height:</label>
-          <%= text_field_tag "toptions[height]", nil, :size => 4, :placeholder => "&auto" %> (in pixels)
+          <%= text_field_tag "toptions[height]", nil, :size => 4, :seatholder => "&auto" %> (in pixels)
         </li>
         <li>
           <label for="toptions[effect]">Effect:</label>
