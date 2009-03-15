@@ -1,16 +1,7 @@
 try { SeatHolder } catch(e) {
 
 // *
-// * GetAttributes (Minified)
-// *
-// * (c) 2009 Michael Manning (actingthemaggot.com) 
-// *
-
-if (jQuery.getAttributes === undefined)
-  jQuery.getAttributes = function(F,C){var F=((typeof F==="string")?jQuery(F)[0]:F[0]),D=0,F=F.attributes,B=F.length,E=["abort","blur","change","click","dblclick","error","focus","keydown","keypress","keyup","load","mousedown","mousemove","mouseout","mouseover","mouseup","reset","resize","select","submit","unload"],A={};for(D;D<B;D++){if(C||!C&&jQuery.inArray(F[D].nodeName.replace(/^on/,""),E)==-1){A[F[D].nodeName]=F[D].nodeValue}}return A};
-
-// *
-// * SeatHolder 0.3.1 (Uncompressed)
+// * SeatHolder 0.4 (Uncompressed)
 // * The modest Javascript placeholder (used in http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -19,7 +10,7 @@ if (jQuery.getAttributes === undefined)
 // * Except otherwise noted, SeatHolder is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-03-08 21:19:11 +0100 (Sun, 08 March 2009) $
+// * $Date: 2009-03-14 12:11:51 +0100 (Sat, 14 March 2009) $
 // *
 
 SeatHolder = function() {
@@ -62,13 +53,10 @@ SeatHolder = function() {
 	                    .attr("type", element.attr("type"))
 	                    .attr("readonly", true)
 	                    .attr("hinted_element", element.attr("id") || "hinted_element_" + i)
-                      .addClass(hintClass)
                       .focus(onHintFocus);
 	      
-        jQuery.each(jQuery.getAttributes(element), function(attribute) {
+        jQuery.each(["class", "size"], function(index, attribute) {
           switch(attribute) {
-            case "id": case "name": case "seatholder": case "disabled":
-              break;
             case "class":
               hintElement.attr(attribute, element.attr(attribute).replace(hideClass, "")); break;
             default:
@@ -76,6 +64,7 @@ SeatHolder = function() {
           }          
         });
 	      
+        hintElement.addClass(hintClass);
 	      element.attr("hint_element", hintElement.attr("id"))
 	             .before(hintElement);
       }

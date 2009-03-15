@@ -1,5 +1,14 @@
 = TopUp CHANGELOG
 
+== Version 1.4 (March 15, 2009)
+
+* Using jQuery v1.3.2 instead of v1.3.1 and jQuery UI v1.7 instead of v1.6rc5
+* Replaced jQuery UI Draggable plugin with own implementation because of major memory leaks
+* Made a big leap in maintaining cross-browser compatibility by reviewing TopUp
+* Updated quicklook and dashboard layout (HTML, sprites and (FireWorks) images)
+* Removed jQuery extension 'typeOf' function
+* Commented out type 'selector' implementation
+
 == Version 1.3.3.3 (March 7, 2009)
 
 * Renamed effect 'default' to 'fade'

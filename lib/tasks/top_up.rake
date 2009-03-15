@@ -13,8 +13,8 @@ namespace :top_up do
     
     timestamp = Time.now
     variables = [{:name => "style",  :files => %w(style dashboard/style quicklook/style)},
-                 {:name => "ff2fix", :files => %w(ff2fix)},
-                 {:name => "ie6fix", :files => %w(ie6fix dashboard/ie6fix quicklook/ie6fix)},
+                 {:name => "ie7fix", :files => %w(dashboard/ie7fix)},
+                 {:name => "ie6fix", :files => %w(dashboard/ie6fix quicklook/ie6fix)},
                  {:name => "iefix",  :files => %w(iefix)}].collect{ |variable|
       
       value = variable[:files].collect{ |file|

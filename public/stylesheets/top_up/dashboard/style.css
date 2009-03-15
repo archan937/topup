@@ -1,42 +1,60 @@
 
-.tu_dashboard .tu_content_wrapper {
-	bottom: 10px; }
+#top_up .tu_dashboard .ui-resizable-se {
+	width: 10px !important;
+	height: 10px !important;
+	bottom: 12px !important;
+	right: 10px !important;
+	background-image: url(/images/top_up/dashboard/sprite.png) !important;
+	background-position: 0px 0px !important; }
 
 .tu_dashboard .tu_title {
-	top: auto;
-	bottom: -10px;
-	color: #222;
+	top: -9px;
 	font-weight: bold; }
 
-.tu_dashboard .tu_bottom_bar {
-	bottom: 25px; }
+.tu_dashboard .tu_corner,
+.tu_dashboard .tu_rib {
+	background-image: url(/images/top_up/dashboard/sprite.png); }
 
-.tu_dashboard .tu_controls_wrapper {
-	padding-left: 6px;
-	cursor: move;
-	background: url(/images/top_up/dashboard/sprite.png) -31px -172px no-repeat; }
+.tu_dashboard .tu_top,
+.tu_dashboard .tu_bottom       { height: 20px; }
+.tu_dashboard .tu_left_filler  { width:  20px; }
+.tu_dashboard .tu_right_filler { width:  19px; }
+
+.tu_dashboard .tu_middle .tu_middle {
+  background: url(/images/top_up/dashboard/middle.png); }
+
+.tu_dashboard .tu_top .tu_left		  { background-position: -17px  -29px; }
+.tu_dashboard .tu_top .tu_middle	  { background-position: 	 0px  -71px; }
+.tu_dashboard .tu_top .tu_right		  { background-position: -33px  -29px; }
+.tu_dashboard .tu_middle .tu_left	  { background-position: -17px -232px; }
+.tu_dashboard .tu_middle .tu_right	{ background-position: -33px -232px; }
+.tu_dashboard .tu_bottom .tu_left	  { background-position: -17px  -47px; }
+.tu_dashboard .tu_bottom .tu_middle	{ background-position: -17px  -89px; }
+.tu_dashboard .tu_bottom .tu_right	{ background-position: -33px  -47px; }
+
+.tu_dashboard .tu_content {
+	margin: -11px -12px -11px -13px; }
 
 .tu_dashboard .tu_controls {
-	padding-left: 4px;
-	padding-right: 10px;
-	background: url(/images/top_up/dashboard/controls.png) top right no-repeat; }
-
-.tu_dashboard .tu_previous_caption,
-.tu_dashboard .tu_next_caption {
-	display: none; }
+  left: 50%;
+  width: 63px;
+  height: 29px;
+  margin-left: -33px;
+  padding-left: 5px;
+  bottom: 35px;
+	background-image: url(/images/top_up/dashboard/sprite.png);
+	background-position: 0px -178px; }
 
 .tu_dashboard .tu_previous_link,
 .tu_dashboard .tu_next_link {
-	width: 28px;
-	height: 33px;
-	margin: 0px;
-	display: inline-block;
+	width: 31px;
+	height: 29px;
 	background-image: url(/images/top_up/dashboard/sprite.png); }
 
-.tu_dashboard .tu_previous_link 	    { background-position: 66px -111px; }
-.tu_dashboard .tu_next_link 		      { background-position: 30px -111px; }
-.tu_dashboard .tu_previous_link:hover { background-position: 66px -140px; }
-.tu_dashboard .tu_next_link:hover 	  { background-position: 30px -140px; }
+.tu_dashboard .tu_previous_link 	    { background-position: 66px -113px; }
+.tu_dashboard .tu_next_link 		      { background-position: 30px -113px; }
+.tu_dashboard .tu_previous_link:hover { background-position: 66px -142px; }
+.tu_dashboard .tu_next_link:hover 	  { background-position: 30px -142px; }
 
 .tu_dashboard .tu_close_link {
 	width: 28px;
@@ -45,33 +63,3 @@
 	right: -6px;
 	background-image: url(/images/top_up/dashboard/sprite.png);
 	background-position: -20px 0px; }
-
-.tu_dashboard .tu_content {
-	margin: -11px -12px -11px -13px; }
-
-#top_up .tu_dashboard .ui-resizable-se {
-	width: 10px !important;
-	height: 10px !important;
-	bottom: 11px !important;
-	right: 8px !important;
-	background-image: url(/images/top_up/dashboard/sprite.png) !important;
-	background-position: 0px 0px !important; }
-
-.tu_dashboard .tu_corner,
-.tu_dashboard .tu_rib {
-	background-image: url(/images/top_up/dashboard/sprite.png); }
-
-.tu_dashboard .tu_top,
-.tu_dashboard .tu_bottom { height: 20px; }
-.tu_dashboard .tu_left	 { width:  20px; }
-.tu_dashboard .tu_right	 { width:  19px; }
-
-.tu_dashboard .tu_top .tu_left		  { background-position: -17px  -29px; }
-.tu_dashboard .tu_top .tu_middle	  { background-position: 	 0px  -71px; }
-.tu_dashboard .tu_top .tu_right		  { background-position: -33px  -29px; }
-.tu_dashboard .tu_middle .tu_left	  { background-position: -17px -232px; }
-.tu_dashboard .tu_middle .tu_middle	{ background: white;				         }
-.tu_dashboard .tu_middle .tu_right	{ background-position: -33px -232px; }
-.tu_dashboard .tu_bottom .tu_left	  { background-position: -17px  -47px; }
-.tu_dashboard .tu_bottom .tu_middle	{ background-position: -17px  -89px; }
-.tu_dashboard .tu_bottom .tu_right	{ background-position: -33px  -47px; }

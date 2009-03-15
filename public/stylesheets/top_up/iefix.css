@@ -1,15 +1,18 @@
 
-.tu_shaded {
-	filter: alpha(opacity = 65); }
+body {
+  background: url(foo) fixed; }
+
+#tu_overlay {
+  top:  expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");
+  left: expression((ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft) + "px");
+	position: absolute; }
 
 .tu_transparent {
-	filter: alpha(opacity = 0); }
-	
-.tu_top_up,
-.tu_controls_wrapper,
-.tu_controls {
-	display: inline; }
+  filter: alpha(opacity = 0); }
+
+.tu_shaded {
+  filter: alpha(opacity = 65); }
 
 .tu_content {
-	position: relative;
-	zoom: 1; }
+  position: relative;
+  zoom: 1; }

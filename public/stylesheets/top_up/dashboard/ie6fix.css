@@ -1,24 +1,11 @@
 
-.tu_dashboard .tu_previous_link,
-.tu_dashboard .tu_next_link {
-	width: 28px;
-	height: 32px; }
+.tu_dashboard .tu_content {
+  margin-bottom: -13px; }
 
-.tu_dashboard .tu_close_link {
-	right: -4px !important;
-	width: 28px;
-	height: 26px; }
+.tu_dashboard .tu_controls {
+  width: 65px;
+  padding-left: 3px; }
 
-.tu_dashboard .tu_top,
-.tu_dashboard .tu_bottom { height: 20px; }
-.tu_dashboard .tu_left,
-.tu_dashboard .tu_right  { width:  19px; }
-
-.tu_dashboard .tu_controls_wrapper,
-.tu_dashboard .tu_controls,
-.tu_dashboard .tu_previous_link,
-.tu_dashboard .tu_next_link,
-.tu_dashboard .tu_close_link,
 .tu_dashboard .tu_top .tu_left,
 .tu_dashboard .tu_top .tu_middle,
 .tu_dashboard .tu_top .tu_right,
@@ -26,17 +13,23 @@
 .tu_dashboard .tu_middle .tu_right,
 .tu_dashboard .tu_bottom .tu_left,
 .tu_dashboard .tu_bottom .tu_middle,
-.tu_dashboard .tu_bottom .tu_right {
+.tu_dashboard .tu_bottom .tu_right,
+.tu_dashboard .tu_controls,
+.tu_dashboard .tu_previous_link,
+.tu_dashboard .tu_next_link,
+.tu_dashboard .tu_close_link {
   background-image: none; }
 
-.tu_dashboard .tu_previous_link     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/previous.png"     , sizingMethod="crop" ); }
-.tu_dashboard .tu_next_link         { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/next.png"         , sizingMethod="crop" ); }
-.tu_dashboard .tu_close_link        { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/close_link.png"   , sizingMethod="crop" ); }
 .tu_dashboard .tu_top .tu_left      { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/top_left.png"     , sizingMethod="crop" ); }
 .tu_dashboard .tu_top .tu_middle    { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/top_middle.png"   , sizingMethod="scale"); }
 .tu_dashboard .tu_top .tu_right     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/top_right.png"    , sizingMethod="crop" ); }
 .tu_dashboard .tu_middle .tu_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/middle_left.png"  , sizingMethod="scale"); }
+.tu_dashboard .tu_middle .tu_middle { filter: alpha(opacity = 75); background: black; }
 .tu_dashboard .tu_middle .tu_right  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/middle_right.png" , sizingMethod="scale"); }
 .tu_dashboard .tu_bottom .tu_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/bottom_left.png"  , sizingMethod="crop" ); }
 .tu_dashboard .tu_bottom .tu_middle { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/bottom_middle.png", sizingMethod="scale"); }
 .tu_dashboard .tu_bottom .tu_right  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/bottom_right.png" , sizingMethod="crop" ); }
+.tu_dashboard .tu_controls          { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/controls.png"     , sizingMethod="crop" ); }
+.tu_dashboard .tu_previous_link     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/previous.png"     , sizingMethod="crop" ); }
+.tu_dashboard .tu_next_link         { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/next.png"         , sizingMethod="crop" ); }
+.tu_dashboard .tu_close_link        { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/close_link.png"   , sizingMethod="crop" ); }

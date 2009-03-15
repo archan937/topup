@@ -36,17 +36,6 @@ TopUp = function() {
 	
 	var extendjQuery = function() {
 		jQuery.extend({
-			typeOf: function(value) {
-  			var s = typeof value;
-				if (s === "object") {
-					if (value) {
-						if (typeof value.length === "number" && !(value.propertyIsEnumerable("length")) && typeof value.splice === "function")
-							s = "array";
-					} else
-						s = "null";
-				}
-				return s;
-			},
 			keys: function(hash) {
 				var keys = [];
 				for (var key in hash)
@@ -78,15 +67,10 @@ TopUp = function() {
 				});
 				return detected || (element.parent()[0] ? jQuery(element.parent()[0]).bubbleDetect(selector, separator) : null);
 			},
-			center: function(only) {
+			center: function() {
 			  var css = {top: parseInt((jQuery(window).height() - this.outerHeight()) / 2) + jQuery(window).scrollTop(),
-	  		   			   left: parseInt((jQuery(window).width() - this.outerWidth()) / 2),
+	  		   			   left: parseInt((jQuery(window).width() - this.outerWidth()) / 2) + jQuery(window).scrollLeft(),
 	  		   			   position: "absolute"};
-			  
-			  if (only && jQuery.inArray(only, "y") == -1)
-			    delete css["top"];
-			  if (only && jQuery.inArray(only, "x") == -1)
-			    delete css["left"];
 			  
 				this.css(css);
 				return this;
@@ -100,20 +84,14 @@ TopUp = function() {
 				return this;
 			},
 			centerWrap: function(compare) {
-        if (jQuery.typeOf(compare) != "array")
-          compare = [compare];
-				
 				var current = {width: this.outerWidth(), height: this.outerHeight()}, delta = {width: 0, height: 0}, diff = 0;
-        jQuery.each(compare, function(i, element) {
 					
-          diff = element.outerWidth() - current.width;
-          if (delta.width < diff)
-            delta.width = diff;
-          diff = element.outerHeight() - current.height;
-          if (delta.height < diff)
-            delta.height = diff;
-					
-        });
+        diff = compare.outerWidth() - current.width;
+        if (delta.width < diff)
+          delta.width = diff;
+        diff = compare.outerHeight() - current.height;
+        if (delta.height < diff)
+          delta.height = diff;
 				
 				var offset = this.offset();
 				jQuery("#tu_center_wrapper").css({
@@ -130,13 +108,14 @@ TopUp = function() {
 							left: "auto",
 							width: "auto",
 							height: "auto",
-							display: "inline-block",
+              display: "inline-block",
 							position: "relative"
 						 });
-				if (jQuery.ff2)
-					this.css({display: "table"});
-				if (jQuery.ie)
-					this.css({display: "inline"});
+				
+        if (jQuery.ff2)
+          this.css({display: "table"});
+        if (jQuery.ie)
+          this.css({display: "inline"});
 				
 				jQuery("#tu_center_wrapper").show();
 				
@@ -150,22 +129,45 @@ TopUp = function() {
 				jQuery("#tu_center_wrapper").hide();
 
 				return this;
-			}
+			},
+			draggable: function(opts) {
+			  var element = this;
+			  
+        this.mousedown(function(event) {
+			    if (opts && opts.cancel && (jQuery(event.target).is(opts.cancel) || jQuery(event.target).parent(opts.cancel).length > 0))
+			      return;
+          
+          event.preventDefault();
+
+          var offset = element.offset();
+          var diff = {top: event.pageY - offset.top, left: event.pageX - offset.left};
+          
+          jQuery("body").addClass("dragging");
+          jQuery("*").bind("mousemove.draggable", function(event) {
+            element.css({top: event.pageY - diff.top, left: event.pageX - diff.left});
+          });
+        });
+
+        jQuery("*").mouseup(function(event) {
+          jQuery("body").removeClass("dragging");
+          jQuery("*").unbind("mousemove.draggable");
+        });
+      }
 		});
 	};
 	var injectCode = function() {
 		var images_url = TopUp.host + TopUp.images_path;
 		
 		var style = '<div></div>';
-		var ff2fix = '<div></div>';
+		var ie7fix = '<div></div>';
 		var ie6fix = '<div></div>';
 		var iefix = '<div></div>';
 		var html = '<div></div>';
 
 		jQuery(style).prependTo("head");
 			
-		if (jQuery.ff2)
-			jQuery(ff2fix).insertAfter("head > style:first");
+		if (jQuery.ie7)
+			jQuery(ie7fix).insertAfter("head > style:first");
 		if (jQuery.ie6)
 			jQuery(ie6fix).insertAfter("head > style:first");
 		if (jQuery.ie)
@@ -174,19 +176,20 @@ TopUp = function() {
 	  jQuery(html).appendTo("body");
 	};
 	var bind = function() {
-		var selectors = jQuery.keys(presets);
-		selectors.unshift(".top_up,[toptions]");
+		selector = jQuery.merge([".top_up", "[toptions]"], jQuery.keys(presets)).join();
 		
-		if ((selector = selectors.join()).length > 0)
-			jQuery(selector).click(topUpClick);
-		
-		jQuery(document).keypress(keyPress);
+		jQuery(selector).bind("click", topUpClick);
+		jQuery(document).bind("keypress", documentKeyPress);
 	};
+  var fadeDuration = function(duration) {
+    return jQuery.ie7 ? 1 : duration;
+  };
+
 	var topUpClick = function(event) {
 		TopUp.displayTopUp(jQuery(event.target));
 		return false;
 	};
-	var keyPress = function(event) {
+	var documentKeyPress = function(event) {
     if (jQuery("#top_up").is(":hidden"))
 		  return;
 		
@@ -276,18 +279,15 @@ TopUp = function() {
 	};
   
 	var prepare = function() {
-		jQuery(".tu_wrapper").attr("class", "tu_wrapper tu_" + options.layout);
-		
 		jQuery("#top_up .tu_frame").resizable("destroy");
-    jQuery("#top_up .tu_frame,.tu_content").unlockDimensions();
 		
-		if (jQuery.ie6)
-			jQuery("#top_up .tu_title,#top_up .tu_controls_wrapper").fadeOut(100);
-	
-		(parseInt(options.fixed) == 1) ?
-			jQuery("#top_up").addClass("tu_fixed") :
-			jQuery("#top_up").removeClass("tu_fixed");
-	
+		jQuery("#top_up .tu_title").fadeOut(fadeDuration(200));
+		if (!(group && group.items.length > 1))
+		  jQuery("#top_up .tu_controls").fadeOut(fadeDuration(200));
+		
+		jQuery(".tu_wrapper").attr("class", "tu_wrapper tu_" + options.layout);
+    jQuery(".tu_frame,.tu_content").unlockDimensions();
+	  
 		(parseInt(options.shaded) == 1) ?
 			jQuery("#tu_overlay").addClass("tu_shaded") :
 			jQuery("#tu_overlay").removeClass("tu_shaded");
@@ -297,20 +297,23 @@ TopUp = function() {
 			jQuery("#tu_overlay").hide();
 	};	
 	var loadContent = function() {
-	  jQuery(".tu_selector_content").removeClass("tu_selector_content");
+    // jQuery(".tu_selector_content").removeClass("tu_selector_content");
 	  showLoader();
 	  
 		switch(options.type) {
 			case "image":
         options.content = new Image();
-        jQuery(options.content).load(function(){ options.content = jQuery(this); onContentReady(); })
+        jQuery(options.content).load(function() {
+                                  options.content = jQuery(this);
+                                  onContentReady();
+                                })
                                .attr("src", options.reference);
 				break;
-			case "selector":
-				options.content = jQuery(options.reference).filter(function() {
-				  var collect = selector_content[jQuery(this).id()] ? true : jQuery(this).parents("#top_up,#temp_up").length == 0;
-				  return collect;
-				}); break;
+      // case "selector":
+      //  options.content = jQuery(options.reference).filter(function() {
+      //    var collect = selector_content[jQuery(this).id()] ? true : jQuery(this).parents("#top_up,#temp_up").length == 0;
+      //    return collect;
+      //  }); break;
 			case "html": case "dom":
 				options.content = jQuery(options.reference); break;
 			case "iframe":
@@ -326,16 +329,34 @@ TopUp = function() {
 			               success: onContentReady});
 		}
 		
-		if (options.type == "selector") {
-		  jQuery.each(options.content.addClass("tu_selector_content"), function(i, e) {
-		    e = jQuery(e);
-		    if (!selector_content[e.id()])
-		      selector_content[e.id()] = {element: e, hidden: e.is(":hidden"), parent: e.parent()};
-		  });
-		}
+    // if (options.type == "selector") {
+    //   jQuery.each(options.content.addClass("tu_selector_content"), function(i, e) {
+    //     e = jQuery(e);
+    //     if (!selector_content[e.id()])
+    //       selector_content[e.id()] = {element: e, hidden: e.is(":hidden"), parent: e.parent()};
+    //   });
+    // }
 		
     if (jQuery.inArray(options.type, ["selector", "html", "dom", "iframe"]) != -1)
 		  onContentReady();
+	};
+	var onContentReady = function(html) {
+	  hideLoader();
+	  
+	  if (html)
+	    options.content = jQuery(html);
+	  
+	  switch(options.type) {
+	    case "image": case "iframe":
+			  options.resize = options.content;
+			  jQuery(".tu_content").removeClass("tu_scrollable");
+			  break;
+			default:
+	      options.resize = jQuery("#temp_up .tu_content");
+			  jQuery(".tu_content").addClass("tu_scrollable");
+	  }
+    
+		jQuery("#top_up").is(":hidden") ? show() : replace();
 	};
 	var showLoader = function() {
 	  var origin = jQuery("#top_up");
@@ -353,24 +374,9 @@ TopUp = function() {
 	                            width: origin.outerWidth(), 
 	                            height: origin.outerHeight()}).show();
 	};
-	var onContentReady = function(html) {
+	var hideLoader = function() {
     jQuery("#tu_loader").hide();
-	  
-	  if (html)
-	    options.content = jQuery(html);
-	  
-	  switch(options.type) {
-	    case "image": case "iframe":
-			  options.resize = options.content;
-			  jQuery(".tu_content").removeClass("tu_scrollable");
-			  break;
-			default:
-	      options.resize = jQuery("#temp_up .tu_content");
-			  jQuery(".tu_content").addClass("tu_scrollable");
-	  }
-    
-		jQuery("#top_up").is(":hidden") ? show() : replace();
-	};
+  };
   
 	var	show = function() {
 	  setContent();
@@ -388,58 +394,17 @@ TopUp = function() {
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: 0, left: 0, width: 10, height: 10};
 
-        transform("from", dimensions, afterShow); break;
+        transform("from", dimensions, afterDisplay); break;
       case "fade":
-  			if (jQuery.ie7) {
-  			  jQuery("#top_up").show();
-  			  afterShow();
-  			} else
-  			  jQuery("#top_up").fadeIn(300, afterShow); break;
+        jQuery("#top_up").fadeIn(fadeDuration(300), afterDisplay); break;
 			case "clip":
-			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterShow);
+			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterDisplay);
 		}
 	};
-  var transform = function(direction, dimensions, callback) {
-	  var topUp = jQuery("#top_up");
-	  var frame = topUp.find(".tu_frame");
-    
-    if (direction == "from")
-	    topUp.addClass("tu_transparent").show();
-    
-		var contentDiff = {width: topUp.outerWidth() - options.content.outerWidth(), height: topUp.outerHeight() - options.content.outerHeight()};
-		var frameDiff   = {width: topUp.outerWidth() - frame.outerWidth(),           height: topUp.outerHeight() - frame.outerHeight()};
-    
-    var contentOffset = options.content.offset();
-    var topUpOffset   = topUp.offset();
-		dimensions.top    -= contentOffset.top - topUpOffset.top;
-		dimensions.left   -= contentOffset.left - topUpOffset.left;
-		dimensions.width  += contentDiff.width;
-		dimensions.height += contentDiff.height;
-
-	  var origin = {top: topUp.css("top"), left: topUp.css("left"), width: topUp.outerWidth(), height: topUp.outerHeight()};
-	  var opts   = {duration: 400, to: direction == "from" ? origin : dimensions};
-    var func = function() {
-  	  topUp          .animate({top:   opts.to.top, left: opts.to.left}, opts.duration);
-  	  options.content.animate({width: opts.to.width - contentDiff.width, height: opts.to.height - contentDiff.height}, opts.duration);
-      frame          .animate({width: opts.to.width - frameDiff.width,   height: opts.to.height - frameDiff.height},   opts.duration, null, function() {
-        direction == "to" ?
-          topUp.fadeOut(250, callback) :
-          callback.apply();
-      });
-    }
-    
-    if (direction == "from") {
-	    topUp          .css({top:   dimensions.top, left: dimensions.left});
-		  options.content.css({width: dimensions.width - contentDiff.width, height: dimensions.height - contentDiff.height});
-		  frame          .css({width: dimensions.width - frameDiff.width,   height: dimensions.height - frameDiff.height});
-      topUp.removeClass("tu_transparent").hide().fadeIn(jQuery.ie ? 0 : 300, func);
-    } else
-      func.apply();
-  };
 	var replace = function(callback) {
 		var wrapper = jQuery("#top_up .tu_content").lockDimensions().wrapInner("<div></div>").children();
 		
-	  wrapper.fadeOut(250, function() {
+	  wrapper.fadeOut(fadeDuration(250), function() {
       moveContent("temp_up");
       wrapper.remove();
       
@@ -486,7 +451,83 @@ TopUp = function() {
     
     jQuery(".tu_content").children(":not(.tu_selector_content)").remove();
 	};
-	
+  
+  var transform = function(direction, dimensions, callback) {
+	  var topUp     = jQuery("#top_up");
+	  var tuContent = topUp.find(".tu_content");
+	  
+	  if (direction == "from")
+      topUp.addClass("tu_transparent")
+           .show();
+	  
+	  var topUpOffset     = topUp.offset();
+	  var tuContentOffset = tuContent.offset();
+	  var tuContentDiff   = {width:  topUp.width()  - tuContent.width(), 
+	                         height: topUp.height() - tuContent.height()};
+	  
+    dimensions.top    -= tuContentOffset.top  - topUpOffset.top;
+    dimensions.left   -= tuContentOffset.left - topUpOffset.left;
+	  
+	  var origin    = {top: topUp.css("top"), left: topUp.css("left"), width: topUp.outerWidth(), height: topUp.outerHeight()};
+	  var opts      = {to: direction == "from" ? origin : dimensions, duration: 500};
+	  
+	  if (direction == "from") {
+	    opts.to.width  -= tuContentDiff.width;
+	    opts.to.height -= tuContentDiff.height;
+	  }
+
+	  var animation = function() {
+	    var onReady = direction == "to" ?
+	                    function() {
+                        topUp.fadeOut(fadeDuration(250), callback);
+                	    } :
+                	    callback;
+
+	    topUp          .animate({top: opts.to.top, left: opts.to.left}, opts.duration);
+	    options.content.animate({width:  opts.to.width, 
+	                             height: opts.to.height}, opts.duration, onReady);
+	  };
+	  
+    if (direction == "from") {
+      topUp          .css({top:   dimensions.top,   left:   dimensions.left})
+      options.content.css({width: dimensions.width, height: dimensions.height});
+
+      topUp.removeClass("tu_transparent")
+           .hide()
+           .fadeIn(fadeDuration(300), animation);
+    } else
+      animation.apply();
+  };
+	var afterDisplay = function() {
+    var duration = fadeDuration(500);
+		
+		if (parseInt(options.resizable) == 1) {
+		  var opts = {handles: "se", minWidth: 200, minHeight: 75, alsoResize: "#" + options.resize.id(), aspectRatio: options.type == "image"};
+	    jQuery("#top_up .tu_frame").resizable(opts);
+		}
+		
+		if (jQuery.ie6)
+      jQuery("#top_up .tu_title").css("width", jQuery("#top_up").width());
+		jQuery("#top_up .tu_title").html(options.title || "")
+		                           .fadeIn(duration);
+		
+		if (group && group.items.length > 1 && jQuery("#top_up .tu_controls").is(":hidden")) {
+      jQuery.ie6 ?
+        jQuery("#top_up .tu_controls").show() :
+		    jQuery("#top_up .tu_controls").fadeIn(duration);
+		}
+		
+    if (jQuery("#top_up .tu_close_link").is(":hidden")) {
+      jQuery.ie6 ?
+        jQuery("#top_up .tu_close_link").show() :
+        jQuery("#top_up .tu_close_link").fadeIn(duration);
+    }
+		
+		checkPosition();
+		
+		displaying = false;
+	};
+
 	var setDimensions = function(dimensions) {
 	  var func = dimensions ? null : checkHeight;
 	  
@@ -500,6 +541,8 @@ TopUp = function() {
 	      dimensions.width = parseInt(options.width);
 	    if (options.height)
 	      dimensions.height = parseInt(options.height);
+	    if (jQuery.ie6)
+	      jQuery("#top_up .tu_title").css("width", jQuery("#temp_up").outerWidth());
 	  }
 	  
 	  options.resize.css(dimensions);
@@ -538,59 +581,21 @@ TopUp = function() {
       jQuery("#top_up").animate(position, 300);
   }
 	
-	var afterShow = function() {
-		afterDisplay();
-		
-		jQuery("#top_up .tu_controls_wrapper").css("display", null);
-
-		if (group && group.items.length > 1) {
-			jQuery("#top_up .tu_previous_link").css("display", null);
-			jQuery("#top_up .tu_next_link").css("display", null);
-		} else {
-			jQuery("#top_up .tu_previous_link").css("display", "none");
-			jQuery("#top_up .tu_next_link").css("display", "none");
-		}
-		
-    jQuery("#top_up .tu_title,#top_up .tu_close_link,#top_up .tu_controls_wrapper").fadeIn(jQuery.ie ? 0 : 200);
-	};
-	var afterDisplay = function() {
-		if (jQuery.ie6) {
-			jQuery("#top_up .tu_title").css({width: jQuery("#top_up").width()});
-			jQuery("#top_up .tu_bottom_bar").css({width: jQuery("#top_up").width()});
-			jQuery("#top_up .tu_controls_wrapper,#top_up .tu_title").fadeIn(100);
-		}
-		if (jQuery.ie) {
-			jQuery("#top_up .tu_content").hide().show();
-			options.content.scrollTop(0).scrollLeft(0);
-		}
-		
-		jQuery("#top_up .tu_title").html(options.title);
-		
-		if (parseInt(options.resizable) == 1) {
-		  var opts = {handles: "se", minWidth: 200, minHeight: 75, alsoResize: "#" + options.resize.id(), aspectRatio: options.type == "image"};
-	    jQuery("#top_up .tu_frame").resizable(opts);
-		}
-		
-		checkPosition();
-		
-		displaying = false;
-	};
-	
 	var hide = function(callback) {
-	  var duration = jQuery.ie ? 0 : 250;
-	  var func = function() {
+	  var duration = fadeDuration(250);
+	  var onReady = function() {
 	    animateHide(callback)
 	  };
 	  
-		jQuery("#top_up .tu_title").fadeOut(duration);
-		jQuery("#top_up .tu_close_link").fadeOut(duration);
-	  jQuery("#top_up .tu_controls_wrapper").fadeOut(duration, func);
+		jQuery("#top_up .tu_title")     .fadeOut(duration);
+    jQuery("#top_up .tu_controls")  .fadeOut(duration);
+		jQuery("#top_up .tu_close_link").fadeOut(duration, onReady);
 	};
 	var animateHide = function(callback) {
 	  var afterHide = function() {
 	    if (callback)
 	      callback.apply();
-	    jQuery(".tu_selector_content").removeClass("tu_selector_content");
+      // jQuery(".tu_selector_content").removeClass("tu_selector_content");
 	    
 	    clearContent();
       moveContent("temp_up");
@@ -604,13 +609,10 @@ TopUp = function() {
 			  var dimensions = options.topUp ? 
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: 0, left: 0, width: 10, height: 10};
+			                     
 			  transform("to", dimensions, afterHide); break;
       case "fade":
-        if (jQuery.ie7) {
-          jQuery("#top_up").hide();
-				  afterHide.apply();
-        } else
-          jQuery("#top_up").fadeOut(300, afterHide); break;
+        jQuery("#top_up").fadeOut(fadeDuration(300), afterHide); break;
       case "clip":
         jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide);
     }
@@ -627,15 +629,20 @@ TopUp = function() {
 			initialized = true;
 			
 			jQuery(document).ready(function() {
-				extendjQuery();
-				injectCode();
-				bind();
-				
-				jQuery("#top_up").draggable({cancel: ".tu_content,a"});
-				jQuery.each(on_ready, function(i, func) {
-					func.apply();
-				});
+        extendjQuery();
+        injectCode();
+        bind();
+        
+        jQuery("#top_up").draggable({cancel: "a, .ui-resizable-handle, .tu_content"});
+        jQuery.each(on_ready, function(i, func) {
+          func.apply();
+        });
 			});
+			
+      jQuery(window).unload(function() {
+        jQuery("*").unbind();
+		    jQuery("#top_up .tu_frame").resizable("destroy");
+      });
 		},
 		defaultPreset: function(set) {
 		  default_preset = jQuery.extend(default_preset, set);
@@ -660,7 +667,6 @@ TopUp = function() {
 
 			try {
   			displaying = true;
-			
   			deriveOptions(reference, opts, true);
         deriveGroup();
       

@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="gettopup topup unobstrusive javascript pop up popup lightbox lightbox2 lightwindow highslide modalbox thickbox jquery module paul engel apple mac dashboard quicklook">
 		<meta name="verify-v1" content="xwr9uRspe/CpYXF3MtDa4cOT1ePMtQKwXsZmYrGfEKA=" />
-		<title>Get TopUp - The #1 Javascript Pop Up</title>
+		<title>Get TopUp - The #1 Javascript Pop Up - <%= controller.action_name == "index" ? "Home" : controller.action_name.capitalize %></title>
 		
 		<% unless RAILS_ENV == "production" %>
   		<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style" %>
@@ -12,7 +12,10 @@
   		  <%= stylesheet_link_tag "top_up/iefix" %>
   		<![endif]-->
   		<!--[if IE 6]>
-  		  <%= stylesheet_link_tag "top_up/ie6fix", "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix" %>
+  		  <%= stylesheet_link_tag "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix" %>
+  		<![endif]-->
+  		<!--[if IE 7]>
+  		  <%= stylesheet_link_tag "top_up/dashboard/ie7fix" %>
   		<![endif]-->
   		<%= javascript_include_tag "jquery" %>
 		<% end %>
