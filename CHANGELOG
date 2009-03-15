@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.4.1 (March 16, 2009)
+
+* Fixed minor bug when closing the TopUp (using the 'transform' effect) after resizing
+
 == Version 1.4 (March 15, 2009)
 
 * Using jQuery v1.3.2 instead of v1.3.1 and jQuery UI v1.7 instead of v1.6rc5

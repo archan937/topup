@@ -502,7 +502,11 @@ TopUp = function() {
     var duration = fadeDuration(500);
 		
 		if (parseInt(options.resizable) == 1) {
-		  var opts = {handles: "se", minWidth: 200, minHeight: 75, alsoResize: "#" + options.resize.id(), aspectRatio: options.type == "image"};
+		  var opts = {stop: function(){ jQuery("#top_up .tu_frame").css({width: "auto", height: "auto"}) }, 
+		              handles: "se", 
+		              minWidth: 200, minHeight: 75, 
+		              alsoResize: "#" + options.resize.id(), 
+		              aspectRatio: options.type == "image"};
 	    jQuery("#top_up .tu_frame").resizable(opts);
 		}
 		
