@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.4.2 (March 17, 2009)
+
+* Corrected check when to cancel the drag behaviour
+
 == Version 1.4.1 (March 16, 2009)
 
 * Fixed minor bug when closing the TopUp (using the 'transform' effect) after resizing

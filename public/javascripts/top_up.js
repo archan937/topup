@@ -134,7 +134,7 @@ TopUp = function() {
 			  var element = this;
 			  
         this.mousedown(function(event) {
-			    if (opts && opts.cancel && (jQuery(event.target).is(opts.cancel) || jQuery(event.target).parent(opts.cancel).length > 0))
+          if (opts && opts.only && !jQuery(event.target).is(opts.only))
 			      return;
           
           event.preventDefault();
@@ -637,7 +637,7 @@ TopUp = function() {
         injectCode();
         bind();
         
-        jQuery("#top_up").draggable({cancel: "a, .ui-resizable-handle, .tu_content"});
+        jQuery("#top_up").draggable({only: ".tu_title,.tu_top *,.tu_bottom *"});
         jQuery.each(on_ready, function(i, func) {
           func.apply();
         });
