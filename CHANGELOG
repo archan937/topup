@@ -1,5 +1,12 @@
 = TopUp CHANGELOG
 
+== Version 1.4.3 (March 27, 2009)
+
+* Fixed major bug: binding #top_up.mouseup instead of *.mouseup for the jQuery UI draggable replacement
+* Alerting errors occured during TopUp.display()
+* Renamed class 'dragging' to 'tu_dragging'
+* Adding class 'tu_overflow' when animating transform effect
+
 == Version 1.4.2 (March 17, 2009)
 
 * Corrected check when to cancel the drag behaviour

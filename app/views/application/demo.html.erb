@@ -13,6 +13,7 @@
     <div>
       <%= image_tag "thumbnails/5.jpg", :id => "link" %>
       <%= submit_tag "Demonstrate", :class => "submit" %> &nbsp;<%= link_to_function "reset", "$('toptions').reset(); SeatHolder.rebind()" %>
+      <%#= button_to_function "Demonstrate", "TopUp.display('#{demonstrate_path}', {type: 'ajax', layout: 'quicklook', topUp: '#link'})" %>
     </div>
     
     <fieldset class="margined">

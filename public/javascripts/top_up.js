@@ -142,14 +142,14 @@ TopUp = function() {
           var offset = element.offset();
           var diff = {top: event.pageY - offset.top, left: event.pageX - offset.left};
           
-          jQuery("body").addClass("dragging");
+          jQuery("body").addClass("tu_dragging");
           jQuery("*").bind("mousemove.draggable", function(event) {
             element.css({top: event.pageY - diff.top, left: event.pageX - diff.left});
           });
         });
 
-        jQuery("*").mouseup(function(event) {
-          jQuery("body").removeClass("dragging");
+        jQuery("#top_up").mouseup(function(event) {
+          jQuery("body").removeClass("tu_dragging");
           jQuery("*").unbind("mousemove.draggable");
         });
       }
@@ -478,10 +478,14 @@ TopUp = function() {
 
 	  var animation = function() {
 	    var onReady = direction == "to" ?
-	                    function() {
-                        topUp.fadeOut(fadeDuration(250), callback);
-                	    } :
-                	    callback;
+                      function() {
+                        topUp.fadeOut(fadeDuration(250), callback)
+                             .removeClass("tu_overflow");
+                      } :
+                      function() {
+                        callback.apply();
+                        topUp.removeClass("tu_overflow");
+                      };
 
 	    topUp          .animate({top: opts.to.top, left: opts.to.left}, opts.duration);
 	    options.content.animate({width:  opts.to.width, 
@@ -492,8 +496,9 @@ TopUp = function() {
       topUp          .css({top:   dimensions.top,   left:   dimensions.left})
       options.content.css({width: dimensions.width, height: dimensions.height});
 
-      topUp.removeClass("tu_transparent")
-           .hide()
+      topUp.hide()
+           .addClass("tu_overflow")
+           .removeClass("tu_transparent")
            .fadeIn(fadeDuration(300), animation);
     } else
       animation.apply();
@@ -678,6 +683,7 @@ TopUp = function() {
   			loadContent();
 			} catch(e) {
 			  displaying = false;
+        alert("Sorry, but the following error occured:\n\n" + e);
 			}
 		},
 		update: function(func) {

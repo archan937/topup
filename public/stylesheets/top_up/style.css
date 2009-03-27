@@ -1,5 +1,8 @@
 
-.dragging {
+.tu_overflow {
+  overflow: hidden !important; }
+
+.tu_dragging {
   cursor: move !important; }
 
 #tu_overlay,
