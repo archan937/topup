@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.5 (March 28, 2009)
+
+* Extracted jQuery and jQuery UI completely from top_up.js (including jquery.js automatically if not already)
+
 == Version 1.4.3 (March 27, 2009)
 
 * Fixed major bug: binding #top_up.mouseup instead of *.mouseup for the jQuery UI draggable replacement

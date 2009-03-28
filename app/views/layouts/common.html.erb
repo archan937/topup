@@ -18,7 +18,6 @@
   		<!--[if IE 7]>
   		  <%= stylesheet_link_tag "top_up/dashboard/ie7fix" %>
   		<![endif]-->
-  		<%= javascript_include_tag "jquery" %>
 		<% end %>
 		
     <%= javascript_include_tag "#{"/releases/latest/" if RAILS_ENV == "production"}top_up", "seat_holder", :defaults %>

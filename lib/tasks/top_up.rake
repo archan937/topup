@@ -33,7 +33,7 @@ namespace :top_up do
       
       if index.nil?
         line.match("// *") ?
-          line.gsub(/\{(version|year|date|jQuery)\}/) do |matched|
+          line.gsub(/\{(version|year|date)\}/) do |matched|
             case matched
             when "{version}"
               args[:version]
@@ -41,8 +41,6 @@ namespace :top_up do
               timestamp.year.to_s
             when "{date}"
               timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
-            when "{jQuery}"
-              File.open("public/javascripts/jquery.js").readlines
             end
           end : 
           line
@@ -66,6 +64,7 @@ namespace :top_up do
     
     # Copy release
     File.open("#{release_dir}/top_up.js", "w").puts(javascript)
+    FileUtils.cp("public/javascripts/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
     
     # Packed release
