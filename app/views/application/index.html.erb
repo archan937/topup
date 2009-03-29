@@ -7,7 +7,8 @@
 <ul>
   <li>A very easy setup process</li>
   <li>The ability of displaying images, iframes, webpages and pure HTML</li>
-  <li>TopUp can be used along with Prototype (just include TopUp before Prototype)</li>
+  <li>TopUp can be used along with <%= link_to "Prototype", "http://prototypejs.org" %> (just include TopUp before Prototype)</li>
+  <li>TopUp is compressed with <%= link_to "Yahoo! YUI Compressor", "http://developer.yahoo.com/yui/compressor/" %> to <%= number_to_human_size File.size("#{RAILS_ROOT}/assets/releases/latest/top_up.js") %></li>
   <li>Cross-browser compatibility</li>
   <li>Fancy layouts, animations and transitions</li>
   <li>Auto-correction of size and position when required</li>

@@ -1,5 +1,5 @@
 namespace :top_up do
-  desc "Release Top up for external usage"
+  desc "Release Top Up for external usage"
   task :release, :version do |task, args|
     if args[:version].blank?
       raise "usage: rake top_up:release[version]" 
@@ -49,31 +49,27 @@ namespace :top_up do
         "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
       end
     }
-
+    
+    # Define variables
     releases_dir    = "#{RAILS_ROOT}/assets/releases"
     release_dir     = "#{releases_dir}/#{args[:version]}"
+    packed_dir      = "#{releases_dir}/packed"
     release_symlink = "#{releases_dir}/latest"
+    packed_symlink  = "#{packed_dir}/latest.tar.gz"
     
     # Create directories
     FileUtils.rm_r(release_dir) if File.exists?(release_dir)
     FileUtils.mkdir_p(release_dir)
+    FileUtils.mkdir_p(packed_dir)
     
-    # Create symbolic link to latest version
-    File.delete(release_symlink) if File.exists?(release_symlink)
-    File.symlink(args[:version], release_symlink)
-    
-    # Copy release
-    File.open("#{release_dir}/top_up.js", "w").puts(javascript)
+    # Create files
+    File.open("#{release_dir}/top_up-uncompressed.js", "w").puts(javascript)
     FileUtils.cp("public/javascripts/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
     
-    # Packed release
-    packed_dir      = "#{releases_dir}/packed"
-    packed_symlink  = "#{packed_dir}/latest.tar.gz"
-    
-    FileUtils.mkdir_p(packed_dir)
-    system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
-    
+    # Create symbolic links
+    File.delete(release_symlink) if File.exists?(release_symlink)
+    File.symlink(args[:version], release_symlink)
     File.delete(packed_symlink) if File.exists?(packed_symlink)
     File.symlink("#{args[:version]}.tar.gz", packed_symlink)
     
@@ -82,5 +78,21 @@ namespace :top_up do
       line.gsub(/\<small\>Current Release\: [\d\.]+<\/small\>/, "<small>Current Release: #{args[:version]}</small>")
     }
     File.open("app/views/layouts/_secondary.html.erb", "w").puts(secondary)
+    
+    # Compress release using YUI compressor
+    IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/top_up-uncompressed.js -o #{release_dir}/top_up.js"
+  end
+  
+  desc "Pack specified Top Up release"
+  task :pack, :version do |task, args|
+    if args[:version].blank?
+      raise "usage: rake top_up:pack[version]" 
+    end
+    
+    # Define variable
+    releases_dir    = "#{RAILS_ROOT}/assets/releases"
+    
+    # Pack release using tar
+    system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
   end
 end

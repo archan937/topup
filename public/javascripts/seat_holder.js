@@ -1,4 +1,4 @@
-try { SeatHolder } catch(e) {
+if (typeof(SeatHolder) == "undefined") {
 
 // *
 // * SeatHolder 0.4 (Uncompressed)

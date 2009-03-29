@@ -1,5 +1,12 @@
 = TopUp CHANGELOG
 
+== Version 1.5.1 (March 30, 2009)
+
+* Minifying top_up.js with YUI compressor 2.4.2
+* Still releasing the uncompressed version of TopUp (as top_up-uncompressed.js)
+* Made TopUp JSLint complaint
+* Fixed minor bug: the close link was not visible after closing TopUp
+
 == Version 1.5 (March 28, 2009)
 
 * Extracted jQuery and jQuery UI completely from top_up.js (including jquery.js automatically if not already)
