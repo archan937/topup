@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.5.2 (April 3, 2009)
+
+* Put the 'transform' effect as 'default' in the switch statement for animating effect
+
 == Version 1.5.1 (March 30, 2009)
 
 * Minifying top_up.js with YUI compressor 2.4.2

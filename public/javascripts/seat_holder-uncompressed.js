@@ -1,7 +1,7 @@
 if (typeof(SeatHolder) == "undefined") {
 
 // *
-// * SeatHolder 0.4.1 (Uncompressed)
+// * SeatHolder 0.4.2 (Uncompressed)
 // * The modest Javascript placeholder (used in http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -10,7 +10,7 @@ if (typeof(SeatHolder) == "undefined") {
 // * Except otherwise noted, SeatHolder is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-03-30 00:59:24 +0100 (Mon, 30 March 2009) $
+// * $Date: 2009-04-02 20:01:37 +0100 (Thu, 02 April 2009) $
 // *
 
 SeatHolder = function() {
@@ -123,7 +123,7 @@ SeatHolder = function() {
   };
   
 	return {
-		selector: "input,textarea",
+		selector: "[seatholder]",
 		hintColor: "#AAA",
 		init: function() {
 			jQuery(document).ready(function() {
