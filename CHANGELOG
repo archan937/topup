@@ -1,5 +1,10 @@
 = TopUp CHANGELOG
 
+== Version 1.5.3 (May 15, 2009)
+
+* Fixed bug: Calling TopUp.init() when jQuery is already defined
+* Using "-min" as prefix for packed versions from now
+
 == Version 1.5.2 (April 3, 2009)
 
 * Put the 'transform' effect as 'default' in the switch statement for animating effect

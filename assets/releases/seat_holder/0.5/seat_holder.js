@@ -1,7 +1,22 @@
 if (typeof(SeatHolder) == "undefined") {
 
+var scriptElement = (function deriveScriptElement() {
+	var id = "tu_dummy_script";
+	document.write('<script id="' + id + '"></script>');
+
+	var dummyScript = document.getElementById(id);
+	var element = dummyScript.previousSibling;
+
+	dummyScript.parentNode.removeChild(dummyScript);
+	return element;
+}());
+var scriptHost = (function deriveScriptHost() {
+  var src = scriptElement.getAttribute("src");
+	return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
+}());
+
 // *
-// * SeatHolder 0.4.2 (Uncompressed)
+// * SeatHolder 0.5 (Uncompressed)
 // * The modest Javascript placeholder (used in http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -10,10 +25,10 @@ if (typeof(SeatHolder) == "undefined") {
 // * Except otherwise noted, SeatHolder is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-04-02 20:01:37 +0100 (Thu, 02 April 2009) $
+// * $Date: 2009-05-15 21:48:24 +0100 (Fri, 15 May 2009) $
 // *
 
-SeatHolder = function() {
+SeatHolder = (function() {
   var hintClass = "sh_hint", hideClass = "sh_hide";
   
   var injectCode = function() {
@@ -36,9 +51,9 @@ SeatHolder = function() {
 	    }
 
       if (seatholder.match(/^&/)) {
-        hintedElements.push(element);
-      } else {
         onBlur(null, element);
+      } else {
+        hintedElements.push(element);
       }
         
       element.focus(onFocus)
@@ -47,6 +62,8 @@ SeatHolder = function() {
 	  
 	  jQuery.each(hintedElements, function(i, element) {
 	    element = jQuery(element);
+	    element.attr("id", element.attr("id") || "hinted_element_" + i);
+	    
 	    var hintElement = jQuery("#" + element.attr("hint_element"));
 
 	    if (hintElement.length == 0) {
@@ -54,7 +71,7 @@ SeatHolder = function() {
 	                    .attr("id", "hint_element_" + i)
 	                    .attr("type", element.attr("type"))
 	                    .attr("readonly", true)
-	                    .attr("hinted_element", element.attr("id") || "hinted_element_" + i)
+	                    .attr("hinted_element", element.attr("id"))
                       .focus(onHintFocus);
 	      
         jQuery.each(["class", "size"], function(index, attribute) {
@@ -71,7 +88,7 @@ SeatHolder = function() {
 	             .before(hintElement);
       }
       
-      hintElement.val(element.attr("seatholder").replace(/^&/, ""));
+      hintElement.val(element.attr("seatholder"));
       onBlur(null, element);
     });
   };
@@ -108,17 +125,17 @@ SeatHolder = function() {
   	  element = jQuery(event.target);
   	}
     var seatholder = element.attr("seatholder");
-    
     if ((element.val().length > 0 && element.val() != seatholder.replace(/^&/, ""))) {
+      jQuery("#" + element.attr("hint_element")).addClass(hideClass);
       return;
     }
     
   	if (seatholder.match(/^&/)) {
+  		element.val(seatholder.replace(/^&/, ""));
+    } else {
       element.attr("disabled", true)
              .addClass(hideClass);
 	    jQuery("#" + element.attr("hint_element")).removeClass(hideClass);
-    } else {
-  		element.val(seatholder.replace(/^&/, ""));
   	}
   };
   
@@ -135,7 +152,17 @@ SeatHolder = function() {
 		  bind();
 	  }
   };
-}();
-SeatHolder.init();
+}());
+
+(function () {
+  if (typeof(jQuery) == "undefined") {
+    var src = scriptElement.getAttribute("src").replace(/seat_holder(\-min)?\.js.*$/, "jquery.js");
+    document.write('<script src="' + src + '" type="text/javascript" ' + 
+                           'onload="SeatHolder.init()" onreadystatechange="SeatHolder.init()">' +
+                   '</script>');
+  } else {
+    SeatHolder.init();
+  }
+}());
 
 }

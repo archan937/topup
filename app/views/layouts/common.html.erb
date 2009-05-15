@@ -22,7 +22,7 @@
   		<![endif]-->
 		<% end %>
 		
-    <%= javascript_include_tag "#{"/releases/latest/" if RAILS_ENV == "production"}top_up", "seat_holder", :defaults %>
+    <%= javascript_include_tag include_src_for("top_up"), include_src_for("seat_holder"), :defaults %>
 		<%= stylesheet_link_tag "basic", "common" %>
 	</head>
 	<body>
