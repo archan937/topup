@@ -19,6 +19,8 @@ var scriptHost = (function deriveScriptHost() {
 // * TopUp {version} (Uncompressed)
 // * The #1 Javascript Pop Up (http://gettopup.com)
 // *
+// * This library requires jQuery (http://jquery.com)
+// *
 // * (c) {year} Paul Engel (Internetbureau Holder B.V.)
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
