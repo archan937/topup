@@ -1,0 +1,25 @@
+<% form_remote_for @comment do |f| %>
+  <%= h1 "Leave your comment" %>
+  <%= error_messages_for :comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil %>
+  <fieldset>
+    <ol>
+      <li>
+        <label for="name">Name:*</label>
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <label for="email_address">E-mail address:*</label>
+        <%= f.text_field :email_address %><small>&nbsp; (will not be published)</small>
+      </li>
+      <li>
+        <label for="message">Your comment:*</label>
+        <%= f.text_area :message %>
+        <small class="box">
+          Allowed tags: <code>a, abbr, acronym, blockquote, code, i, strike, strong, u</code><br>
+          Allowed attributes: <code>href, title</code>
+        </small>
+      </li>
+    </ol>
+  </fieldset>
+  <%= submit_tag "Send comment", :class => "submit" %>
+<% end %>

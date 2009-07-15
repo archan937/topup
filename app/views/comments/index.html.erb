@@ -9,7 +9,7 @@
   <ol id="comments">
   <% comments.each_with_index do |x, i| %>
     <li class="box">
-      <div>
+      <div class="left">
         <span>
           <%= i + 1 %>.
         </span>
@@ -18,9 +18,9 @@
           <strong><%= x.created_at.strftime "%d-%m-%Y %H:%M:%S" %></strong>
         </small>
       </div>
-      <p>
-        <%= x.message %>
-      </p>
+      <div class="right">
+        <%= textilize x.message %>
+      </div>
       <div class="clear"></div>
     </li>
   <% end %>

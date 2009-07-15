@@ -81,3 +81,37 @@ small {
 .fieldWithErrors {
   display: inline !important;
 }
+
+fieldset legend span {
+  width: 200px;
+  display: block;
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+}
+
+fieldset ol {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+fieldset ol li {
+  margin: 0px;
+  line-height: 24px;
+}
+
+fieldset ol li label {
+  width: 100px;
+  padding-right: 12px;
+  float: left;
+  clear: left;
+  text-align: right;
+}
+
+fieldset ol li input {
+  vertical-align: middle;
+}
+
+fieldset ol li textarea {
+  margin-top: 2px;
+}

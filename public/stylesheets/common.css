@@ -1,4 +1,71 @@
 
+a.download_top_up {
+  background-image: url(/images/text/a-download_top_up.jpg);
+}
+
+.box {
+  margin-top: 4px;
+  padding: 8px;
+  background-color: #002933 !important;
+  border: 1px dashed #529796;
+}
+
+.tu_top_up #new_comment {
+  width: 500px;
+  padding: 18px;
+  background-color: #003343 !important;
+  border: 1px dashed #529796;
+}
+
+.tu_top_up #new_comment h1 {
+  padding-bottom: 10px;
+}
+
+.tu_top_up #new_comment textarea {
+  width: 330px;
+  height: 125px;
+}
+
+.tu_top_up #errorExplanation {
+  margin-bottom: 15px;
+}
+
+#new_comment textarea {
+  width: 375px;
+  height: 125px;
+  font-family: "Lucida Grande", "Arial";
+  font-size: 11px;
+}
+
+#new_comment small.box {
+  width: 365px;
+  margin-top: 0px;
+  margin-bottom: 6px;
+  margin-left: 112px;
+  padding: 2px 5px;
+  display: block;
+  line-height: 11px;
+}
+
+#new_comment .submit {
+  margin-top: 8px;
+  margin-left: 112px;
+}
+
+#errorExplanation h3 {
+  margin: 2px 0px 6px 6px;
+  font-size: 13px;
+}
+
+#errorExplanation ul {
+  margin: 0px;
+}
+
+#errorExplanation ul li {
+  margin-left: 28px;
+  padding-left: 5px;
+}
+                                                                                                                                           
 #page_wrapper {
 	width: 875px;
 	margin: auto;
@@ -70,13 +137,6 @@
 
 #page_wrapper #page_content p {
   margin-top: 6px;
-}
-
-#page_wrapper #page_content .box {
-  margin-top: 4px;
-  padding: 8px;
-  background-color: #002933 !important;
-  border: 1px dashed #529796;
 }
 
 #page_wrapper #page_content #primary {
@@ -210,36 +270,6 @@
   margin-bottom: 20px;
 }
 
-#page_wrapper #page_content #primary fieldset legend span {
-  width: 200px;
-  display: block;
-  text-indent: -9999px;
-  background-repeat: no-repeat;
-}
-
-#page_wrapper #page_content #primary fieldset ol {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-}
-
-#page_wrapper #page_content #primary fieldset ol li {
-  margin: 0px;
-  line-height: 24px;
-}
-
-#page_wrapper #page_content #primary fieldset ol li label {
-  width: 100px;
-  padding-right: 12px;
-  float: left;
-  clear: left;
-  text-align: right;
-}
-
-#page_wrapper #page_content #primary fieldset ol li input {
-  vertical-align: middle;
-}
-
 #page_wrapper #page_content #primary #comments {
   margin: 26px 0px 0px 0px;
   padding: 0px;
@@ -248,6 +278,7 @@
 #page_wrapper #page_content #primary #comments li {
   width: 530px;
   margin-top: 11px;
+  padding-bottom: 0px;
   list-style: none;
 }
 
@@ -255,12 +286,19 @@
   color: #529796;
 }
 
-#page_wrapper #page_content #primary #comments li div {
+#page_wrapper #page_content #primary #comments li div.left {
   width: 145px;
   padding-right: 16px;
+  padding-bottom: 8px;
   float: left;
   font-size: 11px;
   text-align: right;
+}
+
+#page_wrapper #page_content #primary #comments li div.right {
+  width: 365px;
+  display: block;
+  float: left;
 }
 
 #page_wrapper #page_content #primary #comments li small {
@@ -272,26 +310,14 @@
 #page_wrapper #page_content #primary #comments li p {
   width: 350px;
   margin: 0px;
+  padding-bottom: 8px;
   float: left;
+  line-height: 15px;
 }
 
 #page_wrapper #page_content #primary #errorExplanation {
   width: 375px;
   margin-bottom: 15px;
-}
-
-#page_wrapper #page_content #primary #errorExplanation h3 {
-  margin: 2px 0px 6px 6px;
-  font-size: 13px;
-}
-
-#page_wrapper #page_content #primary #errorExplanation ul {
-  margin: 0px;
-}
-
-#page_wrapper #page_content #primary #errorExplanation ul li {
-  margin-left: 28px;
-  padding-left: 5px;
 }
 
 #page_wrapper #page_content #primary #new_comment {
@@ -303,26 +329,11 @@
   text-align: left;
 }
 
-#page_wrapper #page_content #primary #new_comment textarea {
-  width: 375px;
-  height: 125px;
-  margin-top: 2px;
-  font-family: "Lucida Grande", "Arial";
-  font-size: 11px;
-}
-
 #page_wrapper #page_content #primary #new_comment small.box {
-  width: 365px;
-  margin-top: 0px;
-  margin-bottom: 6px;
   margin-left: 170px;
-  padding: 2px 5px;
-  display: block;
-  line-height: 11px;
 }
 
 #page_wrapper #page_content #primary #new_comment .submit {
-  margin-top: 8px;
   margin-left: 170px;
 }
 
@@ -380,8 +391,4 @@
 
 #page_wrapper #page_content #secondary ul li {
   margin-left: 20px;
-}
-                                                                                                                                           
-a.download_top_up {
-  background-image: url(/images/text/a-download_top_up.jpg);
 }
