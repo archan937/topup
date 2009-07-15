@@ -38,6 +38,12 @@ h3 {
   font-size: 12px;
 }
 
+blockquote {
+  padding-top: 8px;
+  padding-left: 15px;
+  font-style: italic;
+}
+
 fieldset {
   border: 0px;
 }
@@ -68,5 +74,10 @@ small {
 }
 
 .clear {
-  clear: both;
+  clear: both !important;
+  float: none !important;
+}
+
+.fieldWithErrors {
+  display: inline !important;
 }

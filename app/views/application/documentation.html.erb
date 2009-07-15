@@ -1,4 +1,4 @@
-<h1 class="installation">Installation</h1>
+<%= h1 "Installation" %>
 <p>
   Setting up TopUp for your website requires the least amount of effort. You have the choice of either hosting the javascript and images on your own webserver or you can just
   include the javascript with one line of code and that's it! This has been made possible because TopUp injects the stylesheet code in the webpage. Choosing for the last option gives you the 
@@ -48,7 +48,7 @@
   Remember: You can still use <strong><%= link_to "Prototype", "http://prototypejs.org" %></strong> without having conflicts, just make sure you include TopUp first.
 </p>
 
-<h1 class="setting_up_link_elements">Setting up link elements</h1>
+<%= h1 "Setting up link elements" %>
 <p>
   You can accomplish this in 3 ways:
 </p>
@@ -102,7 +102,7 @@
 
 <a name="available_toptions"></a>
 
-<h1 class="available_toptions">Available toptions</h1>
+<%= h1 "Available toptions" %>
 <p>
   As mentioned earlier, you can pass options to TopUp by using either the attribute <span class="code">toptions</span> or by specifying a TopUp preset.
   This is an overview of the possible toptions you can pass. Most of them are self describing.
@@ -138,7 +138,7 @@
   </tbody>
 </table>
 
-<h1 class="just_call_your_friend_top_up">Just call your friend TopUp!</h1>
+<%= h1 "Just call your friend TopUp!" %>
 <p>
   Eventually, all the TopUp actions are initiated by function calls to the TopUp <%= link_to "Javascript module", "http://yuiblog.com/blog/2007/06/12/module-pattern/" %>.
   Adding the <span class="code">top_up</span> class, the <span class="code">toptions</span> attribute or specifying TopUp presets only tells TopUp to bind the click event of the elements to

@@ -1,9 +1,9 @@
-<h1 class="try_it_live">Try it live!</h1>
+<%= h1 "Try it live!" %>
 <p>
   Do you wanna experience the flexibility of TopUp live at the website? Well, here is your lucky day! You can try out the possibilities of TopUp by specifying the toptions below. Enjoy.
 </p>
 
-<h1 class="adjust_the_toptions_and_click">Adjust the toptions and click!</h1>
+<%= h1 "Adjust the toptions and click!" %>
 <p>
   For documentation about <span class="code">toptions</span> go to the <%= link_to "documentation page", "#{documentation_path}#available_toptions" %>.
 </p>
@@ -17,7 +17,7 @@
     
     <fieldset class="margined">
       <legend>
-        <span class='specify_the_reference'>Specify the reference</span>
+        <%= span "Specify the reference" %>
       </legend>
       <ol>
         <li>
@@ -27,7 +27,7 @@
       </ol>
     </fieldset>
     
-    <% field_set_tag "<span class='specify_the_toptions'>Specify the toptions</span>" do %>
+    <% field_set_tag span("Specify the toptions") do %>
       <ol>
         <li>
           <label for="toptions[topUp]">TopUp:</label>

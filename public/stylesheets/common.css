@@ -42,7 +42,7 @@
 }
 
 #page_wrapper #page_menu li {
-  margin: 0px 4px;
+  margin: 0px 8px;
   display: inline;
   list-style: none;
 }
@@ -210,25 +210,25 @@
   margin-bottom: 20px;
 }
 
-#page_wrapper #page_content #primary #demo #toptions fieldset legend span {
+#page_wrapper #page_content #primary fieldset legend span {
   width: 200px;
   display: block;
   text-indent: -9999px;
   background-repeat: no-repeat;
 }
 
-#page_wrapper #page_content #primary #demo #toptions fieldset ol {
+#page_wrapper #page_content #primary fieldset ol {
   margin: 0px;
   padding: 0px;
   list-style: none;
 }
 
-#page_wrapper #page_content #primary #demo #toptions fieldset ol li {
+#page_wrapper #page_content #primary fieldset ol li {
   margin: 0px;
   line-height: 24px;
 }
 
-#page_wrapper #page_content #primary #demo #toptions fieldset ol li label {
+#page_wrapper #page_content #primary fieldset ol li label {
   width: 100px;
   padding-right: 12px;
   float: left;
@@ -236,8 +236,92 @@
   text-align: right;
 }
 
-#page_wrapper #page_content #primary #demo #toptions fieldset ol li input {
+#page_wrapper #page_content #primary fieldset ol li input {
   vertical-align: middle;
+}
+
+#page_wrapper #page_content #primary #comments {
+  margin: 26px 0px 0px 0px;
+  padding: 0px;
+}
+
+#page_wrapper #page_content #primary #comments li {
+  width: 530px;
+  margin-top: 11px;
+  list-style: none;
+}
+
+#page_wrapper #page_content #primary #comments li span {
+  color: #529796;
+}
+
+#page_wrapper #page_content #primary #comments li div {
+  width: 145px;
+  padding-right: 16px;
+  float: left;
+  text-align: right;
+}
+
+#page_wrapper #page_content #primary #comments li small {
+  display: block;
+  line-height: 14px;
+}
+
+#page_wrapper #page_content #primary #comments li p {
+  width: 350px;
+  margin: 0px;
+  float: left;
+}
+
+#page_wrapper #page_content #primary #errorExplanation {
+  width: 375px;
+  margin-bottom: 15px;
+}
+
+#page_wrapper #page_content #primary #errorExplanation h3 {
+  margin: 2px 0px 6px 6px;
+  font-size: 13px;
+}
+
+#page_wrapper #page_content #primary #errorExplanation ul {
+  margin: 0px;
+}
+
+#page_wrapper #page_content #primary #errorExplanation ul li {
+  margin-left: 28px;
+  padding-left: 5px;
+}
+
+#page_wrapper #page_content #primary #new_comment {
+  margin-top: 5px;
+}
+
+#page_wrapper #page_content #primary #new_comment label {
+  width: 158px;
+  text-align: left;
+}
+
+#page_wrapper #page_content #primary #new_comment textarea {
+  width: 375px;
+  height: 125px;
+  margin-top: 2px;
+  font-family: "Lucida Grande", "Arial";
+  font-size: 11px;
+}
+
+#page_wrapper #page_content #primary #new_comment small.box {
+  width: 365px;
+  margin-top: 0px;
+  margin-bottom: 6px;
+  margin-left: 170px;
+  padding: 2px 5px;
+  display: block;
+  line-height: 11px;
+}
+
+#page_wrapper #page_content #primary #new_comment .submit {
+  margin-top: 8px;
+  margin-left: 170px;
 }
 
 #page_wrapper #page_content #secondary {
@@ -295,26 +379,7 @@
 #page_wrapper #page_content #secondary ul li {
   margin-left: 20px;
 }
-
-h1.what_is_top_up                    { background-image: url(/images/text/h1-what_is_top_up.jpg);                    }
-h1.why_another_lightbox_like_library { background-image: url(/images/text/h1-why_another_lightbox_like_library.jpg); }
-h1.some_examples                     { background-image: url(/images/text/h1-some_examples.jpg);                     }
-h1.how_to_use                        { background-image: url(/images/text/h1-how_to_use.jpg);                        }
-h1.support_or_feedback               { background-image: url(/images/text/h1-support_or_feedback.jpg);               }
-h1.installation                      { background-image: url(/images/text/h1-installation.jpg);                      }
-h1.setting_up_link_elements          { background-image: url(/images/text/h1-setting_up_link_elements.jpg);          }
-h1.just_call_your_friend_top_up      { background-image: url(/images/text/h1-just_call_your_friend_top_up.jpg);      }
-h1.available_toptions                { background-image: url(/images/text/h1-available_toptions.jpg);                }
-h1.try_it_live                       { background-image: url(/images/text/h1-try_it_live.jpg);                       }
-h1.adjust_the_toptions_and_click     { background-image: url(/images/text/h1-adjust_the_toptions_and_click.jpg);     }
-
-span.specify_the_reference           { background-image: url(/images/text/span-specify_the_reference.jpg);           }
-span.specify_the_toptions            { background-image: url(/images/text/span-specify_the_toptions.jpg);            }
-
-h2.get_the_latest_version            { background-image: url(/images/text/h2-get_the_latest_version.jpg);            }
-h2.about_me                          { background-image: url(/images/text/h2-about_me.jpg);                          }
-h2.source_at_github			             { background-image: url(/images/text/h2-source_at_github.jpg);			             }
-h2.license                           { background-image: url(/images/text/h2-license.jpg);                           }
-h2.links                             { background-image: url(/images/text/h2-links.jpg);                             }
-
-a.download_top_up                    { background-image: url(/images/text/a-download_top_up.jpg);                    }
+                                                                                                                                           
+a.download_top_up {
+  background-image: url(/images/text/a-download_top_up.jpg);
+}

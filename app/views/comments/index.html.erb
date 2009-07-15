@@ -1,0 +1,54 @@
+<%= h1 "Please send your comments" %>
+<p>
+  Do you have ideas, questions, requests or remarks about TopUp? Please fill in the form below.
+  Any comment will be greatly appreciated. I will respond as soon as possible when necessary.
+  You can also mail me at <%= mail_to "paul.engel@holder.nl" %>.
+</p>
+
+<% unless comments.empty? %>
+  <ol id="comments">
+  <% comments.each_with_index do |x, i| %>
+    <li class="box">
+      <div>
+        <span>
+          <%= i + 1 %>.
+        </span>
+        <%= x.name %>
+        <small>
+          <strong><%= x.created_at.strftime "%d-%m-%Y" %></strong>
+        </small>
+      </div>
+      <p>
+        <%= x.message %>
+      </p>
+      <div class="clear"></div>
+    </li>
+  <% end %>
+  </ol>
+<% end %>
+
+<%= h1 "Leave your comment" %>
+<%= error_messages_for :comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil %>
+<% form_for @comment do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <label for="name">Name:*</label>
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <label for="email_address">E-mail address:*</label>
+        <%= f.text_field :email_address %> <small>(will not be published)</small>
+      </li>
+      <li>
+        <label for="message">Your comment:*</label>
+        <%= f.text_area :message %>
+        <small class="box">
+          Allowed tags: <code>a, abbr, acronym, blockquote, code, i, strike, strong, u</code><br>
+          Allowed attributes: <code>href, title</code>
+        </small>
+      </li>
+    </ol>
+  </fieldset>
+  <%= submit_tag "Send comment", :class => "submit" %>
+<% end %>

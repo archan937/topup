@@ -1,4 +1,4 @@
-<h1 class="what_is_top_up">What is TopUp?</h1>
+<%= h1 "What is TopUp?" %>
 <p>
   TopUp is an easy to use Javascript library for unobstrusively displaying images and webpages in a Web 2.0 approach of popups.
   The library is <%= link_to "jQuery", "http://jquery.com" %> driven in order to maintain cross-browser compatibility and compactness.
@@ -9,6 +9,7 @@
   <li>The ability of displaying images, iframes, webpages and pure HTML</li>
   <li>TopUp can be used along with <%= link_to "Prototype", "http://prototypejs.org" %> (just include TopUp before Prototype)</li>
   <li>TopUp is compressed with <%= link_to "Yahoo! YUI Compressor", "http://developer.yahoo.com/yui/compressor/" %> to <%= number_to_human_size File.size("#{RAILS_ROOT}/assets/releases/latest/top_up-min.js") %> (includes JS, HTML and CSS)</li>
+  <li>Usage of CSS sprites to reduce the amount of image requests to two per layout for <%= link_to "faster loading", "http://developer.yahoo.com/performance/rules.html" %></li>
   <li>Cross-browser compatibility</li>
   <li>Fancy layouts, animations and transitions</li>
   <li>Auto-correction of size and position when required</li>
@@ -17,7 +18,7 @@
   <li>And many more...</li>
 </ul>
 
-<h1 class="why_another_lightbox_like_library">Why another Lightbox-like Javascript library?</h1>
+<%= h1 "Why another Lightbox-like Javascript library?" %>
 <p>
   Just like many among us, I had the need for a lightbox-like library to use for a website I was working on.
   After examining libraries such as <%= link_to "Lightbox", "http://www.huddletogether.com/projects/lightbox/" %>, <%= link_to "Lightbox2", "http://www.lokeshdhakar.com/projects/lightbox2/" %>, 
@@ -30,7 +31,7 @@
   Great for expansions and bugfixes!
 </p>
 
-<h1 class="some_examples">Some examples</h1>
+<%= h1 "Some examples" %>
 <div id="examples" class="box">
   <ul id="images">
     <li>
@@ -81,7 +82,7 @@
   <div class="clear"></div>
 </div>
 
-<h1 class="how_to_use">How to use</h1>
+<%= h1 "How to use" %>
 <h3>
   When including from gettopup.com (the easiest setup)
 </h3>
@@ -124,7 +125,7 @@
   For further documentation go to the <%= link_to "documentation page", documentation_path %>.
 </p>
 
-<h1 class="support_or_feedback">Support or feedback</h1>
+<%= h1 "Support or feedback" %>
 <p>
   Do you have questions or suggestions concerning TopUp?
   Please <%= mail_to "paul.engel@holder.nl", "e-mail me" %> and I will answer you as soon as possible.

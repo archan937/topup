@@ -1,11 +1,11 @@
 <div id="secondary">
-  <h2 class="get_the_latest_version">Get the latest version</h2>
+  <%= h2 "Get the latest version" %>
   <div class="box">
     <small>Current Release: 1.5.3</small>
     <%= link_to "Download TopUp", "http://gettopup.com/releases/packed/latest.tar.gz", :class => "download_top_up" %>
   </div>
   
-  <h2 class="about_me">About me</h2>
+  <%= h2 "About me" %>
   <p>
     My name is <%= mail_to "paul.engel@holder.nl", "Paul Engel" %>, I'm Dutch and I work at <%= link_to "Internetbureau Holder B.V.", "http://holder.nl" %> since February 2004.
     I develop websites in Ruby on Rails using a Mac.
@@ -14,7 +14,7 @@
     Other than <%= mail_to "paul.engel@holder.nl", "mail" %>, you can also contact me at <%= link_to "Twitter.com", "http://twitter.com/archan937" %>.
   </div>
   
-  <h2 class="source_at_github">Source at GitHub</h2>
+  <%= h2 "Source at GitHub" %>
   <div class="box">
     <div class="github">
       <%= link_to "GitHub project page", "http://github.com/archan937/topup/tree/master" %>
@@ -24,7 +24,7 @@
     </small>
   </div>
   
-  <h2 class="license">License</h2>
+  <%= h2 "License" %>
   <div class="license">
     <small>
       Except otherwise noted, TopUp is licensed under
@@ -33,7 +33,7 @@
     </small>
   </div>
   
-  <h2 class="links">Links</h2>
+  <%= h2 "Links" %>
   <ul>
     <li><%= link_to "Apple", "http://apple.com" %></li>
     <li><%= link_to "GitHub", "http://github.com" %></li>
