@@ -259,12 +259,14 @@
   width: 145px;
   padding-right: 16px;
   float: left;
+  font-size: 11px;
   text-align: right;
 }
 
 #page_wrapper #page_content #primary #comments li small {
   display: block;
   line-height: 14px;
+  font-family: "Courier New", "Courier";
 }
 
 #page_wrapper #page_content #primary #comments li p {

@@ -15,7 +15,7 @@
         </span>
         <%= x.name %>
         <small>
-          <strong><%= x.created_at.strftime "%d-%m-%Y" %></strong>
+          <strong><%= x.created_at.strftime "%d-%m-%Y %H:%M:%S" %></strong>
         </small>
       </div>
       <p>
@@ -38,7 +38,7 @@
       </li>
       <li>
         <label for="email_address">E-mail address:*</label>
-        <%= f.text_field :email_address %> <small>(will not be published)</small>
+        <%= f.text_field :email_address %><small>&nbsp; (will not be published)</small>
       </li>
       <li>
         <label for="message">Your comment:*</label>
