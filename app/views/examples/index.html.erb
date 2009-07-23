@@ -1,0 +1,20 @@
+<%= h1 "Examples" %>
+<p>
+  As you probably already read, TopUp is meant to be implemented with great ease.
+  The following examples demonstrate how to use the Javascript library for several purposes.
+  Please take notice that every purpose can be implemented using several methods.
+  Every method is provided with a demo and code for the entire HTML page.
+</p>
+
+<div id="code_examples">
+  <% @examples.each do |k, v| %>
+    <%= render :partial => "example", :locals => {:title       => k,
+                                                  :description => v[:description].join(""), 
+                                                  :examples    => v[:examples]} %>
+  <% end %>
+</div>
+
+<br>
+<h3>
+  Stay tuned! More examples will be added this week. Latest update: 23-07-2009.
+</h3>

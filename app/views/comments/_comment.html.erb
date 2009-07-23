@@ -1,0 +1,15 @@
+<li id="comment_<%= comment.id %>" class="box">
+  <div class="left">
+    <span>
+      <%= index %>.
+    </span>
+    <%= comment.name %>
+    <small>
+      <strong><%= comment.created_at.strftime "%d-%m-%Y %H:%M:%S" %></strong>
+    </small>
+  </div>
+  <div class="right">
+    <%= textilize comment.message %>
+  </div>
+  <div class="clear"></div>
+</li>

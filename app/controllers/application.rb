@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def demonstrate
-    # render :template => "application/response"
-    # return
     render :update do |page|
       page.call "TopUp.display", params[:reference], {"preset" => "demo"}.merge(params[:toptions].reject{|key, value| key == "type" and value == "auto"})
     end

@@ -16,3 +16,13 @@ TopUp.addPresets({
     resizable: 0
   }
 });
+
+function selectExample(element) {
+  var li = $(element).up("li");
+  li.siblings().invoke("removeClassName", "selected");
+  li.addClassName("selected");
+  
+  var content = $(element).up(".block").down(".content");
+  content.childElements().invoke("removeClassName", "selected");
+  content.childElements()[li.previousSiblings().length].addClassName("selected");
+}

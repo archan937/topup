@@ -1,6 +1,8 @@
 <% form_remote_for @comment do |f| %>
   <%= h1 "Leave your comment" %>
-  <%= error_messages_for :comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil %>
+  <div id="error_messages">
+    <%= error_messages_for :comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil %>
+  </div>
   <fieldset>
     <ol>
       <li>
@@ -21,5 +23,6 @@
       </li>
     </ol>
   </fieldset>
+  <%= hidden_field_tag :using_top_up if params[:action] == "new" %>
   <%= submit_tag "Send comment", :class => "submit" %>
 <% end %>

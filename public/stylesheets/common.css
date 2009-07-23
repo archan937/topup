@@ -10,6 +10,10 @@ a.download_top_up {
   border: 1px dashed #529796;
 }
 
+.box h4 {
+  margin: 0px 0px 6px 0px;
+}
+
 .tu_top_up #new_comment {
   width: 500px;
   padding: 18px;
@@ -241,6 +245,119 @@ a.download_top_up {
   font-weight: bold;
 }
 
+#page_wrapper #page_content #primary #code_examples a {
+  border-width: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples p a {
+  border-width: 1px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block {
+  margin-top: 15px;
+  margin-left: -2px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block .top {
+  height: 3px;
+  background: url(/images/backgrounds/examples-top.png) left no-repeat;
+}
+
+#page_wrapper #page_content #primary #code_examples .block .middle {
+  padding: 1px 3px;
+  background: url(/images/backgrounds/examples-middle.png) left repeat-y;
+}
+
+#page_wrapper #page_content #primary #code_examples .block .bottom {
+  height: 3px;
+  background: url(/images/backgrounds/examples-bottom.png) left no-repeat;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul {
+  list-style: none;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu {
+  width: 156px;
+  margin-top: 15px;
+  margin-bottom: 17px;
+  padding: 1px 0px;
+  float: left;
+  background: url(/images/backgrounds/examples-ul.png) left repeat-y;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li {
+  margin: 1px 0px 0px 0px;
+  padding-left: 15px;
+  line-height: 30px;
+  background: #002C3B;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li.first {
+  margin: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li.selected {
+  background: #00252E url(/images/backgrounds/examples-li-selected.gif) no-repeat right center;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li a {
+  color: #4C889C;
+  font-weight: bold;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li.selected a {
+  color: white;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content {
+  width: 407px;
+  margin: 0px 0px 0px 1px;
+  float: left;
+  background: #002731 url(/images/backgrounds/examples-content.png) repeat-x top;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li {
+  margin: 0px;
+  padding: 15px 17px 17px 17px;
+  display: none;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li.selected {
+  display: block;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li h3 {
+  margin: 0px;
+  padding-bottom: 6px;
+  font-size: 14px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li h4 {
+  padding-top: 10px;
+}
+
+#page_wrapper #page_content #primary #code_examples .box {
+  margin-bottom: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples .box a:hover {
+  color: #002933;
+  background: white;
+}
+
+#page_wrapper #page_content #primary #code_examples .box table {
+  margin: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples .box table td {
+  padding: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples .box pre {
+  padding-bottom: 8px;
+}
+
 #page_wrapper #page_content #primary #demo {
   margin-top: 10px;
   padding: 28px 35px;
@@ -278,7 +395,8 @@ a.download_top_up {
 #page_wrapper #page_content #primary #comments li {
   width: 530px;
   margin-top: 11px;
-  padding-bottom: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   list-style: none;
 }
 
@@ -288,6 +406,7 @@ a.download_top_up {
 
 #page_wrapper #page_content #primary #comments li div.left {
   width: 145px;
+  padding-top: 4px;
   padding-right: 16px;
   padding-bottom: 8px;
   float: left;
@@ -310,7 +429,7 @@ a.download_top_up {
 #page_wrapper #page_content #primary #comments li p {
   width: 350px;
   margin: 0px;
-  padding-bottom: 8px;
+  padding: 4px 0px;
   float: left;
   line-height: 15px;
 }

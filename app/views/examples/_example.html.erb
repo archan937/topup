@@ -1,0 +1,36 @@
+<%= h2 title %>
+<%= textilize description %>
+
+<% block do %>
+  
+  <ul class="menu">
+  <% examples.each_with_index do |x, i| %>
+    <li class="<%= "first selected" if i == 0 %>">
+      <%= link_to_function title(x), "selectExample(this)" %>
+    </li>
+  <% end %>
+  </ul>
+  
+  <ul class="content">
+  <% examples.each_with_index do |x, i| %>
+    <li class="<%= "selected" if i == 0 %>">
+      <div class="information">
+        <h3><%= title x %></h3>
+        <%= info x %>
+      </div>
+      
+      <h4>Demo</h4>
+      <div class="box">
+        <%= demo title, x %>
+      </div>
+      
+      <h4>Complete code</h4>
+      <div class="box">
+        <%= demo_code x %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+  
+  <div class="clear"></div>
+<% end %>

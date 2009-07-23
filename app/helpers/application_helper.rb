@@ -23,8 +23,4 @@ module ApplicationHelper
     content_tag(tag, text, :style => "background-image: url(/images/text/#{tag}-#{text.gsub(".", "").split(/[^\w]/).join("_").underscore}.jpg)")
   end
   
-  def comments
-    @comments ||= Comment.find :all, :order => "created_at"
-  end
-  
 end

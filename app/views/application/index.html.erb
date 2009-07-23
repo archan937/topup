@@ -1,6 +1,6 @@
 <%= h1 "What is TopUp?" %>
 <p>
-  TopUp is an easy to use Javascript library for unobstrusively displaying images and webpages in a Web 2.0 approach of popups.
+  TopUp is an easy to use Javascript library for unobtrusively displaying images and webpages in a Web 2.0 approach of popups.
   The library is <%= link_to "jQuery", "http://jquery.com" %> driven in order to maintain cross-browser compatibility and compactness.
   TopUp offers the following advantages:
 </p>
@@ -128,5 +128,7 @@
 <%= h1 "Support or feedback" %>
 <p>
   Do you have questions or suggestions concerning TopUp?
-  Please <%= mail_to "paul.engel@holder.nl", "e-mail me" %> and I will answer you as soon as possible.
+  Please <%= mail_to "paul.engel@holder.nl", "e-mail me" %>
+  or <%= link_to "post a comment", new_comment_path, :toptions => "effect = fade, shaded = 1, overlayClose = 1, resizable = 0" %> 
+  and I will answer you as soon as possible.
 </p>

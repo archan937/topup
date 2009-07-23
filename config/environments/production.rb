@@ -20,3 +20,9 @@ config.action_view.cache_template_loading            = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+begin
+  require "#{RAILS_ROOT}/../../shared/mail_settings.rb"
+rescue MissingSourceFile
+  puts "[WARNING] Couldn't load mail settings at #{Pathname.new(__FILE__).relative_path_from(Pathname.new(RAILS_ROOT))}:#{__LINE__ - 2}"
+end

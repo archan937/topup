@@ -15,3 +15,9 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+begin
+  require "#{RAILS_ROOT}/../_Shared_/mail_settings.rb"
+rescue MissingSourceFile
+  puts "[WARNING] Couldn't load mail settings at #{Pathname.new(__FILE__).relative_path_from(Pathname.new(RAILS_ROOT))}:#{__LINE__ - 2}"
+end

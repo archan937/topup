@@ -190,7 +190,12 @@ TopUp = (function() {
 	  jQuery(html).appendTo("body");
 	};
 	var bind = function() {
-		selector = jQuery.merge([".top_up", "[toptions]"], jQuery.keys(presets)).join();
+		var coptions = ["[class*=x]"];
+		jQuery.each(["db", "ql", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
+      coptions.push("[class*=_" + coption + "]");
+    });
+    
+		selector = jQuery.merge([".top_up", "[toptions]", "[class^=tu_]:" + coptions.join(",")], jQuery.keys(presets)).join();
 		
 		jQuery(selector).bind("click", topUpClick);
 		jQuery(document).bind("keypress", documentKeyPress);
@@ -220,7 +225,25 @@ TopUp = (function() {
 	
 	var deriveTopUpOptions = function(topUp, opts) {
 	  var toptions = jQuery.extend({}, {topUp: "#" + topUp.element.id(), preset: topUp.selector});
-		  
+	  
+    jQuery.each(topUp.element.attr("class").split(/\s/), function(i, c) {
+      if (c.match(/^tu_/)) {
+        jQuery.each(c.replace(/^tu_/, "").split("_"), function(j, coption) {
+          switch(coption) {
+            case "db": case "ql":
+      		    toptions["layout"] = {"db": "dashboard", "ql": "quicklook"}[coption]; break;
+      		  case "image": case "html": case "dom": case "iframe": case "ajax": case "script":
+              toptions["type"] = coption; break;
+            default:
+              if (coption.match(/\dx\d/)) {
+                toptions["width"]  = coption.split("x")[0];
+                toptions["height"] = coption.split("x")[1];
+              }
+          } 
+        });
+      }
+    });
+    
 	  if (topUp.element.is("[toptions]")) {
 			jQuery.each(topUp.element.attr("toptions").split(","), function(i, option) {
 				var key_value = option.split("=");

@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+  </head>
+  <body>
+    <p>
+    <!-- Info start -->
+      <h1>
+        Single links - Using a TopUp preset
+      </h1>
+      <p>
+        You can compare a TopUp preset with a CSS ...
+      </p>
+    <!-- Info end -->
+    </p>
+    <div id="examples">
+      <a href="photos/2.jpg"><img src="thumbnails/2.jpg"/></a>
+      <a href="photos/4.jpg"><img src="thumbnails/4.jpg"/></a>
+      <input type="button" value="Open Google" href="http://www.google.nl" class="tu_iframe_800x600"/>
+    </div>
+    <script type="text/javascript">
+      TopUp.addPresets({
+        "#examples *": {
+          shaded: 1,
+          effect: "fade"
+        }
+      });
+    </script>
+  </body>
+</html>

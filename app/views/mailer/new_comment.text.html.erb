@@ -1,0 +1,13 @@
+A new comment has been posted:
+<p>
+  <strong>Posted at</strong><br>
+  <%= @comment.created_at.strftime "%d-%m-%Y %H:%M:%S" %>
+</p>
+<p>
+  <strong>Poster</strong><br>
+  <%= @comment.name %>
+</p>
+<p>
+  <strong>Message</strong><br>
+  <%= textilize_without_paragraph @comment.message %>
+</p>
