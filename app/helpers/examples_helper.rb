@@ -9,19 +9,22 @@ module ExamplesHelper
   end
   
   def description(example)
-    example[:content].css("#description").inner_html
+    example[:html].css("#description").inner_html
   end
   
   def demo(example, purpose)
-    example[:content].css("#demo").inner_html.
-                      gsub("thumbnails", "/examples/#{purpose}/thumbnails").
-                      gsub("photos", "/examples/#{purpose}/photos").
-                      gsub("id=\"examples\"", "id=\"#{[purpose, example[:title], "examples"].join(" ").gsub(/[^\w]/, "_")}\"".squeeze("_").downcase).
-                      gsub("#examples", "##{[purpose, example[:title], "examples"].join(" ").gsub(/[^\w]/, "_")}".squeeze("_").downcase)
+    example[:html].css("#demo").inner_html.
+                                gsub("thumbnails", "/examples/#{purpose}/thumbnails").
+                                gsub("photos", "/examples/#{purpose}/photos").
+                                gsub("id=\"examples\"", "id=\"#{[purpose, example[:title], "examples"].join(" ").gsub(/[^\w]/, "_")}\"".squeeze("_").downcase).
+                                gsub("#examples", "##{[purpose, example[:title], "examples"].join(" ").gsub(/[^\w]/, "_")}".squeeze("_").downcase)
   end
   
   def code(example)
-    content_tag :pre, html_escape(render(:partial => "examples/code", :locals => {:html => example[:content].css("#demo").inner_html.collect{|x| x.gsub(/^\s\s\s/, "")}})).reject{|x| x.blank?}
+    content_tag :pre, html_escape(example[:raw_content].
+                                  gsub(/<title>.*<\/title>/m, "").
+                                  gsub(/<div id="description">.*<div id="demo">/m, "").
+                                  gsub(/<\/div>\s*<\/body>$/m, "</body>").reject{|x| x.blank?})
   end
   
 end

@@ -9,7 +9,7 @@ class ExamplesController < ApplicationController
                     content  = File.readlines(File.join("public", "examples", dir, file))
                     file == "README" ?
                       h[dir][:information] = content :
-                      h[dir][:examples] << {:filename => file, :content => Nokogiri::HTML(content.join(" "))}
+                      h[dir][:examples] << {:filename => file, :raw_content => content.join(""), :html => Nokogiri::HTML(content.join(""))}
                   end
                   h
                 end.reject{|k, v| v[:examples].empty?}

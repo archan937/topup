@@ -245,10 +245,6 @@ a.download_top_up {
   font-weight: bold;
 }
 
-#page_wrapper #page_content #primary #code_examples a {
-  border-width: 0px;
-}
-
 #page_wrapper #page_content #primary #code_examples p a {
   border-width: 1px;
 }
@@ -273,7 +269,8 @@ a.download_top_up {
   background: url(/images/backgrounds/examples-bottom.png) left no-repeat;
 }
 
-#page_wrapper #page_content #primary #code_examples .block ul {
+#page_wrapper #page_content #primary #code_examples .block ul.menu,
+#page_wrapper #page_content #primary #code_examples .block ul.content {
   list-style: none;
 }
 
@@ -306,6 +303,11 @@ a.download_top_up {
   font-weight: bold;
 }
 
+#page_wrapper #page_content #primary #code_examples .block ul.menu li a,
+#page_wrapper #page_content #primary #code_examples .block ul.content li .demo a {
+  border-width: 0px;
+}
+
 #page_wrapper #page_content #primary #code_examples .block ul.menu li.selected a {
   color: white;
 }
@@ -317,7 +319,7 @@ a.download_top_up {
   background: #002731 url(/images/backgrounds/examples-content.png) repeat-x top;
 }
 
-#page_wrapper #page_content #primary #code_examples .block ul.content li {
+#page_wrapper #page_content #primary #code_examples .block ul.content li.example {
   margin: 0px;
   padding: 15px 17px 17px 17px;
   display: none;
@@ -327,10 +329,19 @@ a.download_top_up {
   display: block;
 }
 
-#page_wrapper #page_content #primary #code_examples .block ul.content li h3 {
+#page_wrapper #page_content #primary #code_examples .block ul.content li .description h2 {
   margin: 0px;
-  padding-bottom: 6px;
+  padding-bottom: 3px;
   font-size: 14px;
+  text-indent: 0px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li .description ol {
+  padding-bottom: 6px;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.content li .description li {
+  margin-bottom: 0px;
 }
 
 #page_wrapper #page_content #primary #code_examples .block ul.content li h4 {

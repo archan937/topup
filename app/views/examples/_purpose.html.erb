@@ -13,7 +13,7 @@
   
   <ul class="content">
   <% examples.each_with_index do |x, i| %>
-    <li class="<%= "selected" if i == 0 %>">
+    <li class="example <%= "selected" if i == 0 %>">
       <div class="description">
         <%= description x %>
       </div>
