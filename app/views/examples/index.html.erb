@@ -7,9 +7,9 @@
 </p>
 
 <div id="code_examples">
-  <% @examples.each do |k, v| %>
-    <%= render :partial => "example", :locals => {:title       => k,
-                                                  :description => v[:description].join(""), 
+  <% @purposes.each do |k, v| %>
+    <%= render :partial => "purpose", :locals => {:purpose     => k,
+                                                  :information => v[:information].join(""), 
                                                   :examples    => v[:examples]} %>
   <% end %>
 </div>

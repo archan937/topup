@@ -5,7 +5,7 @@ A new comment has been posted:
 </p>
 <p>
   <strong>Poster</strong><br>
-  <%= @comment.name %>
+  <%= @comment.name %> (<%= mail_to @comment.email_address %>)
 </p>
 <p>
   <strong>Message</strong><br>

@@ -1,12 +1,12 @@
-<%= h2 title %>
-<%= textilize description %>
+<%= h2 purpose %>
+<%= textilize information %>
 
 <% block do %>
   
   <ul class="menu">
   <% examples.each_with_index do |x, i| %>
     <li class="<%= "first selected" if i == 0 %>">
-      <%= link_to_function title(x), "selectExample(this)" %>
+      <%= link_to_function method(x), "selectMethod(this)" %>
     </li>
   <% end %>
   </ul>
@@ -14,19 +14,18 @@
   <ul class="content">
   <% examples.each_with_index do |x, i| %>
     <li class="<%= "selected" if i == 0 %>">
-      <div class="information">
-        <h3><%= title x %></h3>
-        <%= info x %>
+      <div class="description">
+        <%= description x %>
       </div>
       
       <h4>Demo</h4>
-      <div class="box">
-        <%= demo title, x %>
+      <div class="demo box">
+        <%= demo x, purpose %>
       </div>
       
       <h4>Complete code</h4>
-      <div class="box">
-        <%= demo_code x %>
+      <div class="code box">
+        <%= code x %>
       </div>
     </li>
   <% end %>

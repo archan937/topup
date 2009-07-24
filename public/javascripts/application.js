@@ -17,7 +17,7 @@ TopUp.addPresets({
   }
 });
 
-function selectExample(element) {
+function selectMethod(element) {
   var li = $(element).up("li");
   li.siblings().invoke("removeClassName", "selected");
   li.addClassName("selected");

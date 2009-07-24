@@ -63,6 +63,7 @@ namespace :top_up do
     File.open("#{release_dir}/top_up.js", "w").puts(javascript)
     FileUtils.cp("public/javascripts/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
+    FileUtils.cp_r("public/examples", release_dir)
     
     # Create symbolic links
     File.delete(release_symlink) if File.exists?(release_symlink)
