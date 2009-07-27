@@ -14,20 +14,29 @@ a.download_top_up {
   margin: 0px 0px 6px 0px;
 }
 
-.tu_top_up #new_comment {
+.tu_top_up form {
   width: 500px;
   padding: 18px;
   background-color: #003343 !important;
   border: 1px dashed #529796;
 }
 
-.tu_top_up #new_comment h1 {
+.tu_top_up form h1 {
   padding-bottom: 10px;
 }
 
-.tu_top_up #new_comment textarea {
+.tu_top_up form p {
+  margin-bottom: 12px;
+}
+
+.tu_top_up form textarea {
   width: 330px;
   height: 125px;
+}
+
+.tu_top_up form .submit {
+  margin-top: 8px;
+  margin-left: 112px;
 }
 
 .tu_top_up #errorExplanation {

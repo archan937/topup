@@ -1,13 +1,48 @@
-A new comment has been posted:
-<p>
-  <strong>Posted at</strong><br>
-  <%= @comment.created_at.strftime "%d-%m-%Y %H:%M:%S" %>
-</p>
-<p>
-  <strong>Poster</strong><br>
-  <%= @comment.name %> (<%= mail_to @comment.email_address %>)
-</p>
-<p>
-  <strong>Message</strong><br>
-  <%= textilize_without_paragraph @comment.message %>
-</p>
+<html>
+  <body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" offset="0" bgcolor="#003343" border="0">
+    
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td valign="top" align="center">
+          
+          <table width="625px" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 15px 4px; border-bottom: 1px dashed #529796">
+                <a href="http://gettopup.com">
+                  <img src="http://gettopup.com/images/backgrounds/mail_header.jpg" alt="TopUp" style="border: 0"></img>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 15px">
+                <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%">
+                  A new comment has been posted:
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0 15px">
+                <span style="padding: 10px 15px; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%; background-color: #002933 !important; border: 1px dashed #529796;">
+                  <span style="padding: 5px 0; display: block">
+                    <strong>Posted at</strong><br>
+                    <%= @comment.created_at.strftime "%d-%m-%Y %H:%M:%S" %>
+                  </span>
+                  <span style="padding: 5px 0; display: block">
+                    <strong>Poster</strong><br>
+                    <%= @comment.name %> (<a href="mailto:<%= @comment.email_address %>" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white"><%= @comment.email_address %></a>)
+                  </span>
+                  <span style="padding: 5px 0; display: block">
+                    <strong>Message</strong><br>
+                    <%= textilize_without_paragraph @comment.message %>
+                  </span>
+                </span>
+              </td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

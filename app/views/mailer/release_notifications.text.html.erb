@@ -1,0 +1,57 @@
+<html>
+  <body marginwidth="0" marginheight="0" topmargin="0" leftmargin="0" offset="0" bgcolor="#003343" border="0">
+    
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td valign="top" align="center">
+          
+          <table width="625px" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="padding: 15px 4px; border-bottom: 1px dashed #529796">
+                <a href="http://gettopup.com">
+                  <img src="http://gettopup.com/images/backgrounds/mail_header.jpg" alt="TopUp" style="border: 0"></img>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 15px">
+                <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%">
+                  Hi <%= @tracker.name %>,
+                </span>
+                <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%">
+                  A <a href="http://gettopup.com/releases/packed/<%= current_download_version %>.tar.gz" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white">new version</a>
+                  of the Javascript library TopUp has been released. The changelog of this release is as follows:
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 0 15px">
+                <span style="padding: 15px; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%; background-color: #002933 !important; border: 1px dashed #529796;">
+                  <%= @tracker.unnotified_changelog.gsub("\n", "<br>") %>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 15px">
+                <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%">
+                  Please keep in mind that this notification service is very handy and actually a must for when you host TopUp on your own webserver.
+                  Being subscribed gives you the advantage of updating your TopUp library when bugfixes and new features are released.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding: 15px; border-top: 1px dashed #529796">
+                <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 9px; line-height: 150%">
+                  You're receiving this notification because you are subscribed as a tracker at <a href="http://gettopup.com" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white">GetTopUp.com</a>.<br>
+                  Click here to <a href="http://gettopup.com/unsubscribe/<%= @tracker.unsubscription_code %>" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white">unsubscribe</a> yourself.
+                </span>
+              </td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

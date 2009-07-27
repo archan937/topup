@@ -1,0 +1,27 @@
+<% form_remote_for @tracker do |f| %>
+  <%= h1 "Subscribe as TopUp tracker" %>
+  <p>
+    This notification service is very handy and actually a must for those of you who host TopUp on your own webserver.
+    After every release, you will receive an e-mail in which the direct link and change log (describes bugfixes and new features) of that release is provided.
+  </p>
+  <p>
+    So subscribe yourself as a TopUp tracker and stay up-to-date of the <strong>bugfixes</strong> and features of every TopUp release.
+  </p>
+  <div id="error_messages">
+    <%= error_messages_for :tracker, :class => "box", :header_tag => "h3", :header_message => "Oops... You aren't subscribed yet", :message => nil %>
+  </div>
+  <fieldset>
+    <ol>
+      <li>
+        <label for="name">Name:*</label>
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <label for="email_address">E-mail address:*</label>
+        <%= f.text_field :email_address %><small>&nbsp; (you will be notified at this address)</small>
+      </li>
+    </ol>
+  </fieldset>
+  <%= hidden_field_tag :using_top_up if params[:action] == "new" %>
+  <%= submit_tag "Subscribe", :class => "submit" %>
+<% end %>

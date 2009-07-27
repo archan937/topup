@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
           page[:error_messages].replace_html error_messages_for(:comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil)
         end
       else
-        Mailer.deliver_new_comment(@comment)
         if params[:using_top_up]
           page.redirect_to comment_path(@comment)
         else

@@ -35,8 +35,9 @@ ActionController::Routing::Routes.draw do |map|
   map.documentation "/documentation", :controller => "application", :action => "documentation"
   map.examples "/examples", :controller => "examples"
   map.demo "/demo", :controller => "application", :action => "demo"
-  map.resources :comments
+  map.resources :trackers, :comments
   map.demonstrate "/demonstrate", :controller => "application", :action => "demonstrate"
+  map.unsubscribe "/unsubscribe/:unsubscription_code", :controller => "trackers", :action => "unsubscribe"
   
   # See how all your routes lay out with "rake routes"
 
