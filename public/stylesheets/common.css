@@ -1,7 +1,5 @@
 
-a.download_top_up {
-  background-image: url(/images/text/a-download_top_up.jpg);
-}
+/* Begin TopUp content */
 
 .box {
   margin-top: 4px;
@@ -78,6 +76,8 @@ a.download_top_up {
   margin-left: 28px;
   padding-left: 5px;
 }
+
+/* End TopUp content */
                                                                                                                                            
 #page_wrapper {
 	width: 875px;
@@ -294,7 +294,6 @@ a.download_top_up {
 
 #page_wrapper #page_content #primary #code_examples .block ul.menu li {
   margin: 1px 0px 0px 0px;
-  padding-left: 15px;
   line-height: 30px;
   background: #002C3B;
 }
@@ -303,13 +302,16 @@ a.download_top_up {
   margin: 0px;
 }
 
-#page_wrapper #page_content #primary #code_examples .block ul.menu li.selected {
-  background: #00252E url(/images/backgrounds/examples-li-selected.gif) no-repeat right center;
-}
-
 #page_wrapper #page_content #primary #code_examples .block ul.menu li a {
+  padding-left: 15px;
+  display: block;
   color: #4C889C;
   font-weight: bold;
+}
+
+#page_wrapper #page_content #primary #code_examples .block ul.menu li a:hover {
+  cursor: pointer;
+  background-color: #002731;
 }
 
 #page_wrapper #page_content #primary #code_examples .block ul.menu li a,
@@ -319,6 +321,7 @@ a.download_top_up {
 
 #page_wrapper #page_content #primary #code_examples .block ul.menu li.selected a {
   color: white;
+  background: #00252E url(/images/backgrounds/examples-li-selected.gif) no-repeat right center;
 }
 
 #page_wrapper #page_content #primary #code_examples .block ul.content {
@@ -375,6 +378,7 @@ a.download_top_up {
 }
 
 #page_wrapper #page_content #primary #code_examples .box pre {
+  width: 355px;
   padding-bottom: 8px;
 }
 
@@ -515,12 +519,10 @@ a.download_top_up {
 
 #page_wrapper #page_content #secondary .box a.download_top_up {
   width: 211px;
-  height: 45px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  height: 58px;
   display: block;
   text-indent: -9999px;
-  background-repeat: no-repeat;
+  background: url(/images/text/a-download_top_up.jpg) no-repeat left center;
   border: 0px;
 }
 
