@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Single links - Using a TopUp preset</title>
+    <title>Grouped links - Using a TopUp preset</title>
     <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
   </head>
   <body>
@@ -14,21 +14,22 @@
       Just call <code>TopUp.addPresets()</code> with a hash as parameter.<br>
       The key of each entry has to be a CSS selector and the value has to be a hash of toptions.
     </p>
+    <p>
+      So for grouping links, just specify <code>group: [name]</code> in the preset.
+    </p>
   </div>
   <h2>Demo</h2>
   <div id="demo">
     <div id="examples">
-      <a href="photos/1.jpg"><img src="thumbnails/1.jpg"/></a>
+      <a href="photos/by-ben-adamson.jpg"><img src="thumbnails/by-ben-adamson.jpg"/></a>
       <a href="photos/2.jpg"><img src="thumbnails/2.jpg"/></a>
-      <input type="button" value="Open Google" href="http://www.google.nl" class="tu_iframe_800x600"/>
+      <a href="photos/3.jpg"><img src="thumbnails/3.jpg"/></a>
     </div>
     <script type="text/javascript">
       TopUp.addPresets({
         "#examples a": {
-          effect: "clip"
-        },
-        "#examples input": {
-          shaded: 1, effect: "fade", overlayClose: 1
+          group: "examples",
+          shaded: 1
         }
       });
     </script>
