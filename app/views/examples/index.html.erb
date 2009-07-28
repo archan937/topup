@@ -10,7 +10,7 @@
   <% @purposes.each do |k, v| %>
     <%= render :partial => "purpose", :locals => {:purpose     => k,
                                                   :information => v[:information].join(""), 
-                                                  :examples    => v[:examples]} %>
+                                                  :examples    => v[:examples].sort{|a, b| a[:filename].match(/^\d+/).to_s.to_i <=> b[:filename].match(/^\d+/).to_s.to_i}} %>
   <% end %>
 </div>
 

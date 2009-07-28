@@ -12,7 +12,7 @@ class ExamplesController < ApplicationController
                       h[dir][:examples] << {:filename => file, :raw_content => content.join(""), :html => Nokogiri::HTML(content.join(""))}
                   end
                   h
-                end.reject{|k, v| v[:examples].empty?}
+                end.reject{|k, v| v[:examples].empty?}.sort{|a, b| a.first.match(/^\d+/).to_s.to_i <=> b.first.match(/^\d+/).to_s.to_i}
   end
   
 end
