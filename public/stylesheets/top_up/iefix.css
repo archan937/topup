@@ -1,6 +1,7 @@
 
 body {
-  background: url(foo) fixed; }
+/*  background: url(foo) fixed;*/
+  }
 
 #tu_overlay {
   top:  expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");

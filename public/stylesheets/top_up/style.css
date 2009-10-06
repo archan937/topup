@@ -65,7 +65,7 @@
 
 .tu_frame .tu_left,
 .tu_frame .tu_middle,
-.tu_frame .tu_right, {
+.tu_frame .tu_right {
 	padding: 0px; }
 
 .tu_controls {
