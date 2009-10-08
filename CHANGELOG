@@ -1,5 +1,14 @@
 = TopUp CHANGELOG
 
+== Version 1.5.6 (October 8, 2009)
+
+* Added TopUp.data for stashing data
+* Added the following callback toptions: ondisplay(content, data) and onclose(content, data)
+* The argument content contains the DOM element in which the content resides and data the stashed data
+* Removed invalid comma in style.css (thanks Chris!)
+* Not including url(foo) in iefix.css anymore
+* Using jQuery UI v1.7.2 instead of v1.7
+
 == Version 1.5.5 (Juli 24, 2009)
 
 * Fixed bug in Safari when calling TopUp.display() without passing the TopUp element

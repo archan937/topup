@@ -1,0 +1,2 @@
+This is the simplest type of all TopUp implementations.
+A single HTML element (in most cases a link) refers to a certain location which will be presented by the TopUp module when clicked on that element.
