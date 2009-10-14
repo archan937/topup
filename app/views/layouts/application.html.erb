@@ -22,7 +22,6 @@
   		<![endif]-->
 		<% end %>
 		
-    <%= javascript_include_tag include_src_for("top_up"), include_src_for("seat_holder"), :defaults %>
 		<%= stylesheet_link_tag "basic", "common" %>
 		<!--[if IE 6]>
 		  <%= stylesheet_link_tag "ie6fix" %>
@@ -47,5 +46,6 @@
 			</div>
 		</div>
 		<%= render :partial => "layouts/top_up" if RAILS_ENV == "development" %>
+    <%= javascript_include_tag include_src_for("top_up"), include_src_for("seat_holder"), "defaults" %>
 	</body>
 </html>

@@ -1,0 +1,97 @@
+= Jzip
+
+Javascript merging and compression for Rails Apps
+
+== Introduction
+
+Jzip was created due to the need of simply merging and minifying Javascript files to reduce HTTP requests and file size of my assets. Using sprites for images and SASS for stylesheets only left javascripts not be optimized.
+AssetPackager almost suited the solution, but I wanted more flexibility in configuration. So I got inspired by AssetPackager and SASS to come up with the Jzip plugin.
+
+== How to use
+
+1. Download and install the plugin:
+   ./script/plugin install git://github.com/archan937/jzip.git 
+
+2. Create your .jz and .js files in the assets/jzip directory
+   (a Jzip template for the Prototype and Scriptaculous sources along with application.js is already available)
+
+3. Include the generated Javascript file in your template (e.g. for the defaults)
+   <%= javascript_include_tag "defaults" %>
+
+4. Enjoy! :D
+
+== Documentation
+
+A .jz file (Jzip template) is nothing more than a common .js file in which you can require other JS files for merging.
+You can do this by simply adding the following: //= require < path_to_file or predefined_set >
+The path of the Javascript file has to be relative to the Jzip template. Please note that specifying a preleading '/' in the path will be interpreted by Jzip as 'RAILS_ROOT/public/javascripts' (which is very handy).
+
+Other than the path to a Javascript file, you can also refer to a predefined set of Javascripts sources. At the moment, only "defaults" is available for the Prototype and Scriptaculous libs and application.js which are shipped with a Rails application. Any suggestions for other predefined sets are welcome.
+And last but not least, you can overrule the minification of a required source by adding an exclamation mark before the path (or before "defaults").
+
+The following instructs Jzip to merge the Prototype and Scriptaculous libraries with three custom Javascript files into public/javascripts/foo.js and overrule the minification of shared/topup at all times:
+
+  (in assets/jzip/foo.jz)
+
+  //= require !shared/top_up
+  //= require /defaults
+  //= require builder/module
+  //= require builder/model_browser
+
+You probably already have guessed that the default location for Jzip templates is 'RAILS_ROOT/assets/jzip'. I can imagine that you would have choosen another location. So fortunately, the Jzip plugin offers you to that piece of freedom. All you have to do is put the following in your environment.rb file: 
+
+  Jzip::Plugin.add_template_location(< your_own_template_location(s) >)
+
+This comes in very handy when building a Rails plugin that uses Jzip because you don't want to copy your all Jzip templates to 'RAILS_ROOT/assets/jzip'. So let's say your plugin is called 'betty', all you have to do is put the following in it's init.rb file: Jzip::Plugin.add_template_location(RAILS_ROOT + "vendor/plugins/betty/assets/jzip"). Now isn't that a piece cake?
+Not only can you pass a string containing the template location, you can also pass an array of strings (containing multiple locations) or a hash (which also specifies the output directory):
+
+  string: RAILS_ROOT + "/lib/jzip" 
+          => target directory will be "public/javascripts"
+  array:  [RAILS_ROOT + "/some/path/jzip", RAILS_ROOT + "/vendor/plugins/foo/assets/jzip"]
+          => target directory will be "public/javascripts"
+  hash:   {RAILS_ROOT + "/vendor/plugins/betty/assets/jzip" => RAILS_ROOT + "/public/javascripts/betty"}
+          => target directory will be "public/javascripts/betty"
+
+Finally, Jzip has some options that you can configure in the environment.rb file.
+
+  :minify            - Minify the merged Javascript file using the JSMin library
+                       (default: true when in production environment)
+  :always_update     - Merge (and minify when specified) the Jzip templates on every page request (only when outdated!)
+                       (default: true when not in production environment)
+
+You can specify a Jzip option by putting the following in your environment.rb:
+
+  Jzip::Plugin.options[:always_update] = true
+  Jzip::Plugin.options[:minify]        = false
+
+For support, remarks and requests please mail me at paul.engel@holder.nl.
+
+== Credit
+
+This Rails plugin is inspired by:
+
+AssetPackager
+http://github.com/sbecker/asset_packager/tree/master
+
+SASS
+http://sass-lang.com
+
+Also, this plugin makes use of the Ruby JavaScript Minifier created by Douglas Crockford.
+http://www.crockford.com/javascript/jsmin.html
+
+== License
+Copyright (c) 2009 Paul Engel, released under the MIT license
+http://holder.nl - http://gettopup.com - paul.engel@holder.nl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit 
+persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the 
+Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.5.7 (October 14, 2009)
+
+* Added the 'x' and 'y' toptions to determine the position of the TopUp dialog (requested by Brian McNaboe)
+
 == Version 1.5.6 (October 8, 2009)
 
 * Added TopUp.data for stashing data
