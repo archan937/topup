@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-10-14 21:13:31 +0100 (Wed, 14 October 2009) $
+// * $Date: 2009-10-15 18:19:49 +0100 (Thu, 15 October 2009) $
 // *
 
 TopUp = (function() {
@@ -487,6 +487,7 @@ TopUp = (function() {
 	    if (callback) {
 			  callback.apply([], [jQuery("#top_up .tu_content").id()]);
       } else {
+        clearContent();
 	      setContent();
       }
       setDimensions();
@@ -515,6 +516,9 @@ TopUp = (function() {
                                          height: jQuery("#temp_up .tu_content").css("height")});
     }
 	};
+  var clearContent = function() {
+    jQuery(".tu_content").children().remove();
+  };
   
   var transform = function(direction, dimensions, callback) {
 	  var topUp     = jQuery("#top_up");
@@ -699,6 +703,7 @@ TopUp = (function() {
 	      options.onclose.apply(this, [jQuery("#top_up .tu_content"), data]);
 	    }
 	    
+      clearContent();
       moveContent("temp_up");
 	  };
 	  
