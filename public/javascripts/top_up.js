@@ -29,7 +29,7 @@ var scriptHost = (function deriveScriptHost() {
 // *
 
 TopUp = (function() {
-	var initialized = false, selector = null, on_ready = [], displaying = false, options = null, group = null, index = null, selector_content = {};
+	var initialized = false, selector = null, on_ready = [], displaying = false, options = null, group = null, index = null, data = null;
 	var default_preset = {
 		layout: "dashboard",
 		effect: "transform",
@@ -102,13 +102,21 @@ TopUp = (function() {
         }
 				
 				var offset = this.offset();
-				jQuery("#tu_center_wrapper").css({
-                													 top: offset.top - (delta.height === 0 ? 0 : parseInt(delta.height / 2, 10)), 
-                													 left: offset.left - (delta.width === 0 ? 0 : parseInt(delta.width / 2, 10)),
-                													 width: this.width() + delta.width, 
-                													 height: this.height() + delta.height
-                												 });
+				var css = {
+                    top: offset.top - (delta.height === 0 ? 0 : parseInt(delta.height / 2, 10)), 
+                    left: offset.left - (delta.width === 0 ? 0 : parseInt(delta.width / 2, 10)),
+                    width: this.width() + delta.width, 
+                    height: this.height() + delta.height
+                  };
+        
+        if (options.x) {
+          css.left = options.x - parseInt((css.width  - compare.outerWidth())  / 2, 10);
+        }
+        if (options.y) {
+          css.top  = options.y - parseInt((css.height - compare.outerHeight()) / 2, 10);
+        }
 				
+				jQuery("#tu_center_wrapper").css(css);
 				jQuery("#tu_centered_content").append(this);
 				
 				this.css({
@@ -175,8 +183,11 @@ TopUp = (function() {
 		var iefix = '<div></div>';
 		var html = '<div></div>';
 
+		if (!jQuery("head").length) {
+		  jQuery(document.body).before("<head></head>");
+		}
 		jQuery(style).prependTo("head");
-			
+		
 		if (jQuery.ie7) {
 			jQuery(ie7fix).insertAfter("head > style:first");
 		}
@@ -351,7 +362,6 @@ TopUp = (function() {
 		}
 	};	
 	var loadContent = function() {
-    // jQuery(".tu_selector_content").removeClass("tu_selector_content");
 	  showLoader();
 	  
 		switch(options.type) {
@@ -363,11 +373,6 @@ TopUp = (function() {
                                 })
                                .attr("src", options.reference);
 				break;
-      // case "selector":
-      //  options.content = jQuery(options.reference).filter(function() {
-      //    var collect = selector_content[jQuery(this).id()] ? true : jQuery(this).parents("#top_up,#temp_up").length == 0;
-      //    return collect;
-      //  }); break;
 			case "html": case "dom":
 				options.content = jQuery(options.reference); break;
 			case "iframe":
@@ -383,16 +388,7 @@ TopUp = (function() {
 			               success: onContentReady});
 		}
 		
-    // if (options.type == "selector") {
-    //   jQuery.each(options.content.addClass("tu_selector_content"), function(i, e) {
-    //     e = jQuery(e);
-    //     if (!selector_content[e.id()]) {
-    //       selector_content[e.id()] = {element: e, hidden: e.is(":hidden"), parent: e.parent()};
-    //     }
-    //   });
-    // }
-		
-    if (jQuery.inArray(options.type, ["selector", "html", "dom", "iframe"]) != -1) {
+    if (jQuery.inArray(options.type, ["html", "dom", "iframe"]) != -1) {
 		  onContentReady();
 		}
 	};
@@ -456,6 +452,13 @@ TopUp = (function() {
 	  moveContent("top_up");
 		jQuery("#top_up").center();
 		
+		if (options.x) {
+		  jQuery("#top_up").css({left: options.x});
+		}
+		if (options.y) {
+		  jQuery("#top_up").css({top : options.y});
+		}
+		
 		switch(options.effect) {
       case "fade":
         jQuery("#top_up").fadeIn(fadeDuration(300), afterDisplay); break;
@@ -516,19 +519,9 @@ TopUp = (function() {
                                          height: jQuery("#temp_up .tu_content").css("height")});
     }
 	};
-	var clearContent = function() {
-    jQuery.each(selector_content, function(i, c) {
-      if (!c.element.hasClass("tu_selector_content")) {
-        if (c.hidden) {
-          c.element.hide();
-        }
-        c.parent.append(c.element);
-        delete selector_content[c.element.id()];
-      }
-    });
-    
-    jQuery(".tu_content").children(":not(.tu_selector_content)").remove();
-	};
+  var clearContent = function() {
+    jQuery(".tu_content").children().remove();
+  };
   
   var transform = function(direction, dimensions, callback) {
 	  var topUp     = jQuery("#top_up");
@@ -619,6 +612,10 @@ TopUp = (function() {
 		
 		checkPosition();
 		
+    if (options.ondisplay) {
+      options.ondisplay.apply(this, [jQuery("#top_up .tu_content"), data]);
+    }
+		
 		displaying = false;
 	};
 
@@ -691,8 +688,8 @@ TopUp = (function() {
 	    animateHide(callback);
 	  };
 	  
-		jQuery("#top_up .tu_title")     .fadeOut(duration);
-    jQuery("#top_up .tu_controls")  .fadeOut(duration);
+		jQuery("#top_up .tu_title")   .fadeOut(duration);
+    jQuery("#top_up .tu_controls").fadeOut(duration);
     if (jQuery.ie) {
 		  jQuery("#top_up .tu_close_link").hide();
 		  onReady.apply();
@@ -703,11 +700,13 @@ TopUp = (function() {
 	var animateHide = function(callback) {
 	  var afterHide = function() {
 	    if (callback) {
-	      callback.apply();
+	      callback.apply(this, [jQuery("#top_up .tu_content"), data]);
 	    }
-      // jQuery(".tu_selector_content").removeClass("tu_selector_content");
+	    if (options.onclose) {
+	      options.onclose.apply(this, [jQuery("#top_up .tu_content"), data]);
+	    }
 	    
-	    clearContent();
+      clearContent();
       moveContent("temp_up");
 	  };
 	  
@@ -738,6 +737,7 @@ TopUp = (function() {
 	return {
 		host: scriptHost,
 		images_path: "images/top_up/",
+		data: data,
 		init: function() {
 			if (initialized) {
 				return false;
@@ -787,6 +787,7 @@ TopUp = (function() {
 
 			try {
   			displaying = true;
+  			data = {};
   			deriveOptions(reference, opts, true);
         deriveGroup();
       
