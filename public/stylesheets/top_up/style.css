@@ -1,12 +1,12 @@
 
-.tu_overflow {
+.te_overflow {
   overflow: hidden !important; }
 
-.tu_dragging {
+.te_dragging {
   cursor: move !important; }
 
 #tu_overlay,
-.tu_top_up {
+.te_top_up {
 	top: 0px;
 	left: 0px; }
 
@@ -20,33 +20,33 @@
   top: -9999px;
   z-index: -1; }
 
-.tu_transparent {
+.te_transparent {
   opacity: 0; }
 
-.tu_shaded {
+.te_shaded {
 	opacity: .65;
 	background: black; }
 
-.tu_scrollable {
+.te_scrollable {
   overflow: auto; }
 
-.tu_top_up {
+.te_top_up {
 	position: absolute;
 	z-index: 1000; }
 	
-.tu_top_up a,
-.tu_top_up a:hover {
+.te_top_up a,
+.te_top_up a:hover {
   border: 0px; }
 
-.tu_top_up .ui-resizable-se {
+.te_top_up .ui-resizable-se {
 	position: absolute !important;
 	background-color: transparent !important;
 	border: 0px !important; }
 
-.tu_wrapper {
+.te_wrapper {
 	position: relative; }
 
-.tu_title {
+.te_title {
 	width: 100%;
 	color: white;
 	font-family: "Lucida Grande", "Arial";
@@ -55,34 +55,34 @@
 	text-align: center;
 	z-index: 1001; }
 
-.tu_frame,
+.te_frame,
 #tu_center_wrapper {
 	border-collapse: collapse; }
 
-.tu_frame tr, .tu_frame td {
+.te_frame tr, .te_frame td {
   margin: 0px;
   padding: 0px; }
 
-.tu_frame .tu_left,
-.tu_frame .tu_middle,
-.tu_frame .tu_right, {
+.te_frame .te_left,
+.te_frame .te_middle,
+.te_frame .te_right {
 	padding: 0px; }
 
-.tu_controls {
+.te_controls {
   position: absolute;
 	z-index: 1001; }
 
-.tu_close_link,
-.tu_previous_link,
-.tu_next_link {
+.te_close_link,
+.te_previous_link,
+.te_next_link {
 	cursor: pointer; }
 
-.tu_close_link {
+.te_close_link {
 	position: absolute;
 	z-index: 1002; }
 
-.tu_previous_link,
-.tu_next_link {
+.te_previous_link,
+.te_next_link {
 	display: block;
 	float: left; }
 

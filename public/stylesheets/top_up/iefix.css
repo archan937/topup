@@ -7,12 +7,12 @@ body {
   left: expression((ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft) + "px");
 	position: absolute; }
 
-.tu_transparent {
+.te_transparent {
   filter: alpha(opacity = 0); }
 
-.tu_shaded {
+.te_shaded {
   filter: alpha(opacity = 65); }
 
-.tu_content {
+.te_content {
   position: relative;
   zoom: 1; }

@@ -1,5 +1,5 @@
 
-#top_up .tu_quicklook .ui-resizable-se {
+#top_up .te_quicklook .ui-resizable-se {
 	width: 10px !important;
 	height: 10px !important;
 	bottom: 12px !important;
@@ -7,52 +7,52 @@
 	background-image: url(/images/top_up/quicklook/sprite.png) !important;
 	background-position: -75px -181px !important; }
 
-.tu_quicklook .tu_title {
+.te_quicklook .te_title {
 	top: 6px; }
 
-.tu_quicklook .tu_corner,
-.tu_quicklook .tu_rib {
+.te_quicklook .te_corner,
+.te_quicklook .te_rib {
 	background-image: url(/images/top_up/quicklook/sprite.png); }
 
-.tu_quicklook .tu_top	         { height: 24px; }
-.tu_quicklook .tu_bottom       { height: 56px; }
-.tu_quicklook .tu_left_filler,
-.tu_quicklook .tu_right_filler { width:  12px; }
+.te_quicklook .te_top	         { height: 24px; }
+.te_quicklook .te_bottom       { height: 56px; }
+.te_quicklook .te_left_filler,
+.te_quicklook .te_right_filler { width:  12px; }
 
-.tu_quicklook .tu_middle .tu_middle	{
+.te_quicklook .te_middle .te_middle	{
 	background: url(/images/top_up/quicklook/middle.png); }
 
-.tu_quicklook .tu_top .tu_left  		{ background-position:  0px	   0px; }
-.tu_quicklook .tu_top .tu_middle	  { background-position:  0px  -30px; }
-.tu_quicklook .tu_top .tu_right	  	{ background-position: 12px    0px; }
-.tu_quicklook .tu_middle .tu_left	  { background-position:  0px	-181px; }
-.tu_quicklook .tu_middle .tu_right	{ background-position: 12px -181px; }
-.tu_quicklook .tu_bottom .tu_left	  { background-position:  0px	-122px; }
-.tu_quicklook .tu_bottom .tu_middle	{ background-position:  0px	 -61px; }
-.tu_quicklook .tu_bottom .tu_right	{ background-position: 12px -122px; }
+.te_quicklook .te_top .te_left  		{ background-position:  0px	   0px; }
+.te_quicklook .te_top .te_middle	  { background-position:  0px  -30px; }
+.te_quicklook .te_top .te_right	  	{ background-position: 12px    0px; }
+.te_quicklook .te_middle .te_left	  { background-position:  0px	-181px; }
+.te_quicklook .te_middle .te_right	{ background-position: 12px -181px; }
+.te_quicklook .te_bottom .te_left	  { background-position:  0px	-122px; }
+.te_quicklook .te_bottom .te_middle	{ background-position:  0px	 -61px; }
+.te_quicklook .te_bottom .te_right	{ background-position: 12px -122px; }
 
-.tu_quicklook .tu_content {
+.te_quicklook .te_content {
 	margin: 0px -7px; }
 
-.tu_quicklook .tu_controls {
+.te_quicklook .te_controls {
   left: 50%;
   width: 66px;
   margin-left: -33px;
   bottom: 18px; }
 
-.tu_quicklook .tu_previous_link,
-.tu_quicklook .tu_next_link {
+.te_quicklook .te_previous_link,
+.te_quicklook .te_next_link {
 	width: 31px;
 	height: 29px;
 	margin: 0px 1px;
 	background-image: url(/images/top_up/quicklook/sprite.png); }
 
-.tu_quicklook .tu_previous_link 	    { background-position: 89px -195px; }
-.tu_quicklook .tu_next_link 		      { background-position: 52px -195px; }
-.tu_quicklook .tu_previous_link:hover { background-position: 89px -226px; }
-.tu_quicklook .tu_next_link:hover 	  { background-position: 52px -226px; }
+.te_quicklook .te_previous_link 	    { background-position: 89px -195px; }
+.te_quicklook .te_next_link 		      { background-position: 52px -195px; }
+.te_quicklook .te_previous_link:hover { background-position: 89px -226px; }
+.te_quicklook .te_next_link:hover 	  { background-position: 52px -226px; }
 
-.tu_quicklook .tu_close_link {
+.te_quicklook .te_close_link {
 	width: 13px;
 	height: 13px;
 	top: 7px;

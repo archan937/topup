@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<meta name="keywords" content="gettopup topup unobtrusive javascript pop up popup lightbox lightbox2 lightwindow highslide
-		                               modalbox thickbox jquery module paul engel apple mac dashboard quicklook yahoo yui compressed
+		<meta name="keywords" content="gettopup topup unobtrusive javascript pop up popup module pattern
+		                               jquery paul engel apple mac dashboard quicklook
 		                               <%= controller.action_name == "index" ? "home" : controller.action_name.downcase %>">
 		<meta name="verify-v1" content="xwr9uRspe/CpYXF3MtDa4cOT1ePMtQKwXsZmYrGfEKA=" />
 		<link rel="shortcut icon" href="/favicon.ico"/>
-		<title>Get TopUp - The #1 Javascript Pop Up - <%= controller.action_name == "index" ? "Home" : controller.action_name.capitalize %></title>
+		<title>The #1 Javascript Pop Up - Get TopUp! - <%= controller.action_name == "index" ? "Home" : controller.action_name.capitalize %></title>
 		
 		<% unless RAILS_ENV == "production" %>
   		<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style" %>
@@ -34,8 +34,8 @@
 	<body>
 		<div id="page_wrapper">
 			<div id="page_header" onclick="document.location.href = '/'">
-			  <h1>TopUp</h1>
-			  <h2>The #1 Javascript Pop Up made by Paul Engel</h2>
+			  <h2>TopUp</h2>
+			  <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
 			</div>
       <%= render :partial => "layouts/menu" %>
 			<div id="page_content">
