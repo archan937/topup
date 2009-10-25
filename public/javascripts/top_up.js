@@ -183,8 +183,11 @@ TopUp = (function() {
 		var iefix = '<div></div>';
 		var html = '<div></div>';
 
+		if (!jQuery("head").length) {
+		  jQuery(document.body).before("<head></head>");
+		}
 		jQuery(style).prependTo("head");
-			
+		
 		if (jQuery.ie7) {
 			jQuery(ie7fix).insertAfter("head > style:first");
 		}
