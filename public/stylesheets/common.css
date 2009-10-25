@@ -98,20 +98,20 @@
   position: absolute;
 }
 
-#page_wrapper #page_header h1 {
+#page_wrapper #page_header h2 {
   top: 30px;
   left: 84px;
   width: 174px;
   height: 74px;
-  background-image: url(/images/backgrounds/page_header_beta.jpg);
+  background-image: url(/images/backgrounds/top_up_beta.jpg);
 }
 
-#page_wrapper #page_header h2 {
+#page_wrapper #page_header h1 {
   top: 70px;
   left: 258px;
   width: 275px;
   height: 12px;
-  background-image: url(/images/backgrounds/page_subtitle.jpg);
+  background-image: url(/images/backgrounds/page_header.jpg);
 }
 
 #page_wrapper #page_menu {

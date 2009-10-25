@@ -379,7 +379,7 @@ TopUp = (function() {
 			               cache: false, 
 			               async: false, 
 			               data: options.parameters, 
-			               dataType: (parseInt(options.type, 10) == "ajax") ? "html" : "script", 
+			               dataType: (options.type == "ajax") ? "html" : "script", 
 			               success: onContentReady});
 		}
 		
