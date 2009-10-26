@@ -1,7 +1,7 @@
 <%= h1 "What is TopUp?" %>
 <p>
   TopUp is an easy to use Javascript library for unobtrusively displaying images and webpages in a Web 2.0 approach of popups.
-  The library is <%= link_to "jQuery", "http://jquery.com" %> driven in order to maintain cross-browser compatibility and compactness.
+  The library is <%= link_to "jQuery", "http://jquery.com" %> and <%= link_to "jQuery UI", "http://jqueryui.com" %> driven in order to maintain cross-browser compatibility and compactness.
   TopUp offers the following advantages:
 </p>
 <ul>
@@ -53,29 +53,61 @@
       </small>
     </li>
     <li>
-      <%= link_to image_tag("thumbnails/4.jpg"), "/images/photos/4.jpg", :toptions => "layout = dashboard, noGroup = 1" %>
+      <%= link_to image_tag("thumbnails/4.jpg"), "/images/photos/4.jpg", :toptions => "noGroup = 1, layout = dashboard" %>
       <small>
         noGroup: 1, layout: dashboard
       </small>
     </li>
+  </ul>
+  <ul>
     <li>
-      <%= link_to image_tag("thumbnails/5.jpg"), "/images/photos/5.jpg", :class => "shaded", :toptions => "layout = quicklook, effect = clip" %>
+      <%= link_to image_tag("thumbnails/5.jpg"), "/images/photos/5.jpg", :class => "shaded", :toptions => "effect = clip, layout = quicklook" %>
       <small>
-        layout: quicklook, shaded: 1, effect: clip
+        shaded: 1, effect: clip, layout: quicklook
       </small>
     </li>
-    <li>
-      <%= link_to image_tag("thumbnails/6.jpg"), "/images/photos/6.jpg", :class => "shaded" %>
+    <li>  
+      <%= link_to image_tag("thumbnails/google.jpg"), "http://www.google.nl", :toptions => "width = 800, height = 400, type = iframe, title = Google search, layout = quicklook" %>
       <small>
-        layout: dashboard, shaded: 1
+        width: 800, height: 400, type: iframe, title: Google search, layout: quicklook
       </small>
     </li>
   </ul>
   <ul>
-    <li>  
-      <%= link_to image_tag("thumbnails/google.jpg"), "http://www.google.nl", :toptions => "title = Google search, type = iframe, width = 800, height = 400, modal = 0, layout = quicklook" %>
+    <li>
+      <%= link_to image_tag("thumbnails/youtube.jpg"), "http://www.youtube.com/v/FArZxLj6DLk&hl=nl&fs=1&autoplay=1", :toptions => "width = 640, height = 480, type = flash" %>
       <small>
-        width: 800, height: 400, type: iframe, modal: 0, layout: quicklook, title: Google search
+        width: 640, height: 480, type: flash
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/swf.jpg"), "http://www.shadowbox-js.com/gallery/skip.swf", :toptions => "width = 640, height = 480, effect = switch" %>
+      <small>
+        width: 640, height: 480, effect: switch
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/flv.jpg"), "http://www.shadowbox-js.com/gallery/alien.flv", :toptions => "width = 640, height = 480" %>
+      <small>
+        width: 640, height: 480
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/quicktime.jpg"), "http://movies.apple.com/movies/wb/the_dark_knight/the_dark_knight-tlr2-h.ref.mov", :toptions => "width = 480, height = 220, layout = quicklook" %>
+      <small>
+        width: 320, height: 256, layout: quicklook
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/windowsmedia.jpg"), "http://www.shadowbox-js.com/gallery/cat.wmv", :toptions => "width = 640, height = 480" %>
+      <small>
+        width: 640, height: 480
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/realplayer.jpg"), "http://www.media.ucs.ed.ac.uk/metafiles/real/realch3.rpm", :toptions => "width = 640, height = 480" %>
+      <small>
+        width: 640, height: 480
       </small>
     </li>
   </ul>

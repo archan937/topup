@@ -42,18 +42,6 @@ TopUp = (function() {
     resizable: 1
 	}), presets = new Hash();
   
-  // TODO: http://www.shadowbox-js.com/index.html features
-  // TODO: te_title shadow
-  // TODO: optimize gettopup.com
-  // TODO: release TopUp Prototype version
-  // TODO: correct Lightbox Clones Matrix
-  // TODO: complete examples
-  // TODO: combine with fixes of Den and Chris
-  // TODO: finetune the jquery (and prototype?) javascript include(s)
-  // TODO: provide functionally stripped versions of TopUp? (e.g. /releases/latest/top_up-min.js, /releases/latest/top_up-all.js, /releases/latest/top_up-ql.js, /releases/latest/top_up-base.js)
-  // TODO: make TopUp agnostic
-  // TODO: enable comments deletion using link in mail
-  
   var extendPrototype = function() {
     Prototype.Browser.IE6 = Prototype.Browser.IE && parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE")+5), 10) == 6;
     Prototype.Browser.IE7 = Prototype.Browser.IE && parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE")+5), 10) == 7;
@@ -322,7 +310,7 @@ TopUp = (function() {
 	  if (reference.toLowerCase().match(/\.(flv)$/)) {
 	    return "flashvideo";
 	  }
-	  if (reference.toLowerCase().match(/\.(aif|aiff|aac|au|bmp|gsm|mov|mid|midi|mpg|mpeg|m4a|psd|qt|qtif|qif|qti|snd|tif|tiff|wav|3g2|3gp|wbmp)$/)) {
+	  if (reference.toLowerCase().match(/\.(aif|aiff|aac|au|bmp|gsm|mov|mid|midi|mpg|mpeg|m4a|m4v|mp4|psd|qt|qtif|qif|qti|snd|tif|tiff|wav|3g2|3gp|wbmp)$/)) {
 	    return "quicktime";
 	  }
 	  if (reference.toLowerCase().match(/\.(ra|ram|rm|rpm|rv|smi|smil)$/)) {

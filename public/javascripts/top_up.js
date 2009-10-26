@@ -161,14 +161,14 @@ TopUp = (function() {
           var offset = element.offset();
           var diff = {top: event.pageY - offset.top, left: event.pageX - offset.left};
           
-          jQuery("body").addClass("tu_dragging");
+          jQuery("body").addClass("te_dragging");
           jQuery("*").bind("mousemove.draggable", function(event) {
             element.css({top: event.pageY - diff.top, left: event.pageX - diff.left});
           });
         });
 
         jQuery("#top_up").mouseup(function(event) {
-          jQuery("body").removeClass("tu_dragging");
+          jQuery("body").removeClass("te_dragging");
           jQuery("*").unbind("mousemove.draggable");
         });
       }
@@ -285,7 +285,7 @@ TopUp = (function() {
 		if (store) {
   		result.reference = result.reference ? jQuery(result.reference) : reference;
       if (!result.type) {
-        result.type = result.reference.toLowerCase().match(/\.(bmp|gif|jpg|jpeg|png|tif|wbmp)$/) ? "image" : "ajax";
+        result.type = deriveType(reference);
       }
     
 			options = jQuery.extend({}, result);
@@ -293,7 +293,31 @@ TopUp = (function() {
 		
 		return result;
 	};
-	
+	var deriveType = function(reference) {
+	  if (reference.toLowerCase().match(/\.(gif|jpg|jpeg|png)$/)) {
+	    return "image";
+	  }
+	  if (reference.toLowerCase().match(/\.(swf)$/)) {
+	    return "flash";
+	  }
+	  if (reference.toLowerCase().match(/\.(flv)$/)) {
+	    return "flashvideo";
+	  }
+	  if (reference.toLowerCase().match(/\.(aif|aiff|aac|au|bmp|gsm|mov|mid|midi|mpg|mpeg|m4a|m4v|mp4|psd|qt|qtif|qif|qti|snd|tif|tiff|wav|3g2|3gp|wbmp)$/)) {
+	    return "quicktime";
+	  }
+	  if (reference.toLowerCase().match(/\.(ra|ram|rm|rpm|rv|smi|smil)$/)) {
+	    return "realplayer";
+	  }
+	  if (reference.toLowerCase().match(/\.(asf|avi|wma|wmv)$/)) {
+	    return "windowsmedia";
+	  }
+	  return "ajax";
+	};
+  var movieContentDisplayed = function() {
+    return jQuery.inArray(options.type, ["flash", "flashvideo", "quicktime", "realplayer", "windowsmedia"]) != -1;
+  };
+		
 	var deriveGroup = function() {
 		if (options.group) {
 		
@@ -339,20 +363,20 @@ TopUp = (function() {
 	};
   
 	var prepare = function() {
-		jQuery("#top_up .tu_frame").resizable("destroy");
+		jQuery("#top_up .te_frame").resizable("destroy");
 		
-		jQuery("#top_up .tu_title").fadeOut(fadeDuration(200));
+		jQuery("#top_up .te_title").fadeOut(fadeDuration(200));
 		if (!(group && group.items.length > 1)) {
-		  jQuery("#top_up .tu_controls").fadeOut(fadeDuration(200));
+		  jQuery("#top_up .te_controls").fadeOut(fadeDuration(200));
 		}
 		
-		jQuery(".tu_wrapper").attr("class", "tu_wrapper tu_" + options.layout);
-    jQuery(".tu_frame,.tu_content").unlockDimensions();
+		jQuery(".te_wrapper").attr("class", "te_wrapper te_" + options.layout);
+    jQuery(".te_frame,.te_content").unlockDimensions();
 	  
 		if (parseInt(options.shaded, 10) == 1) {
-			jQuery("#tu_overlay").addClass("tu_shaded");
+			jQuery("#tu_overlay").addClass("te_shaded");
 		} else {
-			jQuery("#tu_overlay").removeClass("tu_shaded");
+			jQuery("#tu_overlay").removeClass("te_shaded");
 		}
 	
 		if ((parseInt(options.modal, 10) == 1) || (parseInt(options.shaded, 10) == 1) || (parseInt(options.overlayClose, 10) == 1)) {
@@ -373,10 +397,20 @@ TopUp = (function() {
                                 })
                                .attr("src", options.reference);
 				break;
-			case "html": case "dom":
-				options.content = jQuery(options.reference); break;
+      case "flash":
+        loadFlashContent(); break;
+      case "flashvideo":
+        loadFlashVideoContent(); break;
+      case "quicktime":
+        loadQuickTimeContent(); break;
+      case "realplayer":
+        loadRealPlayerContent(); break;
+      case "windowsmedia":
+        loadWindowsMediaContent(); break;
 			case "iframe":
 				options.content = jQuery('<iframe src="' + options.reference + '" frameborder="0" border="0"></iframe>'); break;
+			case "html": case "dom":
+				options.content = jQuery(options.reference); break;
 			case "ajax": case "script":
 			  options.content = null;
 			  jQuery.ajax({url: options.reference, 
@@ -392,6 +426,101 @@ TopUp = (function() {
 		  onContentReady();
 		}
 	};
+  var loadFlashContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
+                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
+                                                   style   : "display: none"});
+                                        
+    object.append(jQuery("<param></param>").attr({name: "src", value: options.reference}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  type       : "application/x-shockwave-flash",
+                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadFlashVideoContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
+                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
+                                                   style   : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
+                                        
+    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/flvplayer.swf", 
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  flashvars  : "file=" + options.reference + "&autostart=true",
+                                                  type       : "application/x-shockwave-flash",
+                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadQuickTimeContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
+                                                   codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
+                                                   style   : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "src"     , value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "scale"   , value: "aspect"}));
+    object.append(jQuery("<param></param>").attr({name: "bgcolor" , value: "black"}));
+    object.append(jQuery("<param></param>").attr({name: "showlogo", value: "false"}));
+    object.append(jQuery("<param></param>").attr({name: "autoplay", value: "true"}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  scale      : "aspect", 
+                                                  bgcolor    : "black",
+                                                  showlogo   : "false", 
+                                                  autoplay   : "true",
+                                                  type       : "video/quicktime",
+                                                  pluginspage: "http://www.apple.com/quicktime/download/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height, style: "background: black"});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadRealPlayerContent = function() {
+    var object = jQuery("<object></object>").attr({width  : options.width, 
+                                                   height : options.height,
+                                                   classid: "clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA",
+                                                   style  : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "src"      , value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "controls" , value: "imagewindow"}));
+    object.append(jQuery("<param></param>").attr({name: "console"  , value: "one"}));
+    object.append(jQuery("<param></param>").attr({name: "autostart", value: "true"}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  controls   : "imagewindow",
+                                                  console    : "one",
+                                                  autostart  : "true",
+                                                  nojava     : "true",
+                                                  type       : "audio/x-pn-realaudio-plugin",
+                                                  pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadWindowsMediaContent = function() {
+    loadQuickTimeContent();
+  };
 	var onContentReady = function(html) {
 	  hideLoader();
 	  
@@ -402,11 +531,11 @@ TopUp = (function() {
 	  switch(options.type) {
 	    case "image": case "iframe":
 			  options.resize = options.content;
-			  jQuery(".tu_content").removeClass("tu_scrollable");
+			  jQuery(".te_content").removeClass("te_scrollable");
 			  break;
 			default:
-	      options.resize = jQuery("#temp_up .tu_content");
-			  jQuery(".tu_content").addClass("tu_scrollable");
+	      options.resize = jQuery("#temp_up .te_content");
+			  jQuery(".te_content").addClass("te_scrollable");
 	  }
     
 		if (jQuery("#top_up").is(":hidden")) {
@@ -469,7 +598,7 @@ TopUp = (function() {
 			  if (origin.children().length > 0) {
 			    origin = jQuery(origin.children()[0]);
 			  }
-			  var tuContent = jQuery("#top_up").find(".tu_content");
+			  var tuContent = jQuery("#top_up").find(".te_content");
 			  var dimensions = options.topUp ? 
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: parseInt(jQuery(window).height() / 2) - parseInt(tuContent.height() / 2) + jQuery(window).scrollTop(), 
@@ -481,14 +610,14 @@ TopUp = (function() {
 		}
 	};
 	var replace = function(callback) {
-		var wrapper = jQuery("#top_up .tu_content").lockDimensions().wrapInner("<div></div>").children();
+		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
       moveContent("temp_up");
       wrapper.remove();
       
 	    if (callback) {
-			  callback.apply([], [jQuery("#top_up .tu_content").id()]);
+			  callback.apply([], [jQuery("#top_up .te_content").id()]);
       } else {
         clearContent();
 	      setContent();
@@ -497,9 +626,9 @@ TopUp = (function() {
       
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
-	    var animation = {width: jQuery("#temp_up .tu_content").outerWidth(),
-	                     height: jQuery("#temp_up .tu_content").outerHeight()};
-	    jQuery("#top_up .tu_content").animate(animation, 400, function() {
+	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
+	                     height: jQuery("#temp_up .te_content").outerHeight()};
+	    jQuery("#top_up .te_content").animate(animation, 400, function() {
 	      moveContent("top_up");
         jQuery("#top_up").removeCenterWrap();
 	      afterDisplay();
@@ -508,27 +637,27 @@ TopUp = (function() {
 	};
   
   var setContent = function() {
-    options.content.appendTo("#temp_up .tu_content");
+    options.content.appendTo("#temp_up .te_content");
   };
 	var moveContent = function(to) {
 	  var from = to == "top_up" ? "temp_up" : "top_up";
-    jQuery("#" + from + " .tu_content").children().appendTo("#" + to + " .tu_content");
+    jQuery("#" + from + " .te_content").children().appendTo("#" + to + " .te_content");
     
     if (to == "top_up") {
-      jQuery("#top_up .tu_content").css({width: jQuery("#temp_up .tu_content").css("width"), 
-                                         height: jQuery("#temp_up .tu_content").css("height")});
+      jQuery("#top_up .te_content").css({width: jQuery("#temp_up .te_content").css("width"), 
+                                         height: jQuery("#temp_up .te_content").css("height")});
     }
 	};
   var clearContent = function() {
-    jQuery(".tu_content").children().remove();
+    jQuery(".te_content").children().remove();
   };
   
   var transform = function(direction, dimensions, callback) {
 	  var topUp     = jQuery("#top_up");
-	  var tuContent = topUp.find(".tu_content");
+	  var tuContent = topUp.find(".te_content");
 	  
 	  if (direction == "from") {
-      topUp.addClass("tu_transparent")
+      topUp.addClass("te_transparent")
            .show();
     }
 	  
@@ -552,11 +681,11 @@ TopUp = (function() {
 	    var onReady = direction == "to" ?
                       function() {
                         topUp.fadeOut(fadeDuration(250), callback)
-                             .removeClass("tu_overflow");
+                             .removeClass("te_overflow");
                       } :
                       function() {
                         callback.apply();
-                        topUp.removeClass("tu_overflow");
+                        topUp.removeClass("te_overflow");
                       };
 
 	    topUp          .animate({top: opts.to.top, left: opts.to.left}, opts.duration);
@@ -568,9 +697,11 @@ TopUp = (function() {
       topUp          .css({top:   dimensions.top,   left:   dimensions.left});
       options.content.css({width: dimensions.width, height: dimensions.height});
 
+      jQuery(".te_top_up,.te_content").unlockDimensions();
+      
       topUp.hide()
-           .addClass("tu_overflow")
-           .removeClass("tu_transparent")
+           .addClass("te_overflow")
+           .removeClass("te_transparent")
            .fadeIn(fadeDuration(300), animation);
     } else {
       animation.apply();
@@ -580,40 +711,45 @@ TopUp = (function() {
     var duration = fadeDuration(500);
 		
 		if (parseInt(options.resizable, 10) == 1) {
-		  var opts = {stop: function(){ jQuery("#top_up .tu_frame").css({width: "auto", height: "auto"}); }, 
+		  var opts = {stop: function(){ jQuery("#top_up .te_frame").css({width: "auto", height: "auto"}); }, 
 		              handles: "se", 
 		              minWidth: 200, minHeight: 75, 
 		              alsoResize: "#" + options.resize.id(), 
 		              aspectRatio: options.type == "image"};
-	    jQuery("#top_up .tu_frame").resizable(opts);
+	    jQuery("#top_up .te_frame").resizable(opts);
 		}
 		
 		if (jQuery.ie6) {
-      jQuery("#top_up .tu_title").css("width", jQuery("#top_up").width());
+      jQuery("#top_up .te_title").css("width", jQuery("#top_up").width());
     }
-		jQuery("#top_up .tu_title").html(options.title || "")
+		jQuery("#top_up .te_title").html(options.title || "")
 		                           .fadeIn(duration);
 		
-		if (group && group.items.length > 1 && jQuery("#top_up .tu_controls").is(":hidden")) {
+		if (group && group.items.length > 1 && jQuery("#top_up .te_controls").is(":hidden")) {
       if (jQuery.ie6) {
-        jQuery("#top_up .tu_controls").show();
+        jQuery("#top_up .te_controls").show();
       } else {
-		    jQuery("#top_up .tu_controls").fadeIn(duration);
+		    jQuery("#top_up .te_controls").fadeIn(duration);
 		  }
 		}
 		
-    if (jQuery("#top_up .tu_close_link").is(":hidden")) {
+    if (jQuery("#top_up .te_close_link").is(":hidden")) {
       if (jQuery.ie6) {
-        jQuery("#top_up .tu_close_link").show();
+        jQuery("#top_up .te_close_link").show();
       } else {
-        jQuery("#top_up .tu_close_link").fadeIn(duration);
+        jQuery("#top_up .te_close_link").fadeIn(duration);
       }
     }
 		
 		checkPosition();
 		
+    jQuery(".te_top_up,.te_content").unlockDimensions();
+		if (movieContentDisplayed()) {
+      options.content.find("object").show();
+	  }
+		
     if (options.ondisplay) {
-      options.ondisplay.apply(this, [jQuery("#top_up .tu_content"), data]);
+      options.ondisplay.apply(this, [jQuery("#top_up .te_content"), data]);
     }
 		
 		displaying = false;
@@ -625,7 +761,7 @@ TopUp = (function() {
 	  if (!dimensions) {
 	    options.resize.unlockDimensions();
 	    if (jQuery.inArray(options.type, ["image", "iframe"]) != -1) {
-	      jQuery("#temp_up .tu_content").unlockDimensions();
+	      jQuery("#temp_up .te_content").unlockDimensions();
 	    }
 	    
 	    dimensions = {};
@@ -636,7 +772,7 @@ TopUp = (function() {
 	      dimensions.height = parseInt(options.height, 10);
 	    }
 	    if (jQuery.ie6) {
-	      jQuery("#top_up .tu_title").css("width", jQuery("#temp_up").outerWidth());
+	      jQuery("#top_up .te_title").css("width", jQuery("#temp_up").outerWidth());
 	    }
 	  }
 	  
@@ -651,7 +787,7 @@ TopUp = (function() {
 	    return;
 	  }
 	  
-	  var extraHeight = jQuery("#temp_up").outerHeight() - jQuery("#temp_up .tu_content").height(),
+	  var extraHeight = jQuery("#temp_up").outerHeight() - jQuery("#temp_up .te_content").height(),
 	      dimensions = {height: jQuery(window).height() - 4 - extraHeight};
 	  
 	  if (options.type == "image") {
@@ -688,22 +824,27 @@ TopUp = (function() {
 	    animateHide(callback);
 	  };
 	  
-		jQuery("#top_up .tu_title")   .fadeOut(duration);
-    jQuery("#top_up .tu_controls").fadeOut(duration);
+		jQuery("#top_up .te_title")   .fadeOut(duration);
+    jQuery("#top_up .te_controls").fadeOut(duration);
+    
+		if (movieContentDisplayed()) {
+      options.content.find("object").hide();
+	  }
+	  
     if (jQuery.ie) {
-		  jQuery("#top_up .tu_close_link").hide();
+		  jQuery("#top_up .te_close_link").hide();
 		  onReady.apply();
     } else {
-		  jQuery("#top_up .tu_close_link").fadeOut(duration, onReady);
+		  jQuery("#top_up .te_close_link").fadeOut(duration, onReady);
 		}
 	};
 	var animateHide = function(callback) {
 	  var afterHide = function() {
 	    if (callback) {
-	      callback.apply(this, [jQuery("#top_up .tu_content"), data]);
+	      callback.apply(this, [jQuery("#top_up .te_content"), data]);
 	    }
 	    if (options.onclose) {
-	      options.onclose.apply(this, [jQuery("#top_up .tu_content"), data]);
+	      options.onclose.apply(this, [jQuery("#top_up .te_content"), data]);
 	    }
 	    
       clearContent();
@@ -720,7 +861,7 @@ TopUp = (function() {
 			  if (origin.children().length > 0) {
 			    origin = jQuery(origin.children()[0]);
 			  }
-			  var tuContent = jQuery("#top_up").find(".tu_content");
+			  var tuContent = jQuery("#top_up").find(".te_content");
 			  var dimensions = options.topUp ? 
                            jQuery.extend({width: origin.outerWidth(), height: origin.outerHeight()}, origin.offset()) : 
 			                     {top: parseInt(jQuery(window).height() / 2) + jQuery(window).scrollTop(), 
@@ -749,7 +890,7 @@ TopUp = (function() {
           injectCode();
           bind();
         
-          jQuery("#top_up").draggable({only: ".tu_title,.tu_top *,.tu_bottom *"});
+          jQuery("#top_up").draggable({only: ".te_title,.te_top *,.te_bottom *"});
           jQuery.each(on_ready, function(i, func) {
             func.apply();
           });
@@ -757,7 +898,7 @@ TopUp = (function() {
 			
         jQuery(window).unload(function() {
           jQuery("*").unbind();
-  		    jQuery("#top_up .tu_frame").resizable("destroy");
+  		    jQuery("#top_up .te_frame").resizable("destroy");
         });
         
   			initialized = true;
@@ -804,8 +945,8 @@ TopUp = (function() {
       }
       
 		  options.type = "html";
-      options.resize = jQuery("#temp_up .tu_content");
-		  jQuery(".tu_content").addClass("tu_scrollable");
+      options.resize = jQuery("#temp_up .te_content");
+		  jQuery(".te_content").addClass("te_scrollable");
 		  
 		  replace(func || function() {});
 		},

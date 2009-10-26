@@ -36,12 +36,12 @@
         <% if true %>
         <li>
           <label for="toptions[type]">Type:</label>
-          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image iframe html dom)) %>
+          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image flash flashvideo quicktime realplayer windowsmedia iframe html dom ajax script)) %>
         </li>
         <% else %>
         <li>
           <label for="toptions[type]">Type:</label>
-          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image iframe ajax script selector html dom)) %>
+          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image flash flashvideo quicktime realplayer windowsmedia iframe html dom ajax script)) %>
         </li>
         <li>
           <label for="toptions[post]">Use POST:</label>
@@ -70,7 +70,7 @@
         </li>
         <li>
           <label for="toptions[effect]">Effect:</label>
-          <%= select_tag "toptions[effect]", options_for_select(%w(transform fade clip)) %>
+          <%= select_tag "toptions[effect]", options_for_select(%w(transform appear switch)) %>
         </li>
         <li>
           <label for="toptions[modal]">Modal:</label>

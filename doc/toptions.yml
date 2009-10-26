@@ -7,9 +7,9 @@
   options:     CSS selector string
 
 - name:        type
-  default:     | 'image' or 'ajax'
+  default:     auto
   description: | By specifying the type, you can instruct TopUp how to load and display the reference content. At default the type is auto-determined based on the extension of the reference.
-  options:     | 'image', 'iframe', 'ajax', 'script', 'selector', 'html', 'dom'
+  options:     | 'image', 'flash', 'flashvideo', 'quicktime', 'realplayer', 'windowsmedia', 'iframe', 'html', 'dom', 'ajax', 'script'
 
 - name:        post
   default:     0
@@ -44,7 +44,7 @@
 - name:        effect
   default:     | 'transform'
   description: Effect of how the TopUp will show and hide.
-  options:     | 'transform', 'fade', 'clip'
+  options:     | 'transform', 'appear', 'switch'
 
 - name:        modal
   default:     0
