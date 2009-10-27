@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   
   def delete
     comment = Comment.find_by_unsubscription_code(params[:unsubscription_code])
-    comment.try(:destroy)
+    comment.destroy if comment
     redirect_to root_path
   end
   
