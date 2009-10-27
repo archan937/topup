@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  before_filter :check_library
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -18,6 +19,12 @@ class ApplicationController < ActionController::Base
       toptions = {"preset" => "demo"}.merge(params[:toptions].reject{|key, value| key == "type" and value == "auto"})
       page << "TopUp.display('#{params[:reference]}', {#{toptions.collect{|key, value| "#{key}: #{%w(ondisplay onclose).include?(key) ? value : "'#{value}'"}"}.join(", ")}})"
     end
+  end
+  
+private
+
+  def check_library
+    session[:library] = params[:library] if params[:library]
   end
   
 end

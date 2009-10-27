@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-10-27 02:28:06 +0100 (Tue, 27 October 2009) $
+// * $Date: 2009-10-27 23:21:38 +0100 (Tue, 27 October 2009) $
 // *
 
 TopUp = (function() {
@@ -584,10 +584,10 @@ TopUp = (function() {
 		jQuery("#top_up").center();
 		
 		if (options.x) {
-		  jQuery("#top_up").css({left: options.x});
+		  jQuery("#top_up").css({left: parseInt(options.x, 10)});
 		}
 		if (options.y) {
-		  jQuery("#top_up").css({top : options.y});
+		  jQuery("#top_up").css({top : parseInt(options.y, 10)});
 		}
 		
 		switch(options.effect) {

@@ -584,10 +584,10 @@ TopUp = (function() {
 		jQuery("#top_up").center();
 		
 		if (options.x) {
-		  jQuery("#top_up").css({left: options.x});
+		  jQuery("#top_up").css({left: parseInt(options.x, 10)});
 		}
 		if (options.y) {
-		  jQuery("#top_up").css({top : options.y});
+		  jQuery("#top_up").css({top : parseInt(options.y, 10)});
 		}
 		
 		switch(options.effect) {

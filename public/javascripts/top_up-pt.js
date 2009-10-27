@@ -323,8 +323,8 @@ TopUp = (function() {
 	  }
 	  return "ajax";
 	};
-  var movieContentDisplayed = function() {
-    return $w("flash flashvideo quicktime realplayer windowsmedia").include(options.get("type"));
+  var movieContentDisplayed = function(opts) {
+    return $w("flash flashvideo quicktime realplayer windowsmedia").include((opts || options).get("type"));
   };
 	
   var prepare = function() {
@@ -486,8 +486,13 @@ TopUp = (function() {
   var loadWindowsMediaContent = function() {
     loadQuickTimeContent();
   };
-  var onContentReady = function() {
+  var onContentReady = function(transport) {
     hideLoader();
+    
+    if (transport) {
+      var element = (new Element("div")).update(transport.responseText);
+      options.set("content", element.firstDescendant());
+    }
     
     // TODO: resizable
     // 

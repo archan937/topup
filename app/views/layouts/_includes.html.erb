@@ -1,0 +1,26 @@
+<% unless RAILS_ENV == "production" %>
+	<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style" %>
+	<!--[if IE]>
+	  <%= stylesheet_link_tag "top_up/iefix" %>
+	<![endif]-->
+	<!--[if IE 6]>
+	  <%= stylesheet_link_tag "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix" %>
+	<![endif]-->
+	<!--[if IE 7]>
+	  <%= stylesheet_link_tag "top_up/dashboard/ie7fix" %>
+	<![endif]-->
+<% end %>
+
+<% if [nil, "jquery"].include? session[:library] %>
+  <%= javascript_include_tag include_src_for("top_up"), include_src_for("seat_holder"), "defaults" %>
+<% else %>
+  <%= javascript_include_tag include_src_for("seat_holder"), :defaults, "top_up-pt" %>
+<% end %>
+
+<%= stylesheet_link_tag "basic", "application" %>
+<!--[if IE 6]>
+  <%= stylesheet_link_tag "ie6fix" %>
+<![endif]-->
+<!--[if IE 7]>
+  <%= stylesheet_link_tag "ie7fix" %>
+<![endif]-->
