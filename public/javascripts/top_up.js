@@ -454,10 +454,10 @@ TopUp = (function() {
                                                    codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                                    style   : "display: none"});
                                                    
-    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/media/flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/players/flvplayer.swf"}));
     object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
                                         
-    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/media/flvplayer.swf", 
+    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/players/flvplayer.swf", 
                                                   width      : options.width,
                                                   height     : options.height,
                                                   flashvars  : "file=" + options.reference + "&autostart=true",

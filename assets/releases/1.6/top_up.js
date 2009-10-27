@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-10-27 02:15:46 +0100 (Tue, 27 October 2009) $
+// * $Date: 2009-10-27 02:28:06 +0100 (Tue, 27 October 2009) $
 // *
 
 TopUp = (function() {
@@ -454,10 +454,10 @@ TopUp = (function() {
                                                    codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                                    style   : "display: none"});
                                                    
-    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/media/flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/players/flvplayer.swf"}));
     object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
                                         
-    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/media/flvplayer.swf", 
+    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/players/flvplayer.swf", 
                                                   width      : options.width,
                                                   height     : options.height,
                                                   flashvars  : "file=" + options.reference + "&autostart=true",
