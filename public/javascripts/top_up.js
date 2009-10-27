@@ -287,7 +287,9 @@ TopUp = (function() {
       if (!result.type) {
         result.type = deriveType(reference);
       }
-    
+      if (movieContentDisplayed(result)) {
+        result.resizable = 0;
+      }
 			options = jQuery.extend({}, result);
 		}
 		
@@ -314,8 +316,8 @@ TopUp = (function() {
 	  }
 	  return "ajax";
 	};
-  var movieContentDisplayed = function() {
-    return jQuery.inArray(options.type, ["flash", "flashvideo", "quicktime", "realplayer", "windowsmedia"]) != -1;
+  var movieContentDisplayed = function(opts) {
+    return jQuery.inArray((opts || options).type, ["flash", "flashvideo", "quicktime", "realplayer", "windowsmedia"]) != -1;
   };
 		
 	var deriveGroup = function() {
@@ -452,10 +454,10 @@ TopUp = (function() {
                                                    codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                                    style   : "display: none"});
                                                    
-    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/media/flvplayer.swf"}));
     object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
                                         
-    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/flvplayer.swf", 
+    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/media/flvplayer.swf", 
                                                   width      : options.width,
                                                   height     : options.height,
                                                   flashvars  : "file=" + options.reference + "&autostart=true",
@@ -589,9 +591,9 @@ TopUp = (function() {
 		}
 		
 		switch(options.effect) {
-      case "fade":
+      case "appear": case "fade":
         jQuery("#top_up").fadeIn(fadeDuration(300), afterDisplay); break;
-			case "clip":
+			case "switch": case "clip":
 			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterDisplay); break;
 			default:
 			  var origin = jQuery(options.topUp);
@@ -852,9 +854,9 @@ TopUp = (function() {
 	  };
 	  
     switch(options.effect) {
-      case "fade":
+      case "appear": case "fade":
         jQuery("#top_up").fadeOut(fadeDuration(300), afterHide); break;
-      case "clip":
+      case "switch": case "clip":
         jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide); break;
       default:
 			  var origin = jQuery(options.topUp);

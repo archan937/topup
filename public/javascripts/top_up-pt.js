@@ -295,6 +295,9 @@ TopUp = (function() {
       if (!result.keys().include("type")) {
         result.set("type", deriveType(reference));
       }
+      if (movieContentDisplayed(result)) {
+        result.set("resizable", 0);
+      }
 			options = result.clone();
 		}
 		
@@ -418,9 +421,9 @@ TopUp = (function() {
                                         codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                         style   : "display: none"});
                                         
-    object.appendChild(new Element("param", {name: "movie"    , value: TopUp.host + "/flvplayer.swf"}));
+    object.appendChild(new Element("param", {name: "movie"    , value: TopUp.host + "/media/flvplayer.swf"}));
     object.appendChild(new Element("param", {name: "flashvars", value: "file=" + options.get("reference") + "&autostart=true"}));
-    object.appendChild(new Element("embed", {src        : TopUp.host + "/flvplayer.swf", 
+    object.appendChild(new Element("embed", {src        : TopUp.host + "/media/flvplayer.swf", 
                                              width      : options.get("width"), 
                                              height     : options.get("height"),
                                              flashvars  : "file=" + options.get("reference") + "&autostart=true",
