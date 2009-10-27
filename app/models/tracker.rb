@@ -1,9 +1,8 @@
 class Tracker < ActiveRecord::Base
   serialize :tracked_versions, Hash
   
-  validates_presence_of :name, :unsubscription_code
+  validates_presence_of :name
   validates_format_of :email_address, :with => /\A[\w\.\-]+\@[\w\.\-]+\.[\w]+\Z/i
-  validates_uniqueness_of :unsubscription_code
   
   before_create :generate_unsubscription_code
   
@@ -11,6 +10,7 @@ class Tracker < ActiveRecord::Base
   
   def generate_unsubscription_code
     self.unsubscription_code = random_hex(28)
+    self.generate_unsubscription_code if Tracker.find_by_unsubscription_code(self.unsubscription_code)
   end
   
   def notify_about(version)
