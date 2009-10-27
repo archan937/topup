@@ -22,6 +22,6 @@
 				<div class="clear"></div>
 			</div>
 		</div>
-		<%= render :partial => "layouts/top_up" if RAILS_ENV == "development" %>
+		<%= render :partial => "layouts/top_up" if RAILS_ENV == "development" or session[:library] == "prototype" %>
 	</body>
 </html>
