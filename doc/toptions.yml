@@ -41,10 +41,20 @@
   description: Height of the content in pixels.
   options:     Integer
 
+- name:        x
+  default:     auto
+  description: The x-position of the TopUp dialog in pixels.
+  options:     Integer
+
+- name:        y
+  default:     auto
+  description: The y-position of the TopUp dialog in pixels.
+  options:     Integer
+
 - name:        effect
   default:     | 'transform'
   description: Effect of how the TopUp will show and hide.
-  options:     | 'transform', 'appear', 'switch'
+  options:     | 'transform', 'appear' (alias is 'fade'), 'switch' (alias is 'clip')
 
 - name:        modal
   default:     0
@@ -63,7 +73,7 @@
 
 - name:        resizable
   default:     1
-  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window.
+  description: | If set to 1, the TopUp will be resizable by dragging the right bottom corner of the TopUp window. Forced to 0 when displaying movie content.
   options:     0 or 1
 
 - name:        group
@@ -75,6 +85,16 @@
   default:     0
   description: | This overrides the displayed TopUp of being part of a group. Usefull when a link matches a preset with a group, but when you don't want to display the group.
   options:     0 or 1
+
+- name:        ondisplay
+  default:     null
+  description: This will be called after the TopUp dialog is opened or updated
+  options:     Function
+
+- name:        onclose
+  default:     null
+  description: This will be called after the TopUp dialog is closed
+  options:     Function
 
 # - name:        fixed
 #   default:     0

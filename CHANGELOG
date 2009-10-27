@@ -1,5 +1,13 @@
 = TopUp CHANGELOG
 
+== Version 1.6 (October 27, 2009)
+
+* Added Flash (Youtube, SWF and FLV), QuickTime, Windows Media and RealPlayer content rendering (yay!)
+* Added (quick and dirty) fix (posted by Denis Castellan) solving an ugly fading-out black frame instead of the drop shadow around the thumbnails on click in IE8
+* Replaced the 'tu_' CSS class prefix for TopUp elements with 'te_'
+* Forcing the TopUp dialog not to be resizable when displaying movie content
+* Fixed minor bug in determination of html or script Ajax content
+
 == Version 1.5.7 (October 14, 2009)
 
 * Added the 'x' and 'y' toptions to determine the position of the TopUp dialog (requested by Brian McNaboe)
