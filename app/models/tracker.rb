@@ -1,8 +1,9 @@
 class Tracker < ActiveRecord::Base
   serialize :tracked_versions, Hash
   
-  validates_presence_of :name
+  validates_presence_of :name, :unsubscription_code
   validates_format_of :email_address, :with => /\A[\w\.\-]+\@[\w\.\-]+\.[\w]+\Z/i
+  validates_uniqueness_of :unsubscription_code
   
   before_create :generate_unsubscription_code
   
