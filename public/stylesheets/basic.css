@@ -108,7 +108,11 @@ fieldset ol li input {
 }
 
 fieldset ol li textarea {
+  width: 175px;
+  height: 45px;
   margin-top: 2px;
+  font-family: "Lucida Grande", "Arial";
+  font-size: 11px;
 }
 
 pre {

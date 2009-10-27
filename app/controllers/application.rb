@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
 
   def demonstrate
     render :update do |page|
-      page.call "TopUp.display", params[:reference], {"preset" => "demo"}.merge(params[:toptions].reject{|key, value| key == "type" and value == "auto"})
+      toptions = {"preset" => "demo"}.merge(params[:toptions].reject{|key, value| key == "type" and value == "auto"})
+      page << "TopUp.display('#{params[:reference]}', {#{toptions.collect{|key, value| "#{key}: #{%w(ondisplay onclose).include?(key) ? value : "'#{value}'"}"}.join(", ")}})"
     end
   end
   

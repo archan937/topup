@@ -33,25 +33,18 @@
           <label for="toptions[topUp]">TopUp:</label>
           <%= text_field_tag "toptions[topUp]", nil, :seatholder => "&#link" %>
         </li>
-        <% if true %>
-        <li>
-          <label for="toptions[type]">Type:</label>
-          <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image flash flashvideo quicktime realplayer windowsmedia iframe html dom ajax script)) %>
-        </li>
-        <% else %>
         <li>
           <label for="toptions[type]">Type:</label>
           <%= select_tag "toptions[type]", "<option>auto</option>" + options_for_select(%w(image flash flashvideo quicktime realplayer windowsmedia iframe html dom ajax script)) %>
         </li>
         <li>
-          <label for="toptions[post]">Use POST:</label>
-          <%= check_box_tag "toptions[post]", 1 %>
+          <label for="toptions[post]">Post:</label>
+          <%= check_box_tag "toptions[post]", 0 %>
         </li>
         <li>
           <label for="toptions[parameters]">Parameters:</label>
           <%= text_field_tag "toptions[parameters]" %>
         </li>
-        <% end %>
         <li>
           <label for="toptions[title]">Title:</label>
           <%= text_field_tag "toptions[title]", nil, :seatholder => "&TopUp demo" %>
@@ -67,6 +60,14 @@
         <li>
           <label for="toptions[height]">Height:</label>
           <%= text_field_tag "toptions[height]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[x]">X:</label>
+          <%= text_field_tag "toptions[x]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
+        </li>
+        <li>
+          <label for="toptions[y]">Y:</label>
+          <%= text_field_tag "toptions[y]", nil, :size => 4, :seatholder => "auto" %> (in pixels)
         </li>
         <li>
           <label for="toptions[effect]">Effect:</label>
@@ -87,6 +88,14 @@
         <li>
           <label for="toptions[resizable]">Resizable:</label>
           <%= check_box_tag "toptions[resizable]", 1 %>
+        </li>
+        <li>
+          <label for="toptions[ondisplay]">On display:</label>
+          <%= text_area_tag "toptions[ondisplay]", "function() {\n  alert('Hello world!');\n}" %>
+        </li>
+        <li>
+          <label for="toptions[onclose]">On close:</label>
+          <%= text_area_tag "toptions[onclose]", "function() {\n  alert('Bye world!');\n}" %>
         </li>
       </ol>
     <% end %>

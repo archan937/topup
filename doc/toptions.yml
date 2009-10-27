@@ -88,15 +88,10 @@
 
 - name:        ondisplay
   default:     null
-  description: This will be called after the TopUp dialog is opened or updated
+  description: This will be called after the TopUp dialog is opened or updated.
   options:     Function
 
 - name:        onclose
   default:     null
-  description: This will be called after the TopUp dialog is closed
+  description: This will be called after the TopUp dialog is closed.
   options:     Function
-
-# - name:        fixed
-#   default:     0
-#   description: 
-#   options:     

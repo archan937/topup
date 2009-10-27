@@ -18,9 +18,6 @@
 - call:        | TopUp.display(reference, opts)
   description: This is the core function which shows the TopUp.
 
-# - call:        TopUp.update(func)
-#   description: | You can manipulate the display content by passing a function (e.g. function(container){ $(container).appendChild($('')) }) in which you can alter it. The call will be ignored when the TopUp is not visible.
-
 - call:        TopUp.previous()
   description: | Displays the previous entry within the group current. If there is no current group, nothing will happen.
 
