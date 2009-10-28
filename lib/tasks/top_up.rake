@@ -25,30 +25,7 @@ namespace :top_up do
 
     }
     variables << {:name => "html", :value => ActionView::Base.new(Rails::Configuration.new.view_path).render(:partial => "layouts/top_up")}
-
     variables.each{|variable| variable[:regexp] = Regexp.new("^\\s*var #{variable[:name]} = '.*'\;$")}
-    javascript = File.open("public/javascripts/top_up.js").readlines.collect{ |line|
-      index = nil
-      variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
-      
-      if index.nil?
-        line.match("// *") ?
-          line.gsub(/\{(version|year|date)\}/) do |matched|
-            case matched
-            when "{version}"
-              args[:version]
-            when "{year}"
-              timestamp.year.to_s
-            when "{date}"
-              timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
-            end
-          end : 
-          line
-      else
-        variable = variables.delete_at(index)
-        "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
-      end
-    }
     
     # Define variables
     releases_dir    = "#{RAILS_ROOT}/assets/releases"
@@ -60,8 +37,9 @@ namespace :top_up do
     FileUtils.mkdir_p(release_dir)
     
     # Create files
-    File.open("#{release_dir}/top_up.js", "w").puts(javascript)
-    FileUtils.cp("public/javascripts/jquery.js", release_dir)
+    File.open("#{release_dir}/top_up.js"       , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
+    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp))
+    FileUtils.cp("public/javascripts/development/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
     FileUtils.cp_r("public/players", release_dir)
     FileUtils.cp_r("public/examples", release_dir)
@@ -78,6 +56,31 @@ namespace :top_up do
     
     # Compress release using YUI compressor
     IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/top_up.js -o #{release_dir}/top_up-min.js"
+  end
+  
+  def parse_library(library, variables, version, timestamp)
+    File.open("public/javascripts/development/#{library}.js").readlines.collect{ |line|
+      index = nil
+      variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
+      
+      if index.nil?
+        line.match("// *") ?
+          line.gsub(/\{(version|year|date)\}/) do |matched|
+            case matched
+            when "{version}"
+              version
+            when "{year}"
+              timestamp.year.to_s
+            when "{date}"
+              timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
+            end
+          end : 
+          line
+      else
+        variable = variables[index]
+        "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
+      end
+    }
   end
   
   desc "Pack specified TopUp release"

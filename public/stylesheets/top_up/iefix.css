@@ -1,14 +1,1 @@
-#tu_overlay {
-  top: expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");
-  left: expression((ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft) + "px");
-  position: absolute; }
-
-.te_transparent {
-  filter: alpha(opacity = 0); }
-
-.te_shaded {
-  filter: alpha(opacity = 65); }
-
-.te_content {
-  position: relative;
-  zoom: 1; }
+#tu_overlay{top:expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");left:expression((ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft) + "px");position:absolute}.te_transparent{filter:alpha(opacity = 0)}.te_shaded{filter:alpha(opacity = 65)}.te_content{position:relative;zoom:1}
