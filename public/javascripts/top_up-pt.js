@@ -390,7 +390,11 @@ TopUp = (function() {
                   			   asynchronous: false,
                   			   parameters: options.get("parameters"),
                   			   evalJS: (options.get("type") == "script"),
-                  			   onSuccess: onContentReady
+                  			   onSuccess: function() {
+                  			     var element = (new Element("div")).update(transport.responseText);
+                             options.set("content", element.firstDescendant());
+                             onContentReady();
+                  			   }
                   			 });
         break;
 		}
@@ -486,13 +490,8 @@ TopUp = (function() {
   var loadWindowsMediaContent = function() {
     loadQuickTimeContent();
   };
-  var onContentReady = function(transport) {
+  var onContentReady = function() {
     hideLoader();
-    
-    if (transport) {
-      var element = (new Element("div")).update(transport.responseText);
-      options.set("content", element.firstDescendant());
-    }
     
     // TODO: resizable
     // 
