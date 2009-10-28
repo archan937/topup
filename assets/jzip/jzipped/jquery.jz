@@ -1,0 +1,4 @@
+
+//= require !../../releases/latest/top_up-min
+//= require !../../releases/seat_holder/latest/seat_holder-min
+//= require /defaults

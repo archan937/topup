@@ -1,32 +1,37 @@
-
 .te_quicklook .te_bottom {
   height: 55px; }
-
 .te_quicklook .te_controls {
   width: 67px; }
-
-.te_quicklook .te_top .te_left,
-.te_quicklook .te_top .te_middle,
-.te_quicklook .te_top .te_right,
-.te_quicklook .te_middle .te_left,
-.te_quicklook .te_middle .te_right,
-.te_quicklook .te_bottom .te_left,
-.te_quicklook .te_bottom .te_middle,
-.te_quicklook .te_bottom .te_right,
-.te_quicklook .te_previous_link,
-.te_quicklook .te_next_link,
-.te_quicklook .te_close_link {
+.te_quicklook .te_top .te_left, .te_quicklook .te_top .te_middle, .te_quicklook .te_top .te_right {
   background-image: none; }
-
-.te_quicklook .te_top .te_left      { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_left.png"     , sizingMethod="crop" ); }
-.te_quicklook .te_top .te_middle    { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_middle.png"   , sizingMethod="scale"); }
-.te_quicklook .te_top .te_right     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_right.png"    , sizingMethod="crop" ); }
-.te_quicklook .te_middle .te_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_left.png"  , sizingMethod="scale"); }
-.te_quicklook .te_middle .te_middle { filter: alpha(opacity = 70); background: black; }
-.te_quicklook .te_middle .te_right  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_right.png" , sizingMethod="scale"); }
-.te_quicklook .te_bottom .te_left   { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_left.png"  , sizingMethod="crop" ); }
-.te_quicklook .te_bottom .te_middle { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_middle.png", sizingMethod="scale"); }
-.te_quicklook .te_bottom .te_right  { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_right.png" , sizingMethod="crop" ); }
-.te_quicklook .te_previous_link     { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/previous.png"     , sizingMethod="crop" ); }
-.te_quicklook .te_next_link         { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/next.png"         , sizingMethod="crop" ); }
-.te_quicklook .te_close_link        { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/close_link.png"   , sizingMethod="crop" ); }
+.te_quicklook .te_middle .te_left, .te_quicklook .te_middle .te_right {
+  background-image: none; }
+.te_quicklook .te_bottom .te_left, .te_quicklook .te_bottom .te_middle, .te_quicklook .te_bottom .te_right {
+  background-image: none; }
+.te_quicklook .te_previous_link, .te_quicklook .te_next_link, .te_quicklook .te_close_link {
+  background-image: none; }
+.te_quicklook .te_top .te_left {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_left.png"     , sizingMethod="crop" ); }
+.te_quicklook .te_top .te_middle {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_middle.png"   , sizingMethod="scale"); }
+.te_quicklook .te_top .te_right {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_right.png"    , sizingMethod="crop" ); }
+.te_quicklook .te_middle .te_left {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_left.png"  , sizingMethod="scale"); }
+.te_quicklook .te_middle .te_middle {
+  filter: alpha(opacity = 70);
+  background: black; }
+.te_quicklook .te_middle .te_right {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_right.png" , sizingMethod="scale"); }
+.te_quicklook .te_bottom .te_left {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_left.png"  , sizingMethod="crop" ); }
+.te_quicklook .te_bottom .te_middle {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_middle.png", sizingMethod="scale"); }
+.te_quicklook .te_bottom .te_right {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_right.png" , sizingMethod="crop" ); }
+.te_quicklook .te_previous_link {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/previous.png"     , sizingMethod="crop" ); }
+.te_quicklook .te_next_link {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/next.png"         , sizingMethod="crop" ); }
+.te_quicklook .te_close_link {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/close_link.png"   , sizingMethod="crop" ); }

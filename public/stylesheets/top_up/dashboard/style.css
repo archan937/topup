@@ -1,40 +1,42 @@
-
 #top_up .te_dashboard .ui-resizable-se {
-	width: 10px !important;
-	height: 10px !important;
-	bottom: 12px !important;
-	right: 10px !important;
-	background-image: url(/images/top_up/dashboard/sprite.png) !important;
-	background-position: 0px 0px !important; }
+  width: 10px !important;
+  height: 10px !important;
+  bottom: 12px !important;
+  right: 10px !important;
+  background-image: url(/images/top_up/dashboard/sprite.png) !important;
+  background-position: 0 0 !important; }
 
 .te_dashboard .te_title {
-	top: -9px;
-	font-weight: bold; }
-
-.te_dashboard .te_corner,
-.te_dashboard .te_rib {
-	background-image: url(/images/top_up/dashboard/sprite.png); }
-
-.te_dashboard .te_top,
-.te_dashboard .te_bottom       { height: 20px; }
-.te_dashboard .te_left_filler  { width:  20px; }
-.te_dashboard .te_right_filler { width:  19px; }
-
+  top: -9px;
+  font-weight: bold; }
+.te_dashboard .te_corner, .te_dashboard .te_rib {
+  background-image: url(/images/top_up/dashboard/sprite.png); }
+.te_dashboard .te_top, .te_dashboard .te_bottom {
+  height: 20px; }
+.te_dashboard .te_left_filler {
+  width: 20px; }
+.te_dashboard .te_right_filler {
+  width: 19px; }
 .te_dashboard .te_middle .te_middle {
   background: url(/images/top_up/dashboard/middle.png); }
-
-.te_dashboard .te_top .te_left		  { background-position: -17px  -29px; }
-.te_dashboard .te_top .te_middle	  { background-position: 	 0px  -71px; }
-.te_dashboard .te_top .te_right		  { background-position: -33px  -29px; }
-.te_dashboard .te_middle .te_left	  { background-position: -17px -232px; }
-.te_dashboard .te_middle .te_right	{ background-position: -33px -232px; }
-.te_dashboard .te_bottom .te_left	  { background-position: -17px  -47px; }
-.te_dashboard .te_bottom .te_middle	{ background-position: -17px  -89px; }
-.te_dashboard .te_bottom .te_right	{ background-position: -33px  -47px; }
-
+.te_dashboard .te_top .te_left {
+  background-position: -17px -29px; }
+.te_dashboard .te_top .te_middle {
+  background-position: 0     -71px; }
+.te_dashboard .te_top .te_right {
+  background-position: -33px -29px; }
+.te_dashboard .te_middle .te_left {
+  background-position: -17px -232px; }
+.te_dashboard .te_middle .te_right {
+  background-position: -33px -232px; }
+.te_dashboard .te_bottom .te_left {
+  background-position: -17px -47px; }
+.te_dashboard .te_bottom .te_middle {
+  background-position: -17px -89px; }
+.te_dashboard .te_bottom .te_right {
+  background-position: -33px -47px; }
 .te_dashboard .te_content {
-	margin: -11px -12px -11px -13px; }
-
+  margin: -11px -12px -11px -13px; }
 .te_dashboard .te_controls {
   left: 50%;
   width: 63px;
@@ -42,24 +44,24 @@
   margin-left: -33px;
   padding-left: 5px;
   bottom: 35px;
-	background-image: url(/images/top_up/dashboard/sprite.png);
-	background-position: 0px -178px; }
-
-.te_dashboard .te_previous_link,
+  background-image: url(/images/top_up/dashboard/sprite.png);
+  background-position: 0 -178px; }
+.te_dashboard .te_previous_link, .te_dashboard .te_next_link {
+  width: 31px;
+  height: 29px;
+  background-image: url(/images/top_up/dashboard/sprite.png); }
+.te_dashboard .te_previous_link {
+  background-position: 66px -113px; }
 .te_dashboard .te_next_link {
-	width: 31px;
-	height: 29px;
-	background-image: url(/images/top_up/dashboard/sprite.png); }
-
-.te_dashboard .te_previous_link 	    { background-position: 66px -113px; }
-.te_dashboard .te_next_link 		      { background-position: 30px -113px; }
-.te_dashboard .te_previous_link:hover { background-position: 66px -142px; }
-.te_dashboard .te_next_link:hover 	  { background-position: 30px -142px; }
-
+  background-position: 30px -113px; }
+.te_dashboard .te_previous_link:hover {
+  background-position: 66px -142px; }
+.te_dashboard .te_next_link:hover {
+  background-position: 30px -142px; }
 .te_dashboard .te_close_link {
-	width: 28px;
-	height: 26px;
-	top: -1px;
-	right: -6px;
-	background-image: url(/images/top_up/dashboard/sprite.png);
-	background-position: -20px 0px; }
+  width: 28px;
+  height: 26px;
+  top: -1px;
+  right: -6px;
+  background-image: url(/images/top_up/dashboard/sprite.png);
+  background-position: -20px 0; }

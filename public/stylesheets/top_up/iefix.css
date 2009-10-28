@@ -1,8 +1,7 @@
-
 #tu_overlay {
-  top:  expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");
+  top: expression((ignoreMe  = document.documentElement.scrollTop  ? document.documentElement.scrollTop  : document.body.scrollTop)  + "px");
   left: expression((ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft) + "px");
-	position: absolute; }
+  position: absolute; }
 
 .te_transparent {
   filter: alpha(opacity = 0); }

@@ -1,0 +1,50 @@
+.te_quicklook
+  .te_bottom
+    height: 55px
+  .te_controls
+    width: 67px
+
+  .te_top
+    .te_left, .te_middle, .te_right
+      background-image: none
+  .te_middle
+    .te_left, .te_right
+      background-image: none
+  .te_bottom
+    .te_left, .te_middle, .te_right
+      background-image: none
+
+  .te_previous_link, .te_next_link, .te_close_link
+    background-image: none
+
+  .te_top
+    .te_left
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_left.png"     , sizingMethod="crop" )
+    .te_middle
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_middle.png"   , sizingMethod="scale")
+    .te_right
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/top_right.png"    , sizingMethod="crop" )
+
+  .te_middle
+    .te_left
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_left.png"  , sizingMethod="scale")
+    .te_middle
+      filter: alpha(opacity = 70)
+      background: black
+    .te_right
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/middle_right.png" , sizingMethod="scale")
+
+  .te_bottom
+    .te_left
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_left.png"  , sizingMethod="crop" )
+    .te_middle
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_middle.png", sizingMethod="scale")
+    .te_right
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/bottom_right.png" , sizingMethod="crop" )
+
+  .te_previous_link
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/previous.png"     , sizingMethod="crop" )
+  .te_next_link
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/next.png"         , sizingMethod="crop" )
+  .te_close_link
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/quicklook/close_link.png"   , sizingMethod="crop" )

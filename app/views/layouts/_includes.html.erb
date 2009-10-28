@@ -1,4 +1,24 @@
-<% if RAILS_ENV == "development" %>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-11323539-1");
+    pageTracker._trackPageview();
+  } catch(err) {}
+</script>
+
+<% if RAILS_ENV == "production" %>
+  <%= javascript_include_tag "jzipped/#{session[:library] || "jquery"}" %>
+<% else %>
+  <% if [nil, "jquery"].include? session[:library] %>
+    <%= javascript_include_tag "development/top_up", "development/seat_holder", "defaults" %>
+  <% else %>
+    <%= javascript_include_tag "development/seat_holder", :defaults, "development/top_up-pt" %>
+  <% end %>
+
 	<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style" %>
 	<!--[if IE]>
 	  <%= stylesheet_link_tag "top_up/iefix" %>
@@ -11,27 +31,10 @@
 	<![endif]-->
 <% end %>
 
-<% if [nil, "jquery"].include? session[:library] %>
-  <%= javascript_include_tag include_src_for("top_up"), include_src_for("seat_holder"), "defaults" %>
-<% else %>
-  <%= javascript_include_tag include_src_for("seat_holder"), :defaults, "top_up-pt" %>
-<% end %>
-
-<%= stylesheet_link_tag "basic", "application" %>
+<%= stylesheet_link_tag "application" %>
 <!--[if IE 6]>
   <%= stylesheet_link_tag "ie6fix" %>
 <![endif]-->
 <!--[if IE 7]>
   <%= stylesheet_link_tag "ie7fix" %>
 <![endif]-->
-
-<script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-  try {
-    var pageTracker = _gat._getTracker("UA-11323539-1");
-    pageTracker._trackPageview();
-  } catch(err) {}
-</script>
