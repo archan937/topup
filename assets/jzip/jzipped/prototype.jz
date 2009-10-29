@@ -1,8 +1,0 @@
-
-//= require !../../releases/seat_holder/latest/seat_holder-min
-//= require /prototype
-//= require /effects
-//= require /dragdrop
-//= require /controls
-//= require /top_up-pt
-//= require /application
