@@ -31,7 +31,7 @@
       <ol>
         <li>
           <label for="toptions[topUp]">TopUp:</label>
-          <%= text_field_tag "toptions[topUp]", nil, :seatholder => "&#link" %>
+          <%= text_field_tag "toptions[topUp]", nil, :seatholder => "&#{"#" if [nil, "jquery"].include? session[:library]}link" %>
         </li>
         <li>
           <label for="toptions[type]">Type:</label>
