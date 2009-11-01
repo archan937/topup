@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-11-01 12:04:56 +0100 (Sun, 01 November 2009) $
+// * $Date: 2009-11-01 21:34:42 +0100 (Sun, 01 November 2009) $
 // *
 
 TopUp = (function() {

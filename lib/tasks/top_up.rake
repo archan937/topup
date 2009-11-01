@@ -38,7 +38,7 @@ namespace :top_up do
     
     # Create files
     File.open("#{release_dir}/top_up.js"       , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
-    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, false))
+    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
     FileUtils.cp("public/javascripts/development/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
     FileUtils.cp_r("public/players", release_dir)
@@ -58,7 +58,7 @@ namespace :top_up do
     IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/top_up.js -o #{release_dir}/top_up-min.js"
   end
   
-  def parse_library(library, variables, version, timestamp, wrap_style = true)
+  def parse_library(library, variables, version, timestamp, prototype = false)
     File.open("public/javascripts/development/#{library}.js").readlines.collect{ |line|
       index = nil
       variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
@@ -77,12 +77,13 @@ namespace :top_up do
           end : 
           line
       else
-        variable = variables[index]
-        css      = [("<style type=\"text/css\" media=\"screen\">" if wrap_style), 
-                    variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip,
-                    ("</style>" if wrap_style)].join
+        variable   = variables[index]
+        wrap_style = variable[:name] != "html" && !prototype
+        value      = [("<style type=\"text/css\" media=\"screen\">" if wrap_style), 
+                      variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip,
+                      ("</style>" if wrap_style)].join
         
-        "		var #{variable[:name]} = '#{css}';"
+        "		var #{variable[:name]} = '#{value}';"
       end
     }
   end
