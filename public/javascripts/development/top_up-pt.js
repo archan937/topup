@@ -149,35 +149,46 @@ TopUp = (function() {
 	var injectCode = function() {
 		var images_url = TopUp.host + TopUp.images_path;
 		
-		var style = '<div></div>';
+		var css = '<div></div>';
 		var ie7fix = '<div></div>';
 		var ie6fix = '<div></div>';
 		var iefix = '<div></div>';
 		var html = '<div></div>';
 		
-		if (style == '<div></div>') {
+		if (css == '<div></div>') {
 		  return; // This only occurs when running in development mode
 		}
 		
 		var head = $$("head").first();
 		if (!head) {
-		  document.body.insert({before: (head = new Element("head"))});
+		  $(document.body).insert({before: (head = new Element("head"))});
 		}
-		head.insert({top: style});
+		head.insert({top: styleElement(css)});
 		
-		var style = $$("head style").first();
+		var style = head.select("style").first();
     if (Prototype.Browser.IE7) {
-      style.insert({after: ie7fix});
+      style.insert({after: styleElement(ie7fix)});
     }
     if (Prototype.Browser.IE6) {
-      style.insert({after: ie6fix});
+      style.insert({after: styleElement(ie6fix)});
     }
     if (Prototype.Browser.IE) {
-      style.insert({after: iefix});
+      style.insert({after: styleElement(iefix)});
     }
 		
-    document.body.insert(html);
+    $(document.body).insert({bottom: html});
 	};
+	var styleElement = function(css) {
+    var style = document.createElement("style");
+    style.type = "text/css";
+    if (style.styleSheet) {
+      // All IE developers should burn in hell!
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }
+    return style;
+	}
 	var bind = function() {
 	  var body = $(document.body);
 	  

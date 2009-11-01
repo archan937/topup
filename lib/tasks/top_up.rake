@@ -12,16 +12,16 @@ namespace :top_up do
     ActionController::Base.append_view_path File.join(RAILS_ROOT, "app", "views")
     
     timestamp = Time.now
-    variables = [{:name => "style",  :files => %w(style dashboard/style quicklook/style)},
+    variables = [{:name => "css"   , :files => %w(style dashboard/style quicklook/style)},
                  {:name => "ie7fix", :files => %w(dashboard/ie7fix)},
                  {:name => "ie6fix", :files => %w(dashboard/ie6fix quicklook/ie6fix)},
-                 {:name => "iefix",  :files => %w(iefix)}].collect{ |variable|
+                 {:name => "iefix" , :files => %w(iefix)}].collect{ |variable|
       
       value = variable[:files].collect{ |file|
         file = "public/stylesheets/top_up/#{file}.css"
         code = File.open(file).readlines.join(" ").gsub("/images/top_up/", "' + images_url + '")
       }.join(" ")
-      {:name => variable[:name], :value => "<style type=\"text/css\" media=\"screen\">#{value}</style>"}
+      {:name => variable[:name], :value => value}
 
     }
     variables << {:name => "html", :value => ActionView::Base.new(Rails::Configuration.new.view_path).render(:partial => "layouts/top_up")}
@@ -38,7 +38,7 @@ namespace :top_up do
     
     # Create files
     File.open("#{release_dir}/top_up.js"       , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
-    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp))
+    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, false))
     FileUtils.cp("public/javascripts/development/jquery.js", release_dir)
     FileUtils.cp_r("public/images/top_up", release_dir)
     FileUtils.cp_r("public/players", release_dir)
@@ -58,7 +58,7 @@ namespace :top_up do
     IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/top_up.js -o #{release_dir}/top_up-min.js"
   end
   
-  def parse_library(library, variables, version, timestamp)
+  def parse_library(library, variables, version, timestamp, wrap_style = true)
     File.open("public/javascripts/development/#{library}.js").readlines.collect{ |line|
       index = nil
       variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
@@ -78,7 +78,11 @@ namespace :top_up do
           line
       else
         variable = variables[index]
-        "		var #{variable[:name]} = '#{variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip}';"
+        css      = [("<style type=\"text/css\" media=\"screen\">" if wrap_style), 
+                    variable[:value].gsub(/\s+/, " ").gsub("> <", "><").strip,
+                    ("</style>" if wrap_style)].join
+        
+        "		var #{variable[:name]} = '#{css}';"
       end
     }
   end

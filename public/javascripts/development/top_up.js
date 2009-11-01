@@ -177,7 +177,7 @@ TopUp = (function() {
 	var injectCode = function() {
 		var images_url = TopUp.host + TopUp.images_path;
 		
-		var style = '<div></div>';
+		var css = '<div></div>';
 		var ie7fix = '<div></div>';
 		var ie6fix = '<div></div>';
 		var iefix = '<div></div>';
@@ -186,7 +186,7 @@ TopUp = (function() {
 		if (!jQuery("head").length) {
 		  jQuery(document.body).before("<head></head>");
 		}
-		jQuery(style).prependTo("head");
+		jQuery(css).prependTo("head");
 		
 		if (jQuery.ie7) {
 			jQuery(ie7fix).insertAfter("head > style:first");
