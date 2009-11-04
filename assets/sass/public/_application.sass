@@ -1,33 +1,37 @@
 
+#page_background
+  height: 113px
+  margin-bottom: -113px
+  +sprite(!x, top)
+
 #page_wrapper
   width: 875px
   margin: auto
-  position: relative
+  +relative
 
   #page_header
     height: 113px
-    position: relative
+    +relative
     cursor: pointer
-    background: url(/images/backgrounds/logo.jpg) no-repeat 0 21px
+    +sprite(!no, "left -113px")
     border-bottom: 1px dashed #529796
 
-    h1
-      position: absolute
+    h1, h2
+      +absolute
 
     h2
-      position: absolute
       top: 30px
       left: 84px
       width: 174px
       height: 74px
-      background-image: url(/images/backgrounds/top_up_beta.jpg)
+      +sprite(!no, "left -226px")
 
     h1
       top: 70px
       left: 258px
       width: 275px
       height: 12px
-      background-image: url(/images/backgrounds/page_header.jpg)
+      +sprite(!no, "left -300px")
 
   #library_picker
     top: 66px
@@ -35,7 +39,7 @@
     width: 100px
     height: 30px
     text-align: right
-    position: absolute
+    +absolute
 
     select
       display: none
@@ -47,16 +51,52 @@
     width: 100%
     margin-top: 1px
     text-align: center
-    position: absolute
+    +absolute
 
     li
       margin: 0 8px
       display: inline
       list-style: none
-
       a
+        height: 21px
+        +indent
         border: 0
-
+        
+      &.home
+        a
+          width: 45px
+          +sprite(!no, "left -312px")
+        .selected
+          background-position: left -333px !important
+        
+      &.documentation
+        a
+          width: 101px
+          +sprite(!no, "-45px -312px")
+        .selected
+          background-position: -45px -333px !important
+        
+      &.examples
+        a
+          width: 69px
+          +sprite(!no, "-146px -312px")
+        .selected
+          background-position: -146px -333px !important
+        
+      &.demo
+        a
+          width: 45px
+          +sprite(!no, "-215px -312px")
+        .selected
+          background-position: -215px -333px !important
+        
+      &.comments
+        a
+          width: 75px
+          +sprite(!no, "-260px -312px")
+        .selected
+          background-position: -260px -333px !important
+          
   #page_content
     padding: 16px 12px 75px 12px
 
@@ -64,10 +104,12 @@
       margin-top: 28px
 
     h1
-      height: 28px
+      height: 21px
+      margin-bottom: 13px
 
     h2
-      height: 22px
+      height: 16px
+      margin-bottom: 10px
 
     p
       margin-top: 6px
@@ -344,18 +386,25 @@
 
       .box
         padding: 10px 13px
+        a.download_top_up
+          margin-top: 6px
+          width: 211px
+          height: 52px
+          +indent
+          +sprite(!no, "left -354px")
+          border: 0
 
-      .twitter
+      div.twitter
         margin-top: 15px !important
         padding-left: 100px
-        background: url(/images/backgrounds/twitter.jpg) no-repeat 12px 50%
+        +sprite(!no, "12px -404px")
 
       div.github
         height: 28px
         margin-bottom: 5px
         padding-left: 87px
         line-height: 26px
-        background: url(/images/backgrounds/github.jpg) no-repeat 12px 50%
+        +sprite(!no, "12px -476px")
 
       small.github
         line-height: 13px
@@ -363,18 +412,10 @@
       div.license
         margin-top: 6px
         padding-top: 33px
-        background: url(/images/backgrounds/license.jpg) no-repeat 40px 0
+        +sprite(!no, "40px -508px")
 
         small
           line-height: 13px
-
-      .box a.download_top_up
-        width: 211px
-        height: 58px
-        display: block
-        text-indent: -9999px
-        background: url(/images/text/a-download_top_up.jpg) no-repeat left center
-        border: 0
 
       ul
         margin-top: 4px

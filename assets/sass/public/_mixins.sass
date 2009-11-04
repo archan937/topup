@@ -1,0 +1,54 @@
+
+=page_style
+  font:
+    family = !page_font_family
+    size   = !page_font_size
+  background:
+    color  = !page_background_color
+
+=absolute
+  position: absolute
+
+=relative
+  position: relative
+
+=inline
+  display: inline
+
+=block
+  display: block
+
+=inline_block
+  display: inline-block
+
+=left
+  float: left
+
+=right
+  float: right
+
+=clear
+  clear: both
+
+=indent
+  +inline_block
+  text-indent: -9999px
+
+=clearfix
+  *display: inline-block
+  &:after
+    content: " "
+    height: 0
+    +block
+    clear: both
+    visibility: hidden
+
+=pos(!position)
+  background-position = !position !important
+
+=sprite(!repeat, !position = "")
+  background:
+    image  = !sprite_url
+    repeat = !repeat
+  @if !position != ""
+    background-position = !position

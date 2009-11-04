@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def menu_items
+    %w(home documentation examples demo comments)
+  end
+  
   def h1(text)
     text_tag(:h1, text)
   end
@@ -14,7 +18,7 @@ module ApplicationHelper
   end
   
   def text_tag(tag, text)
-    content_tag(tag, text, :style => "background-image: url(/images/text/#{tag}-#{text.gsub(".", "").split(/[^\w]/).join("_").underscore}.jpg)")
+    content_tag(tag, text, :class => "sprite #{text.gsub(".", "").split(/[^\w]/).join("_").underscore.gsub(/\d+_/, "")}")
   end
   
 end

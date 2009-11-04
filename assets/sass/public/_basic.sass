@@ -9,10 +9,8 @@ html
 body
   height: 100%
   color: white
-  font-family: "Lucida Grande", "Arial"
-  font-size: 11px
   line-height: 150%
-  background: #003343 url(/images/backgrounds/page.jpg) repeat-x top
+  +page_style
 
 a
   color: white
@@ -95,6 +93,9 @@ pre
   font-family: "Courier New", "Courier"
   font-size: 10px
 
+.sprite
+  +sprite(!no, "-500px 0")
+
 .clear
   clear: both !important
   float: none !important
@@ -119,7 +120,8 @@ pre
     border: 1px dashed #529796
 
     h1
-      padding-bottom: 10px
+      height: 21px
+      margin-bottom: 13px
 
     p
       margin-bottom: 12px
