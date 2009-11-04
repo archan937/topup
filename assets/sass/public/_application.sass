@@ -50,16 +50,18 @@
   #page_menu
     width: 100%
     margin-top: 1px
+    padding-left: 221px
     text-align: center
     +absolute
 
     li
-      margin: 0 8px
-      display: inline
+      margin: 0 10px
+      +left
       list-style: none
       a
         height: 21px
-        +indent
+        +block
+        text-indent: -9999px
         border: 0
         
       &.home
