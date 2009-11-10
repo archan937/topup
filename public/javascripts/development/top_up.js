@@ -220,7 +220,7 @@ TopUp = (function() {
 		return false;
 	};
 	var documentKeyPress = function(event) {
-    if (jQuery("#top_up").is(":hidden")) {
+    if (jQuery("#top_up").is(":hidden") || jQuery(event.target).is(":input")) {
 		  return;
 		}
 		
@@ -399,16 +399,8 @@ TopUp = (function() {
                                 })
                                .attr("src", options.reference);
 				break;
-      case "flash":
-        loadFlashContent(); break;
-      case "flashvideo":
-        loadFlashVideoContent(); break;
-      case "quicktime":
-        loadQuickTimeContent(); break;
-      case "realplayer":
-        loadRealPlayerContent(); break;
-      case "windowsmedia":
-        loadWindowsMediaContent(); break;
+      case "flash": case "flashvideo": case "quicktime": case "realplayer": case "windowsmedia":
+        loadMovie(options.type, options.reference, options.width, options.height); break;
 			case "iframe":
 				options.content = jQuery('<iframe src="' + options.reference + '" frameborder="0" border="0"></iframe>'); break;
 			case "html": case "dom":
@@ -428,101 +420,88 @@ TopUp = (function() {
 		  onContentReady();
 		}
 	};
-  var loadFlashContent = function() {
-    var object = jQuery("<object></object>").attr({width   : options.width, 
-                                                   height  : options.height,
-                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
-                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
-                                                   style   : "display: none"});
-                                        
-    object.append(jQuery("<param></param>").attr({name: "src", value: options.reference}));
+	var loadMovie = function(type, src, width, height) {
+    var object_attrs = {width: width, height: height}, params = {src: src}, classid = null, mimetype = null, codebase = null, pluginspage = null;
     
-    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  type       : "application/x-shockwave-flash",
-                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    switch(type) {
+      case "flash": case "flashvideo":
+        classid     = "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000";
+        codebase    = "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0";
+        mimetype    = "application/x-shockwave-flash";
+        pluginspage = "http://get.adobe.com/flashplayer/";
+        break;
+      case "quicktime":
+        classid     = "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B";
+        codebase    = "http://www.apple.com/qtactivex/qtplugin.cab";
+        mimetype    = "video/quicktime";
+        pluginspage = "http://www.apple.com/quicktime/download/";
+        params.scale    = "aspect";
+        params.bgcolor  = "black";
+        params.showlogo = "false"; 
+        params.autoplay = "true";
+        break;
+      case "realplayer":
+        classid     = "clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA";
+        mimetype    = "audio/x-pn-realaudio-plugin";
+        pluginspage = "http://www.real.com/freeplayer/?rppr=rnwk";
+        params.controls  = "imagewindow";
+        params.console   = "one";
+        params.autostart = "true";
+        params.nojava    = "true";
+        break;
+      case "windowsmedia":
+        classid     = "clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6";
+        codebase    = "http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701";
+        mimetype    = "application/x-oleobject";
+        pluginspage = "http://www.microsoft.com/Windows/MediaPlayer/";
+        params.filename           = src;
+        params.animationatstart   = "true";
+        params.transparentatstart = "true";
+        params.autostart          = "true"; 
+        params.showcontrols       = "true";
+        params.showstatusbar      = "true"; 
+        params.windowlessvideo    = "true";
+        break;
+    }
     
-    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
-    options.content.append(object);
-    onContentReady();
-  };
-  var loadFlashVideoContent = function() {
-    var object = jQuery("<object></object>").attr({width   : options.width, 
-                                                   height  : options.height,
-                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
-                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
-                                                   style   : "display: none"});
-                                                   
-    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + "/players/flvplayer.swf"}));
-    object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
-                                        
-    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + "/players/flvplayer.swf", 
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  flashvars  : "file=" + options.reference + "&autostart=true",
-                                                  type       : "application/x-shockwave-flash",
-                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    if (type == "flashvideo") {
+      params.flashvars = "file=" + src + "&autostart=true";
+      src              = TopUp.host + TopUp.players_path + "flvplayer.swf";
+      params.src       = src;
+      params.movie     = src;
+    }
     
-    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
-    options.content.append(object);
-    onContentReady();
-  };
-  var loadQuickTimeContent = function() {
-    var object = jQuery("<object></object>").attr({width   : options.width, 
-                                                   height  : options.height,
-                                                   classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
-                                                   codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
-                                                   style   : "display: none"});
-                                                   
-    object.append(jQuery("<param></param>").attr({name: "src"     , value: options.reference}));
-    object.append(jQuery("<param></param>").attr({name: "scale"   , value: "aspect"}));
-    object.append(jQuery("<param></param>").attr({name: "bgcolor" , value: "black"}));
-    object.append(jQuery("<param></param>").attr({name: "showlogo", value: "false"}));
-    object.append(jQuery("<param></param>").attr({name: "autoplay", value: "true"}));
+    object_attrs.codebase = codebase;
+    if (window.ActiveXObject) {
+      object_attrs.classid = classid;
+      object_attrs.data    = src;
+    }
     
-    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  scale      : "aspect", 
-                                                  bgcolor    : "black",
-                                                  showlogo   : "false", 
-                                                  autoplay   : "true",
-                                                  type       : "video/quicktime",
-                                                  pluginspage: "http://www.apple.com/quicktime/download/"}));
+    var paramTags = "";
+		for (var key in params) {
+      paramTags += " " + createElementTag("param", {name: key, value: params[key]});
+	  }
+
+    params.width       = width;
+    params.height      = height;
+    params.mimetype    = mimetype;
+    params.pluginspage = pluginspage;
     
-    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height, style: "background: black"});
-    options.content.append(object);
-    onContentReady();
-  };
-  var loadRealPlayerContent = function() {
-    var object = jQuery("<object></object>").attr({width  : options.width, 
-                                                   height : options.height,
-                                                   classid: "clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA",
-                                                   style  : "display: none"});
-                                                   
-    object.append(jQuery("<param></param>").attr({name: "src"      , value: options.reference}));
-    object.append(jQuery("<param></param>").attr({name: "controls" , value: "imagewindow"}));
-    object.append(jQuery("<param></param>").attr({name: "console"  , value: "one"}));
-    object.append(jQuery("<param></param>").attr({name: "autostart", value: "true"}));
-    
-    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  controls   : "imagewindow",
-                                                  console    : "one",
-                                                  autostart  : "true",
-                                                  nojava     : "true",
-                                                  type       : "audio/x-pn-realaudio-plugin",
-                                                  pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
-    
-    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
-    options.content.append(object);
-    onContentReady();
-  };
-  var loadWindowsMediaContent = function() {
-    loadQuickTimeContent();
-  };
+		var element = document.createElement("div");
+    element.innerHTML = createElementTag("object", object_attrs) + paramTags + createElementTag("embed", params) + "</embed></object>";
+
+    // document.body.appendChild(element);
+		options.content = jQuery(element);
+		onContentReady();
+	};
+  var createElementTag = function(tagName, attrs) {
+	  var html = "<" + tagName;
+		for (var key in attrs) {
+		  html += " " + key + "='" + attrs[key] + "'";
+	  }
+	  return html + ">";
+	};
+
 	var onContentReady = function(html) {
 	  hideLoader();
 	  
@@ -880,6 +859,7 @@ TopUp = (function() {
 	return {
 		host: scriptHost,
 		images_path: "images/top_up/",
+		players_path: "players/",
 		data: data,
 		init: function() {
 			if (initialized) {
@@ -972,13 +952,26 @@ TopUp = (function() {
 }());
 
 (function () {
+  var missing_libs = [];
+  
   if (typeof(jQuery) == "undefined") {
-    var src = scriptElement.getAttribute("src").replace(/top_up(\-min)?\.js.*$/, "jquery.js");
+    missing_libs.push("all");
+  } else {
+    if (!jQuery.ui || !jQuery.ui.resizable) {
+      missing_libs.push("uic-resizable");
+    }
+    if (!jQuery.effects || !jQuery.effects.clip) {
+      missing_libs.push("fxc-clip");
+    }
+  }
+  
+  if (missing_libs.length == 0) {
+    TopUp.init();
+  } else {
+    var src = scriptElement.getAttribute("src").replace(/(development\/)top_up(\-min)?\.js.*$/, "jquery/" + missing_libs.join(".") + ".js");
     document.write('<script src="' + src + '" type="text/javascript" ' + 
                            'onload="TopUp.init()" onreadystatechange="TopUp.init()">' +
                    '</script>');
-  } else {
-    TopUp.init();
   }
 }());
 

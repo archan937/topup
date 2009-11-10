@@ -83,15 +83,9 @@
 			  </p>
         <ol>
           <li>
-            Put the following in the <span class="code">head</span> element:
-            <div class="box code">
-              &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
-            </div>
-          </li>
-          <li>
             Copy the entire(!) <strong>jquery</strong> directory in the same directory as the TopUp Javascript file. TopUp will automatically determine which Javascript libraries
-            (jQuery and/or jQuery UI) to include from the <strong>jquery</strong> directory when they aren't included yet.
-            Please note that TopUp will only include <strong>one</strong>(!) file to reduce the amount of HTTP requests!
+            (jQuery and/or jQuery UI) to include from the <strong>jquery</strong> directory when missing.
+            Please note that TopUp will only include <strong>one</strong>(!) file to reduce the amount of HTTP requests! An include will look like this:
             <div class="box code">
               &lt;script type="text/javascript" src="path/to/your/jquery/*.js">&lt;/script>
             </div>
@@ -123,6 +117,12 @@
             <small>
               <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
             </small>
+          </li>
+          <li>
+            Now you start using TopUp on your webpages by putting the following in the <span class="code">head</span> element:
+            <div class="box code">
+              &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
+            </div>
           </li>
         </ol>
         <p>
