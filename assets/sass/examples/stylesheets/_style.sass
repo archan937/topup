@@ -1,0 +1,70 @@
+
+#page_background
+  height: 113px
+  margin-bottom: -113px
+  +sprite(!x, top)
+
+#page_wrapper
+  width: 725px
+  margin: auto
+  padding-bottom: 40px
+  +relative
+
+#page_header
+  height: 113px
+  +relative
+  cursor: pointer
+  +sprite(!no, "left -113px")
+  border-bottom: 1px dashed #529796
+
+  h1, h2
+    +absolute
+
+  h2
+    top: 30px
+    left: 84px
+    width: 174px
+    height: 74px
+    +sprite(!no, "left -226px")
+
+  h1
+    top: 70px
+    left: 258px
+    width: 275px
+    height: 12px
+    +sprite(!no, "left -300px")
+
+#page_content
+  padding: 0 15px
+  
+  h1, h2
+    margin-top: 28px
+
+  h1
+    height: 21px
+    margin-bottom: 13px
+
+  h2
+    height: 16px
+    margin-bottom: 10px
+
+  p
+    margin-top: 6px
+  
+    &.intro
+      margin-top: 11px
+      margin-left: 12px
+
+#examples
+  margin-left: 15px
+  padding-top: 5px
+  img
+    margin: 3px 7px 3px 7px
+  a, img
+    border: 0
+
+h1.thanks_for_download_top_up
+  +pos("left -1067px")
+  
+h1.some_examples
+  +pos("left -620px")

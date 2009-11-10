@@ -26,6 +26,7 @@ class CommentsController < ApplicationController
           page[:error_messages].replace_html error_messages_for(:comment, :class => "box", :header_tag => "h3", :header_message => "Oops... Your comment couldn't be saved", :message => nil)
         end
       else
+        Tracker.new({:name => @comment.name, :email_address => @comment.email_address}).save if @comment.sign_up_as_tracker.to_i == 1
         if params[:using_top_up]
           page.redirect_to comment_path(@comment)
         else

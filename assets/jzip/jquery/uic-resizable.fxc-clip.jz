@@ -1,0 +1,3 @@
+
+//= require !components/uic-resizable
+//= require !components/fxc-clip

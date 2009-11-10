@@ -24,4 +24,8 @@ class TrackersController < ApplicationController
     redirect_to root_path
   end
   
+  def service_info
+    render :layout => false
+  end
+  
 end

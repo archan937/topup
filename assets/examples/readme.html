@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>The #1 Javascript Pop Up - Get TopUp! - Examples</title>
+		<link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
+    <script type="text/javascript" src="javascripts/top_up-min.js"></script>
+    <script type="text/javascript">
+      TopUp.addPresets({
+        "#images a": {
+          fixed: 0,
+          group: "images",
+          modal: 0,
+          title: "Example"
+        },
+        "#movies": {
+          resizable: 0
+        }
+      });
+    </script>
+	</head>
+	<body>
+		<div id="page_background"></div>
+		<div id="page_wrapper">
+      <div id="page_header" onclick="document.location.href = 'http://gettopup.com'">
+        <h2>TopUp</h2>
+        <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
+      </div>
+			<div id="page_content">
+			  <h1 class="thanks_for_download_top_up">Thanks for downloading TopUp!</h1>
+			  <p>
+			    You must be thinking: "Great, I've downloaded TopUp! But now what?". No need to worry, this download is provided with examples and instructions regarding the usage of the library.
+			  </p>
+			  <h1 class="some_examples">Some examples</h1>
+			  <div id="examples">
+  			  <span id="images">
+            <a href="images/photos/1.jpg" toptions="overlayClose = 1">
+              <img src="images/thumbnails/1.jpg"/>
+            </a>
+            <a href="images/photos/2.jpg" toptions="noGroup = 1, layout = dashboard">
+              <img src="images/thumbnails/2.jpg"/>
+            </a>
+            <a href="images/photos/3.jpg" toptions="effect = appear, layout = quicklook">
+              <img src="images/thumbnails/3.jpg"/>
+            </a>
+            <a href="images/photos/by-ben-adamson.jpg" toptions="effect = clip, layout = quicklook">
+              <img src="images/thumbnails/by-ben-adamson.jpg"/>
+            </a>
+          </span>
+          <span>
+            <a href="http://www.youtube.com/v/pv8j1-IcnUE&amp;hl=nl&amp;fs=1&amp;rel=0&amp;hd=1&amp;autoplay=1" toptions="width = 853, height = 505, type = flash, title = Beastie Boys - Sabotage">
+              <img src="images/thumbnails/youtube.jpg"/>
+            </a>
+            <a href="http://uploads.ungrounded.net/0/31_tupac.swf" toptions="width = 550, height = 400, title = How Mr. T killed Tupac, effect = clip">
+              <img src="images/thumbnails/swf.jpg"/>
+            </a>
+            <a href="http://gettopup.com/media/brucelee.flv" toptions="width = 425, height = 344, title = Bruce Lee - Like Water">
+              <img src="images/thumbnails/flv.jpg"/>
+            </a>
+            <a href="http://movies.apple.com/movies/wb/the_dark_knight/the_dark_knight-tlr2-h.ref.mov" toptions="width = 480, height = 220, title = The Dark Knight, layout = quicklook">
+              <img src="images/thumbnails/quicktime.jpg"/>
+            </a>
+          </span>
+        </div>
+			  <br>
+			  <h3>When including from gettopup.com (the easiest setup)</h3>
+			  <p class="intro">
+			    I have put a lot of examples in the <a href="1. Single links/1. TopUp classes.html">examples</a> directory. They are all implemented with this setup.
+			  </p>
+        <ol>
+          <li>
+            Put the following in the <span class="code">head</span> element:
+            <div class="box code">
+              &lt;script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js">&lt;/script>
+            </div>
+            ( you can also include a specific release by replacing <span class="code">latest</span> with the version e.g. <span class="code">1.3.2</span> )
+          </li>
+        </ol>
+        <h3>When hosting the Javascript and images yourself</h3>
+			  <p class="intro">
+			    Please note that this page is implemented with this setup. I assume hosting TopUp will not be a problem.
+			  </p>
+        <ol>
+          <li>
+            Put the following in the <span class="code">head</span> element:
+            <div class="box code">
+              &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
+            </div>
+          </li>
+          <li>
+            Copy the entire(!) <strong>jquery</strong> directory in the same directory as the TopUp Javascript file. TopUp will automatically determine which Javascript libraries
+            (jQuery and/or jQuery UI) to include from the <strong>jquery</strong> directory when they aren't included yet.
+            Please note that TopUp will only include <strong>one</strong>(!) file to reduce the amount of HTTP requests!
+            <div class="box code">
+              &lt;script type="text/javascript" src="path/to/your/jquery/*.js">&lt;/script>
+            </div>
+          </li>
+          <li>
+            Copy the entire(!) <strong>images</strong> directory to the correct location.
+            At default, TopUp assumes that the images reside at the same host as the file itself in the following path <span class="code">/images/top_up/</span>.
+            You can change the path (and even the host) by changing the variables <span class="code">TopUp.host</span> and <span class="code">TopUp.images_path</span> as the following:
+            <div class="box code">
+              &lt;script type="text/javascript"><br>
+              &nbsp; TopUp.host = "http://www.anotherwebsite.com/";<br>
+              &nbsp; TopUp.images_path = "assets/images/top_up/";<br>
+              &lt;/script>
+            </div>
+            <small>
+              <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
+            </small>
+          </li>
+          <li>
+            Copy the entire(!) <strong>players</strong> directory to the correct location.
+            At default, TopUp assumes that the players reside at the same host as the file itself in the following path <span class="code">/players/</span>.
+            You can change the path and host by changing the variables <span class="code">TopUp.host</span> and <span class="code">TopUp.players_path</span> as the following:
+            <div class="box code">
+              &lt;script type="text/javascript"><br>
+              &nbsp; TopUp.host = "http://www.anotherwebsite.com/";<br>
+              &nbsp; TopUp.players_path = "assets/players/";<br>
+              &lt;/script>
+            </div>
+            <small>
+              <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
+            </small>
+          </li>
+        </ol>
+        <p>
+          Remember: You can still use <strong><a href="http://prototypejs.org">Prototype</a></strong> without having conflicts, just make sure you include TopUp first.
+        </p>
+      </div>
+    </div>
+	</body>
+</html>

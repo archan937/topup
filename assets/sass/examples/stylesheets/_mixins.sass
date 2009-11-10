@@ -1,0 +1,20 @@
+
+!no = "no-repeat"
+!x  = "repeat-x"
+!y  = "repeat-y"
+
+=absolute
+  position: absolute
+
+=relative
+  position: relative
+
+=pos(!position)
+  background-position = !position !important
+  
+=sprite(!repeat, !position = "")
+  background:
+    image  = url(../images/sprite-min.png)
+    repeat = !repeat
+  @if !position != ""
+    background-position = !position

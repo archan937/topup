@@ -35,7 +35,10 @@ ActionController::Routing::Routes.draw do |map|
   map.documentation "/documentation", :controller => "application", :action => "documentation"
   map.examples "/examples", :controller => "examples"
   map.demo "/demo", :controller => "application", :action => "demo"
-  map.resources :trackers, :comments
+
+  map.resources :comments
+  map.resources :trackers, :collection => {:service_info => :get}
+
   map.demonstrate "/demonstrate", :controller => "application", :action => "demonstrate"
   map.unsubscribe "/unsubscribe/:unsubscription_code", :controller => "trackers", :action => "unsubscribe"
   map.delete_comment "/delete_comment/:unsubscription_code", :controller => "comments", :action => "delete"

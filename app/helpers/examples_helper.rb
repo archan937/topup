@@ -22,8 +22,10 @@ module ExamplesHelper
   
   def code(example)
     content = html_escape(example[:raw_content].gsub(/<title>.*<\/title>/m, "").
+                                                gsub(/<link.*css"\/>/m, "").
+                                                gsub(/<body>.*<div id="description">/m, '<body><div id="description">').
                                                 gsub(/<div id="description">.*<div id="demo">/m, "").
-                                                gsub(/<\/div>\s*<\/body>$/m, "</body>").reject{|x| x.blank?})
+                                                gsub(/<\/div>\s*<\/div>\s+<\/div>\s+<\/body>$/m, "</body>").reject{|x| x.blank?})
     content_tag :pre, content, :style => "*height: #{(content.split("\n").size * 16.56) + 11.5}px"
   end
   

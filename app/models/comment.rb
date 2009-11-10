@@ -1,12 +1,14 @@
 class Comment < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
   
-  validates_presence_of :name, :message
+  validates_presence_of :name, :message, :sign_up_as_tracker
   validates_format_of :email_address, :with => /\A[\w\.\-]+\@[\w\.\-]+\.[\w]+\Z/i
   
   before_create :generate_unsubscription_code
   before_save :sanitize_message
   after_create :deliver_notification
+  
+  attr_accessor :sign_up_as_tracker
   
   def generate_unsubscription_code
     self.unsubscription_code = random_hex(28)
