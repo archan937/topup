@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-11-11 02:12:21 +0100 (Wed, 11 November 2009) $
+// * $Date: 2009-11-11 03:10:51 +0100 (Wed, 11 November 2009) $
 // *
 
 TopUp = (function() {
@@ -421,6 +421,22 @@ TopUp = (function() {
 		}
 	};
 	var loadMovie = function(type, src, width, height) {
+	  if (!jQuery.ie) {
+  		switch(options.type) {
+        case "flash":
+          loadFlashContent(); break;
+        case "flashvideo":
+          loadFlashVideoContent(); break;
+        case "quicktime":
+          loadQuickTimeContent(); break;
+        case "realplayer":
+          loadRealPlayerContent(); break;
+        case "windowsmedia":
+          loadWindowsMediaContent(); break;
+      }
+      return;
+	  }
+	  
     var object_attrs = {width: width, height: height}, params = {src: src}, classid = null, mimetype = null, codebase = null, pluginspage = null;
     
     switch(type) {
@@ -490,7 +506,6 @@ TopUp = (function() {
 		var element = document.createElement("div");
     element.innerHTML = createElementTag("object", object_attrs) + paramTags + createElementTag("embed", params) + "</embed></object>";
 
-    // document.body.appendChild(element);
 		options.content = jQuery(element);
 		onContentReady();
 	};
@@ -501,6 +516,101 @@ TopUp = (function() {
 	  }
 	  return html + ">";
 	};
+  var loadFlashContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
+                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
+                                                   style   : "display: none"});
+                                        
+    object.append(jQuery("<param></param>").attr({name: "src", value: options.reference}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  type       : "application/x-shockwave-flash",
+                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadFlashVideoContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
+                                                   codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
+                                                   style   : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + TopUp.players_path + "flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
+                                        
+    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + TopUp.players_path + "flvplayer.swf", 
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  flashvars  : "file=" + options.reference + "&autostart=true",
+                                                  type       : "application/x-shockwave-flash",
+                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadQuickTimeContent = function() {
+    var object = jQuery("<object></object>").attr({width   : options.width, 
+                                                   height  : options.height,
+                                                   classid : "clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B",
+                                                   codebase: "http://www.apple.com/qtactivex/qtplugin.cab",
+                                                   style   : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "src"     , value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "scale"   , value: "aspect"}));
+    object.append(jQuery("<param></param>").attr({name: "bgcolor" , value: "black"}));
+    object.append(jQuery("<param></param>").attr({name: "showlogo", value: "false"}));
+    object.append(jQuery("<param></param>").attr({name: "autoplay", value: "true"}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  scale      : "aspect", 
+                                                  bgcolor    : "black",
+                                                  showlogo   : "false", 
+                                                  autoplay   : "true",
+                                                  type       : "video/quicktime",
+                                                  pluginspage: "http://www.apple.com/quicktime/download/"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height, style: "background: black"});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadRealPlayerContent = function() {
+    var object = jQuery("<object></object>").attr({width  : options.width, 
+                                                   height : options.height,
+                                                   classid: "clsid:CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA",
+                                                   style  : "display: none"});
+                                                   
+    object.append(jQuery("<param></param>").attr({name: "src"      , value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "controls" , value: "imagewindow"}));
+    object.append(jQuery("<param></param>").attr({name: "console"  , value: "one"}));
+    object.append(jQuery("<param></param>").attr({name: "autostart", value: "true"}));
+    
+    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
+                                                  width      : options.width,
+                                                  height     : options.height,
+                                                  controls   : "imagewindow",
+                                                  console    : "one",
+                                                  autostart  : "true",
+                                                  nojava     : "true",
+                                                  type       : "audio/x-pn-realaudio-plugin",
+                                                  pluginspage: "http://www.real.com/freeplayer/?rppr=rnwk"}));
+    
+    options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
+    options.content.append(object);
+    onContentReady();
+  };
+  var loadWindowsMediaContent = function() {
+    loadQuickTimeContent();
+  };
 
 	var onContentReady = function(html) {
 	  hideLoader();
