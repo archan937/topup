@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp {version} (Uncompressed)
+// * TopUp {version} (Uncompressed) - Alpha release
 // * The #1 Javascript Pop Up (http://gettopup.com)
 // *
 // * This library requires Prototype (http://prototypejs.org)

@@ -1,5 +1,13 @@
 = TopUp CHANGELOG
 
+== Version 1.6.1 (November 11, 2009)
+
+* Made the script include for possible missing Javascript libraries more intelligent. It is at max only one(!) Javascript include. This solves the "jQuery(”#top_up .tu_frame").resizable is not a function" error and such (yay!)
+* Altered the movie content embedment because of the "[object error]" in Internet Explorer. Embedding QuickTime, Windows Media (how ironic) en RealPlayer isn't possible in IE yet though. To be continued
+* Not responding to left and right arrow key presses (for calling TopUp.previous() and TopUp.next()) when focused on an input element
+* Added TopUp.players_path to customize the path in which the Flash players reside
+* Added better documentation in the tar.gz file of every release. It's pimped up and contains examples of both TopUp setup methods (including from http://gettopup.com or hosting TopUp yourself)
+
 == Version 1.6 (October 27, 2009)
 
 * Added Flash (Youtube, SWF and FLV), QuickTime, Windows Media and RealPlayer content rendering (yay!)

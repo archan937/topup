@@ -37,13 +37,13 @@ namespace :top_up do
     FileUtils.mkdir_p(release_dir)
     
     # Create files
-    File.open("#{release_dir}/top_up.js"       , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
-    File.open("public/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
-    FileUtils.cp("public/javascripts/development/jquery.js", release_dir)
-    FileUtils.cp_r("public/images/top_up", release_dir)
-    FileUtils.cp_r("public/players", release_dir)
-    FileUtils.cp_r("public/examples", release_dir)
-    
+    File.open("public/javascripts/top_up-pt.js"         , "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
+    File.open("assets/examples/javascripts/top_up.js"   , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
+    File.open("assets/examples/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
+    FileUtils.cp_r("assets/examples/.", release_dir)
+    File.open("#{release_dir}/javascripts/top_up.js"    , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
+    File.open("#{release_dir}/javascripts/top_up-pt.js" , "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
+
     # Create symbolic links
     File.delete(release_symlink) if File.exists?(release_symlink)
     File.symlink(args[:version], release_symlink)
@@ -55,7 +55,7 @@ namespace :top_up do
     File.open("app/views/layouts/_secondary.html.erb", "w").puts(secondary)
     
     # Compress release using YUI compressor
-    IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/top_up.js -o #{release_dir}/top_up-min.js"
+    IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/javascripts/top_up.js -o #{release_dir}/javascripts/top_up-min.js"
   end
   
   def parse_library(library, variables, version, timestamp, prototype = false)
