@@ -22,6 +22,6 @@
       </li>
     </ol>
   </fieldset>
-  <%= hidden_field_tag :using_top_up if params[:action] == "new" %>
+  <%= hidden_field_tag :using_top_up if request.xhr? %>
   <%= submit_tag "Subscribe", :class => "submit" %>
 <% end %>

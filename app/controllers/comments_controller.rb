@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new(params[:comment])
     @comment.valid? if params.include?(:comment)
-    render :layout => false
+    
+    render :layout => !request.xhr?
   end
   
   def create
@@ -30,9 +31,13 @@ class CommentsController < ApplicationController
         if params[:using_top_up]
           page.redirect_to comment_path(@comment)
         else
+          page << "if (jQuery('#comments').length) {"
           page[:error_messages].replace_html ""
           page.insert_html :bottom, "comments", :partial => "comment", :locals => {:comment => @comment, :index => Comment.count}
           page.form.reset "new_comment"
+          page << "} else {"
+          page.redirect_to comment_path(@comment)
+          page << "}"
         end
       end
     end
