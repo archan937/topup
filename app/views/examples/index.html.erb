@@ -6,6 +6,10 @@
   Every method is provided with a demo and code for the entire HTML page.
 </p>
 
+<p>
+  Please note that following examples are implemented with the easiest setup: including from http://gettopup.com that is.
+</p>
+
 <div id="code_examples">
   <% @purposes.each do |k, v| %>
     <%= render :partial => "purpose", :locals => {:purpose     => k,
@@ -13,8 +17,3 @@
                                                   :examples    => v[:examples].sort{|a, b| a[:filename].match(/^\d+/).to_s.to_i <=> b[:filename].match(/^\d+/).to_s.to_i}} %>
   <% end %>
 </div>
-
-<br>
-<h3>
-  Stay tuned! More examples will be added this week. Latest update: 28-07-2009.
-</h3>

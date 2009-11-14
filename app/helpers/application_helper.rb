@@ -13,7 +13,7 @@ module ApplicationHelper
   end
   
   def menu_items
-    %w(home documentation examples demo comments)
+    %w(home documentation examples demo comments changelog)
   end
   
   def h1(text)
@@ -29,7 +29,11 @@ module ApplicationHelper
   end
   
   def text_tag(tag, text)
-    content_tag(tag, text, :class => "sprite #{text.gsub(".", "").split(/[^\w]/).join("_").underscore.gsub(/\d+_/, "")}")
+    content_tag(tag, text, :class => "sprite #{css_classify(text)}")
+  end
+  
+  def css_classify(text)
+    text.gsub(".", "").split(/[^\w]/).join("_").underscore.gsub(/\d+_/, "")
   end
   
 end

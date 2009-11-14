@@ -1,0 +1,21 @@
+<%= h1 "Changelog" %>
+<p>
+  Because TopUp is evolving constantly, I have provided it's changelog below which by the way is always kept up-to-date.
+  If you are using TopUp yourself, you might want to <%= link_to "subscribe yourself", new_tracker_path, :toptions => "effect = fade, shaded = 1, overlayClose = 1, resizable = 0" %> as a TopUp tracker.
+  This saves you from always visiting this page to see whether new bugfixes or features have been added as you will receive the same changelog entry via mail at every new release when subscribed.
+</p>
+
+<ul id="changelog">
+<% CHANGELOG.each do |version, release| %>
+  <li class="release">
+    <h4><%= release.first %> &nbsp;<small><%= link_to "download", "http://gettopup.com/releases/packed/#{version}.tar.gz" %></small></h4>
+    <ul>
+      <% release[1..-1].each do |item| %>
+        <% unless item.blank? %>
+          <li><span>*</span><%= item.gsub(/^\*\s+/, "") %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>

@@ -49,7 +49,7 @@
 
   #page_menu
     margin-top: 1px
-    padding-left: 221px
+    padding-left: 155px
     text-align: center
     +absolute
 
@@ -97,6 +97,13 @@
           +sprite(!no, "-260px -312px")
         .selected
           background-position: -260px -333px !important
+        
+      &.changelog
+        a
+          width: 77px
+          +sprite(!no, "0 -1091px")
+        .selected
+          background-position: -77px -1091px !important
           
   #page_content
     padding: 16px 12px 50px 12px
@@ -383,6 +390,34 @@
 
         small.box, .submit
           margin-left: 170px
+      
+      #changelog
+        margin-top: 22px
+        list-style: none
+        
+        li.release
+          margin-left: 0
+          margin-bottom: 13px
+          padding: 12px
+          background-color: #002933 !important
+          border: 1px dashed #529796
+          
+          h4
+            font-weight: normal
+          
+          ul
+            margin-top: 8px
+            
+            li
+              margin-left: 4px
+              padding-left: 9px
+              list-style: none
+              
+              span
+                width: 11px
+                margin-left: -11px
+                display: block
+                float: left
 
     #secondary
       width: 240px
