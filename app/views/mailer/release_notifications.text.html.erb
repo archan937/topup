@@ -27,7 +27,7 @@
             <tr>
               <td style="padding: 0 15px">
                 <span style="padding: 15px; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%; background-color: #002933 !important; border: 1px dashed #529796;">
-                  <%= @tracker.unnotified_changelog.gsub("\n", "<br>") %>
+                  <%= @tracker.unnotified_changelog.gsub("\n", "<br>").gsub(/http\:\/\/[^\s]+/){|url| "<a href=\"#{url}\" style=\"color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white\">#{url}</a>"} %>
                 </span>
               </td>
             </tr>
