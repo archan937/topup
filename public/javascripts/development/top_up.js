@@ -297,7 +297,7 @@ TopUp = (function() {
         }
       }
     }
-    result.title = (result.title || "").gsub("{alt}", altText);
+    result.title = (result.title || "").replace("{alt}", altText);
 		
 		if (store) {
   		result.reference = result.reference ? jQuery(result.reference) : reference;
