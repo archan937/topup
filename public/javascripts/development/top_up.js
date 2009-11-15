@@ -282,6 +282,23 @@ TopUp = (function() {
 			result = jQuery.extend(result, opts);
 		}
 		
+		// added by Timo Besenreuther (2009-11-14) / modified by Paul Engel (2009-11-14)
+	  var altText = "";
+		if (result.topUp && (result.topUp != "") && ((parseInt(result.readAltText, 10) == 1) || (result.title && result.title.match("{alt}")))) {
+		  var topUp = jQuery(result.topUp);
+
+		  if (topUp.length) {
+    		var image = topUp.find("img");
+        if (image.length) {
+          altText = image.attr("alt") || "";
+        }
+        if (altText != "" && !(result.title && result.title.match("{alt}"))) {
+          result.title = "{alt}";
+        }
+      }
+    }
+    result.title = (result.title || "").gsub("{alt}", altText);
+		
 		if (store) {
   		result.reference = result.reference ? jQuery(result.reference) : reference;
       if (!result.type) {
@@ -323,22 +340,20 @@ TopUp = (function() {
 	var deriveGroup = function() {
 		if (options.group) {
 		
-			if (group && group.name == options.group) {
-				return;
-			}
-		
-			group = {name: options.group, items: jQuery([])};
-			jQuery.each(jQuery(selector), function(i, e) {
-	      if (!jQuery(e).is("[tu_group]")) {
-  			  jQuery(e).attr("tu_group", deriveOptions(null, deriveTopUpOptions(jQuery(e).bubbleDetect(selector))).group);
-  			}
+			if (!(group && group.name == options.group)) {
+  			group = {name: options.group, items: jQuery([])};
+  			jQuery.each(jQuery(selector), function(i, e) {
+  	      if (!jQuery(e).is("[tu_group]")) {
+    			  jQuery(e).attr("tu_group", deriveOptions(null, deriveTopUpOptions(jQuery(e).bubbleDetect(selector))).group);
+    			}
 
-				if (jQuery(e).attr("tu_group") == group.name) {
-					group.items = group.items.add(e);
-				}
-			});
+  				if (jQuery(e).attr("tu_group") == group.name) {
+  					group.items = group.items.add(e);
+  				}
+  			});
+			}
 			
-			var ids = jQuery.map(group.items, function(e, i){
+			var ids = jQuery.map(group.items, function(e, i) {
       						return "#" + jQuery(e).id();
     						});
 			index = options.topUp ? jQuery.inArray(options.topUp, ids) : -1;

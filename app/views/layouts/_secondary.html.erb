@@ -1,7 +1,7 @@
 <div id="secondary">
-  <%= h2 "Get the latest version" %>
+  <%= h2 "Get the latest version", false %>
   <div class="box">
-    <small>Current Release: 1.6.1</small>
+    <small>Current Release: 1.6.2</small>
     <%= link_to "Download TopUp", "http://gettopup.com/releases/packed/latest.tar.gz", :class => "download_top_up" %>
     <small>
       Want to keep track of new releases?
@@ -9,7 +9,7 @@
     </small>
   </div>
   
-  <%= h2 "About me" %>
+  <%= h2 "About me", false %>
   <p>
     My name is <%= mail_to "paul.engel@holder.nl", "Paul Engel" %>, I'm Dutch and I work at <%= link_to "Internetbureau Holder B.V.", "http://holder.nl" %> since February 2004.
     I develop websites in Ruby on Rails using a Mac.
@@ -18,14 +18,14 @@
     Other than <%= mail_to "paul.engel@holder.nl", "mail" %>, you can also contact me at <%= link_to "Twitter.com", "http://twitter.com/archan937" %>.
   </div>
   
-  <%= h2 "Post a comment" %>
+  <%= h2 "Post a comment", false %>
   <p>
     Do you have ideas, questions, requests or remarks about TopUp?
     <strong><%= link_to "Please post them", new_comment_path, :toptions => "effect = fade, shaded = 1, overlayClose = 1, resizable = 0" %></strong>.
     Any comment will be greatly appreciated!
   </p>
   
-  <%= h2 "Source at GitHub" %>
+  <%= h2 "Source at GitHub", false %>
   <div class="box">
     <div class="github">
       <%= link_to "GitHub project page", "http://github.com/archan937/topup/tree/master" %>
@@ -35,7 +35,7 @@
     </small>
   </div>
   
-  <%= h2 "License" %>
+  <%= h2 "License", false %>
   <div class="license">
     <small>
       Except otherwise noted, TopUp is licensed under
@@ -44,7 +44,7 @@
     </small>
   </div>
   
-  <%= h2 "Links" %>
+  <%= h2 "Links", false %>
   <ul>
     <li><%= link_to "Apple", "http://apple.com" %></li>
     <li><%= link_to "GitHub", "http://github.com" %></li>

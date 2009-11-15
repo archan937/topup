@@ -1,5 +1,10 @@
 = TopUp CHANGELOG
 
+== Version 1.6.2 (November 15, 2009)
+
+* Fixed minor bug concerning the group index when opening TopUp for the second time, an image was displayed two times (credits to Timo Besenreuther for reporting this bug)
+* Added the 'readAltText' toption to use the img alt text for the TopUp window title, you can pre and/or post fix it. See http://gettopup.com/documentation#available_toptions for more information (this feature was initiated by Timo Besenreuther)
+
 == Version 1.6.1 (November 11, 2009)
 
 * Made the script include for possible missing Javascript libraries more intelligent. It is at max only one(!) Javascript include. This solves the "jQuery(”#top_up .tu_frame").resizable is not a function" error and such (yay!)

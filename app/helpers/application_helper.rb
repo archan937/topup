@@ -16,20 +16,23 @@ module ApplicationHelper
     %w(home documentation examples demo comments changelog)
   end
   
-  def h1(text)
-    text_tag(:h1, text)
+  def h1(text, add_anchor = true)
+    text_tag(:h1, text, add_anchor)
   end
   
-  def h2(text)
-    text_tag(:h2, text)
+  def h2(text, add_anchor = true)
+    text_tag(:h2, text, add_anchor)
   end
   
   def span(text)
-    text_tag(:span, text)
+    text_tag(:span, text, false)
   end
   
-  def text_tag(tag, text)
-    content_tag(tag, text, :class => "sprite #{css_classify(text)}")
+  def text_tag(tag, text, add_anchor)
+    [
+      (content_tag(:a , nil , :name  => css_classify(text)) if add_anchor), 
+      (content_tag(tag, text, :class => "sprite #{css_classify(text)}"))
+    ].compact.join
   end
   
   def css_classify(text)

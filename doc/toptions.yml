@@ -26,6 +26,12 @@
   description: Title of the TopUp window.
   options:     String
 
+- name:        readAltText
+  default:     0
+  description: | If set to 1, TopUp will use the img alt (alternative) text as title, when present of course. Please note that the title toption will be overridden by the alt text. 
+                 There is a way to pre and/or postfix the alt text though, TopUp will gsub '{alt}' in the title toption with the alt text (e.g. 'Gallery {alt}' will be 'Gallery Photo 3').
+  options:     0 or 1
+
 - name:        layout
   default:     | 'dashboard'
   description: Layout in which the TopUp will appear.

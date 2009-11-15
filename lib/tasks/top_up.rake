@@ -106,6 +106,11 @@ namespace :top_up do
     File.delete(packed_symlink) if File.exists?(packed_symlink)
     File.symlink("#{args[:version]}.tar.gz", packed_symlink)
     
+    # Delete .DS_Store files
+    Dir.glob("#{releases_dir}/#{args[:version]}/**/.DS_Store") do |file|
+      File.delete(file)
+    end
+    
     # Pack release using tar
     system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
   end
