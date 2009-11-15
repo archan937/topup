@@ -282,23 +282,6 @@ TopUp = (function() {
 			result = jQuery.extend(result, opts);
 		}
 		
-		// added by Timo Besenreuther (2009-11-14) / modified by Paul Engel (2009-11-14)
-	  var altText = "";
-		if (result.topUp && (result.topUp != "") && ((parseInt(result.readAltText, 10) == 1) || (result.title && result.title.match("{alt}")))) {
-		  var topUp = jQuery(result.topUp);
-
-		  if (topUp.length) {
-    		var image = topUp.find("img");
-        if (image.length) {
-          altText = image.attr("alt") || "";
-        }
-        if (altText != "" && !(result.title && result.title.match("{alt}"))) {
-          result.title = "{alt}";
-        }
-      }
-    }
-    result.title = (result.title || "").replace("{alt}", altText);
-		
 		if (store) {
   		result.reference = result.reference ? jQuery(result.reference) : reference;
       if (!result.type) {
@@ -401,6 +384,23 @@ TopUp = (function() {
 		} else {
 			jQuery("#tu_overlay").hide();
 		}
+		
+		// added by Timo Besenreuther (2009-11-14) / modified by Paul Engel (2009-11-14)
+	  var altText = "";
+		if (options.topUp && (options.topUp != "") && ((parseInt(options.readAltText, 10) == 1) || (options.title && options.title.match("{alt}")))) {
+		  var topUp = jQuery(options.topUp);
+
+		  if (topUp.length) {
+    		var image = topUp.find("img");
+        if (image.length) {
+          altText = image.attr("alt") || "";
+        }
+        if (altText != "" && !(options.title && options.title.match("{alt}"))) {
+          options.title = "{alt}";
+        }
+      }
+    }
+    options.title = (options.title || "").replace("{alt}", altText).replace("{current}", group === null ? "" : (index + 1)).replace("{total}", group === null ? "" : group.items.length);
 	};	
 	var loadContent = function() {
 	  showLoader();

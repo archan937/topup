@@ -7,7 +7,7 @@ TopUp.addPresets({
     group: "images",
     layout: "quicklook",
     modal: 0,
-    title: "Example"
+    title: "Examples ({current} of {total})"
   },
   ".shaded": {
     shaded: 1

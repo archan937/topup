@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.2.1 (November 15, 2009)
+
+* Added {current} and {total} for using them as the current index and current group size in the TopUp window title respectively
+
 == Version 1.6.2 (November 15, 2009)
 
 * Fixed minor bug concerning the group index when opening TopUp for the second time, an image was displayed two times (credits to Timo Besenreuther for reporting this bug)
