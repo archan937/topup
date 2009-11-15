@@ -25,23 +25,46 @@
     Download and unpack the <%= link_to "latest TopUp version", "http://gettopup.com/releases/packed/latest.tar.gz" %>
   </li>
   <li>
-    Put the following in the <span class="code">head</span> element:
+    Copy the entire(!) <strong>jquery</strong> directory in the same directory as the TopUp Javascript file. TopUp will automatically determine which Javascript libraries
+    (jQuery and/or jQuery UI) to include from the <strong>jquery</strong> directory when missing.
+    Please note that TopUp will only include <strong>one</strong>(!) file to reduce the amount of HTTP requests! An include will look like this:
     <div class="box code">
-      &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
+      &lt;script type="text/javascript" src="path/to/your/jquery/*.js">&lt;/script>
     </div>
   </li>
   <li>
-    At default, TopUp assumes that the images reside at the same host of the javascript file within the path <span class="code">/images/top_up/</span>.
+    Copy the entire(!) <strong>images</strong> directory to the correct location.
+    At default, TopUp assumes that the images reside at the same host as the file itself in the following path <span class="code">/images/top_up/</span>.
     You can change the path (and even the host) by changing the variables <span class="code">TopUp.host</span> and <span class="code">TopUp.images_path</span> as the following:
     <div class="box code">
       &lt;script type="text/javascript"><br>
       &nbsp; TopUp.host = "http://www.anotherwebsite.com/";<br>
-      &nbsp; TopUp.images_path = "assets/top_up/";<br>
+      &nbsp; TopUp.images_path = "assets/images/top_up/";<br>
       &lt;/script>
     </div>
     <small>
       <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
     </small>
+  </li>
+  <li>
+    Copy the entire(!) <strong>players</strong> directory to the correct location.
+    At default, TopUp assumes that the players reside at the same host as the file itself in the following path <span class="code">/players/</span>.
+    You can change the path and host by changing the variables <span class="code">TopUp.host</span> and <span class="code">TopUp.players_path</span> as the following:
+    <div class="box code">
+      &lt;script type="text/javascript"><br>
+      &nbsp; TopUp.host = "http://www.anotherwebsite.com/";<br>
+      &nbsp; TopUp.players_path = "assets/players/";<br>
+      &lt;/script>
+    </div>
+    <small>
+      <strong>Note:&nbsp; The proper place for Rails developers would be the <span class="code">application.js</span></strong>
+    </small>
+  </li>
+  <li>
+    Now you start using TopUp on your webpages by putting the following in the <span class="code">head</span> element:
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
+    </div>
   </li>
 </ol>
 <p>
