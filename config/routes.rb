@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.demonstrate    "/demonstrate", :controller => "application", :action => "demonstrate"
   map.unsubscribe    "/unsubscribe/:unsubscription_code", :controller => "trackers", :action => "unsubscribe"
-  map.delete_comment "/delete_comment/:unsubscription_code", :controller => "comments", :action => "delete"
+  map.delete_comment "/delete_comment/:deletion_code", :controller => "comments", :action => "delete"
   
   # See how all your routes lay out with "rake routes"
 
