@@ -7,7 +7,7 @@
 </p>
 
 <ul id="tweets">
-<% Tweet.all(:conditions => "IFNULL(ignored, 0) != 1", :order => "tweeted_at DESC", :limit => 150).each do |tweet| %>
+<% Tweet.all(:conditions => "IFNULL(ignored, 0) != 1", :order => "tweeted_at DESC", :limit => 200).each do |tweet| %>
   <li>
     <%= link_to image_tag(tweet.profile_image_url), "http://twitter.com/#{tweet.from_user}", :class => "avatar" %>
     <div>
