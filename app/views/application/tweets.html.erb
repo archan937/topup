@@ -18,7 +18,7 @@
         <%= link_to tweet.from_user, "http://twitter.com/#{tweet.from_user}", :class => "user" %>
         &nbsp;-&nbsp;
         <span>
-          <%= distance_of_time_in_words tweet.tweeted_at.to_i, Time.now.to_i %>
+          <%= distance_of_time_in_words (tweet.tweeted_at + 1.hour).to_i, Time.now.to_i %>
           ago from
           <%= CGI.unescapeHTML tweet.source %>
         </span>
