@@ -2,12 +2,12 @@
 
 <p>
   You maybe think about TopUp as 'just another' Lightbox-like script and want to know what others think about this library.
-  Well, thanks to <%= link_to "@usejquery", "http://twitter.com/usejquery" %> TopUp got a huge popularity boost on Twitter. The last 150 tweets are listed below.
+  Well, thanks to <%= link_to "@usejquery", "http://twitter.com/usejquery" %> TopUp got a huge popularity boost on Twitter. The last <%= limit = 200 %> tweets are listed below.
   Take a look at some of the tweets and you'll read how enthousiastic others can get because of Topup. An easy setup, a cool look-and-feel and usability are some of the keypoints.
 </p>
 
 <ul id="tweets">
-<% Tweet.all(:conditions => "IFNULL(ignored, 0) != 1", :order => "tweeted_at DESC", :limit => 200).each do |tweet| %>
+<% Tweet.all(:conditions => "IFNULL(ignored, 0) != 1", :order => "tweeted_at DESC", :limit => limit).each do |tweet| %>
   <li>
     <%= link_to image_tag(tweet.profile_image_url), "http://twitter.com/#{tweet.from_user}", :class => "avatar" %>
     <div>
