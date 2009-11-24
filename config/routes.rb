@@ -37,6 +37,7 @@ ActionController::Routing::Routes.draw do |map|
   map.demo          "/demo", :controller => "application", :action => "demo"
   map.resources     :comments
   map.changelog     "/changelog", :controller => "application", :action => "changelog"
+  map.tweets        "/tweets", :controller => "application", :action => "tweets"
 
   map.resources :trackers, :collection => {:service_info => :get}
 

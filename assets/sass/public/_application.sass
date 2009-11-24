@@ -49,7 +49,7 @@
 
   #page_menu
     margin-top: 1px
-    padding-left: 155px
+    padding-left: 133px
     text-align: center
     +absolute
 
@@ -104,6 +104,13 @@
           +sprite(!no, "0 -1091px")
         .selected
           background-position: -77px -1091px !important
+        
+      &.tweets
+        a
+          width: 53px
+          +sprite(!no, "-154px -1091px")
+        .selected
+          background-position: -207px -1091px !important
           
   #page_content
     padding: 16px 12px 50px 12px
@@ -418,6 +425,62 @@
                 margin-left: -11px
                 display: block
                 float: left
+      
+      #tweets
+        margin-top: 22px
+        margin-right: 50px
+        li
+          margin: 0
+          padding: 14px 10px
+          list-style: none
+          +clearfix
+          border-top: 1px dashed #529796
+          
+          .avatar
+            float: left
+            border: 0
+            
+            img
+              width: 48px
+              height: 48px
+              padding-top: 2px
+          
+          div
+            width: 425px
+            margin-right: 10px
+            float: right
+            
+            p
+              margin: 0
+              font-family: Trebuchet MS
+              font-size: 13px
+              line-height: 17px
+              letter-spacing: 0.05px
+              
+              a
+                padding: 2px 5px
+                font-family: Georgia
+                font-size: 12px
+                font-style: italic
+                background: #002933
+                border: 0
+                &:hover
+                  color: #44BCC1
+                  background: #002933
+          
+            small
+              padding-top: 3px
+              display: block
+              font-family: Georgia
+              font-size: 12px
+              font-style: italic
+              
+              .user
+                padding: 1px 6px 3px 6px
+                background: #002933
+                border: 0
+                &:hover
+                  color: #44BCC1
 
     #secondary
       width: 240px

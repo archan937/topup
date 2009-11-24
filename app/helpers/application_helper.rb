@@ -13,7 +13,7 @@ module ApplicationHelper
   end
   
   def menu_items
-    %w(home documentation examples demo comments changelog)
+    %w(home documentation examples demo comments changelog tweets)
   end
   
   def h1(text, add_anchor = true)
