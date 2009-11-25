@@ -8,13 +8,10 @@ private
 
   def self.new_tweets
     client = TwitterSearch::Client.new("topup")
-    query  = "topup"
-    unless (max_tweet_id = maximum :tweet_id).nil?
-      query << " since_id:#{max_tweet_id}"
-    end
+    args   = {:q => "topup", :since_id => maximum(:tweet_id), :rpp => 100, :page => page = 1}
     
-    tweets = client.query(:q => query, :rpp => rpp = 100, :page => page = 1)
-    until (search_results = client.query(:q => query, :rpp => rpp, :page => page += 1)).empty?
+    tweets = client.query(args)
+    until (search_results = client.query(args.merge({:page => page += 1}))).empty?
       tweets.concat search_results
     end
     tweets.sort{|a, b| Time.parse(a.created_at) <=> Time.parse(b.created_at)}
