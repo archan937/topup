@@ -4,17 +4,20 @@ The #1 Javascript Pop Up / Lightbox
 
 == Introduction
 
-TopUp (http://gettopup.com) is an easy to use Javascript library for unobtrusively displaying images and webpages in a Web 2.0 approach of popups.
-The library is jQuery (http://jquery.com) and jQuery UI (http://jqueryui.com) driven in order to maintain cross-browser compatibility and compactness.
+TopUp ( http://gettopup.com ) is an easy to use Javascript library for unobtrusively displaying images and webpages in a Web 2.0 approach of popups.
+The library is jQuery ( http://jquery.com ) and jQuery UI ( http://jqueryui.com ) driven in order to maintain cross-browser compatibility and compactness.
 TopUp offers the following advantages:
 
-  * TopUp is absolutely free, also for commercial use (view the license at http://creativecommons.org/licenses/by-sa/3.0)
-  * A very easy setup process (only one include and nothing more, see http://gettopup.com#installation)
-  * Using TopUp presets (http://gettopup.com/examples#grouped_links) keeps your HTML code 100% clean, no extra code needed whatsoever
-  * The ability of displaying images, flash (from sites like Youtube, SWF and FLV files), movies (QuickTime, Windows Media and Realplayer), iframes, DOM elements and raw HTML
-  * TopUp can be used along with Prototype (http://prototypejs.org) (just include TopUp before Prototype)
-  * TopUp is compressed with Yahoo! YUI Compressor (http://developer.yahoo.com/yui/compressor/)
-  * Usage of CSS sprites to reduce the amount of image requests to two per layout for faster loading (http://developer.yahoo.com/performance/rules.html)
+  * TopUp is absolutely free, also for commercial use ( see also http://creativecommons.org/licenses/by-sa/3.0 )
+  * A very easy setup process ( only one include and nothing more, see http://gettopup.com#installation )
+  * Using TopUp presets ( http://gettopup.com/examples#grouped_links ) keeps your HTML code 100% clean, no extra 
+    code needed whatsoever
+  * The ability of displaying images, flash (from sites like Youtube, SWF and FLV files), movies (QuickTime, Windows 
+    Media and Realplayer), iframes, DOM elements and raw HTML
+  * TopUp can be used along with Prototype ( http://prototypejs.org ) (just include TopUp before Prototype)
+  * TopUp is compressed with Yahoo! YUI Compressor ( http://developer.yahoo.com/yui/compressor/ )
+  * Usage of CSS sprites to reduce the amount of image requests to two per layout for faster loading
+    ( see also http://developer.yahoo.com/performance/rules.html )
   * Fancy layouts, animations and transitions
   * Auto-correction of size and position when required
   * The possibility to create groups
@@ -29,8 +32,8 @@ TopUp is developed in a Rails application. This gives us many advantages:
 
   * We don't have to mess with the HTML and CSS TopUp injects into the webpage
       HTML: use the standard Rails view templates
-      CSS : use the power of SASS (http://sass-lang.com) to generate clean, correct and compact CSS
-      JS  : use the power of Jzip (http://github.com/archan937/jzip) for merging the different combinations of the requirements to separate files
+      CSS : use the power of SASS ( http://sass-lang.com ) to generate clean, correct and compact CSS
+      JS  : use the power of Jzip ( http://github.com/archan937/jzip ) for merging the different combinations of the requirements to separate files
   * Release and pack a new release easily with the use of rake tasks
   * Test TopUp easily by adjusting and testing the homepage examples for instance
 
@@ -90,7 +93,7 @@ For support, remarks and requests please mail me at paul.engel@holder.nl.
 == License
 Copyright (c) 2009 Paul Engel (Internetbureau Holder B.V.)
 Except otherwise noted, TopUp is licensed under http://creativecommons.org/licenses/by-sa/3.0
-http://gettopup.com - http://holder.nl - paul.engel@holder.nl - http://twitter.com/archan937 - http://twitter.com/gettopup
+http://gettopup.com - http://holder.nl - http://twitter.com/archan937 - http://twitter.com/gettopup
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
