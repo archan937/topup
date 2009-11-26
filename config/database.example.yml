@@ -1,0 +1,7 @@
+development:
+  adapter: mysql
+  database: top_up_development
+  username: foo
+  password: foo
+  host: localhost
+  encoding: utf8

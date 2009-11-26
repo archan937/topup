@@ -8,7 +8,7 @@ private
 
   def self.new_tweets
     client = TwitterSearch::Client.new("topup")
-    args   = {:q => "topup", :since_id => maximum(:tweet_id), :rpp => 100, :page => page = 1}
+    args   = {:q => "topup", :since_id => Tweet.maximum(:tweet_id), :rpp => 100, :page => page = 1}
     
     tweets = client.query(args)
     until (search_results = client.query(args.merge({:page => page += 1}))).empty?
