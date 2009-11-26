@@ -9,7 +9,7 @@ module ApplicationHelper
                 end :
                 controller.action_name.capitalize
     
-    "The #1 Javascript Pop Up - Get TopUp! - #{section}"
+    "The #1 Javascript Popup/Lightbox - Get TopUp! - #{section}"
   end
   
   def menu_items
