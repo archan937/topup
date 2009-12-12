@@ -49,7 +49,10 @@ class CommentsController < ApplicationController
   
   def delete
     comment = Comment.find_by_deletion_code(params[:deletion_code])
-    comment.destroy if comment
+    if comment
+      Tracker.all(:conditions => ["email_address = ?", comment.email_address]).each{|x| x.destroy}
+      comment.destroy
+    end
     redirect_to comments_path
   end
   

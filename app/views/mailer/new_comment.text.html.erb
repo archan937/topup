@@ -16,11 +16,11 @@
             <tr>
               <td style="padding: 15px">
                 <span style="padding: 5px 0; display: block; color: #FFFFFF; font-family: 'Lucida Grande', 'Arial'; font-size: 11px; line-height: 150%">
-                  A new comment has been posted
+                  A new comment has been 
                   <% if @comment.spam? %>
-                    and deleted.
+                    posted and deleted.
                   <% else %>
-                    Click here to <a href="http://gettopup.com/delete_comment/<%= @comment.deletion_code %>" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white">delete</a> this.
+                    posted. Click here to <a href="http://gettopup.com/delete_comment/<%= @comment.deletion_code %>" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dotted white">delete</a> this.
                   <% end %>
                 </span>
               </td>

@@ -24,7 +24,7 @@ class Comment < ActiveRecord::Base
   end
   
   def spam?
-    self.message.match(/^(Very good site\. Thanks\!\,|Nice site\. Thank you\.)/)
+    self.message.match(/^(Very good site\. Thanks\!\,|Nice site\. Thank you\.|hi <a[^>]+>[^<\/]+<\/a>\s*$)/)
   end
   
 end
