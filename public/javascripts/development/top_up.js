@@ -148,7 +148,7 @@ TopUp = (function() {
 
 				return this;
 			},
-			draggable: function(opts) {
+			draggableZ: function(opts) {
 			  var element = this;
 			  
         this.mousedown(function(event) {
@@ -997,7 +997,7 @@ TopUp = (function() {
           injectCode();
           bind();
         
-          jQuery("#top_up").draggable({only: ".te_title,.te_top *,.te_bottom *"});
+          jQuery("#top_up").draggableZ({only: ".te_title,.te_top *,.te_bottom *"});
           jQuery.each(on_ready, function(i, func) {
             func.apply();
           });

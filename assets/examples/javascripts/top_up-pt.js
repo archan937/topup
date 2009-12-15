@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.2.1 (Uncompressed) - Alpha release
+// * TopUp 1.6.2.2 (Uncompressed) - Alpha release
 // * The #1 Javascript Pop Up (http://gettopup.com)
 // *
 // * This library requires Prototype (http://prototypejs.org)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-11-15 23:14:41 +0100 (Sun, 15 November 2009) $
+// * $Date: 2009-12-15 15:27:34 +0100 (Tue, 15 December 2009) $
 // *
 
 TopUp = (function() {
