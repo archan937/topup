@@ -434,10 +434,11 @@ TopUp = (function() {
                                         classid : "clsid:D27CDB6E-AE6D-11CF-96B8-444553540000",
                                         codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                         style   : "display: none"});
+    var src = TopUp.host + TopUp.players_path + "flvplayer.swf";
                                         
-    object.appendChild(new Element("param", {name: "movie"    , value: TopUp.host + "/players/flvplayer.swf"}));
+    object.appendChild(new Element("param", {name: "movie"    , value: src}));
     object.appendChild(new Element("param", {name: "flashvars", value: "file=" + options.get("reference") + "&autostart=true"}));
-    object.appendChild(new Element("embed", {src        : TopUp.host + "/players/flvplayer.swf", 
+    object.appendChild(new Element("embed", {src        : src, 
                                              width      : options.get("width"), 
                                              height     : options.get("height"),
                                              flashvars  : "file=" + options.get("reference") + "&autostart=true",
@@ -871,6 +872,7 @@ TopUp = (function() {
 	return {
 		host: scriptHost,
 		images_path: "images/top_up/",
+		players_path: "players/",
 		init: function() {
 			if (initialized) {
 				return false;
