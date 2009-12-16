@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.2.2 (December 15, 2009)
+
+* Renamed the draggable() function to draggableZ() to prevent the jQuery UI draggable() function from being overriden
+
 == Version 1.6.2.1 (November 15, 2009)
 
 * Added {current} and {total} for using them as the current index and current group size in the TopUp window title respectively
