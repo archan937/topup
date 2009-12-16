@@ -32,7 +32,7 @@ TopUp = (function() {
 	var initialized = false, selector = null, on_ready = [], displaying = false, options = null, group = null, index = null, data = null;
 	var default_preset = {
 		layout: "dashboard",
-		effect: "transform",
+    effect: "transform",
 		resizable: 1
 	}, presets = {};
 	
@@ -61,6 +61,9 @@ TopUp = (function() {
 					jQuery(this).attr("id", id);
 				}
 				return jQuery(this).attr("id");
+			},
+			markerId: function() {
+			  return "_" + this.id() + "_marker";
 			},
 			bubbleDetect: function(selector, separator) {
 				var detected = null;
@@ -419,7 +422,16 @@ TopUp = (function() {
 			case "iframe":
 				options.content = jQuery('<iframe src="' + options.reference + '" frameborder="0" border="0"></iframe>'); break;
 			case "html": case "dom":
-				options.content = jQuery(options.reference); break;
+				var reference = jQuery(options.reference);
+				if (reference.context) {
+				  var marker = jQuery("<div></div>").attr({
+				                 id    :  reference.markerId(), 
+				                 class : (reference.is(":hidden") ? "hidden" : ""), 
+				                 style : "display: none"
+				               });
+				  options.content = jQuery("<div></div>").append(reference.before(marker).addClass("marked"));
+				}
+				break;
 			case "ajax": case "script":
 			  options.content = null;
 			  jQuery.ajax({url: options.reference, 
@@ -699,7 +711,7 @@ TopUp = (function() {
         jQuery("#top_up").fadeIn(fadeDuration(300), afterDisplay); break;
 			case "switch": case "clip":
 			  jQuery("#top_up").show("clip", {direction: "vertical"}, 500, afterDisplay); break;
-			default:
+			case "transform":
 			  var origin = jQuery(options.topUp);
 			  if (origin.children().length > 0) {
 			    origin = jQuery(origin.children()[0]);
@@ -713,6 +725,10 @@ TopUp = (function() {
 			                      height: 10};
 
         transform("from", dimensions, afterDisplay);
+        break;
+      default:
+			  jQuery("#top_up").show();
+			  afterDisplay();
 		}
 	};
 	var replace = function(callback) {
@@ -755,6 +771,14 @@ TopUp = (function() {
     }
 	};
   var clearContent = function() {
+    jQuery(".te_content .marked").each(function() {
+      var marker = jQuery("#" + jQuery(this).markerId());
+      if (marker.hasClass("hidden")) {
+        jQuery(this).hide();
+      }
+      marker.after(jQuery(this).removeClass("marked")).remove();
+    });
+    
     jQuery(".te_content").children().remove();
   };
   
@@ -962,7 +986,7 @@ TopUp = (function() {
         jQuery("#top_up").fadeOut(fadeDuration(300), afterHide); break;
       case "switch": case "clip":
         jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide); break;
-      default:
+      case "transform":
 			  var origin = jQuery(options.topUp);
 			  if (origin.children().length > 0) {
 			    origin = jQuery(origin.children()[0]);
@@ -976,6 +1000,10 @@ TopUp = (function() {
 			                      height: 10};
 			                     
 			  transform("to", dimensions, afterHide);
+			  break;
+      default:
+        jQuery("#top_up").hide();
+        afterHide();
     }
 		
 		jQuery("#tu_overlay").hide();
@@ -1024,11 +1052,25 @@ TopUp = (function() {
 			bind();
 		},
 		displayTopUp: function(element, opts) {
+		  if (!jQuery.isReady) {
+		    TopUp.ready(function() {
+		      TopUp.displayTopUp(element, opts);
+		    });
+		    return false;
+		  }
+
 		  var topUp = jQuery(element).bubbleDetect(selector);
 		  var toptions = deriveTopUpOptions(topUp, jQuery.extend(opts || {}, {trigger: "#" + jQuery(element).id()}));
   		TopUp.display(topUp.element.attr("href"), toptions);
 	  },
 		display: function(reference, opts) {
+		  if (!jQuery.isReady) {
+		    TopUp.ready(function() {
+		      TopUp.display(reference, opts);
+		    });
+		    return false;
+		  }
+		  
 			if (displaying) {
 				return false;
 			}
