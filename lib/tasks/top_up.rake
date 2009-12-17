@@ -12,9 +12,9 @@ namespace :top_up do
     ActionController::Base.append_view_path File.join(RAILS_ROOT, "app", "views")
     
     timestamp = Time.now
-    variables = [{:name => "css"   , :files => %w(style dashboard/style quicklook/style)},
+    variables = [{:name => "css"   , :files => %w(style dashboard/style quicklook/style flatlook/style)},
                  {:name => "ie7fix", :files => %w(dashboard/ie7fix)},
-                 {:name => "ie6fix", :files => %w(dashboard/ie6fix quicklook/ie6fix)},
+                 {:name => "ie6fix", :files => %w(dashboard/ie6fix quicklook/ie6fix flatlook/ie6fix)},
                  {:name => "iefix" , :files => %w(iefix)}].collect{ |variable|
       
       value = variable[:files].collect{ |file|
