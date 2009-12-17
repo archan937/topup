@@ -97,21 +97,30 @@ namespace :top_up do
     # Define variable
     releases_dir    = "#{RAILS_ROOT}/assets/releases"
     packed_dir      = "#{releases_dir}/packed"
-    packed_symlink  = "#{packed_dir}/latest.tar.gz"
+    packed_symlink  = "#{packed_dir}/latest.zip"
+    temp_dir        = "#{RAILS_ROOT}/tmp/release"
     
-    # Create directory
+    # Create directories
     FileUtils.mkdir_p(packed_dir)
+    FileUtils.rm_r(temp_dir) if File.exists?(temp_dir)
+    FileUtils.mkdir_p(temp_dir)
     
     # Create symbolic links
     File.delete(packed_symlink) if File.exists?(packed_symlink)
-    File.symlink("#{args[:version]}.tar.gz", packed_symlink)
+    File.symlink("#{args[:version]}.zip", packed_symlink)
     
     # Delete .DS_Store files
     Dir.glob("#{releases_dir}/#{args[:version]}/**/.DS_Store") do |file|
       File.delete(file)
     end
     
+    # Copy the release to the temp directory
+    FileUtils.cp_r "#{releases_dir}/#{args[:version]}/.", "../../../#{temp_dir}"
+    %w(jquery top_up-min.js).each do |path|
+      File.delete "#{temp_dir}/#{path}"
+    end
+    
     # Pack release using tar
-    system "cd #{releases_dir} && tar -cvzf packed/#{args[:version]}.tar.gz #{args[:version]}"
+    system "cd #{RAILS_ROOT}/tmp && zip packed/#{args[:version]}.zip release"
   end
 end

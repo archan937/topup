@@ -8,7 +8,7 @@
 <ul id="changelog">
 <% CHANGELOG.each do |version, release| %>
   <li class="release">
-    <h4><%= release.first %> &nbsp;<small><%= link_to "download", "http://gettopup.com/releases/packed/#{version}.tar.gz" %></small></h4>
+    <h4><%= release.first %> &nbsp;<small><%= link_to "download", download_url_for(version) %></small></h4>
     <ul>
       <% release[1..-1].each do |item| %>
         <% unless item.blank? %>
