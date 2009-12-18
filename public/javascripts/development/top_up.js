@@ -17,7 +17,7 @@ var scriptHost = (function deriveScriptHost() {
 
 // *
 // * TopUp {version} (Uncompressed)
-// * The #1 Javascript Pop Up (http://gettopup.com)
+// * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
 // *
@@ -430,6 +430,7 @@ TopUp = (function() {
 				                 style : "display: none"
 				               });
 				  options.content = jQuery("<div></div>").append(reference.before(marker).addClass("marked"));
+				  reference.show();
 				}
 				break;
 			case "ajax": case "script":
@@ -735,8 +736,7 @@ TopUp = (function() {
 		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
-      moveContent("temp_up");
-      wrapper.remove();
+      wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
       
 	    if (callback) {
 			  callback.apply([], [jQuery("#top_up .te_content").id()]);
@@ -808,21 +808,23 @@ TopUp = (function() {
 	  }
 
 	  var animation = function() {
+	    var cb = function() {
+                 callback.apply();
+                 options.content.removeClass("te_overflow");
+               };
+	    
 	    var onReady = direction == "to" ?
                       function() {
-                        topUp.fadeOut(fadeDuration(250), callback)
-                             .removeClass("te_overflow");
-                      } :
-                      function() {
-                        callback.apply();
-                        topUp.removeClass("te_overflow");
-                      };
+                        topUp.fadeOut(fadeDuration(100), cb);
+                      } : cb;
 
 	    topUp          .animate({top: opts.to.top, left: opts.to.left}, opts.duration);
 	    options.content.animate({width:  opts.to.width, 
 	                             height: opts.to.height}, opts.duration, onReady);
 	  };
 	  
+    options.content.addClass("te_overflow");
+    
     if (direction == "from") {
       topUp          .css({top:   dimensions.top,   left:   dimensions.left});
       options.content.css({width: dimensions.width, height: dimensions.height});
@@ -830,9 +832,8 @@ TopUp = (function() {
       jQuery(".te_top_up,.te_content").unlockDimensions();
       
       topUp.hide()
-           .addClass("te_overflow")
            .removeClass("te_transparent")
-           .fadeIn(fadeDuration(300), animation);
+           .fadeIn(fadeDuration(150), animation);
     } else {
       animation.apply();
     }
