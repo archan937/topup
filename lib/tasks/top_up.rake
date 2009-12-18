@@ -38,6 +38,7 @@ namespace :top_up do
     
     # Create files
     File.open("public/javascripts/top_up-pt.js"         , "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
+    File.open("public/javascripts/top_up.js"            , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
     File.open("assets/examples/javascripts/top_up.js"   , "w").puts(parse_library("top_up"   , variables, args[:version], timestamp))
     File.open("assets/examples/javascripts/top_up-pt.js", "w").puts(parse_library("top_up-pt", variables, args[:version], timestamp, true))
     FileUtils.cp_r("assets/examples/.", release_dir)
@@ -106,7 +107,7 @@ namespace :top_up do
     FileUtils.mkdir_p(temp_dir)
     
     # Create symbolic links
-    File.delete(packed_symlink) if File.exists?(packed_symlink)
+    File.delete(packed_symlink)
     File.symlink("#{args[:version]}.zip", packed_symlink)
     
     # Delete .DS_Store files
@@ -115,12 +116,12 @@ namespace :top_up do
     end
     
     # Copy the release to the temp directory
-    FileUtils.cp_r "#{releases_dir}/#{args[:version]}/.", "../../../#{temp_dir}"
+    FileUtils.cp_r "#{releases_dir}/#{args[:version]}", temp_dir
     %w(jquery top_up-min.js).each do |path|
-      File.delete "#{temp_dir}/#{path}"
+      File.delete "#{temp_dir}/#{args[:version]}/#{path}"
     end
     
     # Pack release using tar
-    system "cd #{RAILS_ROOT}/tmp && zip packed/#{args[:version]}.zip release"
+    system "cd #{temp_dir} && zip -r #{packed_dir}/#{args[:version]}.zip #{args[:version]}"
   end
 end
