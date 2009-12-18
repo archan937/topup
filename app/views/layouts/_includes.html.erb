@@ -29,12 +29,12 @@
 <% end %>
 
 <% if RAILS_ENV == "development" %>
-	<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style" %>
+	<%= stylesheet_link_tag "top_up/style", "top_up/dashboard/style", "top_up/quicklook/style", "top_up/flatlook/style" %>
 	<!--[if IE]>
 	  <%= stylesheet_link_tag "top_up/iefix" %>
 	<![endif]-->
 	<!--[if IE 6]>
-	  <%= stylesheet_link_tag "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix" %>
+	  <%= stylesheet_link_tag "top_up/dashboard/ie6fix", "top_up/quicklook/ie6fix", "top_up/flatlook/ie6fix" %>
 	<![endif]-->
 	<!--[if IE 7]>
 	  <%= stylesheet_link_tag "top_up/dashboard/ie7fix" %>
