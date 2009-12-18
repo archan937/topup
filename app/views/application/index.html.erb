@@ -70,19 +70,13 @@
       </small>
     </li>
     <li>  
-      <%= link_to image_tag("thumbnails/google.jpg"), "http://www.google.nl", :toptions => "width = 800, height = 400, type = iframe, title = Google search, layout = quicklook" %>
+      <%= link_to image_tag("thumbnails/google.jpg"), "http://www.google.nl", :toptions => "width = 1000, height = 500, type = iframe, title = Google search, layout = quicklook" %>
       <small>
-        width: 800, height: 400, type: iframe, title: Google search, layout: quicklook
+        width: 1000, height: 500, type: iframe, title: Google search, layout: quicklook
       </small>
     </li>
   </ul>
   <ul>
-    <li>
-      <%= link_to image_tag("thumbnails/youtube.jpg"), "http://www.youtube.com/v/pv8j1-IcnUE&hl=nl&fs=1&rel=0&hd=1&autoplay=1", :toptions => "width = 853, height = 505, type = flash, title = Beastie Boys - Sabotage" %>
-      <small>
-        width: 853, height: 505, type: flash, title: Beastie Boys - Sabotage
-      </small>
-    </li>
     <li>
       <%= link_to image_tag("thumbnails/swf.jpg"), "http://uploads.ungrounded.net/0/31_tupac.swf", :toptions => "width = 550, height = 400, title = How Mr. T killed Tupac, effect = switch" %>
       <small>
@@ -93,6 +87,18 @@
       <%= link_to image_tag("thumbnails/flv.jpg"), "/media/brucelee.flv", :toptions => "width = 425, height = 344, title = Bruce Lee - Like Water" %>
       <small>
         width: 425, height: 344, title: Bruce Lee - Like Water
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/dom.jpg"), "#hidden_element_1", :toptions => "width = 400, type = dom, title = Hidden element #1, layout = quicklook" %>
+      <small>
+        width: 400, type: dom, title: Hidden element #1, layout: quicklook
+      </small>
+    </li>
+    <li>
+      <%= link_to image_tag("thumbnails/youtube.jpg"), "http://www.youtube.com/v/pv8j1-IcnUE&hl=nl&fs=1&rel=0&hd=1&autoplay=1", :toptions => "width = 853, height = 505, type = flash, title = Beastie Boys - Sabotage" %>
+      <small>
+        width: 853, height: 505, type: flash, title: Beastie Boys - Sabotage
       </small>
     </li>
     <li>
@@ -107,14 +113,31 @@
         width: 767, height: 591, title: Windows Media Player 12, layout: quicklook
       </small>
     </li>
-    <li>
-      <%= link_to image_tag("thumbnails/realplayer.jpg"), "http://darfhurl.euro.real.com/darf/?prod=rn_video&filename=M6/RealOne-Europe-20081120-150242-rn_gratis_recording-_NEED4SPEED-M6rC.rm", :toptions => "width = 396, height = 298, title = Need For Speed: Undercover, layout = quicklook" %>
-      <small>
-        width: 396, height: 298, title: Need For Speed Undercover, layout: quicklook
-      </small>
-    </li>
   </ul>
   <div class="clear"></div>
+</div>
+
+<div id="hidden_element_1" class="hidden" style="display: none">
+  <h1>Hello, world!</h1>
+  <h2>Hi, this is hidden element #1</h2>
+  <p>
+    <%= link_to_function "Next element", "TopUp.display('#hidden_element_2', {width: 400, type: 'dom', title: 'Hidden element #2', layout: 'quicklook'})" %>
+  </p>
+</div>
+<div id="hidden_element_2" class="hidden" style="display: none">
+  <h1>Hello, again!</h1>
+  <h2>Hi, this is hidden element #2</h2>
+  <p>
+    <%= link_to_function "Previous element", "TopUp.display('#hidden_element_1', {width: 400, type: 'dom', title: 'Hidden element #1', layout: 'quicklook'})" %>
+    <%= link_to_function "Next element"    , "TopUp.display('#hidden_element_3', {width: 400, type: 'dom', title: 'Hidden element #3', layout: 'quicklook'})" %>
+  </p>
+</div>
+<div id="hidden_element_3" class="hidden" style="display: none">
+  <h1>Ok, now it's getting irritating! :P</h1>
+  <h2>Hi, this is hidden element #3</h2>
+  <p>
+    <%= link_to_function "Previous element", "TopUp.display('#hidden_element_2', {width: 400, type: 'dom', title: 'Hidden element #2', layout: 'quicklook'})" %>
+  </p>
 </div>
 
 <%= h1 "How to use" %>
@@ -141,7 +164,7 @@
 </h3>
 <ol>
   <li>
-    Download and unpack the <%= link_to "latest TopUp version", "http://gettopup.com/releases/packed/latest.tar.gz" %>
+    Download and unpack the <%= link_to "latest TopUp version", "http://gettopup.com/releases/packed/latest.zip" %>
   </li>
   <li>
     Put the following in the <span class="code">head</span> element:
