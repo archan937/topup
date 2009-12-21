@@ -285,6 +285,15 @@ TopUp = (function() {
 			result = jQuery.extend(result, opts);
 		}
 		
+		if (result.ondisplay && !jQuery.isFunction(result.ondisplay)) {
+		  var fdisplay     = result.ondisplay;
+		  result.ondisplay = function() {eval(fdisplay)};
+		}
+		if (result.onclose && !jQuery.isFunction(result.onclose)) {
+		  var fclose     = result.onclose;
+		  result.onclose = function() {eval(fclose)};
+		}
+		
 		if (store) {
   		result.reference = result.reference ? jQuery(result.reference) : reference;
       if (!result.type) {
@@ -299,22 +308,22 @@ TopUp = (function() {
 		return result;
 	};
 	var deriveType = function(reference) {
-	  if (reference.toLowerCase().match(/\.(gif|jpg|jpeg|png)$/)) {
+	  if (reference.toLowerCase().match(/\.(gif|jpg|jpeg|png)(\?[0123456789]+)?$/)) {
 	    return "image";
 	  }
-	  if (reference.toLowerCase().match(/\.(swf)$/)) {
+	  if (reference.toLowerCase().match(/\.(swf)(\?[0123456789]+)?$/)) {
 	    return "flash";
 	  }
-	  if (reference.toLowerCase().match(/\.(flv)$/)) {
+	  if (reference.toLowerCase().match(/\.(flv)(\?[0123456789]+)?$/)) {
 	    return "flashvideo";
 	  }
-	  if (reference.toLowerCase().match(/\.(aif|aiff|aac|au|bmp|gsm|mov|mid|midi|mpg|mpeg|m4a|m4v|mp4|psd|qt|qtif|qif|qti|snd|tif|tiff|wav|3g2|3gp|wbmp)$/)) {
+	  if (reference.toLowerCase().match(/\.(aif|aiff|aac|au|bmp|gsm|mov|mid|midi|mpg|mpeg|m4a|m4v|mp4|psd|qt|qtif|qif|qti|snd|tif|tiff|wav|3g2|3gp|wbmp)(\?[0123456789]+)?$/)) {
 	    return "quicktime";
 	  }
-	  if (reference.toLowerCase().match(/\.(ra|ram|rm|rpm|rv|smi|smil)$/)) {
+	  if (reference.toLowerCase().match(/\.(ra|ram|rm|rpm|rv|smi|smil)(\?[0123456789]+)?$/)) {
 	    return "realplayer";
 	  }
-	  if (reference.toLowerCase().match(/\.(asf|avi|wma|wmv)$/)) {
+	  if (reference.toLowerCase().match(/\.(asf|avi|wma|wmv)(\?[0123456789]+)?$/)) {
 	    return "windowsmedia";
 	  }
 	  return "ajax";

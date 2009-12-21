@@ -1,5 +1,10 @@
 = TopUp CHANGELOG
 
+== Version 1.6.3.1 (December 21, 2009)
+
+* Fixed handling the ondisplay and onclose callbacks when specified as toptions(!) (reported by TikkTakk-Aicon). Specify this as follows: ' toptions="ondisplay = alert(\"Hello world!\");" '
+* Being able to determine the type automatically (thanks to Clement Joubert) even when the reference contains a timestamp (e.g. example.jpg?1256518937)
+
 == Version 1.6.3 (December 21, 2009)
 
 * Automatically calling TopUp.display (or TopUp.displayTopUp) with jQuery(document).ready() when necessary. In other words: you can call TopUp.display() whenever you want and TopUp will be displayed a.s.a.p. and thus also on page load (yay!)
