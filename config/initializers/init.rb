@@ -9,5 +9,7 @@ CHANGELOG = File.readlines("CHANGELOG").inject(ActiveSupport::OrderedHash.new){ 
             }
 
 require "lib/support"
+require "lib/extensions"
+require "lib/random_hex"
 require "lib/notification_service"
 require "lib/twitter/search"

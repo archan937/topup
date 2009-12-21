@@ -205,7 +205,7 @@ TopUp = (function() {
 	};
 	var bind = function() {
 		var coptions = ["[class*=x]"];
-		jQuery.each(["db", "ql", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
+		jQuery.each(["db", "ql", "fl", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
       coptions.push("[class*=_" + coption + "]");
     });
     
@@ -244,8 +244,8 @@ TopUp = (function() {
       if (c.match(/^tu_/)) {
         jQuery.each(c.replace(/^tu_/, "").split("_"), function(j, coption) {
           switch(coption) {
-            case "db": case "ql":
-      		    toptions["layout"] = {"db": "dashboard", "ql": "quicklook"}[coption]; break;
+            case "db": case "ql": case "fl":
+      		    toptions["layout"] = {"db": "dashboard", "ql": "quicklook", "fl": "flatlook"}[coption]; break;
       		  case "image": case "html": case "dom": case "iframe": case "ajax": case "script":
               toptions["type"] = coption; break;
             default:
@@ -425,9 +425,9 @@ TopUp = (function() {
 				var reference = jQuery(options.reference);
 				if (reference.context) {
 				  var marker = jQuery("<div></div>").attr({
-				                 id    :  reference.markerId(), 
-				                 class : (reference.is(":hidden") ? "hidden" : ""), 
-				                 style : "display: none"
+				                 id     :  reference.markerId(), 
+				                 "class": (reference.is(":hidden") ? "hidden" : ""), 
+				                 style  : "display: none"
 				               });
 				  options.content = jQuery("<div></div>").append(reference.before(marker).addClass("marked"));
 				  reference.show();
@@ -648,7 +648,7 @@ TopUp = (function() {
 	  }
 	  
 	  switch(options.type) {
-	    case "image": case "iframe":
+	    case "image": case "html": case "dom": case "iframe":
 			  options.resize = options.content;
 			  jQuery(".te_content").removeClass("te_scrollable");
 			  break;
@@ -891,7 +891,7 @@ TopUp = (function() {
 	  
 	  if (!dimensions) {
 	    options.resize.unlockDimensions();
-	    if (jQuery.inArray(options.type, ["image", "iframe"]) != -1) {
+	    if (jQuery.inArray(options.type, ["image", "html", "dom", "iframe"]) != -1) {
 	      jQuery("#temp_up .te_content").unlockDimensions();
 	    }
 	    
@@ -1011,6 +1011,7 @@ TopUp = (function() {
 	};
 	
 	return {
+	  version: "{version}",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",

@@ -1,5 +1,18 @@
 = TopUp CHANGELOG
 
+== Version 1.6.3 (December 21, 2009)
+
+* Automatically calling TopUp.display (or TopUp.displayTopUp) with jQuery(document).ready() when necessary. In other words: you can call TopUp.display() whenever you want and TopUp will be displayed a.s.a.p. and thus also on page load (yay!)
+* Added the 'flatlook' layout
+* Added examples for inline DOM elements
+* Added text shadow CSS to the title element in the 'dashboard' layout
+* Added TopUp.version so you can call it's version
+* Not showing scrollbars anymore when using the 'transform' effect for iframes, HTML and DOM elements
+* Fixed TopUp resizing when displaying HTML or inline DOM elements within Topup
+* Corrected the TopUp implementation for rendering inline DOM elements
+* Cleaned up the effect determination a bit, this concerns the default and 'transform' effect
+* FYI: TopUp releases are packed in .zip files from now on (yay!)
+
 == Version 1.6.2.2 (December 15, 2009)
 
 * Renamed the draggable() function to draggableZ() to prevent the jQuery UI draggable() function from being overriden

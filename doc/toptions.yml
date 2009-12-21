@@ -35,7 +35,7 @@
 - name:        layout
   default:     | 'dashboard'
   description: Layout in which the TopUp will appear.
-  options:     | 'dashboard', 'quicklook'
+  options:     | 'dashboard', 'quicklook', 'flatlook'
 
 - name:        width
   default:     auto
@@ -60,7 +60,7 @@
 - name:        effect
   default:     | 'transform'
   description: Effect of how the TopUp will show and hide.
-  options:     | 'transform', 'appear' (alias is 'fade'), 'switch' (alias is 'clip')
+  options:     | 'transform', 'appear' (alias is 'fade'), 'switch' (alias is 'clip'), 'show' (alias is 'hide')
 
 - name:        modal
   default:     0

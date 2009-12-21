@@ -267,8 +267,8 @@ TopUp = (function() {
     var coptions = top_up.classNames().select(function(x) { return x.match(/^tu_/) });
     coptions.each(function(c) {
       c.sub(/^tu_/, "").split("_").each(function(coption) {
-        if ($w("db ql").include(coption)) {
-          var layoutRefs = {db: "dashboard", ql: "quicklook"};
+        if ($w("db ql fl").include(coption)) {
+          var layoutRefs = {db: "dashboard", ql: "quicklook", fl: "flatlook"};
           toptions.set("layout", layoutRefs[coption]);
         }
         if ($w("image html dom iframe ajax script").include(coption)) {
@@ -870,6 +870,7 @@ TopUp = (function() {
 	};
   
 	return {
+	  version: "{version}",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",

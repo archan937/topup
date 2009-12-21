@@ -65,18 +65,16 @@ namespace :top_up do
       variables.each_with_index{|variable, i| index = i if line.match variable[:regexp]}
       
       if index.nil?
-        line.match("// *") ?
-          line.gsub(/\{(version|year|date)\}/) do |matched|
-            case matched
-            when "{version}"
-              version
-            when "{year}"
-              timestamp.year.to_s
-            when "{date}"
-              timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
-            end
-          end : 
-          line
+        line.gsub(/\{(version|year|date)\}/) do |matched|
+          case matched
+          when "{version}"
+            version
+          when "{year}"
+            timestamp.year.to_s
+          when "{date}"
+            timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
+          end
+        end
       else
         variable   = variables[index]
         wrap_style = variable[:name] != "html" && !prototype
