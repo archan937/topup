@@ -3,7 +3,7 @@ class Mailer < ActionMailer::Base
   def new_comment(comment)
     @recipients      = "paul.engel@holder.nl"
     @from            = "GetTopUp.com <no-reply@gettopup.com>"
-    @subject         = "New comment posted"
+    @subject         = "New comment posted#{" and deleted" if comment.spam?}"
     @body["comment"] = comment
   end
   
