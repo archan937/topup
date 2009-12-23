@@ -1,0 +1,2 @@
+TopUp offers you to group links together so you can navigate between them in the TopUp.
+In most cases the group feature is used for image galleries, but TopUp provides you the ability to group ANY type of links together.

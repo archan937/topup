@@ -95,9 +95,9 @@
 - name:        ondisplay
   default:     null
   description: This will be called after the TopUp dialog is opened or updated.
-  options:     Function
+  options:     | When calling TopUp.display() or TopUp.displayTopUp() a function, when specified as a toption the body of the function (e.g. toptions="ondisplay = alert('Hi!')")
 
 - name:        onclose
   default:     null
   description: This will be called after the TopUp dialog is closed.
-  options:     Function
+  options:     | When calling TopUp.display() or TopUp.displayTopUp() a function, when specified as a toption the body of the function (e.g. toptions="onclose = alert('Bye!')")

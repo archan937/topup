@@ -1,0 +1,40 @@
+<div id="hidden_element_1" class="hidden" style="display: none">
+  <h1>Hello, world!</h1>
+  <h2>Hi, this is hidden element #1</h2>
+  <hr>
+  <p>
+    TopUp.update(function() {
+    <%= text_area_tag "update_html", 
+                      "this.append(\"<h3 style='padding: 18px 0 45px 0; text-align: center'>Hi, this is appended HTML content!</h3>\");", 
+                      :style => "width: 350px; height: 75px; margin-left: 10px; display: block; font-family: Arial; font-size: 11px" %>
+});
+    <div class="clear"></div>
+    <%= link_to_function "Update TopUp", "TopUp.update(function() { eval(jQuery('#update_html').val()); })", :style => "margin: 12px 0 18px 0", :wrapped => true %>
+    <div class="clear"></div>
+  </p>
+  <hr>
+  <p>
+    <%= link_to_function "Next" , "TopUp.display('#hidden_element_2', {topUp: '#dom_example', width: 400, type: 'dom', title: 'Hidden element #2', layout: 'flatlook'})", :class => "left", :wrapped => true %>
+    <%= link_to_function "Close", "TopUp.close()", :class => "right", :wrapped => true %>
+    <div class="clear"></div>
+  </p>
+</div>
+<div id="hidden_element_2" class="hidden" style="display: none">
+  <h1>Hello, again!</h1>
+  <h2>Hi, this is hidden element #2</h2>
+  <p>
+    <%= link_to_function "Previous", "TopUp.display('#hidden_element_1', {topUp: '#dom_example', width: 400, type: 'dom', title: 'Hidden element #1', layout: 'flatlook', resizable: 0})", :wrapped => true %>
+    <%= link_to_function "Next"    , "TopUp.display('#hidden_element_3', {topUp: '#dom_example', width: 400, type: 'dom', title: 'Hidden element #3', layout: 'flatlook'})", :wrapped => true %>
+    <%= link_to_function "Close"   , "TopUp.close()", :class => "right", :wrapped => true %>
+    <div class="clear"></div>
+  </p>
+</div>
+<div id="hidden_element_3" class="hidden" style="display: none">
+  <h1>Ok, now it's getting irritating! :P</h1>
+  <h2>Hi, this is hidden element #3</h2>
+  <p>
+    <%= link_to_function "Previous", "TopUp.display('#hidden_element_2', {topUp: '#dom_example', width: 400, type: 'dom', title: 'Hidden element #2', layout: 'flatlook'})", :wrapped => true %>
+    <%= link_to_function "Close"   , "TopUp.close()", :class => "right", :wrapped => true %>
+    <div class="clear"></div>
+  </p>
+</div>

@@ -204,14 +204,14 @@ TopUp = (function() {
 	  jQuery(html).appendTo("body");
 	};
 	var bind = function() {
-		var coptions = ["[class*=x]"];
+		var coptions = ["[class^=tu_][class*=x]"];
 		jQuery.each(["db", "ql", "fl", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
-      coptions.push("[class*=_" + coption + "]");
+      coptions.push("[class^=tu_][class*=_" + coption + "]");
     });
     
-		selector = jQuery.merge([".top_up", "[toptions]", "[class^=tu_]:" + coptions.join(",")], jQuery.keys(presets)).join();
+		selector = jQuery.merge([".top_up", "[toptions]", coptions.join(",")], jQuery.keys(presets)).join();
 		
-		jQuery(selector).bind("click", topUpClick);
+		jQuery(selector).live("click", topUpClick);
 		jQuery(document).bind("keypress", documentKeyPress);
 	};
   var fadeDuration = function(duration) {
@@ -748,7 +748,11 @@ TopUp = (function() {
       wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
       
 	    if (callback) {
-			  callback.apply([], [jQuery("#top_up .te_content").id()]);
+	      var arg = jQuery("#temp_up .te_content");
+	      if (jQuery.inArray(options.type, ["html", "dom"]) != -1) {
+	        arg = arg.children().eq(0);
+	      }
+			  callback.apply(arg);
       } else {
         clearContent();
 	      setContent();
@@ -1104,10 +1108,6 @@ TopUp = (function() {
         return;
       }
       
-		  options.type = "html";
-      options.resize = jQuery("#temp_up .te_content");
-		  jQuery(".te_content").addClass("te_scrollable");
-		  
 		  replace(func || function() {});
 		},
 		previous: function() {

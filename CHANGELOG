@@ -1,5 +1,10 @@
 = TopUp CHANGELOG
 
+== Version 1.6.4 (December 22, 2009)
+
+* Adjusted TopUp.update() a bit which enables you to manipulate the currently displayed TopUp content (for an example, click on the inline DOM example at http://gettopup.com/#some_examples)
+* Using live() instead of bind() from now which makes TopUp.rebind() obsolete (reminded by Christoffer)
+
 == Version 1.6.3.1 (December 21, 2009)
 
 * Fixed handling the ondisplay and onclose callbacks when specified as toptions(!) (reported by TikkTakk-Aicon). Specify this as follows: ' toptions="ondisplay = alert(\"Hello world!\");" '

@@ -9,14 +9,14 @@
 - call:        TopUp.ready(func)
   description: You can pass functions to the TopUp module which will be called when the page is finished loading.
 
-- call:        TopUp.rebind()
-  description: This instructs the TopUp module to rebind all the TopUp elements on the current page (usually links).
-
 - call:        | TopUp.displayTopUp(element, opts)
   description: This is the wrapper function for TopUp.display() which is called when you click on a TopUp element.
 
 - call:        | TopUp.display(reference, opts)
   description: This is the core function which shows the TopUp.
+
+- call:        | TopUp.update(func)
+  description: Calling this enables you to update the currently displayed content in the TopUp dialog. The 'this' reference inside the function is the jQuery element of the content container.<br>For an example, please click on the <a href='/#some_examples'>inline DOM example</a> on the homepage.
 
 - call:        TopUp.previous()
   description: | Displays the previous entry within the group current. If there is no current group, nothing will happen.

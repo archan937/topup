@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.3.1 (Uncompressed)
+// * TopUp 1.6.4 (Uncompressed)
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-12-21 23:50:31 +0100 (Mon, 21 December 2009) $
+// * $Date: 2009-12-23 07:29:13 +0100 (Wed, 23 December 2009) $
 // *
 
 TopUp = (function() {
@@ -204,14 +204,14 @@ TopUp = (function() {
 	  jQuery(html).appendTo("body");
 	};
 	var bind = function() {
-		var coptions = ["[class*=x]"];
+		var coptions = ["[class^=tu_][class*=x]"];
 		jQuery.each(["db", "ql", "fl", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
-      coptions.push("[class*=_" + coption + "]");
+      coptions.push("[class^=tu_][class*=_" + coption + "]");
     });
     
-		selector = jQuery.merge([".top_up", "[toptions]", "[class^=tu_]:" + coptions.join(",")], jQuery.keys(presets)).join();
+		selector = jQuery.merge([".top_up", "[toptions]", coptions.join(",")], jQuery.keys(presets)).join();
 		
-		jQuery(selector).bind("click", topUpClick);
+		jQuery(selector).live("click", topUpClick);
 		jQuery(document).bind("keypress", documentKeyPress);
 	};
   var fadeDuration = function(duration) {
@@ -748,7 +748,11 @@ TopUp = (function() {
       wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
       
 	    if (callback) {
-			  callback.apply([], [jQuery("#top_up .te_content").id()]);
+	      var arg = jQuery("#temp_up .te_content");
+	      if (jQuery.inArray(options.type, ["html", "dom"]) != -1) {
+	        arg = arg.children().eq(0);
+	      }
+			  callback.apply(arg);
       } else {
         clearContent();
 	      setContent();
@@ -1020,7 +1024,7 @@ TopUp = (function() {
 	};
 	
 	return {
-	  version: "1.6.3.1",
+	  version: "1.6.4",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",
@@ -1104,10 +1108,6 @@ TopUp = (function() {
         return;
       }
       
-		  options.type = "html";
-      options.resize = jQuery("#temp_up .te_content");
-		  jQuery(".te_content").addClass("te_scrollable");
-		  
 		  replace(func || function() {});
 		},
 		previous: function() {
