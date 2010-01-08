@@ -24,7 +24,7 @@ class Comment < ActiveRecord::Base
   end
   
   def spam?
-    self.message.match(/(^Very good site\. Thanks\!\,|^Nice site\. Thank you\.|^hi <a[^>]+>[^<\/]+<\/a>\s*$|http\:\/\/(ui\-patterns\.com|tezzels\.net)\/users\/\d+\#\d|freehostia\.com|\b(porn|sex|nude|xxx|fuck|playboy|\[\\url\])\b)/) ||
+    self.message.downcase.match(/(^Very good site\. Thanks\!\,|^Nice site\. Thank you\.|^hi <a[^>]+>[^<\/]+<\/a>\s*$|http\:\/\/(ui\-patterns\.com|tezzels\.net)\/users\/\d+\#\d|freehostia\.com|\b(porn|sex|nude|xxx|fuck|playboy)\b|\[\\url\])/) ||
     self.message.count_matches(/<a([^>]+)?>[^<\/]+<\/a>/) > 8
   end
   
