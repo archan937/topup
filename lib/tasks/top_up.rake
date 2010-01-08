@@ -115,7 +115,7 @@ namespace :top_up do
     
     # Copy the release to the temp directory
     FileUtils.cp_r "#{releases_dir}/#{args[:version]}", temp_dir
-    %w(jquery top_up-min.js).each do |path|
+    %w(jquery top_up-min.js top_up.js top_up-pt.js).each do |path|
       File.delete "#{temp_dir}/#{args[:version]}/#{path}"
     end
     
