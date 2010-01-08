@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.5 (January 8, 2010)
+
+* Minor fix: not showing the scrollbar when calling TopUp.update() anymore
+
 == Version 1.6.4 (December 23, 2009)
 
 * Adjusted TopUp.update() a bit which enables you to manipulate the currently displayed TopUp content. For an example, click on the inline DOM example at http://gettopup.com/#some_examples

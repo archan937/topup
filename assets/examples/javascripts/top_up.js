@@ -16,16 +16,16 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.4 (Uncompressed)
+// * TopUp 1.6.5 (Uncompressed)
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
 // *
-// * (c) 2009 Paul Engel (Internetbureau Holder B.V.)
+// * (c) 2010 Paul Engel (Internetbureau Holder B.V.)
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2009-12-23 07:29:13 +0100 (Wed, 23 December 2009) $
+// * $Date: 2010-01-08 16:28:51 +0100 (Fri, 08 January 2010) $
 // *
 
 TopUp = (function() {
@@ -742,6 +742,10 @@ TopUp = (function() {
 		}
 	};
 	var replace = function(callback) {
+    var isScrollable = jQuery("#top_up .te_content").hasClass("te_scrollable");
+    if (isScrollable) {
+      jQuery("#top_up .te_content").removeClass("te_scrollable");
+    }
 		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
@@ -757,8 +761,11 @@ TopUp = (function() {
         clearContent();
 	      setContent();
       }
-      setDimensions();
+      if (isScrollable) {
+        jQuery("#top_up .te_content").addClass("te_scrollable");
+      }
       
+      setDimensions();
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
@@ -1024,7 +1031,7 @@ TopUp = (function() {
 	};
 	
 	return {
-	  version: "1.6.4",
+	  version: "1.6.5",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",

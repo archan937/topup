@@ -742,6 +742,10 @@ TopUp = (function() {
 		}
 	};
 	var replace = function(callback) {
+    var isScrollable = jQuery("#top_up .te_content").hasClass("te_scrollable");
+    if (isScrollable) {
+      jQuery("#top_up .te_content").removeClass("te_scrollable");
+    }
 		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
@@ -757,8 +761,11 @@ TopUp = (function() {
         clearContent();
 	      setContent();
       }
-      setDimensions();
+      if (isScrollable) {
+        jQuery("#top_up .te_content").addClass("te_scrollable");
+      }
       
+      setDimensions();
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
