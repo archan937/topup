@@ -517,11 +517,15 @@ TopUp = (function() {
         break;
     }
     
-    if (type == "flashvideo") {
-      params.flashvars = "file=" + src + "&autostart=true";
-      src              = TopUp.host + TopUp.players_path + "flvplayer.swf";
-      params.src       = src;
-      params.movie     = src;
+    switch(type) {
+      case "flash": case "flashvideo":
+        params.allowfullscreen = "true";
+      case "flashvideo":
+        params.flashvars = "file=" + src + "&autostart=true";
+        src              = TopUp.host + TopUp.players_path + "flvplayer.swf";
+        params.src       = src;
+        params.movie     = src;
+        break;
     }
     
     object_attrs.codebase = codebase;
@@ -560,13 +564,15 @@ TopUp = (function() {
                                                    codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                                    style   : "display: none"});
                                         
-    object.append(jQuery("<param></param>").attr({name: "src", value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "src"            , value: options.reference}));
+    object.append(jQuery("<param></param>").attr({name: "allowfullscreen", value: "true"}));
     
-    object.append(jQuery("<embed></embed>").attr({src        : options.reference,
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  type       : "application/x-shockwave-flash",
-                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.append(jQuery("<embed></embed>").attr({src            : options.reference,
+                                                  width          : options.width,
+                                                  height         : options.height,
+                                                  allowfullscreen: "true",
+                                                  type           : "application/x-shockwave-flash",
+                                                  pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
     options.content.append(object);
@@ -579,15 +585,17 @@ TopUp = (function() {
                                                    codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                                    style   : "display: none"});
                                                    
-    object.append(jQuery("<param></param>").attr({name: "movie"    , value: TopUp.host + TopUp.players_path + "flvplayer.swf"}));
-    object.append(jQuery("<param></param>").attr({name: "flashvars", value: "file=" + options.reference + "&autostart=true"}));
+    object.append(jQuery("<param></param>").attr({name: "movie"          , value: TopUp.host + TopUp.players_path + "flvplayer.swf"}));
+    object.append(jQuery("<param></param>").attr({name: "flashvars"      , value: "file=" + options.reference + "&autostart=true"}));
+    object.append(jQuery("<param></param>").attr({name: "allowfullscreen", value: "true"}));
                                         
-    object.append(jQuery("<embed></embed>").attr({src        : TopUp.host + TopUp.players_path + "flvplayer.swf", 
-                                                  width      : options.width,
-                                                  height     : options.height,
-                                                  flashvars  : "file=" + options.reference + "&autostart=true",
-                                                  type       : "application/x-shockwave-flash",
-                                                  pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.append(jQuery("<embed></embed>").attr({src            : TopUp.host + TopUp.players_path + "flvplayer.swf", 
+                                                  width          : options.width,
+                                                  height         : options.height,
+                                                  flashvars      : "file=" + options.reference + "&autostart=true",
+                                                  allowfullscreen: "true",
+                                                  type           : "application/x-shockwave-flash",
+                                                  pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.content = jQuery("<div></div>").attr({width: options.width, height: options.height});
     options.content.append(object);

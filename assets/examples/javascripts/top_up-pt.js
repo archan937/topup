@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.5 (Uncompressed) - Alpha release
+// * TopUp 1.6.6 (Uncompressed) - Alpha release
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires Prototype (http://prototypejs.org)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2010-01-08 16:28:51 +0100 (Fri, 08 January 2010) $
+// * $Date: 2010-01-12 07:04:55 +0100 (Tue, 12 January 2010) $
 // *
 
 TopUp = (function() {
@@ -417,12 +417,15 @@ TopUp = (function() {
                                         codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                         style   : "display: none"});
                                         
-    object.appendChild(new Element("param", {name: "src", value: options.get("reference")}));
-    object.appendChild(new Element("embed", {src        : options.get("reference"), 
-                                             width      : options.get("width"), 
-                                             height     : options.get("height"),
-                                             type       : "application/x-shockwave-flash",
-                                             pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.appendChild(new Element("param", {name: "src"            , value: options.get("reference")}));
+    object.appendChild(new Element("param", {name: "allowfullscreen", value: "true"}));
+    
+    object.appendChild(new Element("embed", {src            : options.get("reference"), 
+                                             width          : options.get("width"), 
+                                             height         : options.get("height"),
+                                             allowfullscreen: "true",
+                                             type           : "application/x-shockwave-flash",
+                                             pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height")}));
     options.get("content").appendChild(object);
@@ -436,14 +439,17 @@ TopUp = (function() {
                                         style   : "display: none"});
     var src = TopUp.host + TopUp.players_path + "flvplayer.swf";
                                         
-    object.appendChild(new Element("param", {name: "movie"    , value: src}));
-    object.appendChild(new Element("param", {name: "flashvars", value: "file=" + options.get("reference") + "&autostart=true"}));
-    object.appendChild(new Element("embed", {src        : src, 
-                                             width      : options.get("width"), 
-                                             height     : options.get("height"),
-                                             flashvars  : "file=" + options.get("reference") + "&autostart=true",
-                                             type       : "application/x-shockwave-flash",
-                                             pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.appendChild(new Element("param", {name: "movie"          , value: src}));
+    object.appendChild(new Element("param", {name: "flashvars"      , value: "file=" + options.get("reference") + "&autostart=true"}));
+    object.appendChild(new Element("param", {name: "allowfullscreen", value: "true"}));
+    
+    object.appendChild(new Element("embed", {src            : src, 
+                                             width          : options.get("width"), 
+                                             height         : options.get("height"),
+                                             flashvars      : "file=" + options.get("reference") + "&autostart=true",
+                                             allowfullscreen: "true",
+                                             type           : "application/x-shockwave-flash",
+                                             pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height")}));
     options.get("content").appendChild(object);
@@ -870,7 +876,7 @@ TopUp = (function() {
 	};
   
 	return {
-	  version: "1.6.5",
+	  version: "1.6.6",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",
