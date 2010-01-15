@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.6 (Uncompressed)
+// * TopUp 1.6.7 (Uncompressed)
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2010-01-12 07:04:55 +0100 (Tue, 12 January 2010) $
+// * $Date: 2010-01-15 13:54:26 +0100 (Fri, 15 January 2010) $
 // *
 
 TopUp = (function() {
@@ -755,6 +755,8 @@ TopUp = (function() {
       jQuery("#top_up .te_content").removeClass("te_scrollable");
     }
 		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
+	  var focusedElement = jQuery("#top_up .te_content :focus");
+		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
       wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
@@ -774,6 +776,7 @@ TopUp = (function() {
       }
       
       setDimensions();
+      
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
@@ -781,6 +784,7 @@ TopUp = (function() {
 	    jQuery("#top_up .te_content").animate(animation, 400, function() {
 	      moveContent("top_up");
         jQuery("#top_up").removeCenterWrap();
+	      focusedElement.focus();
 	      afterDisplay();
       });
     });
@@ -1039,7 +1043,7 @@ TopUp = (function() {
 	};
 	
 	return {
-	  version: "1.6.6",
+	  version: "1.6.7",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",
