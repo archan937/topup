@@ -754,7 +754,6 @@ TopUp = (function() {
     if (isScrollable) {
       jQuery("#top_up .te_content").removeClass("te_scrollable");
     }
-		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 	  var focusedElement = jQuery("#top_up .te_content :focus");
 		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
