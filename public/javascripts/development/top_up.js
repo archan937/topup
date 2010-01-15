@@ -747,6 +747,8 @@ TopUp = (function() {
       jQuery("#top_up .te_content").removeClass("te_scrollable");
     }
 		var wrapper = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
+	  var focusedElement = jQuery("#top_up .te_content :focus");
+		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
       wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
@@ -766,6 +768,7 @@ TopUp = (function() {
       }
       
       setDimensions();
+      
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
@@ -773,6 +776,7 @@ TopUp = (function() {
 	    jQuery("#top_up .te_content").animate(animation, 400, function() {
 	      moveContent("top_up");
         jQuery("#top_up").removeCenterWrap();
+	      focusedElement.focus();
 	      afterDisplay();
       });
     });
