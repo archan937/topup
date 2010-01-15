@@ -1,15 +1,16 @@
 class Tweet < ActiveRecord::Base
   
   def self.sink #;)
-    store new_tweets "topup"
-    store new_tweets "gettopup"
+    since_id = Tweet.maximum(:tweet_id)
+    store new_tweets("topup"   , since_id)
+    store new_tweets("gettopup", since_id)
   end
   
 private
 
-  def self.new_tweets(criteria)
+  def self.new_tweets(criteria, since_id = nil)
     client = TwitterSearch::Client.new("topup")
-    args   = {:q => criteria, :since_id => Tweet.maximum(:tweet_id), :rpp => 100, :page => page = 1}
+    args   = {:q => criteria, :since_id => since_id, :rpp => 100, :page => page = 1}
     
     tweets = client.query(args)
     until (search_results = client.query(args.merge({:page => page += 1}))).empty?

@@ -6,19 +6,17 @@ namespace :seat_holder do
     end
     
     timestamp = Time.now
-    javascript = File.open("public/javascripts/seat_holder.js").readlines.collect{ |line|
-      line.match("// *") ?
-        line.gsub(/\{(version|year|date)\}/) do |matched|
-          case matched
-          when "{version}"
-            args[:version]
-          when "{year}"
-            timestamp.year.to_s
-          when "{date}"
-            timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
-          end
-        end : 
-        line
+    javascript = File.open("public/javascripts/development/seat_holder.js").readlines.collect{ |line|
+      line.gsub(/\{(version|year|date)\}/) do |matched|
+        case matched
+        when "{version}"
+          args[:version]
+        when "{year}"
+          timestamp.year.to_s
+        when "{date}"
+          timestamp.strftime("%Y-%m-%d %H:%M:%S +0100 (%a, %d %B %Y)")
+        end
+      end
     }
     
     # Define variables
@@ -28,11 +26,11 @@ namespace :seat_holder do
     
     # Create directories
     FileUtils.rm_r(release_dir) if File.exists?(release_dir)
-    FileUtils.mkdir_p(release_dir)
+    FileUtils.mkdir_p("#{release_dir}/jquery")
     
     # Create files
     File.open("#{release_dir}/seat_holder.js", "w").puts(javascript)
-    FileUtils.cp("public/javascripts/jquery.js", release_dir)
+    FileUtils.cp("public/javascripts/jquery/core.js", "#{release_dir}/jquery")
     
     # Create symbolic links
     File.delete(release_symlink) if File.exists?(release_symlink)

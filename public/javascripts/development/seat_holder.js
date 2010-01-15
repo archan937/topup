@@ -140,6 +140,7 @@ SeatHolder = (function() {
   };
   
 	return {
+	  version: "{version}",
 		selector: "[seatholder]",
 		hintColor: "#AAA",
 		init: function() {
@@ -155,13 +156,19 @@ SeatHolder = (function() {
 }());
 
 (function () {
+  var missing_libs = [];
+  
   if (typeof(jQuery) == "undefined") {
-    var src = scriptElement.getAttribute("src").replace(/seat_holder(\-min)?\.js.*$/, "jquery.js");
+    missing_libs.push("core");
+  }
+  
+  if (missing_libs.length == 0) {
+    SeatHolder.init();
+  } else {
+    var src = scriptElement.getAttribute("src").replace(/(development\/)?seat_holder(\-min)?\.js.*$/, "jquery/" + missing_libs.join(".") + ".js");
     document.write('<script src="' + src + '" type="text/javascript" ' + 
                            'onload="SeatHolder.init()" onreadystatechange="SeatHolder.init()">' +
                    '</script>');
-  } else {
-    SeatHolder.init();
   }
 }());
 

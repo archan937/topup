@@ -417,12 +417,15 @@ TopUp = (function() {
                                         codebase: "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
                                         style   : "display: none"});
                                         
-    object.appendChild(new Element("param", {name: "src", value: options.get("reference")}));
-    object.appendChild(new Element("embed", {src        : options.get("reference"), 
-                                             width      : options.get("width"), 
-                                             height     : options.get("height"),
-                                             type       : "application/x-shockwave-flash",
-                                             pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.appendChild(new Element("param", {name: "src"            , value: options.get("reference")}));
+    object.appendChild(new Element("param", {name: "allowfullscreen", value: "true"}));
+    
+    object.appendChild(new Element("embed", {src            : options.get("reference"), 
+                                             width          : options.get("width"), 
+                                             height         : options.get("height"),
+                                             allowfullscreen: "true",
+                                             type           : "application/x-shockwave-flash",
+                                             pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height")}));
     options.get("content").appendChild(object);
@@ -436,14 +439,17 @@ TopUp = (function() {
                                         style   : "display: none"});
     var src = TopUp.host + TopUp.players_path + "flvplayer.swf";
                                         
-    object.appendChild(new Element("param", {name: "movie"    , value: src}));
-    object.appendChild(new Element("param", {name: "flashvars", value: "file=" + options.get("reference") + "&autostart=true"}));
-    object.appendChild(new Element("embed", {src        : src, 
-                                             width      : options.get("width"), 
-                                             height     : options.get("height"),
-                                             flashvars  : "file=" + options.get("reference") + "&autostart=true",
-                                             type       : "application/x-shockwave-flash",
-                                             pluginspage: "http://get.adobe.com/flashplayer/"}));
+    object.appendChild(new Element("param", {name: "movie"          , value: src}));
+    object.appendChild(new Element("param", {name: "flashvars"      , value: "file=" + options.get("reference") + "&autostart=true"}));
+    object.appendChild(new Element("param", {name: "allowfullscreen", value: "true"}));
+    
+    object.appendChild(new Element("embed", {src            : src, 
+                                             width          : options.get("width"), 
+                                             height         : options.get("height"),
+                                             flashvars      : "file=" + options.get("reference") + "&autostart=true",
+                                             allowfullscreen: "true",
+                                             type           : "application/x-shockwave-flash",
+                                             pluginspage    : "http://get.adobe.com/flashplayer/"}));
     
     options.set("content", new Element("div", {width: options.get("width"), height: options.get("height")}));
     options.get("content").appendChild(object);
