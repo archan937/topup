@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.7 (January 15, 2010)
+
+* Minor tweak within the TopUp.replace() function, not losing input focus anymore after updating the TopUp content
+
 == Version 1.6.6 (January 12, 2010)
 
 * Enabled viewing Flash content fullscreen (requested by jqueryO)
