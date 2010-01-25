@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.8 (January 25, 2010)
+
+* Fixed bug when calling TopUp.display() with type: 'html'
+
 == Version 1.6.7 (January 15, 2010)
 
 * Minor tweak within the TopUp.replace() function, not losing input focus anymore after updating the TopUp content

@@ -440,6 +440,8 @@ TopUp = (function() {
 				               });
 				  options.content = jQuery("<div></div>").append(reference.before(marker).addClass("marked"));
 				  reference.show();
+				} else {
+				  options.content = jQuery("<div></div>").append(reference);
 				}
 				break;
 			case "ajax": case "script":
