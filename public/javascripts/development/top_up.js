@@ -754,11 +754,16 @@ TopUp = (function() {
     if (isScrollable) {
       jQuery("#top_up .te_content").removeClass("te_scrollable");
     }
+    
 	  var focusedElement = jQuery("#top_up .te_content :focus");
 		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
-      wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
+      if (options.storeCurrent) {
+	      wrapper.addClass("te_stored_content").hide().find(".te_stored_content").before(wrapper);
+	    } else {
+        wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
+      }
       
 	    if (callback) {
 	      var arg = jQuery("#temp_up .te_content");
@@ -810,7 +815,7 @@ TopUp = (function() {
       marker.after(jQuery(this).removeClass("marked")).remove();
     });
     
-    jQuery(".te_content").children().remove();
+    jQuery(".te_content").children(":not(.te_stored_content)").remove();
   };
   
   var transform = function(direction, dimensions, callback) {
@@ -981,6 +986,8 @@ TopUp = (function() {
   };
 	
 	var hide = function(callback) {
+	  jQuery(".te_content .te_stored_content").removeClass("te_stored_content");
+	  
 	  var duration = fadeDuration(250);
 	  var onReady = function() {
 	    animateHide(callback);
@@ -1127,6 +1134,19 @@ TopUp = (function() {
       }
       
 		  replace(func || function() {});
+		},
+		restore: function(storeCurrent, callback) {
+		  options.storeCurrent = storeCurrent;
+		  options.ondisplay    = callback;
+
+		  TopUp.update(function() {
+		    clearContent();
+		    var stored_content = this.children(":not(.te_stored_content):first-child").prev();
+		    if (!stored_content.length) {
+		      stored_content = this.children(".te_stored_content:last-child");
+		    }
+        stored_content.children().insertBefore(stored_content).end().end().remove();
+		  });
 		},
 		previous: function() {
 			navigateInGroup(-1);
