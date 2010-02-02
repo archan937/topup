@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Grouped links - Using a TopUp preset</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/example.css"/>
+    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+  </head>
+  <body>
+	<div id="page_background"></div>
+	  <div id="page_wrapper">
+	    <div id="page_header" onclick="document.location.href = 'http://gettopup.com'">
+	      <h2>TopUp</h2>
+        <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
+      </div>
+	    <div id="page_content">
+  <div id="description">
+    <h2>TopUp preset</h2>
+    <p>
+      Specifying a TopUp preset is just like specifying style attributes to a CSS selector in your stylesheet.
+      The great advantage of using presets is that it provides you to keep your HTML <strong>entirely(!)</strong> clean.
+    </p>
+    <p>
+      Just call <code>TopUp.addPresets()</code> with a hash as parameter.<br>
+      The key of each entry has to be a CSS selector and the value has to be a hash of toptions.
+    </p>
+    <p>
+      So for grouping links, just specify <code>group: [name]</code> in the preset.
+    </p>
+  </div>
+  <h2>Demo</h2>
+  <div id="demo">
+    <div id="examples">
+      <a href="photos/by-ben-adamson.jpg"><img src="thumbnails/by-ben-adamson.jpg"/></a>
+      <a href="photos/2.jpg"><img src="thumbnails/2.jpg"/></a>
+      <a href="photos/3.jpg"><img alt="At Sunset" src="thumbnails/3.jpg"/></a>
+    </div>
+    <script type="text/javascript">
+      TopUp.addPresets({
+        "#examples a": {
+          title: "Gallery {alt} ({current} of {total})",
+          group: "examples",
+          readAltText: 1,
+          shaded: 1
+        }
+      });
+    </script>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
