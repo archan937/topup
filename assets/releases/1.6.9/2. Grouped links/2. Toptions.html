@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Single links - Using Toptions</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/example.css"/>
+    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+  </head>
+  <body>
+	<div id="page_background"></div>
+	  <div id="page_wrapper">
+	    <div id="page_header" onclick="document.location.href = 'http://gettopup.com'">
+	      <h2>TopUp</h2>
+        <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
+      </div>
+	    <div id="page_content">
+  <div id="description">
+    <h2>Toptions</h2>
+    <p>
+      Just add a <code>toptions</code> attribute with "group = [name]" to your TopUp elements.
+    </p>
+  </div>
+  <h2>Demo</h2>
+  <div id="demo">
+    <a href="photos/by-ben-adamson.jpg" toptions="group = links, effect = clip"><img src="thumbnails/by-ben-adamson.jpg"/></a>
+    <a href="http://smashingmagazine.com" toptions="group = links, shaded = 1, type = iframe, effect = fade, width = 1010, height = 600, layout = quicklook">Smashing Magazine</a>
+    <input type="button" value="Open Google" href="http://www.google.nl" toptions="group = links, type = iframe, effect = fade, width = 900, height = 475, overlayClose = 1, layout = quicklook"/>
+  </div>
+      </div>
+    </div>
+  </body>
+</html>

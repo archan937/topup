@@ -761,7 +761,7 @@ TopUp = (function() {
 		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
-      if (options.storeCurrent) {
+      if (parseInt(options.storeCurrent, 10) == 1) {
 	      wrapper.addClass("te_stored_content").hide().find(".te_stored_content").before(wrapper);
 	    } else {
         wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
@@ -1138,7 +1138,7 @@ TopUp = (function() {
 		  replace(func || function() {});
 		},
 		restore: function(storeCurrent, callback) {
-		  options.storeCurrent = storeCurrent;
+		  options.storeCurrent = storeCurrent ? 1 : 0;
 		  options.ondisplay    = callback;
 
 		  TopUp.update(function() {

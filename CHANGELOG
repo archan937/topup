@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.6.9 (February 2, 2010)
+
+* Introduced the toption 'storeCurrent' and TopUp.restore(). This enables you to 'store' the currently displayed content when rendering new content. As the function name describes: calling TopUp.restore() restores the stored content. Please note that this function still needs to be tweaked a bit. Storing multiple isn't possible at the moment (to be continued).
+
 == Version 1.6.8 (January 25, 2010)
 
 * Fixed bug when calling TopUp.display() with type: 'html'

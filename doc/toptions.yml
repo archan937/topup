@@ -15,6 +15,11 @@
   default:     0
   description: | If set to 1, TopUp will use the POST method for Ajax request. This requires the type to be either 'ajax' or 'script'.
   options:     0 or 1
+  
+- name:        storeCurrent
+  default:     0
+  description: | If set to 1, TopUp will store the currently displayed content. Call TopUp.restore() to restore the stored content.
+  options:     0 or 1
 
 - name:        parameters
   default:     | ''

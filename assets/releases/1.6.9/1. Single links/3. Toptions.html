@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Single links - Using Toptions</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/example.css"/>
+    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+  </head>
+  <body>
+	<div id="page_background"></div>
+	  <div id="page_wrapper">
+	    <div id="page_header" onclick="document.location.href = 'http://gettopup.com'">
+	      <h2>TopUp</h2>
+        <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
+      </div>
+	    <div id="page_content">
+  <div id="description">
+    <h2>Toptions</h2>
+    <p>
+      Other than TopUp classes or presets, you can also use plain old options to customize your TopUp element (so called toptions).
+    </p>
+    <p>
+      Just add the <code>toptions</code> attribute to your TopUp element.<br>
+      A toption is specified as "[name] = [value]", use the comma (",") as a seperator between toptions.
+    </p>
+  </div>
+  <h2>Demo</h2>
+  <div id="demo">
+    <a href="photos/1.jpg" toptions="effect = clip"><img src="thumbnails/1.jpg"/></a>
+    <a href="photos/2.jpg" toptions="shaded = 1"><img src="thumbnails/2.jpg"/></a>
+    <input type="button" value="Open Google" href="http://www.google.nl" toptions="type = iframe, effect = fade, width = 800, height = 600, overlayClose = 1"/>
+  </div>
+      </div>
+    </div>
+  </body>
+</html>

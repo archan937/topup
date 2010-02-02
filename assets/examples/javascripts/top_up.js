@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.6.8 (Uncompressed)
+// * TopUp 1.6.9 (Uncompressed)
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires jQuery (http://jquery.com)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2010-01-25 22:06:09 +0100 (Mon, 25 January 2010) $
+// * $Date: 2010-02-02 12:08:16 +0100 (Tue, 02 February 2010) $
 // *
 
 TopUp = (function() {
@@ -756,11 +756,16 @@ TopUp = (function() {
     if (isScrollable) {
       jQuery("#top_up .te_content").removeClass("te_scrollable");
     }
+    
 	  var focusedElement = jQuery("#top_up .te_content :focus");
 		var wrapper        = jQuery("#top_up .te_content").lockDimensions().wrapInner("<div></div>").children();
 		
 	  wrapper.fadeOut(fadeDuration(250), function() {
-      wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
+      if (parseInt(options.storeCurrent, 10) == 1) {
+	      wrapper.addClass("te_stored_content").hide().find(".te_stored_content").before(wrapper);
+	    } else {
+        wrapper.children().appendTo("#temp_up .te_content").end().end().remove();
+      }
       
 	    if (callback) {
 	      var arg = jQuery("#temp_up .te_content");
@@ -812,7 +817,7 @@ TopUp = (function() {
       marker.after(jQuery(this).removeClass("marked")).remove();
     });
     
-    jQuery(".te_content").children().remove();
+    jQuery(".te_content").children(":not(.te_stored_content)").remove();
   };
   
   var transform = function(direction, dimensions, callback) {
@@ -983,6 +988,8 @@ TopUp = (function() {
   };
 	
 	var hide = function(callback) {
+	  jQuery(".te_content .te_stored_content").removeClass("te_stored_content");
+	  
 	  var duration = fadeDuration(250);
 	  var onReady = function() {
 	    animateHide(callback);
@@ -1044,7 +1051,7 @@ TopUp = (function() {
 	};
 	
 	return {
-	  version: "1.6.8",
+	  version: "1.6.9",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",
@@ -1129,6 +1136,19 @@ TopUp = (function() {
       }
       
 		  replace(func || function() {});
+		},
+		restore: function(storeCurrent, callback) {
+		  options.storeCurrent = storeCurrent ? 1 : 0;
+		  options.ondisplay    = callback;
+
+		  TopUp.update(function() {
+		    clearContent();
+		    var stored_content = this.children(":not(.te_stored_content):first-child").prev();
+		    if (!stored_content.length) {
+		      stored_content = this.children(".te_stored_content:last-child");
+		    }
+        stored_content.children().insertBefore(stored_content).end().end().remove();
+		  });
 		},
 		previous: function() {
 			navigateInGroup(-1);
