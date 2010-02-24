@@ -1,4 +1,4 @@
-.te_dashboard
+html body .te_dashboard
   .te_content
     margin-bottom: -13px
   .te_controls
@@ -44,7 +44,9 @@
       filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/bottom_right.png" , sizingMethod="crop" )
 
   .te_controls
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/controls.png"     , sizingMethod="crop" )
+    // an AlphaImageLoader in front of another AlphaImageLoader sometimes causes problems
+    // fall back to plain rectangle behind the arrows
+    background: #505455
   .te_previous_link
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/top_up/dashboard/previous.png"     , sizingMethod="crop" )
   .te_next_link
