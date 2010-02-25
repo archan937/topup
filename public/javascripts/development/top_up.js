@@ -96,12 +96,17 @@ TopUp = (function() {
 			},
 			centerWrap: function(compare) {
 				var current = {width: this.outerWidth(), height: this.outerHeight()}, delta = {width: 0, height: 0}, diff = 0;
-					
+				
+				// fix problem with adjusting height in safari
+        // topup used to gradually move down
+        compare.find(".te_frame").css('display', 'block');
+				
         diff = compare.outerWidth() - current.width;
         if (delta.width < diff) {
           delta.width = diff;
         }
         diff = compare.outerHeight() - current.height;
+        
         if (delta.height < diff) {
           delta.height = diff;
         }
@@ -144,11 +149,21 @@ TopUp = (function() {
 				
 				return this;
 			},
-			removeCenterWrap: function() {
+			removeCenterWrap: function(newTopUpWidth) {
 				var position = jQuery("#tu_center_wrapper").offset();
-				var delta = {width: jQuery("#tu_center_wrapper").outerWidth() - this.outerWidth(), height: jQuery("#tu_center_wrapper").outerHeight() - this.outerHeight()};
-
-				this.css({top: position.top + parseInt(delta.height / 2, 10), left: position.left + parseInt(delta.width / 2, 10), position: "absolute"}).appendTo("body");
+				
+				// this.outerWidth() does not work properly in ie8
+				var delta = {
+				  width: jQuery("#tu_center_wrapper").outerWidth() - newTopUpWidth,
+				  height: jQuery("#tu_center_wrapper").outerHeight() - this.outerHeight()
+				};
+        
+				this.css({
+				  top: position.top + parseInt(delta.height / 2, 10),
+				  left: position.left + parseInt(delta.width / 2, 10),
+				  position: "absolute"
+				}).appendTo("body");
+				
 				jQuery("#tu_center_wrapper").hide();
 
 				return this;
@@ -804,15 +819,20 @@ TopUp = (function() {
         jQuery("#top_up .te_content").addClass("te_scrollable");
       }
       
-      setDimensions();
       
+      setDimensions();
+
 	    jQuery("#top_up").centerWrap(jQuery("#temp_up"));
 	    
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
 	                     height: jQuery("#temp_up .te_content").outerHeight()};
+	    
+	    // fix problem with changing width in ie8
+	    // topup used to move left
+	    var newTopUpWidth = jQuery("#temp_up").outerWidth();
 	    jQuery("#top_up .te_content").animate(animation, 400, function() {
 	      moveContent("top_up");
-        jQuery("#top_up").removeCenterWrap();
+        jQuery("#top_up").removeCenterWrap(newTopUpWidth);
 	      focusedElement.focus();
 	      afterDisplay();
       });
@@ -973,6 +993,7 @@ TopUp = (function() {
 	    jQuery("#top_up .te_close_link").hide();
 	  }
 	  
+	  
 	  options.resize.css(dimensions);
 	  
 	  // display close button again after resizing
@@ -982,7 +1003,7 @@ TopUp = (function() {
 	  
 	  if (func) {
 	    func.apply();
-	  }
+	  }	  
 	};
 	var checkHeight = function() {
 	  if (jQuery("#temp_up").outerHeight() <= jQuery(window).height() - 4) {
