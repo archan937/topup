@@ -1,6 +1,10 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+TopUp.enableFastMode(function() {
+  return jQuery.ie6;
+});
+
 TopUp.addPresets({
   "#images a": {
     fixed: 0,

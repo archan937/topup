@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Single links - Using TopUp classes</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/example.css"/>
+    <script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js"></script>
+  </head>
+  <body>
+	<div id="page_background"></div>
+	  <div id="page_wrapper">
+	    <div id="page_header" onclick="document.location.href = 'http://gettopup.com'">
+	      <h2>TopUp</h2>
+        <h1>The #1 Javascript Pop Up made by Paul Engel</h1>
+      </div>
+	    <div id="page_content">
+  <div id="description">
+    <h2>TopUp classes</h2>
+    <p>
+      You can implement TopUp just by adding a TopUp class to a HTML element.
+      There are multiple TopUp classes of which you can choose from.
+    </p>
+    <p>
+      For TopUp with default settings, just use 'top_up'.
+      You can also compose the TopUp class which specifies certain TopUp settings.
+    </p>
+    <p>
+      When composing you can specify:
+    </p>
+    <ol>
+      <li>the layout ('db' for dashboard, 'ql' for quicklook, 'fl' for flatlook)</li>
+      <li>the type (see <a href="http://gettopup.com/documentation">documentation</a>)</li>
+      <li>the dimensions (width'x'height)</li>
+    </ol>
+    <p>
+      The composed TopUp class has to begin with 'tu_' followed by the settings joined with underscores.<br>
+      As an example, use 'tu_ql_iframe' for a TopUp with the 'quicklook' layout and the 'iframe' type.
+    </p>
+  </div>
+  <h2>Demo</h2>
+  <div id="demo">
+    <a href="photos/1.jpg" class="top_up"><img src="thumbnails/1.jpg"/></a>
+    <a href="photos/2.jpg" class="tu_ql"><img src="thumbnails/2.jpg"/></a>
+    <a href="http://www.google.nl" class="tu_iframe_800x600">Open Google</a>
+  </div>
+      </div>
+    </div>
+  </body>
+</html>

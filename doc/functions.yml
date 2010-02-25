@@ -15,6 +15,9 @@
 - call:        | TopUp.display(reference, opts)
   description: This is the core function which shows the TopUp.
 
+- call:        | TopUp.enableFastMode(value)
+  description: | Calling this enables (or disables) the TopUp fastmode which ignores coptions (when enabled) in order to improve performance. This is recommended for IE6 and IE7. Value is optional: 1) fastMode will be enabled when the value is undefined, 2) value can be a function which returns (fastMode = ) true of false, 3) value can be true or false.
+
 - call:        | TopUp.restore(storeCurrent, func)
   description: Calling this restores the stored content. You can pass a callback function which will be called when the content is restored.
 

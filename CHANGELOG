@@ -1,5 +1,13 @@
 = TopUp CHANGELOG
 
+== Version 1.7 (February 25, 2010)
+
+* Using jQuery v1.4.2 (yay!)
+* Added TopUp.jquery which returns the current used jQuery version
+* Added Internet Explorer 6, 7 and 8 tweaks (all credits to Timo Besenreuther)
+* Bypassed layered AlphaImageLoader rendering in IE6 which sometimes caused problems
+* Introduced 'fastMode' which ignores coptions when enabled in order to improve performance (recommended for IE6 and IE7). Just call TopUp.enableFastMode(), see http://gettopup.com/documentation#just_call_your_friend_top_up for more information (this feature was initiated by Timo Besenreuther)
+
 == Version 1.6.9 (February 2, 2010)
 
 * Introduced the toption 'storeCurrent' and TopUp.restore(). This enables you to 'store' the currently displayed content when rendering new content. As the function name describes: calling TopUp.restore() restores the stored content. Please note that this function still needs to be tweaked a bit. Storing multiple isn't possible at the moment (to be continued).

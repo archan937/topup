@@ -206,21 +206,21 @@ TopUp = (function() {
 	  jQuery(html).appendTo("body");
 	};
 	var bind = function() {
+	  var coptions = [];
+	  
 	  if (!fastMode) {
 	    // do things great
-		  var coptions = ["[class^=tu_][class*=x]"];
+		  // define coptions
+		  coptions.push("[class^=tu_][class*=x]");
   		jQuery.each(["db", "ql", "fl", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
         coptions.push("[class^=tu_][class*=_" + coption + "]");
       });
-		  selector = jQuery.merge([".top_up", "[toptions]", coptions.join(",")], jQuery.keys(presets)).join();
-		} else {
-		  // do things quickly
-		  // only use presets
-		  selector = jQuery.keys(presets).join();
 		}
 		
+	  selector = jQuery.merge([".top_up", "[toptions]", coptions.join(",")], jQuery.keys(presets)).join();
+	  
 		jQuery(selector).live("click", topUpClick);
-		jQuery(document).bind("keypress", documentKeyPress);
+		jQuery(document).bind("keyup", documentKeyPress);
 	};
 	
 	/**
@@ -1099,6 +1099,7 @@ TopUp = (function() {
 	
 	return {
 	  version: "{version}",
+	  jquery: null,
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",
@@ -1110,6 +1111,8 @@ TopUp = (function() {
 			
 			try {
   			jQuery(document).ready(function() {
+  			  TopUp.jquery = jQuery().jquery;
+  			  
           extendjQuery();
           injectCode();
           bind();
@@ -1139,9 +1142,29 @@ TopUp = (function() {
 		},
 		// disable cpu-consuming options like .tu_images etc
 		enableFastMode: function() {
-		  fastMode = true;
+		  var args = arguments;
+		  
+		  if (!jQuery.isReady) {
+		    TopUp.ready(function() {
+		      TopUp.enableFastMode.apply(null, args);
+		    });
+		    return false;
+		  }
+		  
+		  if (arguments.length) {
+	      var arg  = arguments[0];
+		    var func = jQuery.isFunction(arg) ? arg : function() { return arg; };
+		    fastMode = func.apply();
+		  } else {
+		    fastMode = true;
+		  }
+		  
+		  TopUp.rebind();
 		},
 		rebind: function() {
+  	  if (selector) {
+  	    jQuery(selector).die("click", topUpClick);
+  	  }
 			bind();
 		},
 		displayTopUp: function(element, opts) {
