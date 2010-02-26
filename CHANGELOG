@@ -1,5 +1,10 @@
 = TopUp CHANGELOG
 
+== Version 1.7.1 (February 26, 2010)
+
+* IE8 and Safari fixes: ensure TopUp stays centered when navigating in a group
+* Added IE8 shaded overlay fix
+
 == Version 1.7 (February 25, 2010)
 
 * Using jQuery v1.4.2 (yay!)
