@@ -430,6 +430,14 @@ TopUp = (function() {
 		}
 	
 		if ((parseInt(options.modal, 10) == 1) || (parseInt(options.shaded, 10) == 1) || (parseInt(options.overlayClose, 10) == 1)) {
+			if (jQuery.ie8) {
+				var fixOverlay = function() {
+					jQuery('#tu_overlay').css('top', document.body.parentElement.scrollTop+'px');
+				};
+				fixOverlay.apply();
+				window.onresize = fixOverlay;
+				jQuery(window).bind('scroll', fixOverlay);
+			}
 			jQuery("#tu_overlay").show();
 		} else {
 			jQuery("#tu_overlay").hide();
