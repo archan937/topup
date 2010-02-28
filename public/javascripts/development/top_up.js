@@ -14,6 +14,19 @@ var scriptHost = (function deriveScriptHost() {
   var src = scriptElement.getAttribute("src");
 	return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
 }());
+var scriptParams = (function deriveScriptParams() {
+  var src    = scriptElement.getAttribute("src");
+  var pairs  = ((src.match(/([\?]*)\?(.*)+/) || ["", "", ""])[2] || "").replace(/(^[0123456789]+|\.js(\s+)?$)/, "").split("&");
+  var params = {};
+  
+  for (var i = 0; i < pairs.length; i++) {
+    if (pairs[i] != "") {
+		  var key_value = pairs[i].split("=");
+		  params[key_value[0].replace(/^\s+|\s+$/g, "")] = key_value[1].replace(/^\s+|\s+$/g, "");
+		}
+  }
+	return params;
+}());
 
 // *
 // * TopUp {version} (Uncompressed)
@@ -30,7 +43,7 @@ var scriptHost = (function deriveScriptHost() {
 
 TopUp = (function() {
 	var initialized = false, selector = null, on_ready = [], displaying = false, options = null, group = null, index = null, data = null;
-	var fastMode = false;
+	var fast_mode = false;
 	var default_preset = {
 		layout: "dashboard",
     effect: "transform",
@@ -223,7 +236,7 @@ TopUp = (function() {
 	var bind = function() {
 	  var coptions = [];
 	  
-	  if (!fastMode) {
+	  if (!fast_mode) {
 	    // do things great
 		  // define coptions
 		  coptions.push("[class^=tu_][class*=x]");
@@ -1130,8 +1143,8 @@ TopUp = (function() {
 	  version: "{version}",
 	  jquery: null,
 		host: scriptHost,
-		images_path: "images/top_up/",
-		players_path: "players/",
+		images_path: scriptParams.images_path || "images/top_up/",
+		players_path: scriptParams.players_path ||  "players/",
 		data: data,
 		init: function() {
 			if (initialized) {
@@ -1141,6 +1154,7 @@ TopUp = (function() {
 			try {
   			jQuery(document).ready(function() {
   			  TopUp.jquery = jQuery().jquery;
+  			  fast_mode    = parseInt(scriptParams.fast_mode, 10) == 1;
   			  
           extendjQuery();
           injectCode();
@@ -1183,10 +1197,11 @@ TopUp = (function() {
 		  if (arguments.length) {
 	      var arg  = arguments[0];
 		    var func = jQuery.isFunction(arg) ? arg : function() { return arg; };
-		    fastMode = func.apply();
+		    fast_mode = func.apply();
 		  } else {
-		    fastMode = true;
+		    fast_mode = true;
 		  }
+		  fast_mode = fast_mode == true || parseInt(fast_mode, 10) == 1;
 		  
 		  TopUp.rebind();
 		},
@@ -1293,14 +1308,24 @@ TopUp = (function() {
 (function () {
   var missing_libs = [];
   
-  if (typeof(jQuery) == "undefined") {
-    missing_libs.push("all");
-  } else {
-    if (!jQuery.ui || !jQuery.ui.resizable) {
-      missing_libs.push("uic-resizable");
+  if (scriptParams.libs != null) {
+    var libs = scriptParams.libs.replace("compact", "core+uic-resizable").split("+");
+    
+    for (var i = 0; i < libs.length; i++) {
+      if (["all", "core", "uic-resizable", "fxc-clip"].indexOf(libs[i]) != -1) {
+  		  missing_libs.push(libs[i]);
+  		}
     }
-    if (!jQuery.effects || !jQuery.effects.clip) {
-      missing_libs.push("fxc-clip");
+  } else {
+    if (typeof(jQuery) == "undefined") {
+      missing_libs.push("all");
+    } else {
+      if (!jQuery.ui || !jQuery.ui.resizable) {
+        missing_libs.push("uic-resizable");
+      }
+      if (!jQuery.effects || !jQuery.effects.clip) {
+        missing_libs.push("fxc-clip");
+      }
     }
   }
   
