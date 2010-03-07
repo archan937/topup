@@ -39,4 +39,8 @@ module ApplicationHelper
     text.gsub(".", "").split(/[^\w]/).join("_").underscore.gsub(/\d+_/, "")
   end
   
+  def ljust_lib(lib)
+    lib.ljust(7, " ").gsub(" ", "&nbsp;")
+  end
+  
 end

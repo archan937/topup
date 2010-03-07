@@ -14,7 +14,12 @@
     <div class="box code">
       &lt;script type="text/javascript" src="http://gettopup.com/releases/latest/top_up-min.js">&lt;/script>
     </div>
-    ( you can also include a specific release by replacing <span class="code">latest</span> with the version e.g. <span class="code">1.3.2</span> )
+    <small>
+      <strong>Note: You can configure TopUp (libs, <%= link_to "fast mode", documentation_path(:anchor => "function_enable_fast_mode") %>, paths) in the querystring of the URL (read <%= link_to "documentation", documentation_path(:anchor => "configure_top_up_with_the_query_string") %>)</strong>
+    </small>
+    <div class="top_padded">
+      ( you can also include a specific release by replacing <span class="code">latest</span> with the version e.g. <span class="code">1.3.2</span> )
+    </div>
   </li>
 </ol>
 <h3>
@@ -65,11 +70,92 @@
     <div class="box code">
       &lt;script type="text/javascript" src="path/to/your/top_up-min.js">&lt;/script>
     </div>
+    <small>
+      <strong>Note: You can configure TopUp (libs, <%= link_to "fast mode", documentation_path(:anchor => "function_enable_fast_mode") %>, paths) in the querystring of the URL (read <%= link_to "documentation", documentation_path(:anchor => "configure_top_up_with_the_query_string") %>)</strong>
+    </small>
   </li>
 </ol>
 <p>
   Remember: You can still use <strong><%= link_to "Prototype", "http://prototypejs.org" %></strong> without having conflicts, just make sure you include TopUp first.
 </p>
+
+<%= h1 "Configure TopUp with the query string" %>
+<p>
+  It is possible to configure TopUp without(!) typing a single line of Javascript code. How can this be done? By passing parameters in the query string of the TopUp library inclusion URL. You can configure the following:
+</p>
+<ul class="bottom_padded">
+  <li>which jQuery libraries to auto-include or not to auto-include libraries at all</li>
+  <li>whether to <%= link_to "enable fast mode", documentation_path(:anchor => "function_enable_fast_mode") %> for better performance in IE</li>
+  <li>the variables <span class="code">TopUp.host</span>, <span class="code">TopUp.images_path</span> and <span class="code">TopUp.players_path</span></li>
+</ul>
+<p>
+  A few examples to configure TopUp:
+</p>
+<ol class="configure_top_up">
+  <li class="bottom_padded">
+    <span class="code">libs</span> &nbsp;-&nbsp; Specify which jQuery libraries to auto-include or not to auto-include libraries at all:<br>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp not to auto-include any jQuery libraries at all</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?libs=">&lt;/script>
+    </div>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp only to auto-include the jQuery Core library</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?libs=core">&lt;/script>
+    </div>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp to auto-include the jQuery Core library and jQuery Effects Core & Clip library</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?libs=core+clip">&lt;/script>
+    </div>
+    
+    <div class="top_padded">
+      Available libs:
+    </div>
+    <div style="padding-top: 4px">
+      <% LIBS.each do |lib| %>
+      <span class="code"><%= ljust_lib lib["key"] %></span>&nbsp;-&nbsp; <%= lib["description"] %><br>
+      <% end %>
+    </div>
+  </li>
+  <li class="bottom_padded">
+    <span class="code">fast_mode</span> &nbsp;-&nbsp; Specify whether <%= link_to "fast mode", documentation_path(:anchor => "function_enable_fast_mode") %> has to be enabled or not:<br>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp to enable fast mode</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?fast_mode=1">&lt;/script>
+    </div>
+  </li>
+  <li class="bottom_padded">
+    <span class="code">host, images_path, players_path</span> &nbsp;-&nbsp; Override the default assets variables:<br>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp to enable fast mode</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?images_path=/foo">&lt;/script>
+    </div>
+  </li>
+  <li>
+    And as usual with URL query string parameters, you can combine them using '&':<br>
+    
+    <div class="top_padded">
+      <small><strong>Instruct TopUp only to auto-include the jQuery Core library and to enable fast mode</strong></small>
+    </div>
+    <div class="box code">
+      &lt;script type="text/javascript" src="path/to/top_up-min.js?libs=core&fast_mode=1">&lt;/script>
+    </div>
+  </li>
+</ol>
 
 <%= h1 "Setting up link elements" %>
 <p>
@@ -143,6 +229,9 @@
     <% TOPTIONS.each do |toption| %>
     <tr valign="top">
       <td class="name">
+        <span>
+          <a name="toption_<%= toption["name"].underscore %>"></a>
+        </span>
         <%= toption["name"] %>
       </td>
       <td class="default">
@@ -180,6 +269,9 @@
     <% FUNCTIONS.each do |function| %>
     <tr valign="top">
       <td class="call">
+        <span>
+          <a name="function_<%= function["call"].match(/^(TopUp\.)([\w_]+)/)[2].to_s.underscore %>"></a>
+        </span>
         <%= function["call"] %>
       </td>
       <td class="description">

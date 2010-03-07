@@ -67,14 +67,15 @@ SeatHolder = (function() {
 	    var hintElement = jQuery("#" + element.attr("hint_element"));
 
 	    if (hintElement.length == 0) {
-	      hintElement = jQuery("<input/>")
-	                    .attr("id", "hint_element_" + i)
-	                    .attr("type", element.attr("type"))
-	                    .attr("readonly", true)
-	                    .attr("hinted_element", element.attr("id"))
-                      .focus(onHintFocus);
+	      (hintElement = element.attr("type").toLowerCase() == "textarea" ?
+	                       jQuery("<" + element.attr("type") + "/>") :
+	                       jQuery("<input/>").attr("type", element.attr("type")))
+	                     .attr("id", "hint_element_" + i)
+	                     .attr("readonly", true)
+	                     .attr("hinted_element", element.attr("id"))
+                       .focus(onHintFocus);
 	      
-        jQuery.each(["class", "size"], function(index, attribute) {
+        jQuery.each(["class", "size", "cols", "rows"], function(index, attribute) {
           switch(attribute) {
             case "class":
               hintElement.attr(attribute, element.attr(attribute).replace(hideClass, "")); break;
@@ -97,7 +98,6 @@ SeatHolder = (function() {
     var hintElement = jQuery(event.target).addClass(hideClass);
     
   	jQuery(document.getElementById(hintElement.attr("hinted_element")))
-          .attr("disabled", false)
           .removeClass(hideClass)
           .focus();
   };
@@ -133,7 +133,7 @@ SeatHolder = (function() {
   	if (seatholder.match(/^&/)) {
   		element.val(seatholder.replace(/^&/, ""));
     } else {
-      element.attr("disabled", true)
+      element.val("")
              .addClass(hideClass);
 	    jQuery("#" + element.attr("hint_element")).removeClass(hideClass);
   	}
@@ -165,7 +165,7 @@ SeatHolder = (function() {
   if (missing_libs.length == 0) {
     SeatHolder.init();
   } else {
-    var src = scriptElement.getAttribute("src").replace(/(development\/)?seat_holder(\-min)?\.js.*$/, "jquery/" + missing_libs.join(".") + ".js");
+    var src = scriptElement.getAttribute("src").replace(/(development\/)?seat_holder(\-min)?\.js.*$/, "jquery/" + missing_libs.sort().join(".") + ".js");
     document.write('<script src="' + src + '" type="text/javascript" ' + 
                            'onload="SeatHolder.init()" onreadystatechange="SeatHolder.init()">' +
                    '</script>');

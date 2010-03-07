@@ -1,8 +1,8 @@
 <div id="secondary">
   <%= h2 "Get the latest version", false %>
   <div class="box">
-    <small>Current Release: 1.7.1</small>
-    <%= link_to "Download TopUp", "http://gettopup.com/releases/packed/latest.zip", :class => "download_top_up" %>
+    <small>Current Release: <%= current_download_version %></small>
+    <%= link_to "Download TopUp", download_url_for(current_download_version), :class => "download_top_up" %>
     <small>
       Want to keep track of new releases?
       Click <%= link_to "here", new_tracker_path, :toptions => "effect = fade, shaded = 1, overlayClose = 1, resizable = 0" %>.

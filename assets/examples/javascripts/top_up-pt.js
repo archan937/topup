@@ -16,7 +16,7 @@ var scriptHost = (function deriveScriptHost() {
 }());
 
 // *
-// * TopUp 1.7.1 (Uncompressed) - Alpha release
+// * TopUp 1.7.2 (Uncompressed) - Alpha release
 // * The #1 Javascript Pop Up / Lightbox (http://gettopup.com)
 // *
 // * This library requires Prototype (http://prototypejs.org)
@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, TopUp is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2010-02-26 18:07:20 +0100 (Fri, 26 February 2010) $
+// * $Date: 2010-03-07 19:47:47 +0100 (Sun, 07 March 2010) $
 // *
 
 TopUp = (function() {
@@ -876,7 +876,7 @@ TopUp = (function() {
 	};
   
 	return {
-	  version: "1.7.1",
+	  version: "1.7.2",
 		host: scriptHost,
 		images_path: "images/top_up/",
 		players_path: "players/",

@@ -1,5 +1,9 @@
 = TopUp CHANGELOG
 
+== Version 1.7.2 (March 7, 2010)
+
+* It is possible to configure TopUp within query string of the inclusion URL. You can specify which jQuery libraries to auto-include (or not to auto-include at all), enable fast mode and override the assets (host, images_path and players_path) variables. See http://gettopup.com/documentation#configure_top_up_with_the_query_string for more information.
+
 == Version 1.7.1 (February 26, 2010)
 
 * IE8 and Safari fixes: ensure TopUp stays centered when navigating in a group

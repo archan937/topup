@@ -22,7 +22,9 @@ var scriptParams = (function deriveScriptParams() {
   for (var i = 0; i < pairs.length; i++) {
     if (pairs[i] != "") {
 		  var key_value = pairs[i].split("=");
-		  params[key_value[0].replace(/^\s+|\s+$/g, "")] = key_value[1].replace(/^\s+|\s+$/g, "");
+		  if (key_value.length == 2) {
+		    params[key_value[0].replace(/^\s+|\s+$/g, "")] = key_value[1].replace(/^\s+|\s+$/g, "");
+		  }
 		}
   }
 	return params;
@@ -110,9 +112,9 @@ TopUp = (function() {
 			centerWrap: function(compare) {
 				var current = {width: this.outerWidth(), height: this.outerHeight()}, delta = {width: 0, height: 0}, diff = 0;
 				
-				// fix problem with adjusting height in safari
-        // topup used to gradually move down
-        compare.find(".te_frame").css('display', 'block');
+        // added by Timo Besenreuther (2010-02-24)
+				// fix problem with adjusting height in safari (topup used to gradually move down)
+        compare.find(".te_frame").css("display", "block");
 				
         diff = compare.outerWidth() - current.width;
         if (delta.width < diff) {
@@ -165,6 +167,7 @@ TopUp = (function() {
 			removeCenterWrap: function(newTopUpWidth) {
 				var position = jQuery("#tu_center_wrapper").offset();
 				
+        // added by Timo Besenreuther (2010-02-24)
 				// this.outerWidth() does not work properly in ie8
 				var delta = {
 				  width: jQuery("#tu_center_wrapper").outerWidth() - newTopUpWidth,
@@ -236,9 +239,8 @@ TopUp = (function() {
 	var bind = function() {
 	  var coptions = [];
 	  
+		// added by Timo Besenreuther (2010-02-24) / modified by Paul Engel (2010-02-25)
 	  if (!fast_mode) {
-	    // do things great
-		  // define coptions
 		  coptions.push("[class^=tu_][class*=x]");
   		jQuery.each(["db", "ql", "fl", "image", "html", "dom", "iframe", "ajax", "script"], function(i, coption) {
         coptions.push("[class^=tu_][class*=_" + coption + "]");
@@ -251,11 +253,9 @@ TopUp = (function() {
 		jQuery(document).bind("keyup", documentKeyPress);
 	};
 	
-	/**
-	 * adjust durations of effects to ancient browsers
-	 */
+	// added by Timo Besenreuther (2010-02-24)
+  // fade duration 0 prevents black frame from flashing
   var fadeDuration = function(duration) {
-    // fade duration 0 prevents black frame from flashing
     return jQuery.ie8 || jQuery.ie7 || jQuery.ie6 ? 0 : duration;
   };
 
@@ -373,10 +373,6 @@ TopUp = (function() {
     return jQuery.inArray((opts || options).type, ["flash", "flashvideo", "quicktime", "realplayer", "windowsmedia"]) != -1;
   };
 	
-	
-	/**
-	 * derive group of current element
-	 */
 	var deriveGroup = function() {
 		if (options.group) {
 		
@@ -403,11 +399,6 @@ TopUp = (function() {
 		}
 	};
 	
-	
-	/**
-	 * navigate in group
-	 * change currently displayed content without closing topup
-	 */
 	var navigateInGroup = function(step) {
 	  if (group === null) {
 	    return;
@@ -426,7 +417,9 @@ TopUp = (function() {
 	};
   
 	var prepare = function() {
-		jQuery("#top_up .te_frame").resizable("destroy");
+	  if (jQuery("#top_up .te_frame").resizable) {
+		  jQuery("#top_up .te_frame").resizable("destroy");
+	  }
 		
 		jQuery("#top_up .te_title").fadeOut(fadeDuration(200));
 		if (!(group && group.items.length > 1)) {
@@ -760,8 +753,10 @@ TopUp = (function() {
                         width: parseInt(jQuery(window).width() / 2, 10), 
                         height: parseInt(jQuery(window).height() / 2, 10)};
     }
-    // &nbsp; fixes issue in ie6 (current image disappearing while loading)
-	  jQuery("#tu_loader").html('&nbsp;').css(dimensions).show();
+
+		// added by Timo Besenreuther (2010-02-24)
+		// &nbsp; fixes issue in ie6 (current image disappearing while loading)
+	  jQuery("#tu_loader").html("&nbsp;").css(dimensions).show();
 	};
 	var hideLoader = function() {
     jQuery("#tu_loader").hide();
@@ -807,10 +802,6 @@ TopUp = (function() {
 		}
 	};
 	
-	
-	/**
-	 * replace displayed content
-	 */
 	var replace = function(callback) {
     var isScrollable = jQuery("#top_up .te_content").hasClass("te_scrollable");
     if (isScrollable) {
@@ -848,8 +839,8 @@ TopUp = (function() {
 	    var animation = {width: jQuery("#temp_up .te_content").outerWidth(),
 	                     height: jQuery("#temp_up .te_content").outerHeight()};
 	    
-	    // fix problem with changing width in ie8
-	    // topup used to move left
+      // added by Timo Besenreuther (2010-02-24)
+		  // fix problem with changing width in ie8 (topup used to move left)
 	    var newTopUpWidth = jQuery("#temp_up").outerWidth();
 	    jQuery("#top_up .te_content").animate(animation, 400, function() {
 	      moveContent("top_up");
@@ -943,7 +934,7 @@ TopUp = (function() {
 	var afterDisplay = function() {
     var duration = fadeDuration(500);
 		
-		if (parseInt(options.resizable, 10) == 1) {
+		if (jQuery("#top_up .te_frame").resizable && parseInt(options.resizable, 10) == 1) {
 		  var opts = {stop: function(){ jQuery("#top_up .te_frame").css({width: "auto", height: "auto"}); }, 
 		              handles: "se", 
 		              minWidth: 200, minHeight: 75, 
@@ -1009,15 +1000,16 @@ TopUp = (function() {
 	    }
 	  }
 	  
+		// added by Timo Besenreuther (2010-02-24)
 	  // close button does not get transformed properly in ie8, so we just hide it
 	  if (jQuery.ie8) {
 	    jQuery("#top_up .te_close_link").hide();
 	  }
 	  
-	  
 	  options.resize.css(dimensions);
 	  
-	  // display close button again after resizing
+    // added by Timo Besenreuther (2010-02-24)
+    // display close button again after resizing
 	  if (jQuery.ie8) {
 	    jQuery("#top_up .te_close").show();
 	  }
@@ -1059,7 +1051,8 @@ TopUp = (function() {
 
     if (jQuery.keys(position).length > 0) {
       if (jQuery.ie6 || jQuery.ie7) {
-        // ie6&7 somehow lose the content. make sure, it is displayed:
+        // added by Timo Besenreuther (2010-02-24)
+        // IE6&7 somehow lose the content (make sure it is displayed)
         jQuery("#top_up").css(position);
         window.setTimeout(function() {
           jQuery("#top_up .te_content").show();
@@ -1112,6 +1105,7 @@ TopUp = (function() {
         jQuery("#top_up").hide("clip", {direction: "vertical"}, 400, afterHide); break;
       case "transform":
         if (jQuery.ie6) {
+          // added by Timo Besenreuther (2010-02-24)
           // transforming back to origin sometimes causes problems in ie6
           jQuery("#top_up").hide();
           afterHide.apply();
@@ -1142,7 +1136,7 @@ TopUp = (function() {
 	return {
 	  version: "{version}",
 	  jquery: null,
-		host: scriptHost,
+		host: scriptParams.host || scriptHost,
 		images_path: scriptParams.images_path || "images/top_up/",
 		players_path: scriptParams.players_path ||  "players/",
 		data: data,
@@ -1154,7 +1148,9 @@ TopUp = (function() {
 			try {
   			jQuery(document).ready(function() {
   			  TopUp.jquery = jQuery().jquery;
-  			  fast_mode    = parseInt(scriptParams.fast_mode, 10) == 1;
+
+  			  fast_mode = parseInt(scriptParams.fast_mode, 10) == 1;
+  			  default_preset.resizable = jQuery.ui && jQuery.ui.resizable ? 1 : 0;
   			  
           extendjQuery();
           injectCode();
@@ -1168,7 +1164,9 @@ TopUp = (function() {
 			
         jQuery(window).unload(function() {
           jQuery("*").unbind();
-  		    jQuery("#top_up .te_frame").resizable("destroy");
+          if (jQuery("#top_up .te_frame").resizable) {
+            jQuery("#top_up .te_frame").resizable("destroy");
+          }
         });
         
   			initialized = true;
@@ -1183,6 +1181,7 @@ TopUp = (function() {
 		ready: function(func) {
 			on_ready.push(func);
 		},
+		// added by Timo Besenreuther (2010-02-24) / modified by Paul Engel (2010-02-25)
 		// disable cpu-consuming options like .tu_images etc
 		enableFastMode: function() {
 		  var args = arguments;
@@ -1254,6 +1253,7 @@ TopUp = (function() {
       		}
   			};
   			
+  			// added by Timo Besenreuther (2010-02-24)
   			// force ie6 to display loader while deriving groups (which can take a while...)
   			if (jQuery.ie6) {
           window.setTimeout(continueDisplaying, 1);
@@ -1309,22 +1309,24 @@ TopUp = (function() {
   var missing_libs = [];
   
   if (scriptParams.libs != null) {
-    var libs = scriptParams.libs.replace("compact", "core+uic-resizable").split("+");
+    var libs = scriptParams.libs.replace(/clip|switch/g, "fxc-clip").replace(/resize/g, "uic-resizable").split("+");
     
     for (var i = 0; i < libs.length; i++) {
-      if (["all", "core", "uic-resizable", "fxc-clip"].indexOf(libs[i]) != -1) {
-  		  missing_libs.push(libs[i]);
+      if (["all", "core", "fxc-clip", "uic-resizable"].indexOf(libs[i]) != -1) {
+        if (missing_libs.indexOf(libs[i]) == -1) {
+  		    missing_libs.push(libs[i]);
+  		  }
   		}
     }
   } else {
     if (typeof(jQuery) == "undefined") {
       missing_libs.push("all");
     } else {
-      if (!jQuery.ui || !jQuery.ui.resizable) {
-        missing_libs.push("uic-resizable");
-      }
       if (!jQuery.effects || !jQuery.effects.clip) {
         missing_libs.push("fxc-clip");
+      }
+      if (!jQuery.ui || !jQuery.ui.resizable) {
+        missing_libs.push("uic-resizable");
       }
     }
   }
@@ -1332,7 +1334,7 @@ TopUp = (function() {
   if (missing_libs.length == 0) {
     TopUp.init();
   } else {
-    var src = scriptElement.getAttribute("src").replace(/(development\/)?top_up(\-min)?\.js.*$/, "jquery/" + missing_libs.join(".") + ".js");
+    var src = scriptElement.getAttribute("src").replace(/(development\/)?top_up(\-min)?\.js.*$/, "jquery/" + missing_libs.sort().join(".") + ".js");
     document.write('<script src="' + src + '" type="text/javascript" ' + 
                            'onload="TopUp.init()" onreadystatechange="TopUp.init()">' +
                    '</script>');

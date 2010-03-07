@@ -1,0 +1,16 @@
+---
+
+- key:         (empty)
+  description: instruct TopUp not to auto-include any of the jQuery libraries at all
+
+- key:         all
+  description: include all the available libraries
+
+- key:         core
+  description: jQuery Core library (currently <a href="http://jquery.com">1.4.2</a>)
+
+- key:         clip
+  description: which enables using clip / switch effect
+
+- key:         resize
+  description: which enables resizing the TopUp dialog

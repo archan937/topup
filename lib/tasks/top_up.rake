@@ -49,12 +49,6 @@ namespace :top_up do
     File.delete(release_symlink) if File.exists?(release_symlink)
     File.symlink(args[:version], release_symlink)
     
-    # Set current release in secondary partial
-    secondary = File.open("app/views/layouts/_secondary.html.erb").readlines.collect{ |line| 
-      line.gsub(/\<small\>Current Release\: [\d\.]+<\/small\>/, "<small>Current Release: #{args[:version]}</small>")
-    }
-    File.open("app/views/layouts/_secondary.html.erb", "w").puts(secondary)
-    
     # Compress release using YUI compressor
     IO.popen "java -jar lib/yuicompressor-2.4.2.jar -v #{release_dir}/javascripts/top_up.js -o #{release_dir}/javascripts/top_up-min.js"
   end

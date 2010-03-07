@@ -1,5 +1,6 @@
 TOPTIONS  = YAML.load_file("doc/toptions.yml")
 FUNCTIONS = YAML.load_file("doc/functions.yml")
+LIBS      = YAML.load_file("doc/libs.yml")
 CHANGELOG = File.readlines("CHANGELOG").inject(ActiveSupport::OrderedHash.new){ |log, line|
               if (version = line.match(/\=\= Version \d+(\.\d+)*/))
                 log[version.to_s.match(/\d+(\.\d+)*$/).to_s] = []
