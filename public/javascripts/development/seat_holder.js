@@ -1,18 +1,18 @@
 if (typeof(SeatHolder) == "undefined") {
 
 var scriptElement = (function deriveScriptElement() {
-	var id = "tu_dummy_script";
-	document.write('<script id="' + id + '"></script>');
+  var id = "tu_dummy_script";
+  document.write('<script id="' + id + '"></script>');
 
-	var dummyScript = document.getElementById(id);
-	var element = dummyScript.previousSibling;
+  var dummyScript = document.getElementById(id);
+  var element = dummyScript.previousSibling;
 
-	dummyScript.parentNode.removeChild(dummyScript);
-	return element;
+  dummyScript.parentNode.removeChild(dummyScript);
+  return element;
 }());
 var scriptHost = (function deriveScriptHost() {
   var src = scriptElement.getAttribute("src");
-	return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
+  return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
 }());
 
 // *
@@ -37,18 +37,18 @@ SeatHolder = (function() {
                   "." + hideClass + " { display: none !important }" +
                 "</style>";
 
-		jQuery(style).prependTo("head");
+    jQuery(style).prependTo("head");
   };
   var bind = function() {
-	  var hintedElements = [];
-	  
-	  jQuery.each(jQuery(SeatHolder.selector), function(i, element) {
-	    element = jQuery(element);
-	    var seatholder = element.attr("seatholder");
+    var hintedElements = [];
+    
+    jQuery.each(jQuery(SeatHolder.selector), function(i, element) {
+      element = jQuery(element);
+      var seatholder = element.attr("seatholder");
 
-	    if (seatholder == null) {
-	      return;
-	    }
+      if (seatholder == null) {
+        return;
+      }
 
       if (seatholder.match(/^&/)) {
         onBlur(null, element);
@@ -58,23 +58,23 @@ SeatHolder = (function() {
         
       element.focus(onFocus)
              .blur(onBlur);
-	  });
-	  
-	  jQuery.each(hintedElements, function(i, element) {
-	    element = jQuery(element);
-	    element.attr("id", element.attr("id") || "hinted_element_" + i);
-	    
-	    var hintElement = jQuery("#" + element.attr("hint_element"));
+    });
+    
+    jQuery.each(hintedElements, function(i, element) {
+      element = jQuery(element);
+      element.attr("id", element.attr("id") || "hinted_element_" + i);
+      
+      var hintElement = jQuery("#" + element.attr("hint_element"));
 
-	    if (hintElement.length == 0) {
-	      (hintElement = element.attr("type").toLowerCase() == "textarea" ?
-	                       jQuery("<" + element.attr("type") + "/>") :
-	                       jQuery("<input/>").attr("type", element.attr("type")))
-	                     .attr("id", "hint_element_" + i)
-	                     .attr("readonly", true)
-	                     .attr("hinted_element", element.attr("id"))
+      if (hintElement.length == 0) {
+        (hintElement = element.attr("type").toLowerCase() == "textarea" ?
+                         jQuery("<" + element.attr("type") + "/>") :
+                         jQuery("<input/>").attr("type", element.attr("type")))
+                       .attr("id", "hint_element_" + i)
+                       .attr("readonly", true)
+                       .attr("hinted_element", element.attr("id"))
                        .focus(onHintFocus);
-	      
+        
         jQuery.each(["class", "size", "cols", "rows"], function(index, attribute) {
           switch(attribute) {
             case "class":
@@ -83,10 +83,10 @@ SeatHolder = (function() {
               hintElement.attr(attribute, element.attr(attribute));
           }          
         });
-	      
+        
         hintElement.addClass(hintClass);
-	      element.attr("hint_element", hintElement.attr("id"))
-	             .before(hintElement);
+        element.attr("hint_element", hintElement.attr("id"))
+               .before(hintElement);
       }
       
       hintElement.val(element.attr("seatholder"));
@@ -97,20 +97,20 @@ SeatHolder = (function() {
   var onHintFocus = function(event) {
     var hintElement = jQuery(event.target).addClass(hideClass);
     
-  	jQuery(document.getElementById(hintElement.attr("hinted_element")))
+    jQuery(document.getElementById(hintElement.attr("hinted_element")))
           .removeClass(hideClass)
           .focus();
   };
   var onFocus = function(event) {
-  	var element = jQuery(event.target);
+    var element = jQuery(event.target);
     var seatholder = element.attr("seatholder");
     
     if (element.val() == seatholder.replace(/^&/, "")) {
-  		element.val("");
-  	}
-  	
-  	var input = element.get(0);
-    	
+      element.val("");
+    }
+    
+    var input = element.get(0);
+      
     if (input.createTextRange) {
       var oRange = input.createTextRange();
       oRange.moveStart("character", 0);
@@ -122,36 +122,36 @@ SeatHolder = (function() {
   };
   var onBlur = function(event, element) {
     if (element == null) {
-  	  element = jQuery(event.target);
-  	}
+      element = jQuery(event.target);
+    }
     var seatholder = element.attr("seatholder");
     if ((element.val().length > 0 && element.val() != seatholder.replace(/^&/, ""))) {
       jQuery("#" + element.attr("hint_element")).addClass(hideClass);
       return;
     }
     
-  	if (seatholder.match(/^&/)) {
-  		element.val(seatholder.replace(/^&/, ""));
+    if (seatholder.match(/^&/)) {
+      element.val(seatholder.replace(/^&/, ""));
     } else {
       element.val("")
              .addClass(hideClass);
-	    jQuery("#" + element.attr("hint_element")).removeClass(hideClass);
-  	}
+      jQuery("#" + element.attr("hint_element")).removeClass(hideClass);
+    }
   };
   
-	return {
-	  version: "{version}",
-		selector: "[seatholder]",
-		hintColor: "#AAA",
-		init: function() {
-			jQuery(document).ready(function() {
-				injectCode();
+  return {
+    version: "{version}",
+    selector: "[seatholder]",
+    hintColor: "#AAA",
+    init: function() {
+      jQuery(document).ready(function() {
+        injectCode();
         bind();
       });
-	  },
-		rebind: function() {
-		  bind();
-	  }
+    },
+    rebind: function() {
+      bind();
+    }
   };
 }());
 
