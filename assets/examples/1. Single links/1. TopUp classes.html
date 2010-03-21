@@ -28,12 +28,18 @@
     </p>
     <ol>
       <li>the layout ('db' for dashboard, 'ql' for quicklook, 'fl' for flatlook)</li>
-      <li>the type (see <a href="http://gettopup.com/documentation">documentation</a>)</li>
+      <li>the type (see <a href="http://gettopup.com/documentation#available_toptions">documentation</a>)</li>
       <li>the dimensions (width'x'height)</li>
     </ol>
     <p>
-      The composed TopUp class has to begin with 'tu_' followed by the settings joined with underscores.<br>
+      The composed TopUp class (so called 'coptions') has to begin with 'tu_' followed by the settings joined with underscores.
+    </p>
+    <p>
       As an example, use 'tu_ql_iframe' for a TopUp with the 'quicklook' layout and the 'iframe' type.
+    </p>
+    <p>
+      Please note that the usage of coptions influences the browser performance negatively in IE6 and IE7, so it is recommended to <a href="http://gettopup.com/documentation#just_call_your_friend_top_up">enable fast mode</a>.
+      Enabling fast mode <strong>without(!)</strong> typing any Javascript code is documented <a href="http://gettopup.com/documentation#configure_top_up_with_the_query_string">here</a>.
     </p>
   </div>
   <h2>Demo</h2>
