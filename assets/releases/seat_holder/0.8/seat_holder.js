@@ -25,7 +25,7 @@ var scriptHost = (function deriveScriptHost() {
 // * Except otherwise noted, SeatHolder is licensed under
 // * http://creativecommons.org/licenses/by-sa/3.0
 // *
-// * $Date: 2010-04-01 00:50:31 +0100 (Thu, 01 April 2010) $
+// * $Date: 2010-04-01 11:55:10 +0100 (Thu, 01 April 2010) $
 // *
 
 SeatHolder = (function() {
@@ -121,21 +121,24 @@ SeatHolder = (function() {
     if (element == null) {
       element = jQuery(event.target);
     }
-    var seatholder = element.attr("seatholder");
+    
+    var seatholder  = element.attr("seatholder");
+    var hintElement = element.data("hint_element");
+    if (typeof(hintElement) == "undefined") {
+      hintElement = $(null);
+    }
     
     if ((element.val().length > 0 && element.val() != seatholder.replace(/^&/, ""))) {
+      hintElement.addClass(hideClass);
       return;
     }
     
     if (seatholder.match(/^&/)) {
       element.val(seatholder.replace(/^&/, ""));
     } else {
-      var hintElement = element.val("")
-                               .addClass(hideClass)
-                               .data("hint_element");
-      if (typeof(hintElement) != "undefined") {
-        $(hintElement).removeClass(hideClass);
-      }
+      element.val("")
+             .addClass(hideClass);
+      hintElement.removeClass(hideClass);
     }
   };
   
