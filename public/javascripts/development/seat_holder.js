@@ -125,11 +125,13 @@ SeatHolder = (function() {
     var seatholder  = element.attr("seatholder");
     var hintElement = element.data("hint_element");
     if (typeof(hintElement) == "undefined") {
-      hintElement = $(null);
+      hintElement = null;
     }
     
     if ((element.val().length > 0 && element.val() != seatholder.replace(/^&/, ""))) {
-      hintElement.addClass(hideClass);
+      if (hintElement) {
+        hintElement.addClass(hideClass);
+      }
       return;
     }
     
