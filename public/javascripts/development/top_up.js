@@ -845,7 +845,9 @@ TopUp = (function() {
       jQuery("#top_up .te_content").animate(animation, 400, function() {
         moveContent("top_up");
         jQuery("#top_up").removeCenterWrap(newTopUpWidth);
-        focusedElement.focus();
+        if (focusedElement && focusedElement.length) {
+	        focusedElement.focus();
+	      }
         afterDisplay();
       });
     });
