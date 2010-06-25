@@ -51,30 +51,18 @@ The locations of the TopUp resources are as follows:
 
 So to develop TopUp yourself, you will have to setup the development environment and run the Rails application. Doing this is a piece of cake, just follow these steps:
 
-# Get a clone of the TopUp repository and open that directory<br>
-<pre>
-  git clone git://github.com/archan937/topup.git && cd topup
-</pre>
-# Copy or rename config/environment.example.rb to config/environment.rb<br>
-<pre>
-  mv config/environment.example.rb config/environment.rb
-</pre>
-# Copy or rename config/database.example.yml to config/database.yml and correct the login settings<br>
-<pre>
-  mv config/database.example.yml config/database.yml
-</pre>
-# Create the database and run the migration task<br>
-<pre>
-  rake db:create && rake db:migrate
-</pre>
-# Run the Rails application<br>
-<pre>
-  ./script/server
-</pre>
-# Go do some cool scripting<br>
-<pre>
-  [ edit public/javascripts/development/top_up.js ]
-</pre>
+# Get a clone of the TopUp repository and open that directory
+<pre>git clone git://github.com/archan937/topup.git && cd topup</pre>
+# Copy or rename config/environment.example.rb to config/environment.rb
+<pre>mv config/environment.example.rb config/environment.rb</pre>
+# Copy or rename config/database.example.yml to config/database.yml and correct the login settings
+<pre>mv config/database.example.yml config/database.yml</pre>
+# Create the database and run the migration task
+<pre>rake db:create && rake db:migrate</pre>
+# Run the Rails application
+<pre>./script/server</pre>
+# Go do some cool scripting
+<pre>[ edit public/javascripts/development/top_up.js ]</pre>
 # Enjoy! :D
 
 h2. Documentation
