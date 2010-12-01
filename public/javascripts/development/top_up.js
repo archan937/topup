@@ -12,7 +12,7 @@ var scriptElement = (function deriveScriptElement() {
 }());
 var scriptHost = (function deriveScriptHost() {
   var src = scriptElement.getAttribute("src");
-  return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
+  return src.match(/.*\/(?=([\/]*)(\/[\/]*)$)/) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
 }());
 var scriptParams = (function deriveScriptParams() {
   var src    = scriptElement.getAttribute("src");
