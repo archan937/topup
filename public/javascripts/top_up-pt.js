@@ -401,7 +401,7 @@ TopUp = (function() {
                   			   asynchronous: false,
                   			   parameters: options.get("parameters"),
                   			   evalJS: (options.get("type") == "script"),
-                  			   onSuccess: function() {
+                  			   onSuccess: function(transport) {
                   			     var element = (new Element("div")).update(transport.responseText);
                              options.set("content", element.firstDescendant());
                              onContentReady();
