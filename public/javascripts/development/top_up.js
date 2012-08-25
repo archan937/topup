@@ -1304,6 +1304,14 @@ TopUp = (function() {
         hide(callback);
       }
     }
+    index: function(indexSetter) {
+    	if(indexSetter) {
+    		index = indexSetter;
+    		navigateInGroup(0);
+    	} else {
+    		return index;
+    	}
+    }
   };
 }());
 
