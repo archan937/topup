@@ -12,7 +12,7 @@ var scriptElement = (function deriveScriptElement() {
 }());
 var scriptHost = (function deriveScriptHost() {
   var src = scriptElement.getAttribute("src");
-  return src.match(/^\w+\:\/\//) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
+  return src.match(/.*\/(?=([\/]*)(\/[\/]*)$)/) ? src.match(/^\w+\:\/\/[^\/]*\//)[0] : "";
 }());
 var scriptParams = (function deriveScriptParams() {
   var src    = scriptElement.getAttribute("src");
@@ -622,6 +622,7 @@ TopUp = (function() {
     object.append(jQuery("<embed></embed>").attr({src            : options.reference,
                                                   width          : options.width,
                                                   height         : options.height,
+                                                  wmode          : "opaque",
                                                   allowfullscreen: "true",
                                                   type           : "application/x-shockwave-flash",
                                                   pluginspage    : "http://get.adobe.com/flashplayer/"}));
@@ -644,6 +645,7 @@ TopUp = (function() {
     object.append(jQuery("<embed></embed>").attr({src            : TopUp.host + TopUp.players_path + "flvplayer.swf", 
                                                   width          : options.width,
                                                   height         : options.height,
+                                                  wmode          : "opaque",
                                                   flashvars      : "file=" + options.reference + "&autostart=true",
                                                   allowfullscreen: "true",
                                                   type           : "application/x-shockwave-flash",
@@ -669,6 +671,7 @@ TopUp = (function() {
     object.append(jQuery("<embed></embed>").attr({src        : options.reference,
                                                   width      : options.width,
                                                   height     : options.height,
+                                                  wmode      : "opaque",
                                                   scale      : "aspect", 
                                                   bgcolor    : "black",
                                                   showlogo   : "false", 
@@ -694,6 +697,7 @@ TopUp = (function() {
     object.append(jQuery("<embed></embed>").attr({src        : options.reference,
                                                   width      : options.width,
                                                   height     : options.height,
+                                                  wmode      : "opaque",
                                                   controls   : "imagewindow",
                                                   console    : "one",
                                                   autostart  : "true",
